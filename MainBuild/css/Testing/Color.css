@@ -1,0 +1,84 @@
+@charset "UTF-8";
+.cl-black {
+  color: black;
+}
+
+.cl-white {
+  color: white;
+}
+
+.cl-grey {
+  color: grey;
+}
+
+.cl-lightblue {
+  color: lightblue;
+}
+
+.cl-blue {
+  color: blue;
+}
+
+.cl-darkblue {
+  color: darkblue;
+}
+
+.cl-lightyellow {
+  color: lightyellow;
+}
+
+.cl-yellow {
+  color: yellow;
+}
+
+.cl-darkyellow {
+  color: #cccc00;
+}
+
+.cl-lightgreen {
+  color: lightgreen;
+}
+
+.cl-green {
+  color: green;
+}
+
+.cl-darkgreen {
+  color: darkgreen;
+}
+
+.cl-lightpurple {
+  color: #885ead;
+}
+
+.cl-purple {
+  color: purple;
+}
+
+.cl-darkpurple {
+  color: #2a0d45;
+}
+
+.cl-lightred {
+  color: #ff4c4c;
+}
+
+.cl-red {
+  color: red;
+}
+
+.cl-darkred {
+  color: darkred;
+}
+
+.cl-lightorange {
+  color: #ffc04c;
+}
+
+.cl-orange {
+  color: orange;
+}
+
+.cl-darkorange {
+  color: darkorange;
+}

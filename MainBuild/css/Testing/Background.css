@@ -1,0 +1,84 @@
+@charset "UTF-8";
+.bk-black {
+  background-color: black;
+}
+
+.bk-white {
+  background-color: white;
+}
+
+.bk-grey {
+  background-color: grey;
+}
+
+.bk-lightblue {
+  background-color: lightblue;
+}
+
+.bk-blue {
+  background-color: blue;
+}
+
+.bk-darkblue {
+  background-color: darkblue;
+}
+
+.bk-lightyellow {
+  background-color: lightyellow;
+}
+
+.bk-yellow {
+  background-color: yellow;
+}
+
+.bk-darkyellow {
+  background-color: #cccc00;
+}
+
+.bk-lightgreen {
+  background-color: lightgreen;
+}
+
+.bk-green {
+  background-color: green;
+}
+
+.bk-darkgreen {
+  background-color: darkgreen;
+}
+
+.bk-lightpurple {
+  background-color: #885ead;
+}
+
+.bk-purple {
+  background-color: purple;
+}
+
+.bk-darkpurple {
+  background-color: #2a0d45;
+}
+
+.bk-lightred {
+  background-color: #ff4c4c;
+}
+
+.bk-red {
+  background-color: red;
+}
+
+.bk-darkred {
+  background-color: darkred;
+}
+
+.bk-lightorange {
+  background-color: #ffc04c;
+}
+
+.bk-orange {
+  background-color: orange;
+}
+
+.bk-darkorange {
+  background-color: darkorange;
+}
