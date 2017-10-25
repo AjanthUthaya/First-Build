@@ -1,0 +1,154 @@
+@charset "UTF-8";
+
+/* ***************************************************
+  GENERAL
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+#Content-Main {
+  width: auto;
+  height: calc(100vh - 60px);
+  margin-top: 60px;
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+
+/* ***************************************************
+  Login
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+.Login-Main {
+  z-index: 0;
+  width: 100vw;
+  height: calc(100vh - 60px);
+}
+
+.Login-Content-Underlayer {
+  position: relative;
+  top: calc(50% - 250px);
+  left: calc(50vw - 250px);
+  width: 500px;
+  height: 500px;
+  background-color: darkblue;
+}
+
+.Login-Icon {
+  position: relative;
+  top: -50px;
+  text-align: -webkit-center;
+  /* NOTE: This works to center circle, but is only a soulotion for chrome */
+}
+
+.Login-Icon-Underlayer {
+  position: relative;
+  display: table-cell;
+  vertical-align: middle;
+  width: 100px;
+  height: 100px;
+  margin: 1px 1px 1px 1px;
+  color: white;
+  border-radius: 100%;
+  background: red;
+  font-size: 40px;
+  text-align: center;
+}
+
+.Login-Content-Main {
+  position: relative;
+  top: -100px;
+  height: 100%;
+  width: 100%;
+  padding: 60px 60px 30px 60px;
+}
+
+.Login-Content-Title {
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+  width: 100%;
+  height: auto;
+  text-align: center;
+}
+
+.Login-Content-Title label {
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  width: 100%;
+  height: auto;
+  text-align: center;
+}
+
+
+/* NOTE: Work on footer */
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+
+/* ***************************************************
+  TOP-BAR
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+
+/* Left back icon in top-bar */
+
+.Top-Bar-Back {
+  color: white;
+  background-color: #e74c3c;
+  font-size: 20px;
+  font-weight: lighter;
+}
+
+.Top-Bar-Back a {
+  padding: 20px;
+  background-color: #e74c3c;
+}
+
+.Top-Bar-Back a:hover {
+  background-color: #c0392b;
+}
+
+
+/* Top bar register button */
+
+#Register-Button {
+  position: relative;
+  width: 90px;
+  height: 60px;
+  padding: 22px;
+  background-color: #8cc63f;
+  font-weight: 500;
+}
+
+#Register-Button:hover {
+  background-color: #849944;
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+
+/* ***************************************************
+  TESTING SECTION
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */

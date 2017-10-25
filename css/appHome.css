@@ -1,0 +1,564 @@
+/* ***************************************************
+  GENERAL
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+
+/* Removes the blue border and color on a tags */
+
+body {
+  background: #ebebeb;
+  font-family: helvetica;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.FullHeight {
+  height: 100vh;
+}
+
+.FullWidth {
+  width: 100vh;
+}
+
+a, a:focus, a:hover {
+  text-decoration: none;
+  color: inherit;
+  outline: none !important;
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+
+/* ***************************************************
+  TOP-BAR
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+
+/* HIDE & SHOW NAV BAR. SPEED OF TRANSITION, CHANGE HIGHT IN JS */
+
+.scrollhide-nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  transition: all 600ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  z-index: 100;
+}
+
+.scrollhide-nav.hidden {
+  -webkit-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+
+
+/* Topbar */
+
+.Top-Bar-Main {
+  background: #35414d;
+}
+
+
+/* Hamburger menu bar icon */
+
+.Top-Bar-Menu {
+  color: white;
+  font-size: 20px;
+  font-weight: lighter;
+}
+
+.Top-Bar-Menu a {
+  padding: 20px;
+}
+
+
+/* Center LOGO in top bar*/
+
+.Top-Bar-Center-Logo {
+  position: absolute;
+  left: calc(50vw - 90px);
+}
+
+
+/* Make underlayer divs, stay in one line */
+
+.Top-Bar-Logo {
+  display: inline-flex;
+}
+
+
+/* TOP BAR LOGO IMG */
+
+#TopBar-Logo {
+  width: 50px;
+  height: 50px;
+  margin: 5px 0px 0px 5px;
+}
+
+
+/* Logo underlayer */
+
+.Triangle-Left {
+  width: 0;
+  height: 0;
+  border-width: 30px 60px 30px 0;
+  border-style: solid;
+  border-color: transparent #292c30 transparent transparent;
+}
+
+.Rectangle {
+  width: 60px;
+  height: 60px;
+  background: #292c30;
+}
+
+.Triangle-Right {
+  width: 0;
+  height: 0;
+  border-width: 30px 0 30px 60px;
+  border-style: solid;
+  border-color: transparent transparent transparent #292c30;
+}
+
+
+/* Top bar login button */
+
+#Login-Button {
+  position: relative;
+  width: 90px;
+  height: 60px;
+  background-color: #8cc63f;
+  font-weight: 500;
+  padding: 22px;
+}
+
+#Login-Button:hover {
+  background-color: #849944;
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+
+/* ***************************************************
+  OFF-CANVAS MENU
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+
+/* Targets the entire off canvas menu */
+
+.Menu-OffCanvas-Main {
+  overflow: hidden;
+  height: 100vh;
+  background: #454f59;
+}
+
+
+/* Top part of offcanvas menu */
+
+.Menu-OffCanvas-Head {
+  position: relative;
+  display: inline-flex;
+  width: 100%;
+  height: 60px;
+  color: white;
+  background: #35414d;
+}
+
+
+/* Offcanvas menu titlebox */
+
+.Menu-OffCanvas-Title-Main {
+  width: 200px;
+  text-align: center;
+}
+
+
+/* Offcanvas menu title, targets h(x) tag */
+
+.Menu-OffCanvas-Title {
+  margin: 0;
+  text-align: center;
+}
+
+
+/* Offcanvas menu close box(red button) */
+
+.OffCanvas-Close-Main {
+  position: fixed;
+  left: 200px;
+  width: 50px;
+  height: 60px;
+  background-color: #e74c3c;
+}
+
+.OffCanvas-Close-Main:hover {
+  background-color: #c0392b;
+}
+
+
+/* Offcanvas fa fa close button in a tag */
+
+.OffCanvas-Close-Icon {
+  position: relative;
+  padding: 16px 14px;
+  text-align: center;
+  font-size: 28px;
+}
+
+
+/* Offcanvas, everything other than the title or head */
+
+.OffCanvas-Menu-Content {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 60px);
+}
+
+
+/* Offcanvas menu a tag list */
+
+.OffCanvas-Menu-List {
+  position: relative;
+  display: block;
+  height: calc(90vh - 60px);
+}
+
+.OffCanvas-Menu-List ul {
+  height: 100%;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.OffCanvas-Menu-List ul li {
+  margin: 10px 0px;
+}
+
+.OffCanvas-Menu-List ul li:hover {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.OffCanvas-Menu-List ul li a {
+  width: 100%;
+  text-align: center;
+}
+
+.OffCanvas-Menu-List-Active {
+  border-top: 0px outset #8cc63f;
+  border-right: 20px inset #8cc63f;
+  border-bottom: 0px inset #8cc63f;
+  border-left: 20px outset #8cc63f;
+}
+
+
+/* Social icons at the bottom */
+
+.OffCanvas-Menu-Social {
+  position: relative;
+  width: 100%;
+  height: 10vh;
+  min-height: 45px;
+  text-align: center;
+  color: #292c30;
+  font-size: 30px;
+}
+
+.OffCanvas-Menu-Social span {
+  position: relative;
+  top: calc(5vh - 25px);
+  margin: 0px 5px;
+}
+
+.OffCanvas-Menu-Social span:hover {
+  color: #1e2126;
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+
+/* ***************************************************
+  HERO
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+#Hero-Section {
+  height: calc(100vh - 60px);
+  margin-top: 60px;
+}
+
+.Hero-Section-Main {
+  text-align: center;
+  background: black;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  height: calc(85vh - 60px);
+  z-index: 10;
+}
+
+.Hero-Section-Main {
+  color: #fefefe;
+}
+
+.Hero-Section-SubMenu {
+  float: none;
+  position: absolute;
+  text-align: center;
+  margin: 0 auto;
+  bottom: 0;
+  width: 100%;
+}
+
+.Hero-Section-SubMenu li {
+  float: none;
+  display: inline-block;
+}
+
+.Hero-Section-SubMenu li a {
+  padding: 0.9rem 2rem;
+  font-size: 14px;
+  color: #fefefe;
+  display: block;
+  font-weight: bold;
+  transition: all 0.35s ease-in-out;
+}
+
+.Hero-Section-SubMenu li a.is-active {
+  background: rgba(254, 254, 254, 0.15);
+}
+
+.Hero-Section-SubMenu li a:hover {
+  background: rgba(254, 254, 254, 0.15);
+}
+
+.Feature {
+  background: grey;
+  height: 15vh;
+}
+
+.Hero-Section-Feature {
+  float: none;
+  position: absolute;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0px 20px;
+  width: 100%;
+  height: 15vh;
+}
+
+.Hero-Section-Feature li {
+  float: none;
+  display: inline-block;
+  margin: 0 2%;
+}
+
+.Hero-Section-Feature li a {
+  padding: 1.3rem 1rem;
+  height: 15vh;
+  font-size: 14px;
+  color: #fefefe;
+  display: block;
+  font-weight: bold;
+  transition: all 0.35s ease-in-out;
+}
+
+.Hero-Section-Feature li a:hover {
+  background: rgba(254, 254, 254, 0.15);
+}
+
+.Feature-Icons {
+  position: relative;
+  margin-bottom: 15px;
+  font-size: 50px;
+}
+
+.Feature-Label {
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+
+/* ***************************************************
+  CONTENT SECTION
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+.Feature-First {
+  background: red;
+}
+
+.Feature-Secound {
+  background: orange;
+}
+
+.Feature-Third {
+  background: green;
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+
+/* ***************************************************
+  FOOTER
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+
+/* Removes initial padding that comes with foundation bar */
+
+footer {
+  margin-top: calc(125px / 2 * 1);
+  height: 200px;
+  width: 100vw;
+  background-color: #454f59;
+}
+
+.Footer-Logo {
+  position: relative;
+  top: calc(125px / 2 * -1);
+  width: 100%;
+  text-align: -webkit-center;
+}
+
+.Footer-Logo-Underlayer {
+  height: 120px;
+  width: 150px;
+  background-color: #ebebeb;
+  text-align: center;
+}
+
+.Footer-Logo-Underlayer img {
+  padding-top: 15px;
+}
+
+.Footer-Label {
+  position: relative;
+  top: -63px;
+  width: 100%;
+  text-align: center;
+}
+
+.Footer-Label label {
+  color: #8cc63f;
+  font-size: 25px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.Footer-HR {
+  position: relative;
+  top: -63px;
+  width: 100%;
+  text-align: center;
+  height: auto;
+  margin: 1rem auto;
+}
+
+.Footer-HR hr {
+  width: 300px;
+  margin: 0rem auto;
+  border: 1.5px solid white;
+}
+
+.Footer-Social {
+  position: relative;
+  top: -63px;
+  width: 100%;
+  text-align: center;
+}
+
+.Footer-Icon {
+  display: inline-block;
+  color: white;
+  font-size: 30px;
+  margin: 0px 8px;
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+
+/* ***************************************************
+  CHANGE TO FOUNDATION CODE
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+
+/* Removes initial padding that comes with foundation bar */
+
+.top-bar {
+  padding: 0;
+}
+
+.button {
+  border: 0px;
+}
+
+
+/* Changes the color to dark black instead of dark white */
+
+.js-off-canvas-overlay {
+  background: rgba(0, 0, 0, 0.30);
+}
+
+.off-canvas.is-transition-overlap {
+  z-index: 101;
+}
+
+hr {
+  margin: 1rem auto;
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+
+/* ***************************************************
+  TEST SECTION
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
