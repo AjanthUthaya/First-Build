@@ -3,6 +3,11 @@
   (Top-Right-Bottom-Left)
 *************************************************** */
 
+@media screen and (max-width: 40em) {
+  body {
+    display: none;
+  }
+}
 
 /* Removes the blue border and color on a tags */
 
@@ -32,28 +37,25 @@ a, a:focus, a:hover {
   outline: none !important;
 }
 
-
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - */
-
 
 /* ***************************************************
   TOP-BAR
   (Top-Right-Bottom-Left)
 *************************************************** */
 
-
 /* HIDE & SHOW NAV BAR. SPEED OF TRANSITION, CHANGE HIGHT IN JS */
 
 .scrollhide-nav {
   position: fixed;
+  z-index: 100;
   top: 0;
   right: 0;
   left: 0;
   transition: all 600ms cubic-bezier(0.165, 0.84, 0.44, 1);
-  z-index: 100;
 }
 
 .scrollhide-nav.hidden {
@@ -62,13 +64,11 @@ a, a:focus, a:hover {
   transform: translateY(-100%);
 }
 
-
 /* Topbar */
 
 .Top-Bar-Main {
   background: #35414d;
 }
-
 
 /* Hamburger menu bar icon */
 
@@ -82,7 +82,6 @@ a, a:focus, a:hover {
   padding: 20px;
 }
 
-
 /* Center LOGO in top bar*/
 
 .Top-Bar-Center-Logo {
@@ -90,13 +89,11 @@ a, a:focus, a:hover {
   left: calc(50vw - 90px);
 }
 
-
 /* Make underlayer divs, stay in one line */
 
 .Top-Bar-Logo {
   display: inline-flex;
 }
-
 
 /* TOP BAR LOGO IMG */
 
@@ -105,7 +102,6 @@ a, a:focus, a:hover {
   height: 50px;
   margin: 5px 0px 0px 5px;
 }
-
 
 /* Logo underlayer */
 
@@ -131,34 +127,30 @@ a, a:focus, a:hover {
   border-color: transparent transparent transparent #292c30;
 }
 
-
 /* Top bar login button */
 
 #Login-Button {
   position: relative;
   width: 90px;
   height: 60px;
+  padding: 22px;
   background-color: #8cc63f;
   font-weight: 500;
-  padding: 22px;
 }
 
 #Login-Button:hover {
-  background-color: #849944;
+  background-color: #7fb836;
 }
-
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-
 /* ***************************************************
   OFF-CANVAS MENU
   (Top-Right-Bottom-Left)
 *************************************************** */
-
 
 /* Targets the entire off canvas menu */
 
@@ -167,7 +159,6 @@ a, a:focus, a:hover {
   height: 100vh;
   background: #454f59;
 }
-
 
 /* Top part of offcanvas menu */
 
@@ -180,7 +171,6 @@ a, a:focus, a:hover {
   background: #35414d;
 }
 
-
 /* Offcanvas menu titlebox */
 
 .Menu-OffCanvas-Title-Main {
@@ -188,14 +178,12 @@ a, a:focus, a:hover {
   text-align: center;
 }
 
-
 /* Offcanvas menu title, targets h(x) tag */
 
 .Menu-OffCanvas-Title {
   margin: 0;
   text-align: center;
 }
-
 
 /* Offcanvas menu close box(red button) */
 
@@ -211,7 +199,6 @@ a, a:focus, a:hover {
   background-color: #c0392b;
 }
 
-
 /* Offcanvas fa fa close button in a tag */
 
 .OffCanvas-Close-Icon {
@@ -221,7 +208,6 @@ a, a:focus, a:hover {
   font-size: 28px;
 }
 
-
 /* Offcanvas, everything other than the title or head */
 
 .OffCanvas-Menu-Content {
@@ -229,7 +215,6 @@ a, a:focus, a:hover {
   width: 100%;
   height: calc(100vh - 60px);
 }
-
 
 /* Offcanvas menu a tag list */
 
@@ -266,7 +251,6 @@ a, a:focus, a:hover {
   border-left: 20px outset #8cc63f;
 }
 
-
 /* Social icons at the bottom */
 
 .OffCanvas-Menu-Social {
@@ -289,12 +273,10 @@ a, a:focus, a:hover {
   color: #1e2126;
 }
 
-
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - */
-
 
 /* ***************************************************
   HERO
@@ -307,218 +289,173 @@ a, a:focus, a:hover {
 }
 
 .Hero-Section-Main {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  height: calc(85vh - 60px);
+  width: 100vw;
   text-align: center;
   background: black;
   background-size: cover;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  height: calc(85vh - 60px);
-  z-index: 10;
 }
 
-.Hero-Section-Main {
-  color: #fefefe;
-}
+.Hero-Section-Main img {}
 
 .Hero-Section-SubMenu {
-  float: none;
   position: absolute;
-  text-align: center;
-  margin: 0 auto;
   bottom: 0;
+  float: none;
   width: 100%;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .Hero-Section-SubMenu li {
-  float: none;
   display: inline-block;
+  float: none;
 }
 
 .Hero-Section-SubMenu li a {
-  padding: 0.9rem 2rem;
-  font-size: 14px;
-  color: #fefefe;
   display: block;
-  font-weight: bold;
+  padding: 0.5rem 2rem;
   transition: all 0.35s ease-in-out;
+  color: #fefefe;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .Hero-Section-SubMenu li a.is-active {
-  background: rgba(254, 254, 254, 0.15);
+  background: rgba(254, 254, 254, 0.30);
 }
 
 .Hero-Section-SubMenu li a:hover {
   background: rgba(254, 254, 254, 0.15);
 }
 
-.Feature {
-  background: grey;
+.Hero-Feature {
   height: 15vh;
+  background: grey;
 }
 
 .Hero-Section-Feature {
-  float: none;
   position: absolute;
-  text-align: center;
-  margin: 0 auto;
-  padding: 0px 20px;
+  float: none;
   width: 100%;
   height: 15vh;
+  margin: 0 auto;
+  padding: 0px 20px;
+  text-align: center;
 }
 
 .Hero-Section-Feature li {
-  float: none;
   display: inline-block;
+  float: none;
   margin: 0 2%;
 }
 
 .Hero-Section-Feature li a {
-  padding: 1.3rem 1rem;
-  height: 15vh;
-  font-size: 14px;
-  color: #fefefe;
   display: block;
-  font-weight: bold;
+  height: 15vh;
+  padding: 1.3rem 1rem;
   transition: all 0.35s ease-in-out;
+  color: #fefefe;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .Hero-Section-Feature li a:hover {
   background: rgba(254, 254, 254, 0.15);
 }
 
-.Feature-Icons {
+.Hero-Feature-Icons {
   position: relative;
   margin-bottom: 15px;
   font-size: 50px;
 }
 
-.Feature-Label {
-  color: white;
+.Hero-Feature-Label {
   cursor: pointer;
+  color: white;
   font-size: 12px;
 }
-
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - */
-
 
 /* ***************************************************
   CONTENT SECTION
   (Top-Right-Bottom-Left)
 *************************************************** */
 
-.Feature-First {
-  background: red;
+.Feature-Icon {
+  position: relative;
+  top: 5vh;
+  text-align: -webkit-center;
+  /* NOTE: This works to center circle, but is only a soulotion for chrome */
 }
+
+.Feature-Icon-Underlayer {
+  position: relative;
+  display: table-cell;
+  width: 100px;
+  height: 100px;
+  margin: 1px 1px 1px 1px;
+  text-align: center;
+  vertical-align: middle;
+  color: white;
+  border-radius: 100%;
+  background: #8cc63f;
+  font-size: 50px;
+}
+
+.Feature-Content {
+  position: relative;
+  top: 10vh;
+  height: calc(80vh - 100px);
+}
+
+.Feature-Image {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Feature-Image img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.Feature-Text {
+  padding: 3.5em 2em 0 2em;
+}
+
+.Feature-Text label {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.Feature-First {}
 
 .Feature-Secound {
-  background: orange;
+  background-color: white;
 }
 
-.Feature-Third {
-  background: green;
-}
-
+.Feature-Third {}
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - */
-
-
-/* ***************************************************
-  FOOTER
-  (Top-Right-Bottom-Left)
-*************************************************** */
-
-
-/* Removes initial padding that comes with foundation bar */
-
-footer {
-  margin-top: calc(125px / 2 * 1);
-  height: 200px;
-  width: 100vw;
-  background-color: #454f59;
-}
-
-.Footer-Logo {
-  position: relative;
-  top: calc(125px / 2 * -1);
-  width: 100%;
-  text-align: -webkit-center;
-}
-
-.Footer-Logo-Underlayer {
-  height: 120px;
-  width: 150px;
-  background-color: #ebebeb;
-  text-align: center;
-}
-
-.Footer-Logo-Underlayer img {
-  padding-top: 15px;
-}
-
-.Footer-Label {
-  position: relative;
-  top: -63px;
-  width: 100%;
-  text-align: center;
-}
-
-.Footer-Label label {
-  color: #8cc63f;
-  font-size: 25px;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-
-.Footer-HR {
-  position: relative;
-  top: -63px;
-  width: 100%;
-  text-align: center;
-  height: auto;
-  margin: 1rem auto;
-}
-
-.Footer-HR hr {
-  width: 300px;
-  margin: 0rem auto;
-  border: 1.5px solid white;
-}
-
-.Footer-Social {
-  position: relative;
-  top: -63px;
-  width: 100%;
-  text-align: center;
-}
-
-.Footer-Icon {
-  display: inline-block;
-  color: white;
-  font-size: 30px;
-  margin: 0px 8px;
-}
-
-
-/* - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
-- - - - - - - - - - - - - - - - - - - - - - - - - - */
-
 
 /* ***************************************************
   CHANGE TO FOUNDATION CODE
   (Top-Right-Bottom-Left)
 *************************************************** */
-
 
 /* Removes initial padding that comes with foundation bar */
 
@@ -529,7 +466,6 @@ footer {
 .button {
   border: 0px;
 }
-
 
 /* Changes the color to dark black instead of dark white */
 
@@ -545,18 +481,15 @@ hr {
   margin: 1rem auto;
 }
 
-
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-
 /* ***************************************************
   TEST SECTION
   (Top-Right-Bottom-Left)
 *************************************************** */
-
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 

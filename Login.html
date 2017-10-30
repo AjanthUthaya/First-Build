@@ -12,6 +12,7 @@
   <link rel="icon" href="http://via.placeholder.com/50x50">
   <link rel="stylesheet" href="css/appHome.css">
   <link rel="stylesheet" href="css/appLogin.css">
+  <link rel="stylesheet" href="css/appFooter.css">
 </head>
 
 <body>
@@ -36,7 +37,7 @@
             </div>
 
             <div class="Rectangle">
-              <a href="index.html"><img src="http://via.placeholder.com/50x50" width="50px" height="50px" alt="Logo" id="TopBar-Logo"/></a>
+              <a href="index.html"><img src="http://via.placeholder.com/50x50" width="50px" height="50px " alt="Logo" id="TopBar-Logo"/></a>
             </div>
 
             <div class="Triangle-Right">
@@ -47,7 +48,7 @@
 
           <div class="top-bar-right">
             <ul class="menu medium-horizontal">
-              <li><a href="#" class="button disabled" id="Register-Button">Register</a></li>
+              <li><a href="Register.html" class="button" id="Register-Button">Register</a></li>
             </ul>
           </div>
 
@@ -74,21 +75,32 @@
 
               <div class="Login-Content-Title">
 
-                <label>Login</label>
+                <label>Login:</label>
 
               </div>
 
-              <form>
+              <form id="Login-Form">
 
                 <div class="Login-Field">
 
-                  <div class="input-group">
+                  <div class="input-group Login-Fields">
 
-                    <div class="input-group-label">
+                    <div class="input-group-label Input-Group-Label">
                       <span class="fa fa-user"></span>
                     </div>
 
-                    <input class="input-group-field" id="email" name="email" type="text" />
+                    <input class="input-group-field" placeholder="Enter your username" autofocus type="text" />
+
+                  </div>
+
+
+                  <div class="input-group Login-Fields">
+
+                    <div class="input-group-label Input-Group-Label">
+                      <span class="fa fa-unlock-alt"></span>
+                    </div>
+
+                    <input class="input-group-field" placeholder="Enter your password" type="password" />
 
                   </div>
 
@@ -96,11 +108,13 @@
 
 
                 <div class="Login-Remember">
-
+                  <label>Remember password</label> <input type="checkbox">
                 </div>
 
 
                 <div class="Login-Button">
+
+                  <button type="button" name="button" class="button">Login</button>
 
                 </div>
 

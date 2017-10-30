@@ -1,0 +1,81 @@
+/* ***************************************************
+  FOOTER
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+
+/* Removes initial padding that comes with foundation bar */
+
+footer {
+  margin-top: calc(125px / 2 * 1);
+  height: 185px;
+  width: 100vw;
+  background-color: #454f59;
+}
+
+.Footer-Logo {
+  position: relative;
+  top: calc(125px / 2 * -1);
+  width: 100%;
+  text-align: -webkit-center;
+}
+
+.Footer-Logo-Underlayer {
+  height: 120px;
+  width: 150px;
+  background-color: #ebebeb;
+  text-align: center;
+}
+
+.Footer-Logo-Underlayer img {
+  padding-top: 15px;
+}
+
+.Footer-Label {
+  position: relative;
+  top: -63px;
+  width: 100%;
+  text-align: center;
+}
+
+.Footer-Label label {
+  color: #8cc63f;
+  font-size: 25px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.Footer-HR {
+  position: relative;
+  top: -63px;
+  width: 100%;
+  text-align: center;
+  height: auto;
+  margin: 1rem auto;
+}
+
+.Footer-HR hr {
+  width: 300px;
+  margin: 0rem auto;
+  border: 1.5px solid white;
+}
+
+.Footer-Social {
+  position: relative;
+  top: -65px;
+  width: 100%;
+  text-align: center;
+}
+
+.Footer-Icon {
+  display: inline-block;
+  color: white;
+  font-size: 30px;
+  margin: -5px 8px;
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
