@@ -3,13 +3,14 @@
   (Top-Right-Bottom-Left)
 *************************************************** */
 
+/* NOTE: Footer, add map on right side, and also add pentagon icons with phone, adress and  */
 
 /* Removes initial padding that comes with foundation bar */
 
 footer {
-  margin-top: calc(125px / 2 * 1);
-  height: 185px;
   width: 100vw;
+  height: 185px;
+  margin-top: calc(125px / 2 * 1);
   background-color: #454f59;
 }
 
@@ -21,10 +22,10 @@ footer {
 }
 
 .Footer-Logo-Underlayer {
-  height: 120px;
   width: 150px;
-  background-color: #ebebeb;
+  height: 120px;
   text-align: center;
+  background-color: #ebebeb;
 }
 
 .Footer-Logo-Underlayer img {
@@ -39,19 +40,19 @@ footer {
 }
 
 .Footer-Label label {
-  color: #8cc63f;
   font-size: 25px;
   font-weight: bold;
   letter-spacing: 1px;
+  color: #8cc63f;
 }
 
 .Footer-HR {
   position: relative;
   top: -63px;
   width: 100%;
-  text-align: center;
   height: auto;
   margin: 1rem auto;
+  text-align: center;
 }
 
 .Footer-HR hr {
@@ -68,12 +69,11 @@ footer {
 }
 
 .Footer-Icon {
-  display: inline-block;
-  color: white;
   font-size: 30px;
+  display: inline-block;
   margin: -5px 8px;
+  color: white;
 }
-
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 

@@ -1,0 +1,168 @@
+/* ***************************************************
+  TOP-BAR
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+/* HIDE & SHOW NAV BAR. SPEED OF TRANSITION, CHANGE HIGHT IN JS */
+
+.scrollhide-nav {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  left: 0;
+  transition: all 600ms cubic-bezier(.165, .84, .44, 1);
+}
+
+.scrollhide-nav.hidden {
+  -webkit-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+
+/* Topbar */
+
+.Top-Bar-Main {
+  background: #35414d;
+}
+
+/* Hamburger menu bar icon */
+
+.Top-Bar-Menu {
+  font-size: 20px;
+  font-weight: lighter;
+  color: white;
+}
+
+.Top-Bar-Menu a {
+  padding: 20px;
+}
+
+/* Center LOGO in top bar*/
+
+.Top-Bar-Center-Logo {
+  position: absolute;
+  left: calc(50vw - 90px);
+}
+
+/* Make underlayer divs, stay in one line */
+
+.Top-Bar-Logo {
+  display: inline-flex;
+}
+
+/* TOP BAR LOGO IMG */
+
+#TopBar-Logo {
+  width: 50px;
+  height: 50px;
+  margin: 5px 0 0 5px;
+}
+
+/* Logo underlayer */
+
+.Triangle-Left {
+  width: 0;
+  height: 0;
+  border-width: 30px 60px 30px 0;
+  border-style: solid;
+  border-color: transparent #292c30 transparent transparent;
+}
+
+.Rectangle {
+  width: 60px;
+  height: 60px;
+  background: #292c30;
+}
+
+.Triangle-Right {
+  width: 0;
+  height: 0;
+  border-width: 30px 0 30px 60px;
+  border-style: solid;
+  border-color: transparent transparent transparent #292c30;
+}
+
+/* Top bar login button */
+
+#Login-Button {
+  font-weight: 500;
+  position: relative;
+  width: 90px;
+  height: 60px;
+  padding: 22px;
+  background-color: #8cc63f;
+}
+
+#Login-Button:hover {
+  background-color: #7fb836;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  CHANGE TO FOUNDATION CODE
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+/* Removes initial padding that comes with foundation bar */
+
+.top-bar {
+  padding: 0;
+}
+
+.button {
+  border: 0;
+}
+
+/* Changes the color to dark black instead of dark white */
+
+.js-off-canvas-overlay {
+  background: rgba(0, 0, 0, .30);
+}
+
+.off-canvas.is-transition-overlap {
+  z-index: 101;
+}
+
+hr {
+  margin: 1rem auto;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  GENERAL
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+/* Removes the blue border and color on a tags */
+
+body {
+  font-family: helvetica;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background: #ebebeb;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+a, a:focus, a:hover {
+  text-decoration: none;
+  color: inherit;
+  outline: none !important;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */

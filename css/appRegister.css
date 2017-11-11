@@ -19,6 +19,24 @@
   (Top-Right-Bottom-Left)
 *************************************************** */
 
+/* Left back icon in top-bar */
+
+.Top-Bar-Back {
+  font-size: 20px;
+  font-weight: lighter;
+  color: white;
+  background-color: #e74c3c;
+}
+
+.Top-Bar-Back a {
+  padding: 20px;
+  background-color: #e74c3c;
+}
+
+.Top-Bar-Back a:hover {
+  background-color: #c0392b;
+}
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -53,6 +71,7 @@
 }
 
 .Register-Icon-Underlayer {
+  font-size: 50px;
   position: relative;
   display: table-cell;
   width: 100px;
@@ -63,7 +82,6 @@
   color: white;
   border-radius: 100%;
   background: #292c30;
-  font-size: 50px;
 }
 
 .Register-Content-Main {
@@ -75,21 +93,21 @@
 }
 
 .Register-Content-Title {
+  font-size: 25px;
+  font-weight: bold;
   width: 100%;
   height: fit-content;
   text-align: center;
   color: white;
-  font-size: 25px;
-  font-weight: bold;
 }
 
 .Register-Content-Title label {
+  font-size: 30px;
+  font-weight: bold;
   width: 100%;
   height: auto;
   text-align: center;
   color: white;
-  font-size: 30px;
-  font-weight: bold;
 }
 
 .Register-Content {
@@ -98,15 +116,15 @@
 }
 
 .Register-Content-Field {
-  margin-top: 40px;
-  padding: 0px 10px;
   font-size: 14px;
+  margin-top: 40px;
+  padding: 0 10px;
 }
 
 .Register-Content div label {
+  font-style: italic;
   text-align: left;
   color: white;
-  font-style: italic;
 }
 
 /* NOTE: (Top-Right-Bottom-Left) */
@@ -127,12 +145,12 @@
   padding: 0 50px 0 10px;
 }
 
-.Content-Button{
+.Content-Button {
   margin-top: 40px;
   text-align: center;
 }
 
-.Button{
+.Button {
   padding: 1.5em 4em;
 }
 
@@ -147,8 +165,8 @@
 *************************************************** */
 
 [type='text'], [type='password'], [type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], [type='email'], [type='number'], [type='search'], [type='tel'], [type='time'], [type='url'], [type='color'], textarea {
-  text-indent: 10px;
   font-size: 12px;
+  text-indent: 10px;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

@@ -1,4 +1,4 @@
-@charset "UTF-8";
+@charset 'UTF-8';
 /* ***************************************************
   GENERAL
   (Top-Right-Bottom-Left)
@@ -47,6 +47,7 @@
 }
 
 .Login-Icon-Underlayer {
+  font-size: 50px;
   position: relative;
   display: table-cell;
   width: 100px;
@@ -57,7 +58,6 @@
   color: white;
   border-radius: 100%;
   background: #292c30;
-  font-size: 50px;
 }
 
 .Login-Content-Main {
@@ -69,32 +69,32 @@
 }
 
 .Login-Content-Title {
+  font-size: 25px;
+  font-weight: bold;
   width: 100%;
   height: fit-content;
   text-align: center;
   color: white;
-  font-size: 25px;
-  font-weight: bold;
 }
 
 .Login-Content-Title label {
+  font-size: 30px;
+  font-weight: bold;
   width: 100%;
   height: auto;
   text-align: center;
   color: white;
-  font-size: 30px;
-  font-weight: bold;
 }
 
 .Login-Fields {
   margin-top: 45px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 .Input-Group-Label {
+  font-size: 19px;
   padding: 0 1rem;
   text-align: center;
-  font-size: 19px;
 }
 
 .Login-Remember {
@@ -103,13 +103,13 @@
 }
 
 .Login-Remember label {
+  font-size: 12px;
   display: inline-block;
   color: #d6d6d6;
-  font-size: 12px;
 }
 
 .Login-Remember input {
-  margin-bottom: 0px;
+  margin-bottom: 0;
   margin-left: 5px;
   padding: 10px;
 }
@@ -137,10 +137,10 @@
 /* Left back icon in top-bar */
 
 .Top-Bar-Back {
-  color: white;
-  background-color: #e74c3c;
   font-size: 20px;
   font-weight: lighter;
+  color: white;
+  background-color: #e74c3c;
 }
 
 .Top-Bar-Back a {
@@ -155,12 +155,12 @@
 /* Top bar register button */
 
 #Register-Button {
+  font-weight: 500;
   position: relative;
   width: 90px;
   height: 60px;
   padding: 22px;
   background-color: dimgrey;
-  font-weight: 500;
 }
 
 #Register-Button:hover {

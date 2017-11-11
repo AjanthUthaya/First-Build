@@ -1,0 +1,100 @@
+/* ***************************************************
+  Side-Nav
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+.off-canvas.is-transition-overlap {
+  position: fixed;
+  top: 80px;
+  height: calc(100vh - 80px);
+}
+
+/* Removes shadow */
+
+.off-canvas.is-transition-overlap.is-open {
+  box-shadow: none;
+}
+
+.OffCanvas-Menu-List {
+  position: relative;
+  display: block;
+  height: calc(90vh - 80px);
+}
+
+.OffCanvas-Menu-List ul {
+  height: calc(100% - 80px);
+}
+
+.OffCanvas-Menu-List ul li {
+  margin: 1rem 0;
+}
+
+.OffCanvas-Menu-List-Active {
+  border-top: 0 outset #8cc63f;
+  border-right: 20px inset #8cc63f;
+  border-bottom: 0 inset #8cc63f;
+  border-left: 20px outset #8cc63f;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  Breadcrumb
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+.Breadcrumb {
+  height: 20px;
+  background-color: #292c30;
+}
+
+.Breadcrumb ul {
+  font-size: 12px;
+  margin: 0;
+  margin-left: .9rem;
+  padding: .1rem;
+  color: white;
+}
+
+.Breadcrumb-Home {
+  font-size: 14px;
+  padding-right: .5rem;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  TopNav
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+#Name-Label {
+  line-height: 2;
+  padding: 1rem 0;
+  color: white;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  Edit to foundation code
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+.top-bar, .top-bar ul {
+  background-color: #35414d;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */

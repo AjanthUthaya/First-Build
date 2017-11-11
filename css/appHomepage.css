@@ -1,0 +1,265 @@
+/* ***************************************************
+  GENERAL
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+@media screen and (max-width: 40em) {
+  body {
+    display: none;
+  }
+}
+
+/* Removes the blue border and color on a tags */
+
+body {
+  font-family: helvetica;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background: #ebebeb;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.FullHeight {
+  height: 100vh;
+}
+
+.FullWidth {
+  width: 100vh;
+}
+
+a, a:focus, a:hover {
+  text-decoration: none;
+  color: inherit;
+  outline: none !important;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  HERO
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+#Hero-Section {
+  height: calc(100vh - 60px);
+  margin-top: 60px;
+}
+
+.Hero-Section-Main {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  overflow: hidden;
+  width: 100vw;
+  height: calc(85vh - 60px);
+  text-align: center;
+  background: black;
+  background-size: cover;
+  align-items: center;
+}
+
+.Hero-Section-Main img {
+  height: 100%;
+}
+
+.Hero-Section-Content {
+  width: 100%;
+  text-align: -webkit-center;
+}
+
+.Hero-Section-SubMenu {
+  position: absolute;
+  bottom: 0;
+  float: none;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.Hero-Section-SubMenu li {
+  display: inline-block;
+  float: none;
+}
+
+.Hero-Section-SubMenu li a {
+  font-size: 14px;
+  font-weight: bold;
+  display: block;
+  padding: .5rem 2rem;
+  transition: all .35s ease-in-out;
+  color: #fefefe;
+}
+
+.Hero-Section-SubMenu li a.is-active {
+  background: rgba(254, 254, 254, .30);
+}
+
+.Hero-Section-SubMenu li a:hover {
+  background: rgba(254, 254, 254, .15);
+}
+
+.Hero-Feature {
+  height: 15vh;
+  background: grey;
+  min-height: 105px;
+}
+
+.Hero-Section-Feature {
+  position: absolute;
+  float: none;
+  width: 100%;
+  height: 15vh;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.Hero-Section-Feature li {
+  display: inline-block;
+  float: none;
+  margin: 0 2%;
+}
+
+.Hero-Section-Feature li a {
+  font-size: 14px;
+  font-weight: bold;
+  display: block;
+  height: 15vh;
+  padding: 1.3rem 1rem;
+  transition: all .35s ease-in-out;
+  color: #fefefe;
+}
+
+.Hero-Section-Feature li a:hover {
+  background: rgba(254, 254, 254, .15);
+}
+
+.Hero-Feature-Icons {
+  font-size: 50px;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.Hero-Feature-Label {
+  font-size: 12px;
+  cursor: pointer;
+  color: white;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  CONTENT SECTION
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+.Feature-Icon {
+  position: relative;
+  top: 5vh;
+  text-align: -webkit-center;
+  /* NOTE: This works to center circle, but is only a soulotion for chrome */
+}
+
+.Feature-Icon-Underlayer {
+  font-size: 50px;
+  position: relative;
+  display: table-cell;
+  width: 100px;
+  height: 100px;
+  margin: 1px 1px 1px 1px;
+  text-align: center;
+  vertical-align: middle;
+  color: white;
+  border-radius: 100%;
+  background: #8cc63f;
+}
+
+.Feature-Content {
+  position: relative;
+  top: 10vh;
+  height: calc(80vh - 100px);
+}
+
+.Feature-Image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Feature-Image img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.Feature-Text {
+  padding: 3.5em 2em 0 2em;
+}
+
+.Feature-Text label {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.Feature-Secound {
+  background-color: white;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  CHANGE TO FOUNDATION CODE
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+/* Removes initial padding that comes with foundation bar */
+
+.top-bar {
+  padding: 0;
+}
+
+.button {
+  border: 0;
+}
+
+/* Changes the color to dark black instead of dark white */
+
+.js-off-canvas-overlay {
+  background: rgba(0, 0, 0, .30);
+}
+
+.off-canvas.is-transition-overlap {
+  z-index: 101;
+}
+
+hr {
+  margin: 1rem auto;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  TEST SECTION
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
