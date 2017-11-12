@@ -225,11 +225,7 @@ a, a:focus, a:hover {
   (Top-Right-Bottom-Left)
 *************************************************** */
 
-/* Removes initial padding that comes with foundation bar */
 
-.top-bar {
-  padding: 0;
-}
 
 .button {
   border: 0;

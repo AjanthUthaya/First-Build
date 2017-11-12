@@ -1,0 +1,31 @@
+/* ***************************************************
+  Breadcrumb
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+.Breadcrumb {
+  height: 20px;
+  background-color: #292c30;
+}
+
+.Breadcrumb ul {
+  font-size: 12px;
+  margin: 0;
+  margin-left: .9rem;
+  padding: .1rem;
+  color: white;
+}
+
+.breadcrumbs li {
+  color: white;
+}
+
+.Breadcrumb-Home {
+  font-size: 14px;
+  padding-right: .5rem;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */

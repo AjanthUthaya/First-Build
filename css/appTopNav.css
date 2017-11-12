@@ -98,6 +98,49 @@
   background-color: #7fb836;
 }
 
+#Name-Label {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  line-height: 2;
+  padding: 1rem 0;
+  color: white;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  GENERAL
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+/* Removes the blue border and color on a tags */
+
+body {
+  font-family: helvetica;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background: #ebebeb;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+a, a:focus, a:hover {
+  text-decoration: none;
+  color: inherit;
+  outline: none !important;
+}
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -132,34 +175,8 @@ hr {
   margin: 1rem auto;
 }
 
-/* - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-
-- - - - - - - - - - - - - - - - - - - - - - - - - - */
-
-/* ***************************************************
-  GENERAL
-  (Top-Right-Bottom-Left)
-*************************************************** */
-
-/* Removes the blue border and color on a tags */
-
-body {
-  font-family: helvetica;
-  font-size: 14px;
-  font-weight: normal;
-  font-style: normal;
-  background: #ebebeb;
-}
-
-body.modal-open {
-  overflow: hidden;
-}
-
-a, a:focus, a:hover {
-  text-decoration: none;
-  color: inherit;
-  outline: none !important;
+.top-bar, .top-bar ul {
+  background-color: #35414d;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

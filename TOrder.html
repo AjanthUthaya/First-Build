@@ -5,15 +5,15 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Teacher Order Page - First Build</title>
-  <link rel="stylesheet" href="css/font-awesome.css">
+  <title>Teacher Order - First Build</title>
   <link rel="stylesheet" href="css/foundation.css">
+  <link rel="stylesheet" href="css/font-awesome.css">
   <link rel="icon" href="http://via.placeholder.com/50x50">
-  <link rel="stylesheet" href="css/appHomepage.css">
   <link rel="stylesheet" href="css/appTopNav.css">
+  <link rel="stylesheet" href="css/appBreadcrumb.css">
   <link rel="stylesheet" href="css/appOffCanvasMenu.css">
+  <link rel="stylesheet" href="css/appUserDropdownMenu.css">
   <link rel="stylesheet" href="css/appFooter.css">
-  <link rel="stylesheet" href="css/appHomeOffCanvasMenu.css">
   <link rel="stylesheet" href="css/appHome.css">
 </head>
 
@@ -49,6 +49,7 @@
 
         <ul class="vertical menu align-center">
           <li><a href="Home.html">Home</a></li>
+          <li><a href="Majors.html">Majors</a></li>
           <li><a href="Calendar.html">Calendar</a></li>
           <li><a href="Absence.html">Absence</a></li>
           <li><a href="SOrder.html" class="OffCanvas-Menu-List-Active">Add new class</a></li>
@@ -97,10 +98,29 @@
 
       <div class="top-bar-right">
         <ul class="menu medium-horizontal">
-          <li class="menu">
-            <label id="Name-Label">Firstname Lastname</label><span class="Top-Bar-Menu"><a href="#" class="fa fa-user-circle"></a></span>
+          <li class="menu" data-toggle="User-Menu-Dropdown">
+            <label data-dropdown-menu id="Name-Label">Firstname Lastname</label><span class="Top-Bar-Menu"><a href="#" class="fa fa-user-circle"></a></span>
           </li>
         </ul>
+      </div>
+
+
+      <div class="dropdown-pane" id="User-Menu-Dropdown" data-dropdown>
+
+        <div class="User-Menu-Image">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" alt="Profile-Picture">
+        </div>
+
+        <div class="User-Menu-Name">
+          <h5>Firstname Lastname</h5>
+        </div>
+
+        <div class="User-Menu-Content grid-x">
+          <a href="#" class="cell">Profile</a>
+          <a href="#" class="cell">Notification</a>
+          <a href="index.html" class="cell">Logout</a>
+        </div>
+
       </div>
 
 

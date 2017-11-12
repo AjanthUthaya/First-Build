@@ -1,0 +1,53 @@
+/* ***************************************************
+  Dropdown Menu
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+.dropdown-pane {
+  top: 80px !important;
+  right: 0;
+  left: unset !important;
+  padding: 20px 0 0 0;
+  border: 0;
+  background-color: #35414d;
+}
+
+.User-Menu-Image {
+  text-align: center;
+}
+
+/* Circle image with no strech: https://stackoverflow.com/questions/32477563/css-fit-rounded-circle-image-do-not-stretch-it */
+
+.User-Menu-Image img {
+  width: 70px;
+  border-radius: 35px;
+}
+
+.User-Menu-Name {
+  padding: 10px 0;
+  text-align: center;
+  color: white;
+}
+
+.User-Menu-Content a {
+  padding: 15px 0;
+  text-align: center;
+  color: white;
+}
+
+.User-Menu-Content a:last-child {
+  background-color: #c0392b;
+}
+
+.User-Menu-Content a:last-child:hover {
+  background-color: #e74c3c;
+}
+
+.User-Menu-Content :hover {
+  background-color: #292c30;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
