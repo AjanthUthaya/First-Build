@@ -10,7 +10,8 @@
 footer {
   width: 100vw;
   height: 185px;
-  margin-top: calc(125px / 2 * 1);
+  position: relative;
+  top: 75px;
   background-color: #454f59;
 }
 

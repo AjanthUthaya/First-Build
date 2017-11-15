@@ -3,9 +3,14 @@
   (Top-Right-Bottom-Left)
 *************************************************** */
 
+@media screen and (max-width: 40em) {
+  body {
+    display: none;
+  }
+}
+
 #Content-Main {
-  height: calc(120vh - 60px);
-  background: linear-gradient(to bottom left, #3cf 0%, #f9c 100%);
+  margin-top: 80px;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -14,9 +19,59 @@
 - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 /* ***************************************************
-  NAVIGATION
+  THREE BOXES
   (Top-Right-Bottom-Left)
 *************************************************** */
+
+.Display-Main {
+  position: relative;
+  margin-top: 5vh;
+  background-color: darkblue;
+  text-align: center;
+  justify-content: center;
+  display: inline-flex;
+  width: 100vw;
+}
+
+.Display-Item {
+  width: 170px;
+  margin: 0 5vw;
+}
+
+.Display-Item label{
+height: 25px;
+text-overflow: ellipsis;
+overflow: hidden;
+white-space: nowrap;
+}
+
+.Display-Item-Screen{
+  width: 100%;
+  height: 80px;
+  background-color: white;
+}
+
+.Display-Next {
+  background-color: red;
+}
+
+.Display-Test {
+  background-color: green;
+}
+
+.Display-Fravaer {
+  background-color: yellow;
+}
+
+.Calendar-Main{
+  position: relative;
+  margin-top: 5vh;
+  margin-left: 5vw;
+  width: 90vw;
+  height: 80vh;
+  min-height: 500px;
+  background-color: red;
+}
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -27,8 +82,6 @@
   EDIT TO FOUNDATION CODE
   (Top-Right-Bottom-Left)
 *************************************************** */
-
-
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 

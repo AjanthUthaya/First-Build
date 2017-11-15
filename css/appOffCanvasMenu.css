@@ -15,6 +15,17 @@
   box-shadow: none;
 }
 
+
+/* Changes the color to dark black instead of dark white */
+
+.js-off-canvas-overlay {
+  background: rgba(0, 0, 0, 0.40);
+}
+
+.off-canvas.is-transition-overlap {
+  z-index: 101;
+}
+
 /* Targets the entire off canvas menu */
 
 .Menu-OffCanvas-Main {
@@ -92,7 +103,7 @@
 .OffCanvas-Menu-List ul {
   font-size: 16px;
   font-weight: bold;
-  height: calc(100% - 80px);
+  height: calc(100% - 27.5px);
   color: white;
 }
 
@@ -112,9 +123,10 @@
 
 .OffCanvas-Menu-List-Active {
   border-top: 0px outset #8cc63f;
-  border-right: 20px inset #8cc63f;
+  border-right: 15px inset #8cc63f;
   border-bottom: 0px inset #8cc63f;
-  border-left: 20px outset #8cc63f;
+  border-left: 15px outset #8cc63f;
+  background-color: #292c30;
 }
 
 /* Social icons at the bottom */

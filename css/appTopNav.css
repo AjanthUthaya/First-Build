@@ -161,16 +161,6 @@ a, a:focus, a:hover {
   border: 0;
 }
 
-/* Changes the color to dark black instead of dark white */
-
-.js-off-canvas-overlay {
-  background: rgba(0, 0, 0, .30);
-}
-
-.off-canvas.is-transition-overlap {
-  z-index: 101;
-}
-
 hr {
   margin: 1rem auto;
 }

@@ -37,6 +37,10 @@ a, a:focus, a:hover {
   outline: none !important;
 }
 
+footer {
+  top: 65px;
+}
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -165,7 +169,7 @@ a, a:focus, a:hover {
 
 .Feature-Icon {
   position: relative;
-  top: 5vh;
+  top: 10vh;
   text-align: -webkit-center;
   /* NOTE: This works to center circle, but is only a soulotion for chrome */
 }
@@ -186,7 +190,7 @@ a, a:focus, a:hover {
 
 .Feature-Content {
   position: relative;
-  top: 10vh;
+  top: 12vh;
   height: calc(80vh - 100px);
 }
 
