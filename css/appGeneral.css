@@ -1,0 +1,29 @@
+/* ***************************************************
+  GENERAL
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+#Mobile-View {
+  display: none;
+  padding-top: calc(50vh - 0.5rem);
+  padding-bottom: calc(50vh - 0.5rem);
+}
+
+@media screen and (max-width: 40em) {
+  #Desktop-View {
+    display: none;
+  }
+  #Mobile-View {
+    display: block;
+    text-align: center;
+  }
+}
+
+#Content-Main {
+  margin-top: 80px;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */

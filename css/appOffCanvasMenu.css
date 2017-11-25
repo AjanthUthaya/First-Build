@@ -89,7 +89,7 @@
 .OffCanvas-Menu-Content {
   position: relative;
   width: 100%;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 80px);
 }
 
 /* Offcanvas menu a tag list */

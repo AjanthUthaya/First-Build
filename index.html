@@ -12,12 +12,20 @@
   <link rel="stylesheet" href="css/appTopNav.css">
   <link rel="stylesheet" href="css/appOffCanvasMenu.css">
   <link rel="stylesheet" href="css/appFooter.css">
+  <link rel="stylesheet" href="css/appGeneral.css">
   <link rel="stylesheet" href="css/appHomepage.css">
 </head>
 
 <body>
+  <div id="Mobile-View">
 
-  <!--  <div class="off-canvas position-left Menu-OffCanvas-Main" id="offCanvas" data-off-canvas data-transition="overlap">
+    <h3>This website is not available for mobile devices</h3>
+
+  </div>
+
+  <div id="Desktop-View">
+
+    <!--  <div class="off-canvas position-left Menu-OffCanvas-Main" id="offCanvas" data-off-canvas data-transition="overlap">
 
     <div class="Menu-OffCanvas-Head">
 
@@ -66,221 +74,223 @@
   </div>-->
 
 
-  <div class="off-canvas-content" data-off-canvas-content>
+    <div class="off-canvas-content" data-off-canvas-content>
 
 
-    <nav class="scrollhide-nav">
-      <div class="top-bar Top-Bar-Main">
+      <nav class="scrollhide-nav">
+        <div class="top-bar Top-Bar-Main">
 
 
-        <div class="top-bar-left">
-          <!--<span class="Top-Bar-Menu"><a href="#" class="fa fa-bars" data-toggle="offCanvas"></a></span>-->
+          <div class="top-bar-left">
+            <!--<span class="Top-Bar-Menu"><a href="#" class="fa fa-bars" data-toggle="offCanvas"></a></span>-->
+            <h4>BETA-BUILD</h4>
+          </div>
+
+
+          <div class="Top-Bar-Center-Logo Top-Bar-Logo">
+
+            <div class="Triangle-Left">
+            </div>
+
+            <div class="Rectangle">
+              <a href="index.html"><img src="http://via.placeholder.com/50x50" alt="Logo-TopNav" id="TopBar-Logo"/></a>
+            </div>
+
+            <div class="Triangle-Right">
+            </div>
+
+          </div>
+
+
+          <div class="top-bar-right">
+            <ul class="menu medium-horizontal">
+              <li><a href="Login.html" class="button" id="Login-Button">Login</a></li>
+            </ul>
+          </div>
+
+
         </div>
+      </nav>
 
+      <section id="Hero-Section">
 
-        <div class="Top-Bar-Center-Logo Top-Bar-Logo">
-
-          <div class="Triangle-Left">
+        <div class="Hero-Section-Main">
+          <!-- NOTE: Center images horizontally -->
+          <div class="w3-content Hero-Section-Content">
+            <img class="mySlides" src="http://via.placeholder.com/500x500">
+            <img class="mySlides" src="http://via.placeholder.com/2000x500">
+            <img class="mySlides" src="http://via.placeholder.com/500x2000">
           </div>
-
-          <div class="Rectangle">
-            <a href="index.html"><img src="http://via.placeholder.com/50x50" alt="Logo-TopNav" id="TopBar-Logo"/></a>
-          </div>
-
-          <div class="Triangle-Right">
-          </div>
-
-        </div>
-
-
-        <div class="top-bar-right">
-          <ul class="menu medium-horizontal">
-            <li><a href="Login.html" class="button" id="Login-Button">Login</a></li>
+          <ul class="Hero-Section-SubMenu">
+            <li><a href="#" onclick="currentDiv(1)" class="demo is-active">Slide 1</a></li>
+            <li><a href="#" onclick="currentDiv(2)" class="demo">Slide 2</a></li>
+            <li><a href="#" onclick="currentDiv(3)" class="demo">Slide 3</a></li>
           </ul>
         </div>
 
-
-      </div>
-    </nav>
-
-    <section id="Hero-Section">
-
-      <div class="Hero-Section-Main">
-        <!-- NOTE: Center images horizontally -->
-        <div class="w3-content Hero-Section-Content">
-          <img class="mySlides" src="http://via.placeholder.com/500x500">
-          <img class="mySlides" src="http://via.placeholder.com/2000x500">
-          <img class="mySlides" src="http://via.placeholder.com/500x2000">
-        </div>
-        <ul class="Hero-Section-SubMenu">
-          <li><a href="#" onclick="currentDiv(1)" class="demo is-active">Slide 1</a></li>
-          <li><a href="#" onclick="currentDiv(2)" class="demo">Slide 2</a></li>
-          <li><a href="#" onclick="currentDiv(3)" class="demo">Slide 3</a></li>
-        </ul>
-      </div>
-
-      <div class="Hero-Feature">
-        <!-- NOTE: Only works in fullscreen mode on my screen, not responsive -->
-        <ul class="Hero-Section-Feature">
-          <li><a href="#First"><span class="fa fa-fighter-jet Hero-Feature-Icons"></span><label class="Hero-Feature-Label">PLACHOLDER FEATURE</label></a></li>
-          <li><a href="#Secound"><span class="fa fa-calendar-o Hero-Feature-Icons"></span><label class="Hero-Feature-Label">PLACHOLDER FEATURE</label></a></li>
-          <li><a href="#Third"><span class="fa fa-university Hero-Feature-Icons"></span><label class="Hero-Feature-Label">PLACHOLDER FEATURE</label></a></li>
-        </ul>
-
-      </div>
-
-    </section>
-
-    <!-- NOTE: ID tags are there for scrolling to a section of the same page -->
-    <section class="FullHeight Feature-First" id="First">
-
-      <div class="Feature-Icon">
-
-        <div class="Feature-Icon-Underlayer">
-          <i class="fa fa-fighter-jet"></i>
-        </div>
-
-      </div>
-
-      <div class="grid-x Feature-Content">
-
-        <div class="medium-7 cell Feature-Image">
-
-          <img src="http://via.placeholder.com/1280x900">
+        <div class="Hero-Feature">
+          <!-- NOTE: Only works in fullscreen mode on my screen, not responsive -->
+          <ul class="Hero-Section-Feature">
+            <li><a href="#First"><span class="fa fa-fighter-jet Hero-Feature-Icons"></span><label class="Hero-Feature-Label">PLACHOLDER FEATURE</label></a></li>
+            <li><a href="#Secound"><span class="fa fa-calendar-o Hero-Feature-Icons"></span><label class="Hero-Feature-Label">PLACHOLDER FEATURE</label></a></li>
+            <li><a href="#Third"><span class="fa fa-university Hero-Feature-Icons"></span><label class="Hero-Feature-Label">PLACHOLDER FEATURE</label></a></li>
+          </ul>
 
         </div>
 
-        <div class="medium-5 cell Feature-Text">
+      </section>
 
-          <label>Title</label>
+      <!-- NOTE: ID tags are there for scrolling to a section of the same page -->
+      <section class="FullHeight Feature-First" id="First">
 
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            <br><br> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <div class="Feature-Icon">
 
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- NOTE: ID tags are there for scrolling to a section of the same page -->
-    <section class="FullHeight Feature-Secound" id="Secound">
-
-      <div class="Feature-Icon">
-
-        <div class="Feature-Icon-Underlayer">
-          <i class="fa fa-calendar-o"></i>
-        </div>
-
-      </div>
-
-      <div class="grid-x Feature-Content">
-
-        <div class="medium-5 cell Feature-Text">
-
-          <label>Title</label>
-
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            <br><br> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <div class="Feature-Icon-Underlayer">
+            <i class="fa fa-fighter-jet"></i>
+          </div>
 
         </div>
 
-        <div class="medium-7 cell Feature-Image">
+        <div class="grid-x Feature-Content">
 
-          <img src="http://via.placeholder.com/1280x900">
+          <div class="medium-7 cell Feature-Image">
 
-        </div>
+            <img src="http://via.placeholder.com/1280x900">
 
-      </div>
+          </div>
 
-    </section>
+          <div class="medium-5 cell Feature-Text">
 
-    <!-- NOTE: ID tags are there for scrolling to a section of the same page -->
-    <section class="FullHeight Feature-Third" id="Third">
+            <label>Title</label>
 
-      <div class="Feature-Icon">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+              irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              <br><br> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
-        <div class="Feature-Icon-Underlayer">
-          <i class="fa fa-university"></i>
-        </div>
-
-      </div>
-
-      <div class="grid-x Feature-Content">
-
-        <div class="medium-7 cell Feature-Image">
-
-          <img src="http://via.placeholder.com/1280x900">
+          </div>
 
         </div>
 
-        <div class="medium-5 cell Feature-Text">
+      </section>
 
-          <label>Title</label>
+      <!-- NOTE: ID tags are there for scrolling to a section of the same page -->
+      <section class="FullHeight Feature-Secound" id="Secound">
 
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            <br><br> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <div class="Feature-Icon">
 
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <footer>
-
-      <div class="Footer-Logo">
-
-        <div class="Footer-Logo-Underlayer">
-
-          <a href="#"><img src="http://via.placeholder.com/90x90" width="90px" height="90px" alt="Logo-Footer"></a>
+          <div class="Feature-Icon-Underlayer">
+            <i class="fa fa-calendar-o"></i>
+          </div>
 
         </div>
 
-      </div>
+        <div class="grid-x Feature-Content">
 
-      <div class="Footer-Label">
+          <div class="medium-5 cell Feature-Text">
 
-        <label>First Build</label>
+            <label>Title</label>
 
-      </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+              irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              <br><br> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
-      <div class="Footer-HR">
+          </div>
 
-        <hr>
+          <div class="medium-7 cell Feature-Image">
 
-      </div>
+            <img src="http://via.placeholder.com/1280x900">
 
-      <div class="Footer-Social">
+          </div>
 
-        <div class="Footer-Icon">
-          <a href="#"><span class="fa fa-facebook-square"></span></a>
         </div>
 
-        <div class="Footer-Icon">
-          <a href="#"><span class="fa fa-youtube-play"></span></a>
+      </section>
+
+      <!-- NOTE: ID tags are there for scrolling to a section of the same page -->
+      <section class="FullHeight Feature-Third" id="Third">
+
+        <div class="Feature-Icon">
+
+          <div class="Feature-Icon-Underlayer">
+            <i class="fa fa-university"></i>
+          </div>
+
         </div>
 
-        <div class="Footer-Icon">
-          <a href="#"><span class="fa fa-instagram"></span></a>
+        <div class="grid-x Feature-Content">
+
+          <div class="medium-7 cell Feature-Image">
+
+            <img src="http://via.placeholder.com/1280x900">
+
+          </div>
+
+          <div class="medium-5 cell Feature-Text">
+
+            <label>Title</label>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+              irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              <br><br> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+          </div>
+
         </div>
 
-        <div class="Footer-Icon">
-          <a href="#"><span class="fa fa-linkedin-square"></span></a>
+      </section>
+
+
+      <footer>
+
+        <div class="Footer-Logo">
+
+          <div class="Footer-Logo-Underlayer">
+
+            <a href="#"><img src="http://via.placeholder.com/90x90" width="90px" height="90px" alt="Logo-Footer"></a>
+
+          </div>
+
         </div>
 
-        <div class="Footer-Icon">
-          <a href="#"><span class="fa fa-twitter-square"></span></a>
+        <div class="Footer-Label">
+
+          <label>First Build</label>
+
         </div>
 
-      </div>
+        <div class="Footer-HR">
 
-    </footer>
+          <hr>
 
+        </div>
+
+        <div class="Footer-Social">
+
+          <div class="Footer-Icon">
+            <a href="#"><span class="fa fa-facebook-square"></span></a>
+          </div>
+
+          <div class="Footer-Icon">
+            <a href="#"><span class="fa fa-youtube-play"></span></a>
+          </div>
+
+          <div class="Footer-Icon">
+            <a href="#"><span class="fa fa-instagram"></span></a>
+          </div>
+
+          <div class="Footer-Icon">
+            <a href="#"><span class="fa fa-linkedin-square"></span></a>
+          </div>
+
+          <div class="Footer-Icon">
+            <a href="#"><span class="fa fa-twitter-square"></span></a>
+          </div>
+
+        </div>
+
+      </footer>
+
+    </div>
   </div>
 
   <script src="js/vendor/jquery.js"></script>
