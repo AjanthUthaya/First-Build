@@ -24,6 +24,18 @@ html, body {
   background-image: none;
 }
 
+
+/* Align text of events to the center, default: left */
+.dhx_body{
+  text-align: center;
+}
+
+/* Hides on px that enables scroll mode for some reason */
+.dhx_cal_data{
+  overflow: hidden;
+  height: 100%;
+}
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 

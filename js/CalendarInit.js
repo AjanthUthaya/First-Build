@@ -53,6 +53,6 @@ function init() {
   scheduler.init('scheduler_here', new Date(yyyy, mm, dd), "week");
 
   //Gets all events and loads it in
-  scheduler.load("data/events.xml");
+  scheduler.load("../data/Events.xml");
 
 }
