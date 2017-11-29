@@ -2,16 +2,16 @@
 
   <event
     id='1261150492'
-    start_date='24-11-2017 08:00'
-    end_date='24-11-2017 09:45'
+    start_date='30-11-2017 08:00'
+    end_date='30-11-2017 09:45'
     text='International Horse Show'
     details='Olympia'
     />
 
     <event
       id='1261150493'
-      start_date='22-11-2017 08:00'
-      end_date='24-11-2017 09:45'
+      start_date='28-11-2017 08:00'
+      end_date='29-11-2017 09:45'
       text='International Horse Show'
       details='Olympia'
       />

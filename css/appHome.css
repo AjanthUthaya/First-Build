@@ -38,6 +38,61 @@
   width: 100%;
   height: 80px;
   background-color: white;
+  text-align: center;
+}
+
+#NextClassHours {
+  display: none;
+}
+
+#NextClassDays {
+  display: none;
+}
+
+.Item-Next-Top {
+  display: inline-flex;
+}
+
+.Item-Next-Top div {
+  margin: 0 7px;
+}
+
+.Item-Next-Top div span {
+  font-size: 10px;
+}
+
+.Item-Next-Top div label {
+  font-size: 16px;
+}
+
+.Item-Test {
+  padding-top: 15px;
+}
+
+.Test-Date {
+  font-size: 16px;
+}
+
+.Test-Time {
+  font-size: 13px;
+}
+
+.Item-Absence {
+  padding-top: 15px;
+}
+
+.Absence-Item {
+  margin: 0;
+  height: 0;
+  display: none;
+}
+
+.Percent-Main {
+  font-size: 16px;
+}
+
+.Major-Main {
+  font-size: 15px;
 }
 
 .Calendar-Main {
@@ -47,7 +102,6 @@
   margin-left: 5vw;
   height: 900px;
 }
-
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 

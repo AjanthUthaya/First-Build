@@ -14,8 +14,8 @@ function init() {
   //Set date format for xml data
   scheduler.config.xml_date = "%d-%m-%Y %H:%i";
 
-  //Set y-axis steps
-  /*  scheduler.templates.hour_scale = function(date) {
+  //Custom hour scale
+    scheduler.templates.hour_scale = function(date) {
       var hour = date.getHours();
       var top = '00';
       var bottom = '30';
@@ -31,7 +31,7 @@ function init() {
       html += "<div class='dhx_scale_hour_minute_top' style='height:" + minute_height + "px; line-height:" + minute_height + "px;'>" + top + "</div><div class='dhx_scale_hour_minute_bottom' style='height:" + minute_height + "px; line-height:" + minute_height + "px;'>" + bottom + "</div>";
       html += "<div class='dhx_scale_hour_sep'></div></div>";
       return html;
-    };*/
+    };
 
   //Set Start and end calendar
   scheduler.config.first_hour = 8;
