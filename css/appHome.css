@@ -49,8 +49,26 @@
   display: none;
 }
 
+#NextClassMajor {
+  display: none;
+}
+
+#NextClassNo {
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+#NextClassNo * {
+  position: relative;
+  font-size: 1em;
+  padding: 1.9rem 0;
+}
+
 .Item-Next-Top {
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .Item-Next-Top div {
