@@ -11,8 +11,8 @@
   <link rel="icon" href="http://via.placeholder.com/50x50">
   <link rel="stylesheet" href="css/appTopNav.css">
   <link rel="stylesheet" href="css/appBreadcrumb.css">
-  <link rel="stylesheet" href="css/appOffCanvasMenu.css">
   <link rel="stylesheet" href="css/appUserDropdownMenu.css">
+  <link rel="stylesheet" href="css/appOffCanvasMenu.css">
   <link rel="stylesheet" href="css/appFooter.css">
   <link rel="stylesheet" href="css/appGeneral.css">
   <link rel="stylesheet" href="css/appHome.css">
@@ -49,21 +49,12 @@
 
             </div>
 
-
-            <div class="OffCanvas-Close-Main">
-
-              <a href="#" class="fa fa-close OffCanvas-Close-Icon" data-toggle="offCanvas"></a>
-
-            </div>
-
           </div>
 
           <ul class="vertical menu align-center">
             <li><a href="Home.html" class="OffCanvas-Menu-List-Active">Home</a></li>
             <li><a href="Majors.html">Majors</a></li>
-            <li><a href="Calendar.html">Calendar</a></li>
-            <li><a href="Absence.html">Absence</a></li>
-            <li><a href="TOrder.html">Add new class</a></li>
+            <li><a href="#" data-toggle="Sub-Menu">Order</a></li>
           </ul>
 
         </div>
@@ -80,7 +71,17 @@
 
       </div>
 
+    </div>
 
+    <div class="Sub-Menu dropdown-pane" id="Sub-Menu" data-dropdown data-close-on-click="true">
+      <div class="Sub-Menu-Head">
+        <h3 class="Sub-Menu-Head-Main">Order</h3>
+      </div>
+
+      <ul class="vertical menu align-center">
+        <li><a href="#">Make new lesson</a></li>
+        <li><a href="#">Edit old lesson</a></li>
+      </ul>
     </div>
 
     <nav class="scrollhide-nav">
@@ -110,7 +111,7 @@
         <div class="top-bar-right">
           <ul class="menu medium-horizontal">
             <li class="menu" data-toggle="User-Menu-Dropdown">
-              <label data-dropdown-menu id="Name-Label">Firstname Lastname</label><span class="Top-Bar-Menu"><a href="#" class="fa fa-user-circle"></a></span>
+              <label id="Name-Label">Firstname Lastname</label><span class="Top-Bar-Menu"><a href="#" class="fa fa-user-circle"></a></span>
             </li>
           </ul>
         </div>
