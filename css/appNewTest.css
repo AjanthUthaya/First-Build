@@ -1,0 +1,44 @@
+/* ***************************************************
+  Main Content
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+.Title {
+  padding-top: 20px;
+  text-align: center;
+}
+
+.Submit {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.Date, .MaxStudents {
+  padding: 20px 3em;
+  text-align: center;
+}
+
+.Date *, .MaxStudents * {
+  text-align: center;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  Calendar
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+.Calendar-Main{
+  width: 100vw;
+  height: 100vh;
+  background-color: grey;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */

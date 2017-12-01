@@ -1,5 +1,5 @@
 // Format: CountDownTimer('mm/dd/yyyy hh:mm', 'id', 'ss-mm-dd-hh');
-// Eksempel CountDownTimer('11/30/2017 10:1 AM', 'NextSecounds', 'ss');
+// Eksempel: CountDownTimer('11/30/2017 10:1 AM', 'NextSecounds', 'ss');
 function CountDownTimer(dt, id, Test) {
   var end = new Date(dt);
   var _second = 1000;
@@ -22,6 +22,7 @@ function CountDownTimer(dt, id, Test) {
     if (Days > 0) {
 
       $("#NextClassDays").css("display", "flex");
+      $("#NextClassMajor").css("display", "block");
 
     } else {
 

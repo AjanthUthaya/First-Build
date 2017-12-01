@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home - First Build</title>
+  <title>Create new test date - First Build</title>
   <link rel="stylesheet" href="css/foundation.css">
   <link rel="stylesheet" href="css/font-awesome.css">
   <link rel="icon" href="http://via.placeholder.com/50x50">
@@ -15,17 +15,10 @@
   <link rel="stylesheet" href="css/appOffCanvasMenu.css">
   <link rel="stylesheet" href="css/appFooter.css">
   <link rel="stylesheet" href="css/appGeneral.css">
-  <link rel="stylesheet" href="css/appHome.css">
-  <link rel="stylesheet" href="css/dhtmlxscheduler.css">
-  <link rel="stylesheet" href="css/appCalendarEdit.css">
-  <style>
-    .dhx_cal_event .dhx_footer {
-      background: inherit;
-    }
-  </style>
+  <link rel="stylesheet" href="css/appNewTest.css">
 </head>
 
-<body onload="init();">
+<body>
 
   <div id="Mobile-View">
 
@@ -52,9 +45,9 @@
           </div>
 
           <ul class="vertical menu align-center">
-            <li><a href="Home.html" class="OffCanvas-Menu-List-Active">Home</a></li>
+            <li><a href="Home.html">Home</a></li>
             <li><a href="#" data-toggle="Sub-Major">Major</a></li>
-            <li><a href="#" data-toggle="Sub-Order">Order</a></li>
+            <li><a href="#" class="OffCanvas-Menu-List-Active" data-toggle="Sub-Order">Order</a></li>
           </ul>
 
         </div>
@@ -92,7 +85,7 @@
 
       <ul class="vertical menu align-center">
         <li><a href="NewLesson.html">Create lesson</a></li>
-        <li><a href="NewTest.html">Create test</a></li>
+        <li><a href="NewTest.html" class="OffCanvas-Menu-List-Active">Create test</a></li>
         <li><a href="Lesson.html">Lesson</a></li>
       </ul>
     </div>
@@ -153,188 +146,48 @@
 
       <div class="Breadcrumb" aria-label="You are here:" role="navigation">
         <ul class="breadcrumbs">
-          <li><span class="fa fa-home Breadcrumb-Home"></span>Home</li>
+          <li><a href="Home.html"><span class="fa fa-home Breadcrumb-Home"></span>Home</a></li>
+          <li>Order</li>
+          <li>New Test Date</li>
         </ul>
       </div>
     </nav>
+
 
 
     <div class="off-canvas-content OffCanvas-Main" data-off-canvas-content>
 
       <section id="Content-Main">
 
-        <div class="Display-Main">
+        <div class="Title cell">
+          <h2>Create new test date</h2>
+        </div>
 
+        <div class="Input-Main grid-x">
 
-          <div class="Display-Item Display-Next">
-
-
-
-            <label>Next Lesson in</label>
-
-            <div class="Display-Item-Screen" CountDownTo="11/31/2017 19:00" id="NextClassMain">
-
-              <div class="Item-Next-Bottom" id="NextClassMajor">
-
-                <label>( Naturfag - 206 )</label>
-
-              </div>
-
-              <div class="Item-Next-Top" id="NextClassNo">
-
-                <h5>No lessons</h5>
-
-              </div>
-
-              <div class="Item-Next-Top" id="NextClassHours">
-
-                <div class="Next-Hour">
-                  <span>Hours</span>
-                  <label id="NextHHours"></label>
-                </div>
-
-                <div class="Next-Minutes">
-                  <span>Minutes</span>
-                  <label id="NextHMinutes"></label>
-                </div>
-
-                <div class="Next-Seconds">
-                  <span>Seconds</span>
-                  <label id="NextHSecounds"></label>
-                </div>
-
-              </div>
-
-
-              <div class="Item-Next-Top" id="NextClassDays">
-
-                <div class="Next-Hour">
-                  <span>Days</span>
-                  <label id="NextDDays"></label>
-                </div>
-
-                <div class="Next-Minutes">
-                  <span>Hours</span>
-                  <label id="NextDHours"></label>
-                </div>
-
-                <div class="Next-Seconds">
-                  <span>Minutes</span>
-                  <label id="NextDMinutes"></label>
-                </div>
-
-              </div>
-
-
-
-            </div>
-
+          <div class="Date medium-6">
+            <label>Date</label>
+            <input type="text" name="" value="" placeholder="Format: dd/mm/yyyy">
           </div>
 
-          <div class="Display-Item Display-Test">
-
-            <label>Next available test date</label>
-
-            <div class="Display-Item-Screen">
-
-              <div class="Item-Test">
-                <label class="Test-Date">23.30.2017</label>
-                <label class="Test-Time">08:00 - 206</label>
-              </div>
-
-            </div>
-
-          </div>
-
-          <div class="Display-Item Display-Fravaer">
-
-            <label>Absence in S1</label>
-
-            <div class="Display-Item-Screen">
-
-              <div class="Item-Absence">
-
-                <div class="Display-Item Absence-Item">
-                  <div class="Absence-Percent">
-
-                    <label class="Percent-Main">1,0%</label>
-
-                  </div>
-
-                  <div class="Absence-Major">
-
-                    <label class="Major-Main">Naturfag</label>
-
-                  </div>
-                </div>
-
-
-                <div class="Display-Item Absence-Item">
-                  <div class="Absence-Percent">
-
-                    <label class="Percent-Main">2,0%</label>
-
-                  </div>
-
-                  <div class="Absence-Major">
-
-                    <label class="Major-Main">Matematikk</label>
-
-                  </div>
-                </div>
-
-
-                <div class="Display-Item Absence-Item">
-                  <div class="Absence-Percent">
-
-                    <label class="Percent-Main">3,0%</label>
-
-                  </div>
-
-                  <div class="Absence-Major">
-
-                    <label class="Major-Main">Norsk</label>
-
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-
+          <div class="MaxStudents medium-6">
+            <label>Max students</label>
+            <input type="text" name="" value="" placeholder="Enter a max value">
           </div>
 
         </div>
 
         <div class="Calendar-Main">
 
-          <div id="scheduler_here" class="dhx_cal_container" style='width: calc(90vw); height: 100%;'>
-            <div class="dhx_cal_navline">
-              <div class="dhx_cal_prev_button">&nbsp;</div>
-              <div class="dhx_cal_next_button">&nbsp;</div>
-              <div class="dhx_cal_today_button"></div>
-              <div class="dhx_cal_date"></div>
-              <div class="dhx_cal_tab" name="day_tab" style="right:204px;"></div>
-              <div class="dhx_cal_tab" name="week_tab" style="right:140px;"></div>
-            </div>
-            <div class="dhx_cal_header">
-            </div>
-            <div class="dhx_cal_data">
-            </div>
-          </div>
+        </div>
+
+        <div class="Submit cell">
+
+          <button class="button">Submit</button>
 
         </div>
 
       </section>
-
-      <data>
-        <div id="Overlay">
-
-        </div>
-        <div id="Fravaer-PopUp">
-
-        </div>
-      </data>
 
 
       <footer>
@@ -388,18 +241,12 @@
       </footer>
 
     </div>
-
   </div>
 
   <script src="js/vendor/jquery.js"></script>
   <script src="js/vendor/what-input.js"></script>
   <script src="js/vendor/foundation.js"></script>
-  <script src="https://rawgit.com/jquery/jquery-mousewheel/master/jquery.mousewheel.js"></script>
-  <script src="js/dhtmlxscheduler.js"></script>
-  <script src="js/CalendarInit.js"></script>
   <script src="js/PreventParentScroll.js"></script>
-  <script src="js/AbsenceSwitch.js"></script>
-  <script src="js/CountDown.js"></script>
   <script src="js/app.js"></script>
 </body>
 

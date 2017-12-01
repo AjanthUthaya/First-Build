@@ -93,7 +93,7 @@
 }
 
 .Test-Time {
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .Item-Absence {
@@ -127,7 +127,45 @@
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
+/* ***************************************************
+  GENERAL
+  (Top-Right-Bottom-Left)
+*************************************************** */
 
+data {
+  position: absolute;
+  height: 100%;
+  width: 100vw;
+  overflow: scroll;
+  display: none;
+}
+
+#Overlay {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: block;
+  z-index: 999;
+}
+
+#Fravaer-PopUp {
+  position: absolute;
+  top: 0;
+  margin-left: 10vw;
+  margin-top: 100px;
+  width: 80vw;
+  height: 150vh;
+  background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
+  z-index: 1000;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 /* ***************************************************
   EDIT TO FOUNDATION CODE

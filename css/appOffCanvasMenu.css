@@ -121,10 +121,6 @@
 }
 
 .OffCanvas-Menu-List-Active {
-  border-top: 0px outset #8cc63f;
-  border-right: 15px inset #8cc63f;
-  border-bottom: 0px inset #8cc63f;
-  border-left: 15px outset #8cc63f;
   background-color: #292c30;
 }
 
@@ -191,7 +187,7 @@
 .Sub-Menu-Head {
   text-align: center;
   height: 55px;
-  background-color: #35414d;
+  background-color: #3d5165;
   color: white;
   font-size: 0.8em;
   padding: 0.3rem 0;
