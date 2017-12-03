@@ -4,9 +4,9 @@
 *************************************************** */
 
 html, body {
-  margin: 0px;
-  padding: 0px;
   height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -20,18 +20,20 @@ html, body {
 *************************************************** */
 
 /* Removing background */
+
 .dhx_scale_holder, .dhx_scale_holder_now {
   background-image: none;
 }
 
-
 /* Align text of events to the center, default: left */
-.dhx_body{
+
+.dhx_body {
   text-align: center;
 }
 
 /* Hides on px that enables scroll mode for some reason */
-.dhx_cal_data{
+
+.dhx_cal_data {
   overflow: hidden;
   height: 100%;
 }

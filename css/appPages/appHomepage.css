@@ -46,8 +46,8 @@ footer {
 *************************************************** */
 
 .top-bar-left h4 {
-  color: #8cc63f;
   padding-left: 1em;
+  color: #8cc63f;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -120,8 +120,8 @@ footer {
 
 .Hero-Feature {
   height: 15vh;
-  background: grey;
   min-height: 105px;
+  background: grey;
 }
 
 .Hero-Section-Feature {
@@ -179,8 +179,8 @@ footer {
 .Feature-Icon {
   position: relative;
   top: 10vh;
-  text-align: center;
   width: 100vw;
+  text-align: center;
   /* NOTE: This works to center circle, but is only a soulotion for chrome */
 }
 
@@ -191,7 +191,7 @@ footer {
   width: 100px;
   height: 100px;
   margin: 1px 1px 1px 1px;
-  padding-top: 0.2em;
+  padding-top: .2em;
   text-align: center;
   vertical-align: middle;
   color: white;

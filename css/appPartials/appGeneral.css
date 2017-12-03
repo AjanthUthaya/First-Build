@@ -5,11 +5,11 @@
 
 #Mobile-View {
   display: none;
-  padding-top: calc(50vh - 0.5rem);
-  padding-bottom: calc(50vh - 0.5rem);
+  padding-top: calc(50vh - .5rem);
+  padding-bottom: calc(50vh - .5rem);
 }
 
-@media screen and (max-width: 40em) , screen and (max-height: 500px) {
+@media screen and (max-width: 40em), screen and (max-height: 500px) {
   #Desktop-View {
     display: none;
   }

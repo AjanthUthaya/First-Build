@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-  var elements = document.getElementsByTagName("INPUT");//Change this to the tag you want to target
+  var elements = document.getElementsByTagName("INPUT"); //Change this to the tag you want to target
   for (var i = 0; i < elements.length; i++) {
     elements[i].oninvalid = function(e) {
       e.target.setCustomValidity("");

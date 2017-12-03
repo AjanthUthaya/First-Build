@@ -8,10 +8,10 @@
 /* Removes initial padding that comes with foundation bar */
 
 footer {
-  width: 100vw;
-  height: 185px;
   position: relative;
   top: 75px;
+  width: 100vw;
+  height: 185px;
   background-color: #454f59;
 }
 

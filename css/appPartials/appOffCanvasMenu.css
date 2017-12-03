@@ -18,7 +18,7 @@
 /* Changes the color to dark black instead of dark white */
 
 .js-off-canvas-overlay {
-  background: rgba(0, 0, 0, 0.40);
+  background: rgba(0, 0, 0, .40);
 }
 
 .off-canvas.is-transition-overlap {
@@ -54,10 +54,10 @@
 /* Offcanvas menu title, targets h(x) tag */
 
 .Menu-OffCanvas-Title {
-  margin: 0;
-  text-align: center;
   height: 100%;
-  padding: 0.3rem 0;
+  margin: 0;
+  padding: .3rem 0;
+  text-align: center;
 }
 
 /* Offcanvas menu close box(red button) */
@@ -79,7 +79,7 @@
 .OffCanvas-Close-Icon {
   font-size: 25px;
   position: relative;
-  padding: 1rem 0.9rem;
+  padding: 1rem .9rem;
   text-align: center;
 }
 
@@ -107,7 +107,7 @@
 }
 
 .OffCanvas-Menu-List ul li {
-  margin: 0.8rem 0;
+  margin: .8rem 0;
 }
 
 .OffCanvas-Menu-List ul li:hover {
@@ -116,8 +116,8 @@
 
 .OffCanvas-Menu-List ul li a {
   width: 100%;
-  text-align: center;
   padding: 1em 0;
+  text-align: center;
 }
 
 .OffCanvas-Menu-List-Active {
@@ -158,14 +158,14 @@
 
 .Sub-Menu {
   position: fixed;
+  z-index: 15;
   top: 80px !important;
   left: 250px !important;
-  height: calc(100vh - 80px);
-  width: 200px;
-  background-color: #526171;
-  z-index: 15;
   display: block !important;
+  width: 200px;
+  height: calc(100vh - 80px);
   padding: 0;
+  background-color: #526171;
 }
 
 .Sub-Menu ul {
@@ -175,9 +175,9 @@
 .Sub-Menu a {
   width: 100%;
   height: 100%;
+  padding: 1em 0;
   text-align: center;
   color: white;
-  padding: 1em 0;
 }
 
 .Sub-Menu a:hover {
@@ -185,12 +185,12 @@
 }
 
 .Sub-Menu-Head {
-  text-align: center;
+  font-size: .8em;
   height: 55px;
-  background-color: #3d5165;
+  padding: .3rem 0;
+  text-align: center;
   color: white;
-  font-size: 0.8em;
-  padding: 0.3rem 0;
+  background-color: #3d5165;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

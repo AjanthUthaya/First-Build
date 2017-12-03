@@ -15,11 +15,11 @@
 
 .Display-Main {
   position: relative;
+  display: inline-flex;
+  width: 100vw;
   margin-top: 5vh;
   text-align: center;
   justify-content: center;
-  display: inline-flex;
-  width: 100vw;
 }
 
 .Display-Item {
@@ -28,17 +28,17 @@
 }
 
 .Display-Item label {
-  height: 25px;
-  text-overflow: ellipsis;
   overflow: hidden;
+  height: 25px;
   white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .Display-Item-Screen {
   width: 100%;
   height: 80px;
-  background-color: white;
   text-align: center;
+  background-color: white;
 }
 
 #NextClassHours {
@@ -61,8 +61,8 @@
 }
 
 #NextClassNo * {
-  position: relative;
   font-size: 1em;
+  position: relative;
   padding: 1.9rem 0;
 }
 
@@ -101,9 +101,9 @@
 }
 
 .Absence-Item {
-  margin: 0;
-  height: 0;
   display: none;
+  height: 0;
+  margin: 0;
 }
 
 .Percent-Main {
@@ -116,10 +116,10 @@
 
 .Calendar-Main {
   position: relative;
-  margin-top: 5vh;
   width: 90vw;
-  margin-left: 5vw;
   height: 900px;
+  margin-top: 5vh;
+  margin-left: 5vw;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -134,32 +134,32 @@
 
 data {
   position: absolute;
-  height: 100%;
-  width: 100vw;
-  overflow: scroll;
   display: none;
+  overflow: scroll;
+  width: 100vw;
+  height: 100%;
 }
 
 #Overlay {
   position: fixed;
-  top: 0;
-  height: 100vh;
-  width: 100vw;
-  top: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: block;
   z-index: 999;
+  top: 0;
+  top: 0;
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .5);
 }
 
 #Fravaer-PopUp {
   position: absolute;
+  z-index: 1000;
   top: 0;
-  margin-left: 10vw;
-  margin-top: 100px;
   width: 80vw;
   height: 150vh;
-  background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
-  z-index: 1000;
+  margin-top: 100px;
+  margin-left: 10vw;
+  background: linear-gradient(to bottom, #3cf 0%, #f9c 100%);
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
