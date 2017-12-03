@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="css/appOffCanvasMenu.css">
   <link rel="stylesheet" href="css/appFooter.css">
   <link rel="stylesheet" href="css/appGeneral.css">
-  <link rel="stylesheet" href="css/appNewTest.css">
+  <link rel="stylesheet" href="css/appNewMajors.css">
 </head>
 
 <body>
@@ -148,7 +148,7 @@
       <div class="Breadcrumb" aria-label="You are here:" role="navigation">
         <ul class="breadcrumbs">
           <li><a href="Home.html"><span class="fa fa-home Breadcrumb-Home"></span>Home</a></li>
-          <li>Order</li>
+          <li><a href="Majors.html">Major</a></li>
           <li>New major</li>
         </ul>
       </div>
@@ -159,6 +159,53 @@
     <div class="off-canvas-content OffCanvas-Main" data-off-canvas-content>
 
       <section id="Content-Main">
+
+        <div class="New-Major-Title cell">
+          <h2>Make new major</h2>
+        </div>
+
+        <form action="Majors.html" method="post" class="grid-x Input-Main">
+
+          <div class="medium-9 cell1">
+
+            <div class="medium-6 Input-Title">
+              <label>Name of new major</label>
+            </div>
+
+            <div class="medium-6 Input-Input">
+              <input class="input" required>
+            </div>
+
+          </div>
+
+          <div class="medium-3 cell2">
+
+            <div class="medium-6 Input-Title">
+              <label>VGS</label>
+            </div>
+
+            <div class="medium-6 Input-Input">
+              <select required oninvalid="this.setCustomValidity('Select a class')">
+                <option value="" disabled selected>Select</option>
+                <option>VGS-1</option>
+                <option>VGS-2</option>
+                <option>VGS-3</option>
+              </select>
+            </div>
+
+          </div>
+
+          <div class="Button-Main cell">
+
+            <button type="submit" class="button">Create</button>
+
+          </div>
+
+        </form>
+
+
+
+
 
       </section>
 
@@ -220,6 +267,7 @@
   <script src="js/vendor/what-input.js"></script>
   <script src="js/vendor/foundation.js"></script>
   <script src="js/PreventParentScroll.js"></script>
+  <script src="js/CustomVerify.js"></script>
   <script src="js/app.js"></script>
 </body>
 
