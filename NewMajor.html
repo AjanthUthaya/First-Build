@@ -66,19 +66,25 @@
 
     </div>
 
-    <div class="Sub-Menu dropdown-pane" id="Sub-Major" data-dropdown data-close-on-click="true">
+    <div class="Sub-Menu Sub-Menu-Major dropdown-pane ChildScroll" id="Sub-Major" data-dropdown data-close-on-click="true">
       <div class="Sub-Menu-Head">
         <h3 class="Sub-Menu-Head-Main">Major</h3>
       </div>
 
       <ul class="vertical menu align-center">
-        <li><a href="NewMajor.html" class="OffCanvas-Menu-List-Active">Create major</a></li>
-        <li><a href="Majors.html">Major</a></li>
+        <li><a href="#">Engelsk</a></li>
+        <li><a href="#">Norsk</a></li>
+        <li><a href="#">Nynorsk</a></li>
+        <li><a href="#">Naturfag</a></li>
+        <li><a href="#">Matematikk</a></li>
       </ul>
+      <div class="Create-New-Major">
+        <a href="NewMajor.html" class="button">Create new major</a>
+      </div>
     </div>
 
 
-    <div class="Sub-Menu dropdown-pane" id="Sub-Order" data-dropdown data-close-on-click="true">
+    <div class="Sub-Menu dropdown-pane" id="Sub-Order" data-dropdown data-hover="true" data-hover-pane="true">
       <div class="Sub-Menu-Head">
         <h3 class="Sub-Menu-Head-Main">Order</h3>
       </div>
@@ -185,11 +191,11 @@
             </div>
 
             <div class="medium-6 Input-Input">
-              <select required oninvalid="this.setCustomValidity('Select a class')">
+              <select required>
                 <option value="" disabled selected>Select</option>
-                <option>VGS-1</option>
-                <option>VGS-2</option>
-                <option>VGS-3</option>
+                <option value="VGS-1">1</option>
+                <option value="VGS-2">2</option>
+                <option value="VGS-3">3</option>
               </select>
             </div>
 
@@ -202,10 +208,6 @@
           </div>
 
         </form>
-
-
-
-
 
       </section>
 
@@ -267,7 +269,6 @@
   <script src="js/vendor/what-input.js"></script>
   <script src="js/vendor/foundation.js"></script>
   <script src="js/PreventParentScroll.js"></script>
-  <script src="js/CustomVerify.js"></script>
   <script src="js/app.js"></script>
 </body>
 

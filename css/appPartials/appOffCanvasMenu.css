@@ -12,6 +12,7 @@
 /* Removes shadow */
 
 .off-canvas.is-transition-overlap.is-open {
+  border-right: 1px solid white;
   box-shadow: none;
 }
 
@@ -165,14 +166,42 @@
   width: 200px;
   height: calc(100vh - 80px);
   padding: 0;
+  border-right: 1px solid white;
+  border-left: 1px solid white;
   background-color: #526171;
 }
 
+.Sub-Menu-Head {
+  font-size: .8em;
+  height: 55px;
+  padding: .3rem 0;
+  text-align: center;
+  color: white;
+  background-color: #3d5165;
+}
+
 .Sub-Menu ul {
+  overflow-y: scroll;
   height: calc(100% - 55px);
 }
 
-.Sub-Menu a {
+.Sub-Menu-Major ul {
+  height: calc(100% - 100px);
+}
+
+.Sub-Menu-Major ul li {
+  min-height: fit-content;
+}
+
+.Sub-Menu-Major ul li a {
+  min-height: 50px;
+}
+
+.Sub-Menu-Order ul {
+  height: calc(100% - 55px);
+}
+
+.Sub-Menu ul a {
   width: 100%;
   height: 100%;
   padding: 1em 0;
@@ -184,13 +213,23 @@
   background-color: #292c30;
 }
 
-.Sub-Menu-Head {
-  font-size: .8em;
-  height: 55px;
-  padding: .3rem 0;
+.Create-New-Major {
+  position: relative;
+  width: 100%;
   text-align: center;
-  color: white;
-  background-color: #3d5165;
+}
+
+.Create-New-Major a {
+  width: 100%;
+  height: 45px;
+  background-color: #1e824c;
+  margin: 0;
+  padding: 1.1em 0;
+}
+
+.Create-New-Major a:hover {
+  color: black;
+  background-color: #00B16A;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

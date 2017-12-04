@@ -18,12 +18,6 @@
   <link rel="stylesheet" href="css/appPartials/appBreadcrumb.css">
   <link rel="stylesheet" href="css/appPartials/appOffCanvasMenu.css">
   <link rel="stylesheet" href="css/appPages/appHome.css">
-
-  <style>
-    .dhx_cal_event .dhx_footer {
-      background: inherit;
-    }
-  </style>
 </head>
 
 <body onload="init();">
@@ -74,19 +68,25 @@
 
     </div>
 
-    <div class="Sub-Menu dropdown-pane" id="Sub-Major" data-dropdown data-close-on-click="true">
+    <div class="Sub-Menu Sub-Menu-Major dropdown-pane ChildScroll" id="Sub-Major" data-dropdown data-close-on-click="true">
       <div class="Sub-Menu-Head">
         <h3 class="Sub-Menu-Head-Main">Major</h3>
       </div>
 
       <ul class="vertical menu align-center">
-        <li><a href="NewMajor.html">Create major</a></li>
-        <li><a href="Majors.html">Major</a></li>
+        <li><a href="#">Engelsk</a></li>
+        <li><a href="#">Norsk</a></li>
+        <li><a href="#">Nynorsk</a></li>
+        <li><a href="#">Naturfag</a></li>
+        <li><a href="#">Matematikk</a></li>
       </ul>
+      <div class="Create-New-Major">
+        <a href="NewMajor.html" class="button">Create new major</a>
+      </div>
     </div>
 
 
-    <div class="Sub-Menu dropdown-pane" id="Sub-Order" data-dropdown data-close-on-click="true">
+    <div class="Sub-Menu Sub-Menu-Order dropdown-pane" id="Sub-Order" data-dropdown data-close-on-click="true">
       <div class="Sub-Menu-Head">
         <h3 class="Sub-Menu-Head-Main">Order</h3>
       </div>
@@ -173,7 +173,7 @@
 
             <label>Next Lesson in</label>
 
-            <div class="Display-Item-Screen" CountDownTo="11/31/2017 19:00" id="NextClassMain">
+            <div class="Display-Item-Screen" CountDownTo="12/31/2017 23:59" id="NextClassMain">
 
               <div class="Item-Next-Bottom" id="NextClassMajor">
 

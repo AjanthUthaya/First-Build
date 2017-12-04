@@ -3,6 +3,38 @@
   (Top-Right-Bottom-Left)
 *************************************************** */
 
+#Content-Main {
+  min-height: calc(100vh - 80px);
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  Major
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+.Major-Main {
+  position: relative;
+  top: 40px;
+  margin: 0 30px;
+  padding: 0 10px;
+  text-align: center;
+}
+
+.Major {
+  margin: 15px;
+  padding: 2em 0;
+  background-color: white;
+}
+
+.Major label {
+  cursor: pointer;
+}
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 

@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="css/appPartials/appBreadcrumb.css">
   <link rel="stylesheet" href="css/appPartials/appOffCanvasMenu.css">
   <link rel="stylesheet" href="css/appPages/appMajors.css">
+  <link rel="stylesheet" href="css/appPartials/appMajorColor.css">
 </head>
 
 <body>
@@ -66,19 +67,25 @@
 
     </div>
 
-    <div class="Sub-Menu dropdown-pane" id="Sub-Major" data-dropdown data-close-on-click="true">
+    <div class="Sub-Menu Sub-Menu-Major dropdown-pane ChildScroll" id="Sub-Major" data-dropdown data-close-on-click="true">
       <div class="Sub-Menu-Head">
         <h3 class="Sub-Menu-Head-Main">Major</h3>
       </div>
 
       <ul class="vertical menu align-center">
-        <li><a href="NewMajor.html">Create major</a></li>
-        <li><a href="Majors.html" class="OffCanvas-Menu-List-Active">Major</a></li>
+        <li><a href="#">Engelsk</a></li>
+        <li><a href="#">Norsk</a></li>
+        <li><a href="#">Nynorsk</a></li>
+        <li><a href="#">Naturfag</a></li>
+        <li><a href="#">Matematikk</a></li>
       </ul>
+      <div class="Create-New-Major">
+        <a href="NewMajor.html" class="button">Create new major</a>
+      </div>
     </div>
 
 
-    <div class="Sub-Menu dropdown-pane" id="Sub-Order" data-dropdown data-close-on-click="true">
+    <div class="Sub-Menu dropdown-pane" id="Sub-Order" data-dropdown data-hover="true" data-hover-pane="true">
       <div class="Sub-Menu-Head">
         <h3 class="Sub-Menu-Head-Main">Order</h3>
       </div>
@@ -148,7 +155,6 @@
         <ul class="breadcrumbs">
           <li><a href="Home.html"><span class="fa fa-home Breadcrumb-Home"></span>Home</a></li>
           <li>Major</li>
-          <li>View majors</li>
         </ul>
       </div>
     </nav>
@@ -159,7 +165,75 @@
 
       <section id="Content-Main">
 
+        <div class="grid-x medium-up-2 large-up-4 Major-Main">
 
+
+          <div class="cell">
+            <a href="#">
+              <div class="Major Major-Norsk">
+                <label>Norsk</label>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell">
+            <a href="#">
+              <div class="Major Major-Nynorsk">
+                <label>Nynorsk</label>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell">
+            <a href="#">
+              <div class="Major Major-Naturfag">
+                <label>Natufag</label>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell">
+            <a href="#">
+              <div class="Major Major-Matematikk">
+                <label>Matematikk</label>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell">
+            <a href="#">
+              <div class="Major Major-Samfunnsfag">
+                <label>Samfunnsfag</label>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell">
+            <a href="#">
+              <div class="Major Major-Historie">
+                <label>Historie</label>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell">
+            <a href="#">
+              <div class="Major Major-Kroppsoving">
+                <label>Kroppsoving</label>
+              </div>
+            </a>
+          </div>
+
+          <div class="cell">
+            <a href="#">
+              <div class="Major Major-Engelsk">
+                <label>Engelsk</label>
+              </div>
+            </a>
+          </div>
+
+
+        </div>
 
       </section>
 
