@@ -4,35 +4,67 @@
 *************************************************** */
 
 .Major-Naturfag {
-  background-color: #26a65b;
+  background-color: rgba(38, 166, 91, 1);
+}
+
+.Major-Naturfag:hover {
+  background-color: rgba(38, 166, 91, 0.8);
 }
 
 .Major-Norsk {
-  background-color: #4183d7;
+  background-color: rgba(65, 131, 215, 1);
+}
+
+.Major-Norsk:hover {
+  background-color: rgba(65, 131, 215, 0.8);
 }
 
 .Major-Nynorsk {
-  background-color: #59abe3;
+  background-color: rgba(89, 171, 227, 1);
+}
+
+.Major-Nynorsk:hover {
+  background-color: rgba(89, 171, 227, 0.8);
 }
 
 .Major-Matematikk {
-  background-color: #87d37c;
+  background-color: rgba(97, 183, 85, 1);
+}
+
+.Major-Matematikk:hover {
+  background-color: rgba(97, 183, 85, 0.8);
 }
 
 .Major-Samfunnsfag {
-  background-color: #96281b;
+  background-color: rgba(150, 40, 27, 1);
+}
+
+.Major-Samfunnsfag:hover {
+  background-color: rgba(150, 40, 27, 0.8);
 }
 
 .Major-Historie {
-  background-color: #d35400;
+  background-color: rgba(211, 84, 0, 1);
+}
+
+.Major-Historie:hover {
+  background-color: rgba(211, 84, 0, 0.8);
 }
 
 .Major-Kroppsoving {
-  background-color: #6c7a89;
+  background-color: rgba(108, 122, 137, 1);
+}
+
+.Major-Kroppsoving:hover {
+  background-color: rgba(108, 122, 137, 0.8);
 }
 
 .Major-Engelsk {
-  background-color: #674172;
+  background-color: rgba(103, 65, 114, 1);
+}
+
+.Major-Engelsk:hover {
+  background-color: rgba(103, 65, 114, 0.8);
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
