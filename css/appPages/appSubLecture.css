@@ -1,0 +1,31 @@
+/* ***************************************************
+  GENERAL
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+.Sub-Major-Title {
+  width: 100vw;
+  height: 60px;
+  background-color: #36414d;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Sub-Major-Main {
+  min-height: calc(100vh - 80px - 60px);
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+.Sub-Major-Menu {
+  background-color: #454f59;
+}
+
+.Sub-Major-Content {
+  background-color: #818c98;
+}
