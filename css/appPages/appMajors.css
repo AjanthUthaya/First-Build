@@ -7,6 +7,10 @@
   min-height: calc(100vh - 80px);
 }
 
+label {
+  color: inherit;
+}
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -29,6 +33,14 @@
   margin: 15px;
   padding: 2em 0;
   background-color: white;
+}
+
+.Major div {
+  position: relative;
+  text-align: center;
+  height: 0;
+  width: 0;
+  top: -10px;
 }
 
 .Major label {

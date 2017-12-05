@@ -4,67 +4,83 @@
 *************************************************** */
 
 .Major-Naturfag {
+  color: white;
   background-color: rgba(38, 166, 91, 1);
 }
 
-.Major-Naturfag:hover {
-  background-color: rgba(38, 166, 91, 0.8);
+.Major-Naturfag-Button:hover {
+  color: Black;
+  background-color: rgba(38, 166, 91, .8);
 }
 
 .Major-Norsk {
+  color: white;
   background-color: rgba(65, 131, 215, 1);
 }
 
-.Major-Norsk:hover {
-  background-color: rgba(65, 131, 215, 0.8);
+.Major-Norsk-Button:hover {
+  color: Black;
+  background-color: rgba(65, 131, 215, .8);
 }
 
 .Major-Nynorsk {
+  color: white;
   background-color: rgba(89, 171, 227, 1);
 }
 
-.Major-Nynorsk:hover {
-  background-color: rgba(89, 171, 227, 0.8);
+.Major-Nynorsk-Button:hover {
+  color: Black;
+  background-color: rgba(89, 171, 227, .8);
 }
 
 .Major-Matematikk {
+  color: white;
   background-color: rgba(97, 183, 85, 1);
 }
 
-.Major-Matematikk:hover {
-  background-color: rgba(97, 183, 85, 0.8);
+.Major-Matematikk-Button:hover {
+  color: Black;
+  background-color: rgba(97, 183, 85, .8);
 }
 
 .Major-Samfunnsfag {
+  color: white;
   background-color: rgba(150, 40, 27, 1);
 }
 
-.Major-Samfunnsfag:hover {
-  background-color: rgba(150, 40, 27, 0.8);
+.Major-Samfunnsfag-Button:hover {
+  color: Black;
+  background-color: rgba(150, 40, 27, .8);
 }
 
 .Major-Historie {
+  color: white;
   background-color: rgba(211, 84, 0, 1);
 }
 
-.Major-Historie:hover {
-  background-color: rgba(211, 84, 0, 0.8);
+.Major-Historie-Button:hover {
+  color: Black;
+  background-color: rgba(211, 84, 0, .8);
 }
 
 .Major-Kroppsoving {
+  color: white;
   background-color: rgba(108, 122, 137, 1);
 }
 
-.Major-Kroppsoving:hover {
-  background-color: rgba(108, 122, 137, 0.8);
+.Major-Kroppsoving-Button:hover {
+  color: Black;
+  background-color: rgba(108, 122, 137, .8);
 }
 
 .Major-Engelsk {
+  color: white;
   background-color: rgba(103, 65, 114, 1);
 }
 
-.Major-Engelsk:hover {
-  background-color: rgba(103, 65, 114, 0.8);
+.Major-Engelsk-Button:hover {
+  color: Black;
+  background-color: rgba(103, 65, 114, .8);
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

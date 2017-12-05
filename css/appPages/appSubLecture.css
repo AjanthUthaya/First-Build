@@ -7,6 +7,12 @@ footer {
   top: 0;
 }
 
+data {
+  position: relative;
+  display: none;
+}
+
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -106,14 +112,19 @@ footer {
 .Accord-List li a {
   color: #dcdcdc;
   width: 100%;
+  border-left: 10px solid #ebebeb;
+}
+
+.Accord-List li a:focus {
+  border-left: 10px solid black;
 }
 
 .Accord-List li a:hover {
   background: #4A5765;
 }
 
-.Accord-List li:nth-child(2) {
-border-bottom: #dcdcdc 1px solid !important;
+.Accord-List li:nth-child(1) {
+  border-bottom: darkgrey 1px solid !important;
 }
 
 .Sub-Major-Content-Main {
