@@ -176,6 +176,12 @@ data {
   background: inherit;
 }
 
+@media screen and (max-width: 700px) {
+  .dhx_cal_today_button {
+    display: none;
+  }
+}
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
