@@ -34,7 +34,8 @@
 
 .Calendar-Main {
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 80px);
+  min-height: 500px;
   background-color: grey;
 }
 
