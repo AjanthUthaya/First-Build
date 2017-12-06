@@ -37,28 +37,28 @@ label {
 
 .Major div {
   position: relative;
-  text-align: center;
-  height: 0;
-  width: 0;
   top: -10px;
+  width: 0;
+  height: 0;
+  text-align: center;
 }
 
 .Major label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
   font-size: 17px;
   font-weight: bold;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
 }
 
 .Major span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
   font-size: 17px;
   font-weight: bold;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

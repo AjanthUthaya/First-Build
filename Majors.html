@@ -73,247 +73,267 @@
       </div>
 
       <ul class="vertical menu align-center">
-        <li><a href="SubLecture.html#Engelsk" onClick="history.go(0)">Engelsk</a></li>
-        <li><a href="SubLecture.html#Norsk" onClick="history.go(0)">Norsk</a></li>
-        <li><a href="SubLecture.html#Nynorsk" onClick="history.go(0)">Nynorsk</a></li>
-        <li><a href="SubLecture.html#Naturfag" onClick="history.go(0)">Naturfag</a></li>
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="Majors.html" data-toggle="Sub-Major">Major</a></li>
+        <li><a href="Lesson.html" class="OffCanvas-Menu-List-Active">Lesson</a></li>
+        <li><a href="Absence.html">Absence</a></li>
+        <li><a href="Test.html">Test</a></li>
       </ul>
-      <div class="Create-New-Major">
-        <a href="NewMajor.html" class="button">Create new major</a>
-      </div>
+
     </div>
 
+    <div class="OffCanvas-Menu-Social">
 
-    <div class="Sub-Menu dropdown-pane" id="Sub-Order" data-dropdown data-hover="true" data-hover-pane="true">
-      <div class="Sub-Menu-Head">
-        <h3 class="Sub-Menu-Head-Main">Order</h3>
-      </div>
+      <span><a href="#" class="fa fa-facebook-square"></a></span>
+      <span><a href="#" class="fa fa-youtube-play"></a></span>
+      <span><a href="#" class="fa fa-instagram"></a></span>
+      <span><a href="#" class="fa fa-linkedin"></a></span>
+      <span><a href="#" class="fa fa-twitter"></a></span>
 
-      <ul class="vertical menu align-center">
-        <li><a href="NewLesson.html">Create lesson</a></li>
-        <li><a href="NewTest.html">Create test</a></li>
-        <li><a href="Lesson.html">Lesson</a></li>
-      </ul>
     </div>
 
-    <nav class="scrollhide-nav">
-      <div class="top-bar Top-Bar-Main">
+  </div>
+
+  </div>
 
 
-        <div class="top-bar-left">
-          <span class="Top-Bar-Menu"><a href="#" class="fa fa-bars" data-toggle="offCanvas"></a></span>
+
+  <div class="Sub-Menu Sub-Menu-Major dropdown-pane ChildScroll" id="Sub-Major" data-dropdown data-hover="true" data-hover-pane="true">
+    <div class="Sub-Menu-Head">
+      <h3 class="Sub-Menu-Head-Main">Major</h3>
+    </div>
+
+    <ul class="vertical menu align-center">
+      <li><a href="SubLecture.html#Engelsk" onClick="history.go(0)">Engelsk</a></li>
+      <li><a href="SubLecture.html#Norsk" onClick="history.go(0)">Norsk</a></li>
+      <li><a href="SubLecture.html#Nynorsk" onClick="history.go(0)">Nynorsk</a></li>
+      <li><a href="SubLecture.html#Naturfag" onClick="history.go(0)">Naturfag</a></li>
+    </ul>
+    <div class="Create-New-Major">
+      <a href="NewMajor.html" class="button">Create new major</a>
+    </div>
+  </div>
+
+
+
+  <nav class="scrollhide-nav">
+    <div class="top-bar Top-Bar-Main">
+
+
+      <div class="top-bar-left">
+        <span class="Top-Bar-Menu"><a href="#" class="fa fa-bars" data-toggle="offCanvas"></a></span>
+      </div>
+
+
+      <div class="Top-Bar-Center-Logo Top-Bar-Logo">
+
+        <div class="Triangle-Left">
         </div>
 
-
-        <div class="Top-Bar-Center-Logo Top-Bar-Logo">
-
-          <div class="Triangle-Left">
-          </div>
-
-          <div class="Rectangle">
-            <a href="index.html"><img src="http://via.placeholder.com/50x50" alt="Logo-TopNav" id="TopBar-Logo"/></a>
-          </div>
-
-          <div class="Triangle-Right">
-          </div>
-
+        <div class="Rectangle">
+          <a href="index.html"><img src="http://via.placeholder.com/50x50" alt="Logo-TopNav" id="TopBar-Logo"/></a>
         </div>
 
-
-        <div class="top-bar-right">
-          <ul class="menu medium-horizontal">
-            <li class="menu" data-toggle="User-Menu-Dropdown">
-              <label id="Name-Label">Firstname Lastname</label><span class="Top-Bar-Menu"><a href="#" class="fa fa-user-circle"></a></span>
-            </li>
-          </ul>
+        <div class="Triangle-Right">
         </div>
-
-
-        <div class="dropdown-pane" id="User-Menu-Dropdown" data-dropdown data-close-on-click="true">
-
-          <div class="User-Menu-Image">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" alt="Profile-Picture">
-          </div>
-
-          <div class="User-Menu-Name">
-            <h5>Firstname Lastname</h5>
-          </div>
-
-          <div class="User-Menu-Content grid-x">
-            <a href="#" class="cell">Profile</a>
-            <a href="#" class="cell">Notification</a>
-            <a href="index.html" class="cell">Logout</a>
-          </div>
-
-        </div>
-
 
       </div>
 
-      <div class="Breadcrumb" aria-label="You are here:" role="navigation">
-        <ul class="breadcrumbs">
-          <li><a href="Home.html"><span class="fa fa-home Breadcrumb-Home"></span>Home</a></li>
-          <li>Major</li>
+
+      <div class="top-bar-right">
+        <ul class="menu medium-horizontal">
+          <li class="menu" data-toggle="User-Menu-Dropdown">
+            <label id="Name-Label">Firstname Lastname</label><span class="Top-Bar-Menu"><a href="#" class="fa fa-user-circle"></a></span>
+          </li>
         </ul>
       </div>
-    </nav>
 
 
+      <div class="dropdown-pane" id="User-Menu-Dropdown" data-dropdown data-close-on-click="true">
 
-    <div class="off-canvas-content OffCanvas-Main" data-off-canvas-content>
-
-      <section id="Content-Main">
-
-        <div class="grid-x Major-Main">
-
-
-          <div class="medium-12 large-6">
-            <a href="SubLecture.html#Norsk">
-              <div class="grid-x Major Major-Norsk Major-Norsk-Button">
-                <div class="medium-2 image">
-                  <img src="https://www.oxfordshire.gov.uk/cms/sites/all/themes/publicsite/images/submenu/mega_menu_help_icon.png" height="50px" width="50px" alt="Major-Icon">
-                </div>
-                <label class="medium-8">Norsk</label>
-                <span class="fa fa-arrow-right medium-2"></span>
-              </div>
-            </a>
-          </div>
-
-          <div class="medium-12 large-6">
-            <a href="SubLecture.html#Nynorsk">
-              <div class="grid-x Major Major-Nynorsk Major-Nynorsk-Button">
-                <div class="medium-2">
-                  <img src="http://via.placeholder.com/50x50" height="50px" width="50px" alt="Major-Icon">
-                </div>
-                <label class="medium-8">Nynorsk</label>
-                <span class="fa fa-arrow-right medium-2"></span>
-              </div>
-            </a>
-          </div>
-
-          <div class="medium-12 large-6">
-            <a href="SubLecture.html#Naturfag">
-              <div class="grid-x Major Major-Naturfag Major-Naturfag-Button">
-                <div class="medium-2">
-                  <img src="http://via.placeholder.com/50x50" height="50px" width="50px" alt="Major-Icon">
-                </div>
-                <label class="medium-8">Natufag</label>
-                <span class="fa fa-arrow-right medium-2"></span>
-              </div>
-            </a>
-          </div>
-
-          <div class="medium-12 large-6">
-            <a href="SubLecture.html#Matematikk">
-              <div class="grid-x Major Major-Matematikk Major-Matematikk-Button">
-                <div class="medium-2">
-                  <img src="http://via.placeholder.com/50x50" height="50px" width="50px" alt="Major-Icon">
-                </div>
-                <label class="medium-8">Matematikk(in-active)</label>
-                <span class="fa fa-arrow-right medium-2"></span>
-              </div>
-            </a>
-          </div>
-
-          <div class="medium-12 large-6">
-            <a href="SubLecture.html#Samfunnsfag">
-              <div class="grid-x Major Major-Samfunnsfag Major-Samfunnsfag-Button">
-                <div class="medium-2">
-                  <img src="http://via.placeholder.com/50x50" height="50px" width="50px" alt="Major-Icon">
-                </div>
-                <label class="medium-8">Samfunnsfag(in-active)</label>
-                <span class="fa fa-arrow-right medium-2"></span>
-              </div>
-            </a>
-          </div>
-
-          <div class="medium-12 large-6">
-            <a href="SubLecture.html#Historie">
-              <div class="grid-x Major Major-Historie Major-Historie-Button">
-                <div class="medium-2">
-                  <img src="http://via.placeholder.com/50x50" height="50px" width="50px" alt="Major-Icon">
-                </div>
-                <label class="medium-8">Historie(in-active)</label>
-                <span class="fa fa-arrow-right medium-2"></span>
-              </div>
-            </a>
-          </div>
-
-          <div class="medium-12 large-6">
-            <a href="SubLecture.html#Kroppsoving">
-              <div class="grid-x Major Major-Kroppsoving Major-Kroppsoving-Button">
-                <div class="medium-2">
-                  <img src="http://via.placeholder.com/50x50" height="50px" width="50px" alt="Major-Icon">
-                </div>
-                <label class="medium-8">Kroppsoving(in-active)</label>
-                <span class="fa fa-arrow-right medium-2"></span>
-              </div>
-            </a>
-          </div>
-
-          <div class="medium-12 large-6">
-            <a href="SubLecture.html#Engelsk">
-              <div class="grid-x Major Major-Engelsk Major-Engelsk-Button">
-                <div class="medium-2">
-                  <img src="http://via.placeholder.com/50x50" height="50px" width="50px" alt="Major-Icon">
-                </div>
-                <label class="medium-8">Engelsk</label>
-                <span class="fa fa-arrow-right medium-2"></span>
-              </div>
-            </a>
-          </div>
-
-
+        <div class="User-Menu-Image">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" alt="Profile-Picture">
         </div>
 
-      </section>
-
-
-      <footer>
-
-        <div class="Footer-Logo">
-
-          <div class="Footer-Logo-Underlayer">
-            <a href="#"><img src="http://via.placeholder.com/90x90" width="90px" height="90px" alt="Logo-Footer"></a>
-          </div>
-
+        <div class="User-Menu-Name">
+          <h5>Firstname Lastname</h5>
         </div>
 
-        <div class="Footer-Label">
-          <label>First Build</label>
+        <div class="User-Menu-Content grid-x">
+          <a href="#" class="cell">Profile</a>
+          <a href="#" class="cell">Notification</a>
+          <a href="index.html" class="cell">Logout</a>
         </div>
 
-        <div class="Footer-HR">
-          <hr>
-        </div>
+      </div>
 
-        <div class="Footer-Social">
-
-          <div class="Footer-Icon">
-            <a href="#"><span class="fa fa-facebook-square"></span></a>
-          </div>
-
-          <div class="Footer-Icon">
-            <a href="#"><span class="fa fa-youtube-play"></span></a>
-          </div>
-
-          <div class="Footer-Icon">
-            <a href="#"><span class="fa fa-instagram"></span></a>
-          </div>
-
-          <div class="Footer-Icon">
-            <a href="#"><span class="fa fa-linkedin-square"></span></a>
-          </div>
-
-          <div class="Footer-Icon">
-            <a href="#"><span class="fa fa-twitter-square"></span></a>
-          </div>
-
-        </div>
-
-      </footer>
 
     </div>
+
+    <div class="Breadcrumb" aria-label="You are here:" role="navigation">
+      <ul class="breadcrumbs">
+        <li><a href="Home.html"><span class="fa fa-home Breadcrumb-Home"></span>Home</a></li>
+        <li>Major</li>
+      </ul>
+    </div>
+  </nav>
+
+
+
+  <div class="off-canvas-content OffCanvas-Main" data-off-canvas-content>
+
+    <section id="Content-Main">
+
+      <div class="grid-x Major-Main">
+
+
+        <div class="medium-12 large-6">
+          <a href="SubLecture.html#Norsk">
+            <div class="grid-x Major Major-Norsk Major-Norsk-Button">
+              <div class="medium-2 image">
+                <img src="https://www.oxfordshire.gov.uk/cms/sites/all/themes/publicsite/images/submenu/mega_menu_help_icon.png" height="50px" width="50px" alt="Major-Icon">
+              </div>
+              <label class="medium-8">Norsk</label>
+              <span class="fa fa-arrow-right medium-2"></span>
+            </div>
+          </a>
+        </div>
+
+        <div class="medium-12 large-6">
+          <a href="SubLecture.html#Nynorsk">
+            <div class="grid-x Major Major-Nynorsk Major-Nynorsk-Button">
+              <div class="medium-2">
+                <img src="http://via.placeholder.com/50x50" height="50px" width="50px" alt="Major-Icon">
+              </div>
+              <label class="medium-8">Nynorsk</label>
+              <span class="fa fa-arrow-right medium-2"></span>
+            </div>
+          </a>
+        </div>
+
+        <div class="medium-12 large-6">
+          <a href="SubLecture.html#Naturfag">
+            <div class="grid-x Major Major-Naturfag Major-Naturfag-Button">
+              <div class="medium-2">
+                <img src="http://via.placeholder.com/50x50" height="50px" width="50px" alt="Major-Icon">
+              </div>
+              <label class="medium-8">Natufag</label>
+              <span class="fa fa-arrow-right medium-2"></span>
+            </div>
+          </a>
+        </div>
+
+        <div class="medium-12 large-6">
+          <a href="SubLecture.html#Matematikk">
+            <div class="grid-x Major Major-Matematikk Major-Matematikk-Button">
+              <div class="medium-2">
+                <img src="http://via.placeholder.com/50x50" height="50px" width="50px" alt="Major-Icon">
+              </div>
+              <label class="medium-8">Matematikk(in-active)</label>
+              <span class="fa fa-arrow-right medium-2"></span>
+            </div>
+          </a>
+        </div>
+
+        <div class="medium-12 large-6">
+          <a href="SubLecture.html#Samfunnsfag">
+            <div class="grid-x Major Major-Samfunnsfag Major-Samfunnsfag-Button">
+              <div class="medium-2">
+                <img src="http://via.placeholder.com/50x50" height="50px" width="50px" alt="Major-Icon">
+              </div>
+              <label class="medium-8">Samfunnsfag(in-active)</label>
+              <span class="fa fa-arrow-right medium-2"></span>
+            </div>
+          </a>
+        </div>
+
+        <div class="medium-12 large-6">
+          <a href="SubLecture.html#Historie">
+            <div class="grid-x Major Major-Historie Major-Historie-Button">
+              <div class="medium-2">
+                <img src="http://via.placeholder.com/50x50" height="50px" width="50px" alt="Major-Icon">
+              </div>
+              <label class="medium-8">Historie(in-active)</label>
+              <span class="fa fa-arrow-right medium-2"></span>
+            </div>
+          </a>
+        </div>
+
+        <div class="medium-12 large-6">
+          <a href="SubLecture.html#Kroppsoving">
+            <div class="grid-x Major Major-Kroppsoving Major-Kroppsoving-Button">
+              <div class="medium-2">
+                <img src="http://via.placeholder.com/50x50" height="50px" width="50px" alt="Major-Icon">
+              </div>
+              <label class="medium-8">Kroppsoving(in-active)</label>
+              <span class="fa fa-arrow-right medium-2"></span>
+            </div>
+          </a>
+        </div>
+
+        <div class="medium-12 large-6">
+          <a href="SubLecture.html#Engelsk">
+            <div class="grid-x Major Major-Engelsk Major-Engelsk-Button">
+              <div class="medium-2">
+                <img src="http://via.placeholder.com/50x50" height="50px" width="50px" alt="Major-Icon">
+              </div>
+              <label class="medium-8">Engelsk</label>
+              <span class="fa fa-arrow-right medium-2"></span>
+            </div>
+          </a>
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+    <footer>
+
+      <div class="Footer-Logo">
+
+        <div class="Footer-Logo-Underlayer">
+          <a href="#"><img src="http://via.placeholder.com/90x90" width="90px" height="90px" alt="Logo-Footer"></a>
+        </div>
+
+      </div>
+
+      <div class="Footer-Label">
+        <label>First Build</label>
+      </div>
+
+      <div class="Footer-HR">
+        <hr>
+      </div>
+
+      <div class="Footer-Social">
+
+        <div class="Footer-Icon">
+          <a href="#"><span class="fa fa-facebook-square"></span></a>
+        </div>
+
+        <div class="Footer-Icon">
+          <a href="#"><span class="fa fa-youtube-play"></span></a>
+        </div>
+
+        <div class="Footer-Icon">
+          <a href="#"><span class="fa fa-instagram"></span></a>
+        </div>
+
+        <div class="Footer-Icon">
+          <a href="#"><span class="fa fa-linkedin-square"></span></a>
+        </div>
+
+        <div class="Footer-Icon">
+          <a href="#"><span class="fa fa-twitter-square"></span></a>
+        </div>
+
+      </div>
+
+    </footer>
+
+  </div>
   </div>
 
   <script src="js/vendor/jquery.js"></script>

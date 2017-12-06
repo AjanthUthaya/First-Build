@@ -20,10 +20,10 @@
 }
 
 #Content-Main {
-  margin-top: 80px;
-  min-height: calc(100vh - 80px);
-  max-width: 100%;
   overflow-x: hidden;
+  max-width: 100%;
+  min-height: calc(100vh - 80px);
+  margin-top: 80px;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
