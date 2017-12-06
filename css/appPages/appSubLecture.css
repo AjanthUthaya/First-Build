@@ -65,6 +65,7 @@ data {
 
 .Sub-Major-Content-Main {
   min-height: calc(100vh - 80px - 60px);
+  display: none;
 }
 
 .Sub-Major-Menu-Main {
