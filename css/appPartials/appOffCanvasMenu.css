@@ -109,9 +109,6 @@
 
 .OffCanvas-Menu-List ul li {
   margin: .5rem 0;
-  border: 1px solid gray;
-  border-left: 0;
-  border-right: 0;
 }
 
 .OffCanvas-Menu-List ul li:hover {
@@ -126,6 +123,10 @@
 
 .OffCanvas-Menu-List-Active {
   background-color: #292c30;
+  border: 0;
+  border: 5px solid gray;
+  border-left: 0;
+  border-right: 0;
 }
 
 /* Social icons at the bottom */

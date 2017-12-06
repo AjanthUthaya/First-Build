@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Majors - First Build</title>
+  <title>Absence - First Build</title>
   <link rel="stylesheet" href="css/foundation.css">
   <link rel="stylesheet" href="css/font-awesome.css">
   <link rel="icon" href="http://via.placeholder.com/50x50">
@@ -15,8 +15,7 @@
   <link rel="stylesheet" href="css/appPartials/appUserDropdownMenu.css">
   <link rel="stylesheet" href="css/appPartials/appBreadcrumb.css">
   <link rel="stylesheet" href="css/appPartials/appOffCanvasMenu.css">
-  <link rel="stylesheet" href="css/appPages/appMajors.css">
-  <link rel="stylesheet" href="css/appPartials/appMajorColor.css">
+  <link rel="stylesheet" href="css/appPages/appAbsence.css">
 </head>
 
 <body>
@@ -47,9 +46,9 @@
 
           <ul class="vertical menu align-center">
             <li><a href="Home.html">Home</a></li>
-            <li><a href="Majors.html" data-toggle="Sub-Major" class="OffCanvas-Menu-List-Active">Major</a></li>
+            <li><a href="Majors.html" data-toggle="Sub-Major">Major</a></li>
             <li><a href="Lesson.html">Lesson</a></li>
-            <li><a href="Absence.html">Absence</a></li>
+            <li><a href="Absence.html" class="OffCanvas-Menu-List-Active">Absence</a></li>
             <li><a href="Test.html">Test</a></li>
           </ul>
 
@@ -146,7 +145,7 @@
       <div class="Breadcrumb" aria-label="You are here:" role="navigation">
         <ul class="breadcrumbs">
           <li><a href="Home.html"><span class="fa fa-home Breadcrumb-Home"></span>Home</a></li>
-          <li>Major</li>
+          <li>Absence</li>
         </ul>
       </div>
     </nav>
@@ -157,107 +156,173 @@
 
       <section id="Content-Main">
 
-        <div class="grid-x Major-Main">
+        <div class="cell Absence-Title">
 
-
-          <div class="medium-12 large-6">
-            <a href="SubLecture.html#Norsk">
-              <div class="grid-x Major Major-Norsk Major-Norsk-Button">
-                <div class="medium-2 image">
-                  <img src="https://www.oxfordshire.gov.uk/cms/sites/all/themes/publicsite/images/submenu/mega_menu_help_icon.png" height="50px" width="50px" alt="Major-Icon">
-                </div>
-                <label class="medium-8">Norsk</label>
-                <span class="fa fa-arrow-right medium-2"></span>
-              </div>
-            </a>
-          </div>
-
-          <div class="medium-12 large-6">
-            <a href="SubLecture.html#Nynorsk">
-              <div class="grid-x Major Major-Nynorsk Major-Nynorsk-Button">
-                <div class="medium-2">
-                  <img src="http://via.placeholder.com/50x50" height="50px" width="50px" alt="Major-Icon">
-                </div>
-                <label class="medium-8">Nynorsk</label>
-                <span class="fa fa-arrow-right medium-2"></span>
-              </div>
-            </a>
-          </div>
-
-          <div class="medium-12 large-6">
-            <a href="SubLecture.html#Naturfag">
-              <div class="grid-x Major Major-Naturfag Major-Naturfag-Button">
-                <div class="medium-2">
-                  <img src="http://via.placeholder.com/50x50" height="50px" width="50px" alt="Major-Icon">
-                </div>
-                <label class="medium-8">Natufag</label>
-                <span class="fa fa-arrow-right medium-2"></span>
-              </div>
-            </a>
-          </div>
-
-          <div class="medium-12 large-6">
-            <a href="SubLecture.html#Matematikk">
-              <div class="grid-x Major Major-Matematikk Major-Matematikk-Button">
-                <div class="medium-2">
-                  <img src="http://via.placeholder.com/50x50" height="50px" width="50px" alt="Major-Icon">
-                </div>
-                <label class="medium-8">Matematikk(in-active)</label>
-                <span class="fa fa-arrow-right medium-2"></span>
-              </div>
-            </a>
-          </div>
-
-          <div class="medium-12 large-6">
-            <a href="SubLecture.html#Samfunnsfag">
-              <div class="grid-x Major Major-Samfunnsfag Major-Samfunnsfag-Button">
-                <div class="medium-2">
-                  <img src="http://via.placeholder.com/50x50" height="50px" width="50px" alt="Major-Icon">
-                </div>
-                <label class="medium-8">Samfunnsfag(in-active)</label>
-                <span class="fa fa-arrow-right medium-2"></span>
-              </div>
-            </a>
-          </div>
-
-          <div class="medium-12 large-6">
-            <a href="SubLecture.html#Historie">
-              <div class="grid-x Major Major-Historie Major-Historie-Button">
-                <div class="medium-2">
-                  <img src="http://via.placeholder.com/50x50" height="50px" width="50px" alt="Major-Icon">
-                </div>
-                <label class="medium-8">Historie(in-active)</label>
-                <span class="fa fa-arrow-right medium-2"></span>
-              </div>
-            </a>
-          </div>
-
-          <div class="medium-12 large-6">
-            <a href="SubLecture.html#Kroppsoving">
-              <div class="grid-x Major Major-Kroppsoving Major-Kroppsoving-Button">
-                <div class="medium-2">
-                  <img src="http://via.placeholder.com/50x50" height="50px" width="50px" alt="Major-Icon">
-                </div>
-                <label class="medium-8">Kroppsoving(in-active)</label>
-                <span class="fa fa-arrow-right medium-2"></span>
-              </div>
-            </a>
-          </div>
-
-          <div class="medium-12 large-6">
-            <a href="SubLecture.html#Engelsk">
-              <div class="grid-x Major Major-Engelsk Major-Engelsk-Button">
-                <div class="medium-2">
-                  <img src="http://via.placeholder.com/50x50" height="50px" width="50px" alt="Major-Icon">
-                </div>
-                <label class="medium-8">Engelsk</label>
-                <span class="fa fa-arrow-right medium-2"></span>
-              </div>
-            </a>
-          </div>
-
+          <h2>Absence</h2>
 
         </div>
+
+        <table class="dashboard-table Absence-Table">
+          <colgroup>
+            <col width="300">
+            <col width="150">
+            <col width="150">
+            <col width="200">
+            <col width="200">
+          </colgroup>
+          <thead>
+            <tr>
+              <th><a href="#">Major<i class="fa fa-caret-down"></i></a></th>
+              <th><a href="#">H1 in %<i class="fa fa-caret-down"></i></a></th>
+              <th><a href="#">Entire year in %<i class="fa fa-caret-down"></i></a></th>
+              <th><a href="#">Held hours<i class="fa fa-caret-down"></i></a></th>
+              <th><a href="#">Yearly hours<i class="fa fa-caret-down"></i></a></th>
+            </tr>
+          </thead>
+          <tr>
+            <td class="Major">
+              <h6>Naturfag</h6>
+            </td>
+
+            <td class="H1">
+              <h6>8,0%</h6>
+            </td>
+
+            <td class="H3">
+              <h6>4,0%</h6>
+            </td>
+
+            <td class="HH">
+              <h6>43</h6>
+            </td>
+
+            <td class="YH">
+              <h6>150</h6>
+            </td>
+          </tr>
+
+
+
+          <tr>
+            <td class="Major">
+              <h6>Norsk</h6>
+            </td>
+
+            <td class="H1">
+              <h6>4,6%</h6>
+            </td>
+
+            <td class="H3">
+              <h6>1,4%</h6>
+            </td>
+
+            <td class="HH">
+              <h6>39</h6>
+            </td>
+
+            <td class="YH">
+              <h6>200</h6>
+            </td>
+          </tr>
+
+
+
+          <tr>
+            <td class="Major">
+              <h6>Historie</h6>
+            </td>
+
+            <td class="H1">
+              <h6>5,5%</h6>
+            </td>
+
+            <td class="H3">
+              <h6>2,4%</h6>
+            </td>
+
+            <td class="HH">
+              <h6>72</h6>
+            </td>
+
+            <td class="YH">
+              <h6>130</h6>
+            </td>
+          </tr>
+
+
+
+          <tr>
+            <td class="Major">
+              <h6>Naturfag</h6>
+            </td>
+
+            <td class="H1">
+              <h6>8,0%</h6>
+            </td>
+
+            <td class="H3">
+              <h6>4,0%</h6>
+            </td>
+
+            <td class="HH">
+              <h6>43</h6>
+            </td>
+
+            <td class="YH">
+              <h6>150</h6>
+            </td>
+          </tr>
+
+
+
+          <tr>
+            <td class="Major">
+              <h6>Norsk</h6>
+            </td>
+
+            <td class="H1">
+              <h6>4,6%</h6>
+            </td>
+
+            <td class="H3">
+              <h6>1,4%</h6>
+            </td>
+
+            <td class="HH">
+              <h6>39</h6>
+            </td>
+
+            <td class="YH">
+              <h6>200</h6>
+            </td>
+          </tr>
+
+
+
+          <tr>
+            <td class="Major">
+              <h6>Historie</h6>
+            </td>
+
+            <td class="H1">
+              <h6>5,5%</h6>
+            </td>
+
+            <td class="H3">
+              <h6>2,4%</h6>
+            </td>
+
+            <td class="HH">
+              <h6>72</h6>
+            </td>
+
+            <td class="YH">
+              <h6>130</h6>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+
 
       </section>
 
