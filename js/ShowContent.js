@@ -16,7 +16,5 @@ $(document).on('click', '.Accord-List li a', function() {
   if ($(Id).length) {
     $(Class).css("display", "none");
     $(Id).css("display", "block");
-  } else {
-
   }
 });
