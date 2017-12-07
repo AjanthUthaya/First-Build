@@ -14,9 +14,9 @@
 
 .Absence-Table {
   width: inherit;
-  max-width: 1000px;
   margin: 0 40px;
   margin-top: 20px;
+  display: inline-block;
 }
 
 .Absence-Table tbody tr td * {
@@ -63,8 +63,12 @@
   color: white;
 }
 
+td.Major {
+  border-bottom: 1px solid white !important;
+}
+
 .dashboard-table tr:last-child td {
-  border-bottom: 0;
+  border-bottom: 0 !important;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
