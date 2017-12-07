@@ -5,6 +5,7 @@
 
 #Content-Main {
   min-height: calc(100vh - 80px);
+  text-align: center;
 }
 
 label {
@@ -27,6 +28,14 @@ label {
   padding: 0 10px;
   padding-top: 40px;
   text-align: center;
+  max-width: 800px;
+  display: inline-flex;
+}
+
+@media screen and (min-width: 1024px) {
+  .Major-Main {
+  max-width: 1000px;
+  }
 }
 
 .Major {

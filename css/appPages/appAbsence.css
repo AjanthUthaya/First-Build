@@ -3,13 +3,28 @@
   (Top-Right-Bottom-Left)
 *************************************************** */
 
-.Absence-Title{
+.Absence-Title {
   margin-top: 40px;
   text-align: center;
 }
 
-.Absence-Table{
-  margin-top: 40px;
+.Absence-Table-Overlay {
+  text-align: center;
+}
+
+.Absence-Table {
+  width: inherit;
+  max-width: 1000px;
+  margin: 0 40px;
+  margin-top: 20px;
+}
+
+.Absence-Table tbody tr td * {
+  margin: 0;
+}
+
+.Absence-Table tbody tr td {
+  padding: 1.5em 10px;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -24,10 +39,14 @@
 
 .dashboard-table td {
   border-bottom: 1px dashed #d7d7d7;
+  text-align: center;
 }
 
-.dashboard-table th, .dashboard-table td {
+.dashboard-table th {
+  background-color: #35414d;
+  color: white;
   text-align: center;
+  padding: 1.5em 15px;
 }
 
 .dashboard-table tbody {
@@ -39,7 +58,7 @@
 }
 
 .dashboard-table tbody tr:hover {
-  background: #404d5a;
+  background: #292c30 !important;
   transition: all 0.3s ease;
   color: white;
 }

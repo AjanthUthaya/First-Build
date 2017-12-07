@@ -4,83 +4,83 @@
 *************************************************** */
 
 .Major-Naturfag {
-  color: white;
-  background-color: rgba(38, 166, 91, 1);
+  color: white !important;
+  background-color: rgba(38, 166, 91, 1) !important;
 }
 
 .Major-Naturfag-Button:hover {
-  color: Black;
-  background-color: rgba(38, 166, 91, .8);
+  color: Black !important;
+  background-color: rgba(38, 166, 91, .8) !important;
 }
 
 .Major-Norsk {
-  color: white;
-  background-color: rgba(65, 131, 215, 1);
+  color: white !important;
+  background-color: rgba(65, 131, 215, 1) !important;
 }
 
 .Major-Norsk-Button:hover {
-  color: Black;
-  background-color: rgba(65, 131, 215, .8);
+  color: Black !important;
+  background-color: rgba(65, 131, 215, .8) !important;
 }
 
 .Major-Nynorsk {
-  color: white;
-  background-color: rgba(89, 171, 227, 1);
+  color: white !important;
+  background-color: rgba(89, 171, 227, 1) !important;
 }
 
 .Major-Nynorsk-Button:hover {
-  color: Black;
-  background-color: rgba(89, 171, 227, .8);
+  color: Black !important;
+  background-color: rgba(89, 171, 227, .8) !important;
 }
 
 .Major-Matematikk {
-  color: white;
-  background-color: rgba(97, 183, 85, 1);
+  color: white !important;
+  background-color: rgba(97, 183, 85, 1) !important;
 }
 
 .Major-Matematikk-Button:hover {
-  color: Black;
-  background-color: rgba(97, 183, 85, .8);
+  color: Black !important;
+  background-color: rgba(97, 183, 85, .8) !important;
 }
 
 .Major-Samfunnsfag {
-  color: white;
-  background-color: rgba(150, 40, 27, 1);
+  color: white !important;
+  background-color: rgba(150, 40, 27, 1) !important;
 }
 
 .Major-Samfunnsfag-Button:hover {
-  color: Black;
-  background-color: rgba(150, 40, 27, .8);
+  color: Black !important;
+  background-color: rgba(150, 40, 27, .8) !important;
 }
 
 .Major-Historie {
-  color: white;
-  background-color: rgba(211, 84, 0, 1);
+  color: white !important;
+  background-color: rgba(211, 84, 0, 1) !important;
 }
 
 .Major-Historie-Button:hover {
-  color: Black;
-  background-color: rgba(211, 84, 0, .8);
+  color: Black !important;
+  background-color: rgba(211, 84, 0, .8) !important;
 }
 
 .Major-Kroppsoving {
-  color: white;
-  background-color: rgba(108, 122, 137, 1);
+  color: white !important;
+  background-color: rgba(108, 122, 137, 1) !important;
 }
 
 .Major-Kroppsoving-Button:hover {
-  color: Black;
-  background-color: rgba(108, 122, 137, .8);
+  color: Black !important;
+  background-color: rgba(108, 122, 137, .8) !important;
 }
 
 .Major-Engelsk {
-  color: white;
-  background-color: rgba(103, 65, 114, 1);
+  color: white !important;
+  background-color: rgba(103, 65, 114, 1) !important;
 }
 
 .Major-Engelsk-Button:hover {
-  color: Black;
-  background-color: rgba(103, 65, 114, .8);
+  color: Black !important;
+  background-color: rgba(103, 65, 114, .8) !important;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
