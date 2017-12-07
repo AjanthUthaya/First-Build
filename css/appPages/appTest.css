@@ -1,0 +1,27 @@
+/* ***************************************************
+  Test Main
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+.Test-Main{
+  position: relative;
+  margin-top: 30px;
+  padding: 0 40px;
+}
+
+.Date-Main {
+  height: 250px;
+  background: navy;
+  padding: 10px 40px;
+}
+
+.Date-Underlayer {
+  background: white;
+  width: 100px;
+  height: 100%;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */

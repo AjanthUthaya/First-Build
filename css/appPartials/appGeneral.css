@@ -19,6 +19,12 @@
   }
 }
 
+@media screen and (max-height: 700px) {
+  .OffCanvas-Menu-Social {
+    display: none;
+  }
+}
+
 #Content-Main {
   overflow-x: hidden;
   max-width: 100%;
