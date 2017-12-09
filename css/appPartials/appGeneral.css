@@ -36,3 +36,29 @@
 
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  Pagination
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+/* Cosmetic only */
+
+.easyPaginateNav a {
+  padding: 5px;
+}
+
+.easyPaginateNav a.current {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.easyPaginateNav{
+  width: 100% !important;
+  text-align: center;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */

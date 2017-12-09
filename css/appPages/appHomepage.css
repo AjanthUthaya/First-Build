@@ -70,7 +70,7 @@ footer {
   z-index: 10;
   display: flex;
   overflow: hidden;
-  width: 100vw;
+  width: 100%;
   height: calc(85vh - 60px);
   text-align: center;
   background: black;
@@ -138,16 +138,19 @@ footer {
   display: inline-block;
   float: none;
   margin: 0 2%;
+  height: 100%;
 }
 
 .Hero-Section-Feature li a {
   font-size: 14px;
   font-weight: bold;
-  display: block;
   height: 100%;
-  padding: 1.3rem 1rem;
+  padding: 0 1rem;
   transition: all .35s ease-in-out;
   color: #fefefe;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .Hero-Section-Feature li a:hover {
@@ -179,7 +182,7 @@ footer {
 .Feature-Icon {
   position: relative;
   top: 10vh;
-  width: 100vw;
+  width: 100%;
   text-align: center;
   /* NOTE: This works to center circle, but is only a soulotion for chrome */
 }

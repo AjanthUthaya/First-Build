@@ -24,15 +24,27 @@
 }
 
 .User-Menu-Name {
-  padding: 10px 0;
+  padding: 10px 20px;
   text-align: center;
+  width: 100%;
   color: white;
+}
+
+.User-Menu-Name * {
+  text-overflow: ellipsis;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .User-Menu-Content a {
   padding: 15px 0;
   text-align: center;
   color: white;
+}
+
+.User-Menu-Content a:first-child {
+    border-top: 1px solid white;
 }
 
 .User-Menu-Content a:last-child {

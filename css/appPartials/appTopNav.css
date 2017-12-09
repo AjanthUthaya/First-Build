@@ -29,9 +29,9 @@
 /* Hamburger menu bar icon */
 
 .Top-Bar-Menu {
+  color: white;
   font-size: 20px;
   font-weight: lighter;
-  color: white;
 }
 
 .Top-Bar-Menu a {
@@ -42,7 +42,7 @@
 
 .Top-Bar-Center-Logo {
   position: absolute;
-  left: calc(50vw - 90px);
+  left: calc(50vw - 65px);
 }
 
 /* Make underlayer divs, stay in one line */
@@ -56,7 +56,6 @@
 #TopBar-Logo {
   width: 50px;
   height: 50px;
-  margin: 5px 0 0 5px;
 }
 
 /* Logo underlayer */
@@ -64,21 +63,25 @@
 .Triangle-Left {
   width: 0;
   height: 0;
-  border-width: 30px 60px 30px 0;
+  border-width: 30px 20px 30px 0;
   border-style: solid;
   border-color: transparent #292c30 transparent transparent;
 }
 
 .Rectangle {
-  width: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90px;
   height: 60px;
+  text-align: center;
   background: #292c30;
 }
 
 .Triangle-Right {
   width: 0;
   height: 0;
-  border-width: 30px 0 30px 60px;
+  border-width: 30px 0 30px 20px;
   border-style: solid;
   border-color: transparent transparent transparent #292c30;
 }
@@ -86,12 +89,12 @@
 /* Top bar login button */
 
 #Login-Button {
-  font-weight: 500;
   position: relative;
   width: 90px;
   height: 60px;
   padding: 22px;
   background-color: #8cc63f;
+  font-weight: 500;
 }
 
 #Login-Button:hover {
@@ -99,16 +102,19 @@
 }
 
 #Name-Label {
-  line-height: 2;
+  overflow: hidden;
+  max-width: 160px;
   padding: 1rem 0;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  text-align: right;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   color: white;
-  -webkit-touch-callout: none;
-  -khtml-user-select: none;
+  line-height: 2;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -124,11 +130,11 @@
 /* Removes the blue border and color on a tags */
 
 body {
+  background: #ebebeb;
   font-family: helvetica;
   font-size: 14px;
   font-weight: normal;
   font-style: normal;
-  background: #ebebeb;
 }
 
 body.modal-open {

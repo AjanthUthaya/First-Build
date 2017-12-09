@@ -3,29 +3,41 @@
   (Top-Right-Bottom-Left)
 *************************************************** */
 
+#Content-Main {
+  overflow: inherit;
+  margin-top: 100px;
+}
+
 .Test-Main {
   position: relative;
   margin-top: 30px;
   padding: 0 40px;
+  justify-content: center;
 }
 
 .Date-Main {
   display: flex;
-  height: 250px;
-  padding: 10px 20px;
+  height: 300px;
+  padding: 20px 20px;
   justify-content: center;
 }
 
 @media print, screen and (min-width: 800px) {
   .Date-Main {
-    padding: 10px 30px;
+    padding: 20px 30px;
+    max-width: 250px;
+  }
+}
+
+@media print, screen and (min-width: 900px) {
+  .medium-up-3 .cell {
+    width: 25%;
   }
 }
 
 .Date-Underlayer {
   width: 100%;
   min-width: 100px;
-  max-width: 180px;
   height: 100%;
   background: white;
 }
