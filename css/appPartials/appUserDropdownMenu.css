@@ -44,7 +44,7 @@
 }
 
 .User-Menu-Content a:first-child {
-    border-top: 1px solid white;
+  border-top: 1px solid #35353580;
 }
 
 .User-Menu-Content a:last-child {

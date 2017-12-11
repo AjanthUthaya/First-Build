@@ -122,7 +122,7 @@ data {
 .Accord-List li a {
   width: 100%;
   color: #dcdcdc;
-  border-right: 10px solid #ebebeb;
+  border-right: 5px solid #ebebeb;
   padding: 20px 10px !important;
 }
 

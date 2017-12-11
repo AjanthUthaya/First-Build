@@ -1,5 +1,5 @@
-$('#easyPaginate').easyPaginate({
-    paginateElement: 'data',
-    elementsPerPage: 9,
-    effect: 'default'
+$('#Paginate').easyPaginate({
+  paginateElement: '.Date-Main',
+  elementsPerPage: 10,
+  effect: 'default'
 });

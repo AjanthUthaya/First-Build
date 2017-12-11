@@ -143,7 +143,7 @@
       <div class="Breadcrumb" aria-label="You are here:" role="navigation">
         <ul class="breadcrumbs">
           <li><a href="Home.html"><span class="fa fa-home Breadcrumb-Home"></span>Home</a></li>
-          <li>Order</li>
+          <li><a href="Test.html">Order</a></li>
           <li>New Test</li>
         </ul>
       </div>
@@ -161,14 +161,23 @@
 
         <div class="Input-Main grid-x">
 
-          <div class="Date medium-6">
+          <div class="Date medium-4">
             <label>Date</label>
-            <input type="text" name="" value="" placeholder="Format: dd/mm/yyyy">
+            <input type="date" placeholder="Format: dd/mm/yyyy">
           </div>
 
-          <div class="MaxStudents medium-6">
+          <div class="MaxStudents medium-4">
+            <label>Type</label>
+            <select>
+              <option>General</option>
+              <option>Midterm</option>
+              <option>Exam</option>
+            </select>
+          </div>
+
+          <div class="MaxStudents medium-4">
             <label>Max students</label>
-            <input type="text" name="" value="" placeholder="Enter a max value">
+            <input type="number" value="30" placeholder="Enter a max value">
           </div>
 
         </div>
