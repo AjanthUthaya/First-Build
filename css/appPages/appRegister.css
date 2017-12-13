@@ -113,6 +113,8 @@
 .Register-Content {
   text-align: center;
   color: white;
+  display: flex;
+  justify-content: center;
 }
 
 .Register-Content-Field {
@@ -143,6 +145,14 @@
 
 .Password-Confirm {
   padding: 0 50px 0 10px;
+}
+
+.medium-12.cell.Register-Content-Field.Calendar {
+  width: 330px;
+}
+
+.medium-12.cell.Register-Content-Field.Calendar input {
+  text-align: center;
 }
 
 .Content-Button {

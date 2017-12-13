@@ -11,8 +11,10 @@ footer {
   position: relative;
   top: 75px;
   width: 100%;
-  height: 185px;
+  height: 180px;
   background-color: #454f59;
+  background-image: url("../../img/FooterSubtle.png");
+  background-size: auto;
 }
 
 .Footer-Logo {
