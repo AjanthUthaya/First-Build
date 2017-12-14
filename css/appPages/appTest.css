@@ -120,13 +120,33 @@
   (Top-Right-Bottom-Left)
 *************************************************** */
 
-.Date-Add {
+.Inside {
   position: fixed;
-  z-index: 999;
-  right: 20px;
   bottom: 10px;
+  right: 10px;
   display: flex;
-  clear: both;
+  z-index: 9999;
+}
+
+.Outside {
+  position: absolute;
+  top: 1000px;
+  right: 10px;
+  display: flex;
+  z-index: 9999;
+}
+
+.Inside {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  z-index: 9999;
+}
+
+.Date-Add {
+  z-index: 999;
+  display: flex;
   width: 50px;
   height: 50px;
   color: white;
@@ -137,12 +157,8 @@
 }
 
 .Date-Edit {
-  position: fixed;
   z-index: 999;
-  right: 80px;
-  bottom: 10px;
   display: flex;
-  clear: both;
   width: 50px;
   height: 50px;
   color: white;
@@ -150,6 +166,10 @@
   background-color: #496e90;
   align-items: center;
   justify-content: center;
+}
+
+a#Edit {
+  padding-right: 10px;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
