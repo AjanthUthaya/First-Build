@@ -6,7 +6,7 @@ $ClassInsideDot = '.Inside';
 $ClassOutsideDot = '.Outside';
 $($IdOptionPanel).addClass($ClassInside);
 
-//Glitching beacuse offset returns double value
+//Glitching beacuse offset returns double value, glitch shows up on screen size under 900px
 $(document).scroll(function() {
 
 
@@ -21,7 +21,7 @@ $(document).scroll(function() {
   /*console.log('Position:' + $WindowBottomPOS);*/
 
   //Change between to classes depening on position of option panel
-  if ($CalHeight > $OptPOS.top || $CalHeight > $WindowBottomPOS) {
+  if ($CalHeight > $OptPOS.top || $CalHeight > $WindowBottomPOS - 110) {
 
     $($IdOptionPanel).addClass($ClassInside);
     $($IdOptionPanel).removeClass($ClassOutside);
