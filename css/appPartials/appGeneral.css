@@ -5,8 +5,12 @@
 
 #Mobile-View {
   display: none;
-  padding-top: calc(50vh - .5rem);
-  padding-bottom: calc(50vh - .5rem);
+}
+
+@media print, screen and (min-width: 40em) {
+  h3, .h3 {
+    font-size: 1.1875rem;
+  }
 }
 
 @media screen and (max-width: 40em), screen and (max-height: 500px) {
@@ -14,8 +18,20 @@
     display: none;
   }
   #Mobile-View {
-    display: block;
     text-align: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #Mobile-View img {
+    width: 80vw;
+    max-width: 300px;
+    margin-bottom: 100px;
+  }
+  #Mobile-View * {
+    font-weight: bold;
   }
 }
 
@@ -53,7 +69,7 @@
   font-weight: bold;
 }
 
-.easyPaginateNav{
+.easyPaginateNav {
   width: 100% !important;
   text-align: center;
 }

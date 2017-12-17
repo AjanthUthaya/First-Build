@@ -1,7 +1,20 @@
 /* ***************************************************
-  Title
+  General
   (Top-Right-Bottom-Left)
 *************************************************** */
+
+#Content-Main {
+  padding-top: 20px;
+}
+
+.Lesson-Title {
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.Lesson-Title * {
+  font-weight: 700;
+}
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -9,9 +22,105 @@
 - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 /* ***************************************************
-  Title
+  Lesson Items
   (Top-Right-Bottom-Left)
 *************************************************** */
+
+.Lesson-Item {
+  position: relative;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-color: red;
+}
+
+data {
+  max-width: 280px;
+  padding: 10px;
+}
+
+.Lesson-Item-Content {
+  background-color: blue;
+}
+
+.Item-Date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 175px;
+}
+
+.Item-Date-Circle {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: orange;
+}
+
+.Item-Date-Circle label {
+  display: inline-flex;
+  overflow: hidden;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.Date-Circle-Month {
+  max-width: 90px !important;
+  margin-top: 20px;
+  font-size: 13px;
+}
+
+.Date-Circle-DayN {
+  align-items: center;
+  justify-content: center;
+  max-width: 115px !important;
+  height: 50px;
+  font-size: 30px;
+}
+
+.Date-Circle-DayL {
+  max-width: 80px !important;
+  font-size: 13px;
+}
+
+.Item-Title {
+  text-align: center;
+  background-color: green;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Item-Title * {
+  margin: 0;
+  line-height: 1;
+}
+
+.Item-Content {
+  background-color: orange;
+}
+
+.Item-Content ul li{
+  padding: 15px 10px;
+}
+
+.Item-Content span {
+  background-color: orange;
+}
+
+.Item-Content label {
+  background-color: orange;
+}
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
