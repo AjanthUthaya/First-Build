@@ -3,8 +3,11 @@
   (Top-Right-Bottom-Left)
 *************************************************** */
 
+#Content-Main{
+  padding-top: 20px;
+}
+
 .Absence-Title {
-  margin-top: 40px;
   text-align: center;
 }
 
