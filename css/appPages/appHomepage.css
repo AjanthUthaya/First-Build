@@ -137,19 +137,19 @@ footer {
 .Hero-Section-Feature li {
   display: inline-block;
   float: none;
-  margin: 0 2%;
   height: 100%;
+  margin: 0 2%;
 }
 
 .Hero-Section-Feature li a {
   font-size: 14px;
   font-weight: bold;
+  display: flex;
+  flex-direction: column;
   height: 100%;
   padding: 0 1rem;
   transition: all .35s ease-in-out;
   color: #fefefe;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
 }
 
@@ -165,6 +165,7 @@ footer {
 
 .Hero-Feature-Label {
   font-size: 12px;
+  font-weight: bold;
   cursor: pointer;
   color: white;
 }

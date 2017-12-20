@@ -71,7 +71,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-top: 5px;
+  margin-top: 2px;
 }
 
 .Item-Next-Top div {
@@ -182,6 +182,26 @@ data {
   .dhx_cal_today_button {
     display: none;
   }
+  .dhx_cal_event .dhx_title {
+    font-size: 10px;
+  }
+  .dhx_cal_event .dhx_body, .dhx_cal_event_line {
+    font-size: 10px;
+  }
+}
+
+.dhx_body {
+  display: flex;
+  flex-flow: column;
+}
+
+.Room {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  min-height: fit-content;
+  flex: 1;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

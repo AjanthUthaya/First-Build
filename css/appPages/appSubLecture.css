@@ -62,6 +62,14 @@ data {
   justify-content: center;
 }
 
+.Sub-Edit-Button {
+  position: absolute;
+  right: 0px;
+  display: flex;
+  margin: 0;
+  padding: 23px 20px;
+}
+
 .Sub-Major-Content-Main {
   display: none;
   min-height: calc(100vh - 80px - 60px);

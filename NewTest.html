@@ -8,6 +8,7 @@
   <title>New test - First Build</title>
   <link rel="stylesheet" href="css/foundation.css">
   <link rel="stylesheet" href="css/font-awesome.css">
+  <link rel="stylesheet" href="css/dhtmlxscheduler.css">
   <link rel="icon" href="http://via.placeholder.com/50x50">
   <link rel="stylesheet" href="css/appPartials/appGeneral.css">
   <link rel="stylesheet" href="css/appPartials/appFooter.css">
@@ -18,7 +19,7 @@
   <link rel="stylesheet" href="css/appPages/appNewTest.css">
 </head>
 
-<body>
+<body onload="init();">
 
   <div id="Mobile-View">
     <img src="http://via.placeholder.com/300x300">
@@ -185,6 +186,21 @@
 
         <div class="Calendar-Main">
 
+          <div id="scheduler_here" class="dhx_cal_container" style='width: calc(90vw); height: 100%;'>
+            <div class="dhx_cal_navline">
+              <div class="dhx_cal_prev_button">&nbsp;</div>
+              <div class="dhx_cal_next_button">&nbsp;</div>
+              <div class="dhx_cal_today_button"></div>
+              <div class="dhx_cal_date"></div>
+              <div class="dhx_cal_tab" name="day_tab" style="right:204px;"></div>
+              <div class="dhx_cal_tab" name="week_tab" style="right:140px;"></div>
+            </div>
+            <div class="dhx_cal_header">
+            </div>
+            <div class="dhx_cal_data">
+            </div>
+          </div>
+
         </div>
 
         <div class="Submit cell">
@@ -246,6 +262,8 @@
   <script src="js/vendor/jquery.js"></script>
   <script src="js/vendor/what-input.js"></script>
   <script src="js/vendor/foundation.js"></script>
+  <script src="js/dhtmlxscheduler.js"></script>
+  <script src="js/CalendarInitTest.js"></script>
   <script src="js/PreventParentScroll.js"></script>
   <script src="js/app.js"></script>
 </body>
