@@ -43,8 +43,44 @@
 .Calendar-Main {
   width: 100vw;
   height: calc(100vh - 80px);
-  min-height: 500px;
-  background-color: grey;
+  min-height: calc(100vh - 80px);
+}
+
+div#scheduler_here{
+  background-color: inherit;
+}
+
+.dhx_cal_navline{
+  background-color: white;
+}
+
+table tbody th, table tbody td {
+  padding: 0;
+}
+
+.dhtmlx-error, .dhtmlx-info {
+  display: none;
+}
+
+.dhx_section_time {
+  display: flex;
+}
+
+.dhx_cal_event_line {
+  height: 100% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5px;
+}
+
+.dhx_cal_event_line .dhx_event_resize {
+  height: 100% !important;
+}
+
+textarea {
+  min-height: inherit;
+  margin: 0;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

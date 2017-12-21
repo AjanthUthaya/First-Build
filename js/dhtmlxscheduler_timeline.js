@@ -1,997 +1,736 @@
 /*
-This software is allowed to use under GPL or you need to obtain Commercial or Enterise License
-to use it in non-GPL project. Please contact sales@dhtmlx.com for details
+@license
+dhtmlxScheduler v.4.4.9 Professional
+
+This software can be used only as part of dhtmlx.com site.
+You are not allowed to use it on any other site
+
+(c) Dinamenta, UAB.
+
+
 */
-(function() {
-  scheduler.matrix = {};
-  scheduler._merge = function(a, b) {
-    for (var c in b)
-      if (typeof a[c] == "undefined")
-        a[c] = b[c];
-  };
-  scheduler.createTimelineView = function(obj) {
-
-    scheduler._merge(obj, {
-      section_autoheight: true,
-      name: "matrix",
-      x: "time",
-      y: "time",
-      x_step: 1,
-      x_unit: "hour",
-      y_unit: "day",
-      y_step: 1,
-      x_start: 0,
-      x_size: 24,
-      y_start: 0,
-      y_size: 7,
-      render: "cell",
-      dx: 200,
-      dy: 50,
-      event_dy: scheduler.xy.bar_height - 5,
-      event_min_dy: scheduler.xy.bar_height - 5,
-      resize_events: true,
-      fit_events: true,
-      second_scale: false,
-      _logic: function(render_name, y_unit, timeline) {
-        var res = {};
-        if (scheduler.checkEvent("onBeforeViewRender")) {
-          res = scheduler.callEvent("onBeforeViewRender", [render_name, y_unit, timeline]);
+Scheduler.plugin(function(e) {
+  e._temp_matrix_scope = function() {
+    e.matrix = {}, e._merge = function(e, t) {
+      for (var a in t) "undefined" == typeof e[a] && (e[a] = t[a])
+    }, e.createTimelineView = function(t) {
+      e._skin_init(), e._merge(t, {
+        section_autoheight: !0,
+        name: "matrix",
+        x: "time",
+        y: "time",
+        x_step: 1,
+        x_unit: "hour",
+        y_unit: "day",
+        y_step: 1,
+        x_start: 0,
+        x_size: 24,
+        y_start: 0,
+        y_size: 7,
+        render: "cell",
+        dx: 200,
+        dy: 50,
+        event_dy: e.xy.bar_height - 5,
+        event_min_dy: e.xy.bar_height - 5,
+        resize_events: !0,
+        fit_events: !0,
+        show_unassigned: !1,
+        second_scale: !1,
+        round_position: !1,
+        _logic: function(t, a, i) {
+          var n = {};
+          return e.checkEvent("onBeforeSectionRender") && (n = e.callEvent("onBeforeSectionRender", [t, a, i])), n
         }
-        return res;
-      }
-    });
-
-    if (scheduler.checkEvent("onTimelineCreated")) {
-      scheduler.callEvent("onTimelineCreated", [obj]);
-    }
-
-    var old = scheduler.render_data;
-    scheduler.render_data = function(evs, mode) {
-
-      if (this._mode == obj.name) {
-        if (mode) //repaint single event, precision is not necessary
-          for (var i = 0; i < evs.length; i++) {
-            this.clear_event(evs[i]);
-            this.render_timeline_event.call(this.matrix[this._mode], evs[i], true);
+      }), t._original_x_start = t.x_start, "day" != t.x_unit && (t.first_hour = t.last_hour = 0), t._start_correction = t.first_hour ? 60 * t.first_hour * 60 * 1e3 : 0, t._end_correction = t.last_hour ? 60 * (24 - t.last_hour) * 60 * 1e3 : 0, e.checkEvent("onTimelineCreated") && e.callEvent("onTimelineCreated", [t]);
+      var a = e.render_data;
+      e.render_data = function(i, n) {
+          if (this._mode != t.name) return a.apply(this, arguments);
+          if (n && !t.show_unassigned && "cell" != t.render)
+            for (var r = 0; r < i.length; r++) this.clear_event(i[r]),
+              this.render_timeline_event.call(this.matrix[this._mode], i[r], !0);
+          else e._renderMatrix.call(t, !0, !0)
+        }, e.matrix[t.name] = t, e.templates[t.name + "_cell_value"] = function(e) {
+          return e ? e.length : ""
+        }, e.templates[t.name + "_cell_class"] = function(e) {
+          return ""
+        }, e.templates[t.name + "_scalex_class"] = function(e) {
+          return ""
+        }, e.templates[t.name + "_second_scalex_class"] = function(e) {
+          return ""
+        }, e.templates[t.name + "_scaley_class"] = function(e, t, a) {
+          return ""
+        }, e.templates[t.name + "_scale_label"] = function(e, t, a) {
+          return t
+        }, e.templates[t.name + "_tooltip"] = function(e, t, a) {
+          return a.text
+        }, e.templates[t.name + "_date"] = function(t, a) {
+          return t.getDay() == a.getDay() && 864e5 > a - t || +t == +e.date.date_part(new Date(a)) || +e.date.add(t, 1, "day") == +a && 0 === a.getHours() && 0 === a.getMinutes() ? e.templates.day_date(t) : t.getDay() != a.getDay() && 864e5 > a - t ? e.templates.day_date(t) + " &ndash; " + e.templates.day_date(a) : e.templates.week_date(t, a)
+        }, e.templates[t.name + "_scale_date"] = e.date.date_to_str(t.x_date || e.config.hour_date), e.templates[t.name + "_second_scale_date"] = e.date.date_to_str(t.second_scale && t.second_scale.x_date ? t.second_scale.x_date : e.config.hour_date),
+        e.date["add_" + t.name + "_private"] = function(a, i) {
+          var n = i,
+            r = t.x_unit;
+          if ("minute" == t.x_unit || "hour" == t.x_unit) {
+            var s = n;
+            "hour" == t.x_unit && (s *= 60), s % 1440 || (n = s / 1440, r = "day")
           }
-        else
-          scheduler.renderMatrix.call(obj, true, true);
-      } else
-        return old.apply(this, arguments);
-    };
-
-    scheduler.matrix[obj.name] = obj;
-    scheduler.templates[obj.name + "_cell_value"] = function(ar) {
-      return ar ? ar.length : "";
-    };
-    scheduler.templates[obj.name + "_cell_class"] = function(arr) {
-      return "";
-    };
-    scheduler.templates[obj.name + "_scalex_class"] = function(date) {
-      return "";
-    };
-    scheduler.templates[obj.name + "_second_scalex_class"] = function(date) {
-      return "";
-    };
-
-    scheduler.templates[obj.name + "_scaley_class"] = function(section_id, section_label, section_options) {
-      return "";
-    };
-    scheduler.templates[obj.name + "_scale_label"] = function(section_id, section_label, section_options) {
-      return section_label;
-    };
-
-    scheduler.templates[obj.name + "_tooltip"] = function(a, b, e) {
-      return e.text;
-    };
-    scheduler.templates[obj.name + "_date"] = function(datea, dateb) {
-      if (datea.getDay() == dateb.getDay() && dateb - datea < (24 * 60 * 60 * 1000))
-        return scheduler.templates.day_date(datea);
-      return scheduler.templates.week_date(datea, dateb);
-    };
-
-    scheduler.templates[obj.name + "_scale_date"] = scheduler.date.date_to_str(obj.x_date || scheduler.config.hour_date);
-    scheduler.templates[obj.name + "_second_scale_date"] = scheduler.date.date_to_str((obj.second_scale && obj.second_scale.x_date) ? obj.second_scale.x_date : scheduler.config.hour_date);
-
-    scheduler.date["add_" + obj.name] = function(a, b, c) {
-      return scheduler.date.add(a, (obj.x_length || obj.x_size) * b * obj.x_step, obj.x_unit);
-    };
-
-    scheduler.date[obj.name + "_start"] = function(date) {
-      var func = scheduler.date[obj.x_unit + "_start"] || scheduler.date.day_start;
-      var start_date = func.call(scheduler.date, date);
-      start_date = scheduler.date.add(start_date, obj.x_step * obj.x_start, obj.x_unit);
-      return start_date;
-    };
-
-    scheduler.attachEvent("onSchedulerResize", function() {
-      if (this._mode == obj.name) {
-        scheduler.renderMatrix.call(obj, true, true);
-        return false;
-      }
-      return true;
-    });
-
-    scheduler.attachEvent("onOptionsLoad", function() {
-      obj.order = {};
-      scheduler.callEvent('onOptionsLoadStart', []);
-      for (var i = 0; i < obj.y_unit.length; i++)
-        obj.order[obj.y_unit[i].key] = i;
-      scheduler.callEvent('onOptionsLoadFinal', []);
-      if (scheduler._date && obj.name == scheduler._mode)
-        scheduler.setCurrentView(scheduler._date, scheduler._mode);
-    });
-    scheduler.callEvent("onOptionsLoad", [obj]);
-
-    //init custom wrappers
-    scheduler[obj.name + "_view"] = function() {
-      scheduler.renderMatrix.apply(obj, arguments);
-    };
-
-    //enable drag for non-cell modes
-    var temp_date = new Date();
-    var step_diff = (scheduler.date.add(temp_date, obj.x_step, obj.x_unit).valueOf() - temp_date.valueOf()); // "minute" + step in ms
-    scheduler["mouse_" + obj.name] = function(pos) { //mouse_coord handler
-      //get event object
-      var ev = this._drag_event;
-      if (this._drag_id) {
-        ev = this.getEvent(this._drag_id);
-        this._drag_event._dhx_changed = true;
-      }
-
-      pos.x -= obj.dx;
-      var summ = 0,
-        xind = 0,
-        yind = 0;
-      for (xind; xind <= this._cols.length - 1; xind++) {
-
-        var column_width = this._cols[xind];
-        summ += column_width;
-        if (summ > pos.x) { //index of section
-          var ratio = (pos.x - (summ - column_width)) / column_width;
-          ratio = (ratio < 0) ? 0 : ratio;
-          break;
-        }
-      }
-
-      summ = 0;
-      for (yind; yind < this._colsS.heights.length; yind++) {
-        summ += this._colsS.heights[yind];
-        if (summ > pos.y)
-          break;
-      }
-
-      pos.fields = {};
-      if (!obj.y_unit[yind]) {
-        yind = obj.y_unit.length - 1;
-      }
-
-      if (yind >= 0 && obj.y_unit[yind]) {
-        pos.section = pos.fields[obj.y_property] = obj.y_unit[yind].key;
-        if (ev) {
-          ev[obj.y_property] = pos.section;
-        }
-      }
-
-      pos.x = 0;
-
-      var end_date;
-      if (xind >= obj._trace_x.length) { // if our event is at the end of the view
-        end_date = scheduler.date.add(obj._trace_x[obj._trace_x.length - 1], obj.x_step, obj.x_unit);
-      } else {
-        var max_date = (obj._trace_x[xind + 1]) ? obj._trace_x[xind + 1] : scheduler.date.add(obj._trace_x[obj._trace_x.length - 1], obj.x_step, obj.x_unit);
-        var timestamp_diff = Math.ceil(ratio * (max_date - obj._trace_x[xind]));
-        end_date = new Date(+obj._trace_x[xind] + timestamp_diff);
-      }
-
-      if (this._drag_mode == "move" && this._drag_id && this._drag_event) { // as we can simply be calling _locate_cell_timeline
-        var ev = this.getEvent(this._drag_id);
-        var drag_event = this._drag_event;
-
-        if (!drag_event._move_delta) {
-          drag_event._move_delta = (ev.start_date - end_date) / 60000;
-        }
-
-        end_date = scheduler.date.add(end_date, drag_event._move_delta, "minute");
-      }
-
-      if (this._drag_mode == "resize" && ev) {
-        pos.resize_from_start = !!(Math.abs(ev.start_date - end_date) < Math.abs(ev.end_date - end_date));
-      }
-
-      pos.y = Math.round((end_date - this._min_date) / (1000 * 60 * this.config.time_step));
-      pos.custom = true;
-      pos.shift = this.config.time_step //step_diff;
-      return pos;
-    }
-  };
-
-  scheduler.render_timeline_event = function(ev, attach) {
-    var section = ev[this.y_property]; // section id
-
-    var sorder = ev._sorder;
-
-    var x_start = _getX(ev, false, this._step);
-    var x_end = _getX(ev, true, this._step);
-
-    var event_height = this.event_dy;
-    if (this.event_dy == "full") {
-      if (this.section_autoheight) {
-        event_height = this._section_height[section] - 6;
-      } else {
-        event_height = this.dy - 3;
-      }
-    }
-
-    if (this.resize_events) {
-      event_height = Math.max(Math.floor(event_height / ev._count), this.event_min_dy);
-    }
-
-    var hb = event_height - 2; // takes into account css sizes (border/padding)
-    if (!ev._inner && this.event_dy == "full") {
-      hb = (hb + 2) * (ev._count - sorder) - 2;
-    }
-
-    var y = 2 + sorder * event_height + (sorder ? (sorder * 2) : 0); // original top + number_of_events * event_dy + default event top/bottom borders
-    if (scheduler.config.cascade_event_display) {
-      y = 2 + sorder * scheduler.config.cascade_event_margin + (sorder ? (sorder * 2) : 0);
-    }
-
-    var section_height = event_height + y + 2;
-    if (!this._events_height[section] || (this._events_height[section] < section_height)) {
-      this._events_height[section] = section_height;
-    }
-
-    var cs = scheduler.templates.event_class(ev.start_date, ev.end_date, ev);
-    cs = "dhx_cal_event_line " + (cs || "");
-
-    var bg_color = (ev.color ? ("background:" + ev.color + ";") : "");
-    var color = (ev.textColor ? ("color:" + ev.textColor + ";") : "");
-    var text = scheduler.templates.event_bar_text(ev.start_date, ev.end_date, ev);
-
-    var html = '<div event_id="' + ev.id + '" class="' + cs + '" style="' + bg_color + '' + color + 'position:absolute; top:' + y + 'px; height: ' + hb + 'px; left:' + x_start + 'px; width:' + Math.max(0, x_end - x_start) + 'px;' + (ev._text_style || "") + '">';
-    if (scheduler.config.drag_resize) {
-      var dhx_event_resize = 'dhx_event_resize';
-      html += ("<div class='" + dhx_event_resize + " " + dhx_event_resize + "_start' style='height: " + hb + "px;'></div><div class='" + dhx_event_resize + " " + dhx_event_resize + "_end' style='height: " + hb + "px;'></div>");
-    }
-    html += (text + '</div>');
-
-    if (!attach)
-      return html;
-    else {
-      var d = document.createElement("DIV");
-      d.innerHTML = html;
-      var ind = this.order[section];
-      var parent = scheduler._els["dhx_cal_data"][0].firstChild.rows[ind].cells[1].firstChild;
-
-      scheduler._rendered.push(d.firstChild);
-      parent.appendChild(d.firstChild);
-    }
-  };
-
-  function trace_events() {
-    //minimize event set
-    var evs = scheduler.get_visible_events();
-    var matrix = [];
-    for (var i = 0; i < this.y_unit.length; i++)
-      matrix[i] = [];
-
-    //next code defines row for undefined key
-    //most possible it is an artifact of incorrect configuration
-    if (!matrix[y])
-      matrix[y] = [];
-
-    for (var i = 0; i < evs.length; i++) {
-      var y = this.order[evs[i][this.y_property]];
-      var x = 0;
-      while (this._trace_x[x + 1] && evs[i].start_date >= this._trace_x[x + 1]) x++;
-      while (this._trace_x[x] && evs[i].end_date > this._trace_x[x]) {
-        if (!matrix[y][x]) matrix[y][x] = [];
-        matrix[y][x].push(evs[i]);
-        x++;
-      }
-    }
-    return matrix;
-  }
-
-  // function used to get X (both start and end) coordinates for timeline bar view
-  function _getX(ev, isEndPoint, step) {
-    var x = 0;
-    var date = (isEndPoint) ? ev.end_date : ev.start_date;
-    if (date.valueOf() > scheduler._max_date.valueOf())
-      date = scheduler._max_date;
-    var delta = date - scheduler._min_date_timeline;
-    if (delta < 0) {
-      column_offset = 0;
-    } else {
-      var index = Math.round(delta / (step * scheduler._cols[0])); // results varies ~0.9 - ~24.17, e.g. that way we get 1 and 24
-      if (index > scheduler._cols.length) // if columns really small it's possible to get incorrect index
-        index = scheduler._cols.length;
-      for (var k = 0; k < index; k++) {
-        x += scheduler._cols[k];
-      }
-      var column_date = scheduler.date.add(scheduler._min_date_timeline, scheduler.matrix[scheduler._mode].x_step * index, scheduler.matrix[scheduler._mode].x_unit);
-      delta = date - column_date;
-      var column_offset = Math.floor(delta / step);
-    }
-    x += (isEndPoint) ? column_offset - 14 : column_offset + 1;
-    return x;
-  }
-
-  function get_events_html(evs) {
-    var html = "";
-    if (evs && this.render != "cell") {
-      evs.sort(function(a, b) {
-        if (a.start_date.valueOf() == b.start_date.valueOf())
-          return a.id > b.id ? 1 : -1;
-        return a.start_date > b.start_date ? 1 : -1;
-      });
-      var stack = [];
-      var evs_length = evs.length;
-      // prepare events for render
-      for (var j = 0; j < evs_length; j++) {
-        var ev = evs[j];
-        ev._inner = false;
-
-        // cutting stack from the last -> first event side
-        while (stack.length) {
-          if (stack[stack.length - 1].end_date.valueOf() <= ev.start_date.valueOf()) {
-            stack.splice(stack.length - 1, 1);
-          } else {
-            break;
+          return e.date.add(a, n, r)
+        }, e.date["add_" + t.name] = function(a, i, n) {
+          var r = e.date["add_" + t.name + "_private"](a, (t.x_length || t.x_size) * t.x_step * i);
+          if ("minute" == t.x_unit || "hour" == t.x_unit) {
+            var s = t.x_length || t.x_size,
+              d = "hour" == t.x_unit ? 60 * t.x_step : t.x_step;
+            if (d * s % 1440)
+              if (+e.date.date_part(new Date(a)) == +e.date.date_part(new Date(r))) t.x_start += i * s;
+              else {
+                var o = 1440 / (s * d) - 1,
+                  _ = Math.round(o * s);
+                i > 0 ? t.x_start = t.x_start - _ : t.x_start = _ + t.x_start
+              }
           }
-        }
-
-        // cutting stack from the first -> last event side
-        var sorderSet = false;
-        for (var p = 0; p < stack.length; p++) {
-          var t_ev = stack[p];
-          if (t_ev.end_date.valueOf() <= ev.start_date.valueOf()) {
-            sorderSet = true;
-            ev._sorder = t_ev._sorder;
-            stack.splice(p, 1);
-            ev._inner = true;
-            break;
-          }
-        }
-
-
-        if (stack.length)
-          stack[stack.length - 1]._inner = true;
-
-
-        if (!sorderSet) {
-          if (stack.length) {
-            if (stack.length <= stack[stack.length - 1]._sorder) {
-              if (!stack[stack.length - 1]._sorder)
-                ev._sorder = 0;
-              else
-                for (var h = 0; h < stack.length; h++) {
-                  var _is_sorder = false;
-                  for (var t = 0; t < stack.length; t++) {
-                    if (stack[t]._sorder == h) {
-                      _is_sorder = true;
-                      break;
-                    }
-                  }
-                  if (!_is_sorder) {
-                    ev._sorder = h;
-                    break;
-                  }
-                }
-              ev._inner = true;
-            } else {
-              var _max_sorder = stack[0]._sorder;
-              for (var w = 1; w < stack.length; w++)
-                if (stack[w]._sorder > _max_sorder)
-                  _max_sorder = stack[w]._sorder;
-              ev._sorder = _max_sorder + 1;
-              ev._inner = false;
-            }
-          } else
-            ev._sorder = 0;
-        }
-
-        stack.push(ev);
-
-        if (stack.length > (stack.max_count || 0)) {
-          stack.max_count = stack.length;
-          ev._count = stack.length;
-        } else {
-          ev._count = (ev._count) ? ev._count : 1;
-        }
-      }
-      // fix _count for every event
-      for (var m = 0; m < evs.length; m++) {
-        evs[m]._count = stack.max_count;
-      }
-      // render events
-      for (var v = 0; v < evs_length; v++) {
-        html += scheduler.render_timeline_event.call(this, evs[v], false);
-      }
-    }
-    return html;
-  }
-
-
-  function y_scale(d) {
-    var html = "<table style='table-layout:fixed;' cellspacing='0' cellpadding='0'>";
-    var evs = [];
-    if (scheduler._load_mode)
-      scheduler._load();
-    if (this.render == "cell")
-      evs = trace_events.call(this);
-    else {
-      var tevs = scheduler.get_visible_events();
-      for (var j = 0; j < tevs.length; j++) {
-        var ind = this.order[tevs[j][this.y_property]];
-        if (!evs[ind]) evs[ind] = [];
-        evs[ind].push(tevs[j]);
-      }
-    }
-
-    var summ = 0;
-    for (var i = 0; i < scheduler._cols.length; i++)
-      summ += scheduler._cols[i];
-
-    var step = new Date();
-    step = (scheduler.date.add(step, this.x_step * this.x_size, this.x_unit) - step) / summ;
-
-    this._step = step;
-    this._summ = summ;
-
-    var heights = scheduler._colsS.heights = [];
-
-    this._events_height = {};
-    this._section_height = {};
-    for (var i = 0; i < this.y_unit.length; i++) {
-
-      var stats = this._logic(this.render, this.y_unit[i], this); // obj with custom style
-
-      scheduler._merge(stats, {
-        height: this.dy
-      });
-
-      //autosize height, if we have a free space
-      if (this.section_autoheight) {
-        if (this.y_unit.length * stats.height < d.offsetHeight) {
-          stats.height = Math.max(stats.height, Math.floor((d.offsetHeight - 1) / this.y_unit.length));
-        }
-        this._section_height[this.y_unit[i].key] = stats.height;
-      }
-
-      scheduler._merge(stats, {
-        //section 1
-        tr_className: "",
-        style_height: "height:" + stats.height + "px;",
-        style_width: "width:" + (this.dx - 1) + "px;",
-        td_className: "dhx_matrix_scell" + ((scheduler.templates[this.name + "_scaley_class"](this.y_unit[i].key, this.y_unit[i].label, this.y_unit[i])) ? " " + scheduler.templates[this.name + "_scaley_class"](this.y_unit[i].key, this.y_unit[i].label, this.y_unit[i]) : ''),
-        td_content: scheduler.templates[this.name + '_scale_label'](this.y_unit[i].key, this.y_unit[i].label, this.y_unit[i]),
-        //section 2
-        summ_width: "width:" + summ + "px;",
-        //section 3
-        table_className: ''
-      });
-
-      // generating events html in a temporary file, calculating their height
-      var events_html = get_events_html.call(this, evs[i]);
-
-      if (this.fit_events) {
-        var rendered_height = this._events_height[this.y_unit[i].key] || 0;
-        stats.height = (rendered_height > stats.height) ? rendered_height : stats.height;
-        stats.style_height = "height:" + stats.height + "px;";
-        this._section_height[this.y_unit[i].key] = stats.height;
-      }
-
-      // section 1
-      html += "<tr class='" + stats.tr_className + "' style='" + stats.style_height + "'><td class='" + stats.td_className + "' style='" + stats.style_width + " height:" + (stats.height - 1) + "px;'>" + stats.td_content + "</td>";
-
-      if (this.render == "cell") {
-        for (var j = 0; j < scheduler._cols.length; j++) {
-          html += "<td class='dhx_matrix_cell " + scheduler.templates[this.name + "_cell_class"](evs[i][j], this._trace_x[j], this.y_unit[i]) + "' style='width:" + (scheduler._cols[j] - 1) + "px'><div style='width:" + (scheduler._cols[j] - 1) + "px'>" + scheduler.templates[this.name + "_cell_value"](evs[i][j]) + "</div></td>";
-        }
-      } else {
-        //section 2
-        html += "<td><div style='" + stats.summ_width + " " + stats.style_height + " position:relative;' class='dhx_matrix_line'>";
-
-        // adding events
-        html += events_html;
-
-        //section 3
-        html += "<table class='" + stats.table_className + "' cellpadding='0' cellspacing='0' style='" + stats.summ_width + " " + stats.style_height + "' >";
-        for (var j = 0; j < scheduler._cols.length; j++)
-          html += "<td class='dhx_matrix_cell " + scheduler.templates[this.name + "_cell_class"](evs[i], this._trace_x[j], this.y_unit[i]) + "' style='width:" + (scheduler._cols[j] - 1) + "px'><div style='width:" + (scheduler._cols[j] - 1) + "px'></div></td>";
-        html += "</table>";
-        html += "</div></td>";
-      }
-      html += "</tr>";
-    }
-    html += "</table>";
-    this._matrix = evs;
-    //d.scrollTop = 0; //fix flickering in FF;  disabled as it was impossible to create dnd event if scroll was used (window jumped to the top)
-    d.innerHTML = html;
-
-    scheduler._rendered = [];
-    var divs = scheduler._obj.getElementsByTagName("DIV");
-    for (var i = 0; i < divs.length; i++)
-      if (divs[i].getAttribute("event_id"))
-        scheduler._rendered.push(divs[i]);
-
-    this._scales = {};
-    for (var i = 0; i < d.firstChild.rows.length; i++) {
-      heights.push(d.firstChild.rows[i].offsetHeight);
-      var unit_key = this.y_unit[i].key;
-      var scale = this._scales[unit_key] = (scheduler._isRender('cell')) ? d.firstChild.rows[i] : d.firstChild.rows[i].childNodes[1].getElementsByTagName('div')[0];
-      scheduler.callEvent("onScaleAdd", [scale, unit_key]);
-    }
-  }
-
-  function x_scale(h) {
-    var current_sh = scheduler.xy.scale_height;
-    var original_sh = this._header_resized || scheduler.xy.scale_height;
-    scheduler._cols = []; //store for data section, each column width
-    scheduler._colsS = {
-      height: 0
-    }; // heights of the y sections
-    this._trace_x = []; // list of dates per cells
-    var summ = scheduler._x - this.dx - 18; //border delta, whole width
-    var left = [this.dx]; // left margins, initial left margin
-    var header = scheduler._els['dhx_cal_header'][0];
-    header.style.width = (left[0] + summ) + 'px';
-
-    scheduler._min_date_timeline = scheduler._min_date;
-
-    var start = scheduler._min_date;
-    for (var k = 0; k < this.x_size; k++) {
-      // dates calculation
-      this._trace_x[k] = new Date(start);
-      start = scheduler.date.add(start, this.x_step, this.x_unit);
-
-      // position calculation
-      scheduler._cols[k] = Math.floor(summ / (this.x_size - k));
-      summ -= scheduler._cols[k];
-      left[k + 1] = left[k] + scheduler._cols[k];
-    }
-
-    h.innerHTML = "<div></div>";
-
-    if (this.second_scale) {
-      // additional calculations
-      var mode = this.second_scale.x_unit;
-      var control_dates = [this._trace_x[0]]; // first control date
-      var second_cols = []; // each column width of the secondary row
-      var second_left = [this.dx, this.dx]; // left margins of the secondary row
-      var t_index = 0; // temp index
-      for (var l = 0; l < this._trace_x.length; l++) {
-        var date = this._trace_x[l];
-        var res = is_new_interval(mode, date, control_dates[t_index]);
-
-        if (res) { // new interval
-          ++t_index; // starting new interval
-          control_dates[t_index] = date; // updating control date as we moved to the new interval
-          second_left[t_index + 1] = second_left[t_index];
-        }
-        var t = t_index + 1;
-        second_cols[t_index] = scheduler._cols[l] + (second_cols[t_index] || 0);
-        second_left[t] += scheduler._cols[l];
-      }
-
-      h.innerHTML = "<div></div><div></div>";
-      var top = h.firstChild;
-      top.style.height = (original_sh) + 'px'; // actually bottom header takes 21px
-      var bottom = h.lastChild;
-      bottom.style.position = "relative";
-
-      for (var m = 0; m < control_dates.length; m++) {
-        var tdate = control_dates[m];
-        var scs = scheduler.templates[this.name + "_second_scalex_class"](tdate);
-        var head = document.createElement("DIV");
-        head.className = "dhx_scale_bar dhx_second_scale_bar" + ((scs) ? (" " + scs) : "");
-        scheduler.set_xy(head, second_cols[m] - 1, original_sh - 3, second_left[m], 0); //-1 for border, -3 = -2 padding -1 border bottom
-        head.innerHTML = scheduler.templates[this.name + "_second_scale_date"](tdate);
-        top.appendChild(head);
-      }
-    }
-
-    scheduler.xy.scale_height = original_sh; // fix for _render_x_header which uses current scale_height value
-    h = h.lastChild; // h - original scale
-    for (var i = 0; i < this._trace_x.length; i++) {
-      start = this._trace_x[i];
-      scheduler._render_x_header(i, left[i], start, h);
-      var cs = scheduler.templates[this.name + "_scalex_class"](start);
-      if (cs)
-        h.lastChild.className += " " + cs;
-    }
-    scheduler.xy.scale_height = current_sh; // restoring current value
-
-    var trace = this._trace_x;
-    h.onclick = function(e) {
-      var pos = locate_hcell(e);
-      if (pos)
-        scheduler.callEvent("onXScaleClick", [pos.x, trace[pos.x], e || event]);
-    };
-    h.ondblclick = function(e) {
-      var pos = locate_hcell(e);
-      if (pos)
-        scheduler.callEvent("onXScaleDblClick", [pos.x, trace[pos.x], e || event]);
-    };
-  }
-
-  function is_new_interval(mode, date, control_date) { // mode, date to check, control_date for which period should be checked
-    switch (mode) {
-      case "hour":
-        return ((date.getHours() != control_date.getHours()) || is_new_interval("day", date, control_date));
-      case "day":
-        return !(date.getDate() == control_date.getDate() && date.getMonth() == control_date.getMonth() && date.getFullYear() == control_date.getFullYear());
-      case "week":
-        return !(scheduler.date.getISOWeek(date) == scheduler.date.getISOWeek(control_date) && date.getFullYear() == control_date.getFullYear());
-      case "month":
-        return !(date.getMonth() == control_date.getMonth() && date.getFullYear() == control_date.getFullYear());
-      case "year":
-        return !(date.getFullYear() == control_date.getFullYear());
-      default:
-        return false; // same interval
-    }
-  }
-
-  function set_full_view(mode) {
-    if (mode) {
-      scheduler.set_sizes();
-      _init_matrix_tooltip();
-      //we need to have day-rounded scales for navigation
-      //in same time, during rendering scales may be shifted
-      var temp = scheduler._min_date;
-      x_scale.call(this, scheduler._els["dhx_cal_header"][0]);
-      y_scale.call(this, scheduler._els["dhx_cal_data"][0]);
-      scheduler._min_date = temp;
-      scheduler._els["dhx_cal_date"][0].innerHTML = scheduler.templates[this.name + "_date"](scheduler._min_date, scheduler._max_date);
-    }
-  }
-
-
-  function hideToolTip() {
-    if (scheduler._tooltip) {
-      scheduler._tooltip.style.display = "none";
-      scheduler._tooltip.date = "";
-    }
-  }
-
-  function showToolTip(obj, pos, offset) {
-    if (obj.render != "cell") return;
-    var mark = pos.x + "_" + pos.y;
-    var evs = obj._matrix[pos.y][pos.x];
-
-    if (!evs) return hideToolTip();
-
-    evs.sort(function(a, b) {
-      return a.start_date > b.start_date ? 1 : -1;
-    });
-
-    if (scheduler._tooltip) {
-      if (scheduler._tooltip.date == mark) return;
-      scheduler._tooltip.innerHTML = "";
-    } else {
-      var t = scheduler._tooltip = document.createElement("DIV");
-      t.className = "dhx_tooltip";
-      document.body.appendChild(t);
-      t.onclick = scheduler._click.dhx_cal_data;
-    }
-
-    var html = "";
-
-    for (var i = 0; i < evs.length; i++) {
-      var bg_color = (evs[i].color ? ("background-color:" + evs[i].color + ";") : "");
-      var color = (evs[i].textColor ? ("color:" + evs[i].textColor + ";") : "");
-      html += "<div class='dhx_tooltip_line' event_id='" + evs[i].id + "' style='" + bg_color + "" + color + "'>";
-      html += "<div class='dhx_tooltip_date'>" + (evs[i]._timed ? scheduler.templates.event_date(evs[i].start_date) : "") + "</div>";
-      html += "<div class='dhx_event_icon icon_details'>&nbsp;</div>";
-      html += scheduler.templates[obj.name + "_tooltip"](evs[i].start_date, evs[i].end_date, evs[i]) + "</div>";
-    }
-
-    scheduler._tooltip.style.display = "";
-    scheduler._tooltip.style.top = "0px";
-
-    if (document.body.offsetWidth - offset.left - scheduler._tooltip.offsetWidth < 0)
-      scheduler._tooltip.style.left = offset.left - scheduler._tooltip.offsetWidth + "px";
-    else
-      scheduler._tooltip.style.left = offset.left + pos.src.offsetWidth + "px";
-
-    scheduler._tooltip.date = mark;
-    scheduler._tooltip.innerHTML = html;
-
-    if (document.body.offsetHeight - offset.top - scheduler._tooltip.offsetHeight < 0)
-      scheduler._tooltip.style.top = offset.top - scheduler._tooltip.offsetHeight + pos.src.offsetHeight + "px";
-    else
-      scheduler._tooltip.style.top = offset.top + "px";
-  }
-
-  function _init_matrix_tooltip() {
-    dhtmlxEvent(scheduler._els["dhx_cal_data"][0], "mouseover", function(e) {
-      var obj = scheduler.matrix[scheduler._mode];
-      if (!obj || obj.render != "cell")
-        return;
-      if (obj) {
-        var pos = scheduler._locate_cell_timeline(e);
-        var e = e || event;
-        var src = e.target || e.srcElement;
-        if (pos)
-          return showToolTip(obj, pos, getOffset(pos.src));
-      }
-      hideToolTip();
-    });
-    _init_matrix_tooltip = function() {};
-  }
-
-  scheduler.renderMatrix = function(mode, refresh) {
-    if (!refresh)
-      scheduler._els['dhx_cal_data'][0].scrollTop = 0;
-
-    scheduler._min_date = scheduler.date[this.name + "_start"](scheduler._date);
-    scheduler._max_date = scheduler.date.add(scheduler._min_date, this.x_size * this.x_step, this.x_unit);
-    scheduler._table_view = true;
-    if (this.second_scale) {
-      if (mode && !this._header_resized) {
-        this._header_resized = scheduler.xy.scale_height;
-        scheduler.xy.scale_height *= 2;
-        scheduler._els['dhx_cal_header'][0].className += " dhx_second_cal_header";
-      }
-      if (!mode && this._header_resized) {
-        scheduler.xy.scale_height /= 2;
-        this._header_resized = false;
-        var header = scheduler._els['dhx_cal_header'][0];
-        header.className = header.className.replace(/ dhx_second_cal_header/gi, "");
-      }
-    }
-    set_full_view.call(this, mode);
-  };
-
-  function html_index(el) {
-    var p = el.parentNode.childNodes;
-    for (var i = 0; i < p.length; i++)
-      if (p[i] == el) return i;
-    return -1;
-  }
-
-  function locate_hcell(e) {
-    e = e || event;
-    var trg = e.target ? e.target : e.srcElement;
-    while (trg && trg.tagName != "DIV")
-      trg = trg.parentNode;
-    if (trg && trg.tagName == "DIV") {
-      var cs = trg.className.split(" ")[0];
-      if (cs == "dhx_scale_bar")
-        return {
-          x: html_index(trg),
-          y: -1,
-          src: trg,
-          scale: true
+          return r
+        }, e.date[t.name + "_start"] = function(a) {
+          var i = e.date[t.x_unit + "_start"] || e.date.day_start,
+            n = i.call(e.date, a),
+            r = n.getTimezoneOffset();
+          n = e.date.add(n, t.x_step * t.x_start, t.x_unit);
+          var s = n.getTimezoneOffset();
+          return r != s && n.setTime(n.getTime() + 6e4 * (s - r)), n
+        }, e.callEvent("onOptionsLoad", [t]), e[t.name + "_view"] = function(a) {
+          a ? e._set_timeline_dates(t) : e._renderMatrix.apply(t, arguments)
         };
-    }
-  }
-  scheduler._locate_cell_timeline = function(e) {
-    e = e || event;
-    var trg = e.target ? e.target : e.srcElement;
-
-    var res = {};
-    var view = scheduler.matrix[scheduler._mode];
-    var pos = scheduler.getActionData(e);
-
-    for (var xind = 0; xind < view._trace_x.length - 1; xind++) {
-      if (+pos.date <= view._trace_x[xind + 1]) // | 8:00, 8:30 | 8:15 should be checked against 8:30
-        break;
-    }
-
-    res.x = xind;
-    res.y = view.order[pos.section];
-    var diff = scheduler._isRender('cell') ? 1 : 0;
-    res.src = view._scales[pos.section].getElementsByTagName('td')[xind + diff];
-
-    if (trg.className.split(" ")[0] == "dhx_matrix_scell") { // Y scale
-      res.x = -1;
-      res.src = trg;
-      res.scale = true;
-    }
-
-    return res;
-  };
-
-  var old_click = scheduler._click.dhx_cal_data;
-  scheduler._click.dhx_marked_timespan = scheduler._click.dhx_cal_data = function(e) {
-    var ret = old_click.apply(this, arguments);
-    var obj = scheduler.matrix[scheduler._mode];
-    if (obj) {
-      var pos = scheduler._locate_cell_timeline(e);
-      if (pos) {
-        if (pos.scale)
-          scheduler.callEvent("onYScaleClick", [pos.y, obj.y_unit[pos.y], e || event]);
-        else
-          scheduler.callEvent("onCellClick", [pos.x, pos.y, obj._trace_x[pos.x], (((obj._matrix[pos.y] || {})[pos.x]) || []), e || event]);
+      var i = new Date;
+      e.date.add(i, t.x_step, t.x_unit).valueOf() - i.valueOf();
+      e["mouse_" + t.name] = function(a) {
+        var i = this._drag_event;
+        this._drag_id && (i = this.getEvent(this._drag_id)), a.x -= t.dx;
+        var n = e._timeline_drag_date(t, a.x);
+        if (a.x = 0, a.force_redraw = !0, a.custom = !0, "move" == this._drag_mode && this._drag_id && this._drag_event) {
+          var i = this.getEvent(this._drag_id),
+            r = this._drag_event;
+          if (a._ignores = this._ignores_detected || t._start_correction || t._end_correction, void 0 === r._move_delta && (r._move_delta = (i.start_date - n) / 6e4, this.config.preserve_length && a._ignores && (r._move_delta = this._get_real_event_length(i.start_date, n, t),
+              r._event_length = this._get_real_event_length(i.start_date, i.end_date, t))), this.config.preserve_length && a._ignores) {
+            var s = (r._event_length, this._get_fictional_event_length(n, r._move_delta, t, !0));
+            n = new Date(n - s)
+          } else n = e.date.add(n, r._move_delta, "minute")
+        }
+        if ("resize" == this._drag_mode && i && (this.config.timeline_swap_resize && this._drag_id && (this._drag_from_start && +n > +i.end_date ? this._drag_from_start = !1 : !this._drag_from_start && +n < +i.start_date && (this._drag_from_start = !0)), a.resize_from_start = this._drag_from_start, !this.config.timeline_swap_resize && this._drag_id && this._drag_from_start && +n >= +e.date.add(i.end_date, -e.config.time_step, "minute") && (n = e.date.add(i.end_date, -e.config.time_step, "minute"))), t.round_position) switch (this._drag_mode) {
+          case "move":
+            this.config.preserve_length || (n = e._timeline_get_rounded_date.call(t, n, !1), "day" == t.x_unit && (a.custom = !1));
+            break;
+          case "resize":
+            this._drag_event && ((null === this._drag_event._resize_from_start || void 0 === this._drag_event._resize_from_start) && (this._drag_event._resize_from_start = a.resize_from_start),
+              a.resize_from_start = this._drag_event._resize_from_start, n = e._timeline_get_rounded_date.call(t, n, !this._drag_event._resize_from_start))
+        }
+        this._resolve_timeline_section(t, a), a.section && this._update_timeline_section({
+          pos: a,
+          event: this.getEvent(this._drag_id),
+          view: t
+        }), a.y = Math.round((this._correct_shift(n, 1) - this._min_date) / (6e4 * this.config.time_step)), a.shift = this.config.time_step, t.round_position && "new-size" == this._drag_mode && n <= this._drag_start && (a.shift = e.date.add(this._drag_start, t.x_step, t.x_unit) - this._drag_start);
+        var d = this._is_pos_changed(this._drag_pos, a);
+        return this._drag_pos && d && (this._drag_event._dhx_changed = !0), d || this._drag_pos.has_moved || (a.force_redraw = !1), a
       }
-    }
-    return ret;
-  };
-
-  scheduler.dblclick_dhx_marked_timespan = scheduler.dblclick_dhx_matrix_cell = function(e) {
-    var obj = scheduler.matrix[scheduler._mode];
-    if (obj) {
-      var pos = scheduler._locate_cell_timeline(e);
-      if (pos) {
-        if (pos.scale)
-          scheduler.callEvent("onYScaleDblClick", [pos.y, obj.y_unit[pos.y], e || event]);
-        else
-          scheduler.callEvent("onCellDblClick", [pos.x, pos.y, obj._trace_x[pos.x], (((obj._matrix[pos.y] || {})[pos.x]) || []), e || event]);
+    }, e._prepare_timeline_events = function(t) {
+      var a = [];
+      if ("cell" == t.render) a = e._timeline_trace_events.call(t);
+      else
+        for (var i = e.get_visible_events(), n = t.order, r = 0; r < i.length; r++) {
+          var s = i[r],
+            d = s[t.y_property],
+            o = t.order[d];
+          if (t.show_unassigned && !d) {
+            for (var _ in n)
+              if (n.hasOwnProperty(_)) {
+                o = n[_], a[o] || (a[o] = []);
+                var l = e._lame_copy({}, s);
+                l[t.y_property] = _,
+                  a[o].push(l)
+              }
+          } else a[o] || (a[o] = []), a[o].push(s)
+        }
+      return a
+    }, e._populate_timeline_rendered = function(t) {
+      e._rendered = [];
+      for (var a = t.getElementsByTagName("DIV"), i = 0; i < a.length; i++) a[i].getAttribute("event_id") && e._rendered.push(a[i])
+    }, e._get_timeline_event_height = function(e, t) {
+      var a = e[t.y_property],
+        i = t.event_dy;
+      return "full" == t.event_dy && (i = t.section_autoheight ? t._section_height[a] - 6 : t.dy - 3), t.resize_events && (i = Math.max(Math.floor(i / e._count), t.event_min_dy)), i
+    }, e._get_timeline_event_y = function(t, a) {
+      var i = t,
+        n = 2 + i * a + (i ? 2 * i : 0);
+      return e.config.cascade_event_display && (n = 2 + i * e.config.cascade_event_margin + (i ? 2 * i : 0)), n
+    }, e.render_timeline_event = function(t, a) {
+      var i = t[this.y_property];
+      if (!i) return "";
+      var n = t._sorder,
+        r = e._timeline_getX(t, !1, this),
+        s = e._timeline_getX(t, !0, this),
+        d = e._get_timeline_event_height(t, this),
+        o = d - 2;
+      t._inner || "full" != this.event_dy || (o = (o + 2) * (t._count - n) - 2);
+      var _ = e._get_timeline_event_y(t._sorder, d),
+        l = d + _ + 2;
+      (!this._events_height[i] || this._events_height[i] < l) && (this._events_height[i] = l);
+      var c = e.templates.event_class(t.start_date, t.end_date, t);
+      c = "dhx_cal_event_line " + (c || ""), t._no_drag_move && (c += " no_drag_move");
+      var h = t.color ? "background:" + t.color + ";" : "",
+        u = t.textColor ? "color:" + t.textColor + ";" : "",
+        v = e.templates.event_bar_text(t.start_date, t.end_date, t),
+        f = "<div " + e._waiAria.eventBarAttrString(t) + " event_id='" + t.id + "' class='" + c + "' style='" + h + u + "position:absolute; top:" + _ + "px; height: " + o + "px; left:" + r + "px; width:" + Math.max(0, s - r) + "px;" + (t._text_style || "") + "'>";
+      if (e.config.drag_resize && !e.config.readonly) {
+        var g = "dhx_event_resize",
+          p = "<div class='" + g + " " + g + "_start' style='height: " + o + "px;'></div>",
+          m = "<div class='" + g + " " + g + "_end' style='height: " + o + "px;'></div>";
+        f += (t._no_resize_start ? "" : p) + (t._no_resize_end ? "" : m)
       }
-    }
-  };
-  scheduler.dblclick_dhx_matrix_scell = function(e) {
-    return scheduler.dblclick_dhx_matrix_cell(e);
-  };
-
-  scheduler._isRender = function(mode) {
-    return (scheduler.matrix[scheduler._mode] && scheduler.matrix[scheduler._mode].render == mode);
-  };
-
-  scheduler.attachEvent("onCellDblClick", function(x, y, a, b, event) {
-    if (this.config.readonly || (event.type == "dblclick" && !this.config.dblclick_create)) return;
-
-    var obj = scheduler.matrix[scheduler._mode];
-    var event_options = {};
-    event_options['start_date'] = obj._trace_x[x];
-    event_options['end_date'] = (obj._trace_x[x + 1]) ? obj._trace_x[x + 1] : scheduler.date.add(obj._trace_x[x], obj.x_step, obj.x_unit);
-    event_options[scheduler.matrix[scheduler._mode].y_property] = obj.y_unit[y].key;
-    scheduler.addEventNow(event_options, null, event);
-  });
-
-  scheduler.attachEvent("onBeforeDrag", function(event_id, mode, native_event_object) {
-    return !scheduler._isRender("cell");
-  });
-  scheduler.attachEvent("onEventChanged", function(id, ev) {
-    ev._timed = this.is_one_day_event(ev);
-  });
-  var old_render_marked_timespan = scheduler._render_marked_timespan;
-  scheduler._render_marked_timespan = function(options, area, unit_id) {
-    if (!scheduler.config.display_marked_timespans)
-      return [];
-
-    if (scheduler.matrix && scheduler.matrix[scheduler._mode]) {
-      if (scheduler._isRender('cell'))
-        return;
-
-      var view_opts = scheduler.matrix[scheduler._mode];
-      var blocks = [];
-
-      var units = [];
-      var areas = [];
-      if (!unit_id) { // should draw for every unit
-        var order = view_opts.order;
-        for (var key in order) {
-          if (order.hasOwnProperty(key)) {
-            units.push(key);
-            areas.push(view_opts._scales[key]);
+      if (f += v + "</div>", !a) return f;
+      var y = document.createElement("DIV");
+      y.innerHTML = f;
+      var x = this.order[i],
+        b = e._els.dhx_cal_data[0].firstChild.rows[x];
+      if (b) {
+        var w = b.cells[1].firstChild;
+        e._rendered.push(y.firstChild), w.appendChild(y.firstChild)
+      }
+    }, e._timeline_trace_events = function() {
+      for (var t = e.get_visible_events(), a = [], i = 0; i < this.y_unit.length; i++) a[i] = [];
+      var n;
+      a[n] || (a[n] = []);
+      for (var i = 0; i < t.length; i++) {
+        n = this.order[t[i][this.y_property]];
+        for (var r = 0; this._trace_x[r + 1] && t[i].start_date >= this._trace_x[r + 1];) r++;
+        for (; this._trace_x[r] && t[i].end_date > this._trace_x[r];) a[n][r] || (a[n][r] = []), a[n][r].push(t[i]), r++
+      }
+      return a
+    }, e._timeline_getX = function(t, a, i) {
+      var n = 0,
+        r = i._step,
+        s = i.round_position,
+        d = 0,
+        o = a ? t.end_date : t.start_date;
+      o.valueOf() > e._max_date.valueOf() && (o = e._max_date);
+      var _ = o - e._min_date_timeline;
+      if (_ > 0) {
+        var l = e._get_date_index(i, o);
+        e._ignores[l] && (s = !0);
+        for (var c = 0; l > c; c++) n += e._cols[c];
+        var h = e._timeline_get_rounded_date.apply(i, [o, !1]);
+        s ? +o > +h && a && (d = e._cols[l]) : (_ = o - h, i.first_hour || i.last_hour ? (_ -= i._start_correction,
+          0 > _ && (_ = 0), d = Math.round(_ / r), d > e._cols[l] && (d = e._cols[l])) : d = Math.round(_ / r))
+      }
+      return n += a ? 0 === _ || s ? d - 14 : d - 12 : d + 1
+    }, e._timeline_get_rounded_date = function(t, a) {
+      var i = e._get_date_index(this, t),
+        n = this._trace_x[i];
+      return a && +t != +this._trace_x[i] && (n = this._trace_x[i + 1] ? this._trace_x[i + 1] : e.date.add(this._trace_x[i], this.x_step, this.x_unit)), new Date(n)
+    }, e._timeline_skip_ignored = function(t) {
+      if (e._ignores_detected)
+        for (var a, i, n, r, s = 0; s < t.length; s++) {
+          for (r = t[s], n = !1, a = e._get_date_index(this, r.start_date), i = e._get_date_index(this, r.end_date); i > a;) {
+            if (!e._ignores[a]) {
+              n = !0;
+              break
+            }
+            a++
           }
+          n || a != i || e._ignores[i] || +r.end_date > +this._trace_x[i] && (n = !0), n || (t.splice(s, 1), s--)
         }
-      } else {
-        areas = [area];
-        units = [unit_id]
-      }
-
-      var min_date = scheduler._min_date;
-      var max_date = scheduler._max_date;
-      var dates = [];
-
-      if (options.days > 6) {
-        var specific_date = new Date(options.days);
-        if (scheduler.date.date_part(new Date(min_date)) <= +specific_date && +max_date >= +specific_date)
-          dates.push(specific_date);
-      } else {
-        dates.push.apply(dates, scheduler._get_dates_by_index(options.days));
-      }
-
-      var zones = options.zones;
-      var css_classes = scheduler._get_css_classes_by_config(options);
-
-      for (var j = 0; j < units.length; j++) {
-        area = areas[j];
-        unit_id = units[j];
-
-        for (var i = 0; i < dates.length; i++) {
-          var date = dates[i];
-          for (var k = 0; k < zones.length; k += 2) {
-            var zone_start = zones[k];
-            var zone_end = zones[k + 1];
-            var start_date = new Date(+date + zone_start * 60 * 1000);
-            var end_date = new Date(+date + zone_end * 60 * 1000);
-
-            if (!(scheduler._min_date < end_date && scheduler._max_date > start_date))
-              continue;
-
-            var block = scheduler._get_block_by_config(options);
-            block.className = css_classes;
-
-            var start_pos = _getX({
-              start_date: start_date
-            }, false, view_opts._step) - 1;
-            var end_pos = _getX({
-              start_date: end_date
-            }, false, view_opts._step) - 1;
-            var width = end_pos - start_pos - 1;
-            var height = view_opts._section_height[unit_id] - 1;
-
-            block.style.cssText = "height: " + height + "px; left: " + start_pos + "px; width: " + width + "px; top: 0;";
-
-            area.insertBefore(block, area.firstChild);
-            blocks.push(block);
+    }, e._timeline_get_events_html = function(t) {
+      var a = "";
+      if (t && "cell" != this.render) {
+        e._timeline_skip_ignored.call(this, t), t.sort(this.sort || function(e, t) {
+          return e.start_date.valueOf() == t.start_date.valueOf() ? e.id > t.id ? 1 : -1 : e.start_date > t.start_date ? 1 : -1
+        });
+        for (var i = [], n = t.length, r = 0; n > r; r++) {
+          var s = t[r];
+          s._inner = !1;
+          var d = this.round_position ? e._timeline_get_rounded_date.apply(this, [s.start_date, !1]) : s.start_date;
+          for (this.round_position ? e._timeline_get_rounded_date.apply(this, [s.end_date, !0]) : s.end_date; i.length;) {
+            var o = i[i.length - 1];
+            if (!(o.end_date.valueOf() <= d.valueOf())) break;
+            i.splice(i.length - 1, 1)
           }
-        }
-      }
-
-      return blocks;
-
-    } else {
-      return old_render_marked_timespan.apply(scheduler, [options, area, unit_id]);
-    }
-  };
-
-  var old_append_mark_now = scheduler._append_mark_now;
-  scheduler._append_mark_now = function(day_index) {
-    if (scheduler.matrix && scheduler.matrix[scheduler._mode]) {
-      var n_date = new Date();
-      var zone_start = scheduler._get_zone_minutes(n_date);
-      var options = {
-        days: +scheduler.date.date_part(n_date),
-        zones: [zone_start, zone_start + 1],
-        css: "dhx_matrix_now_time",
-        type: "dhx_now_time"
-      };
-      return scheduler._render_marked_timespan(options);
-    } else {
-      return old_append_mark_now.apply(scheduler, [day_index]);
-    }
-  };
-  scheduler.attachEvent("onViewChange", function(date, mode) {
-    if (scheduler.matrix && scheduler.matrix[mode]) {
-      if (scheduler.markNow) {
-        scheduler.markNow();
-      }
-    }
-  });
-
-  scheduler.attachEvent("onScaleAdd", function(scale, unit_key) {
-    var timespans = scheduler._marked_timespans;
-
-    if (timespans && scheduler.matrix && scheduler.matrix[scheduler._mode]) {
-      var mode = scheduler._mode;
-
-      var min_date = scheduler._min_date;
-      var max_date = scheduler._max_date;
-      var global_data = timespans["global"];
-
-      for (var t_date = scheduler.date.date_part(new Date(min_date)); t_date < max_date; t_date = scheduler.date.add(t_date, 1, "day")) {
-        var day_value = +t_date;
-        var day_index = t_date.getDay();
-        var r_configs = [];
-
-        var day_types = global_data[day_value] || global_data[day_index];
-        r_configs.push.apply(r_configs, scheduler._get_configs_to_render(day_types));
-
-        if (timespans[mode] && timespans[mode][unit_key]) {
-          var unit_types = scheduler._get_types_to_render(timespans[mode][unit_key][day_index], timespans[mode][unit_key][day_value]);
-          r_configs.push.apply(r_configs, scheduler._get_configs_to_render(unit_types));
-        }
-
-        for (var i = 0; i < r_configs.length; i++) {
-          var config = r_configs[i];
-          var day = config.days;
-          if (day < 7) {
-            day = day_value;
-            scheduler._render_marked_timespan(config, scale, unit_key);
-            day = day_index;
-          } else {
-            scheduler._render_marked_timespan(config, scale, unit_key);
+          for (var _ = !1, l = 0; l < i.length; l++) {
+            var c = i[l];
+            if (c.end_date.valueOf() <= d.valueOf()) {
+              _ = !0, s._sorder = c._sorder, i.splice(l, 1), s._inner = !0;
+              break
+            }
           }
+          if (i.length && (i[i.length - 1]._inner = !0), !_)
+            if (i.length)
+              if (i.length <= i[i.length - 1]._sorder) {
+                if (i[i.length - 1]._sorder)
+                  for (var h = 0; h < i.length; h++) {
+                    for (var u = !1, v = 0; v < i.length; v++)
+                      if (i[v]._sorder == h) {
+                        u = !0;
+                        break
+                      }
+                    if (!u) {
+                      s._sorder = h;
+                      break
+                    }
+                  } else s._sorder = 0;
+                s._inner = !0
+              } else {
+                for (var f = i[0]._sorder, g = 1; g < i.length; g++) i[g]._sorder > f && (f = i[g]._sorder);
+                s._sorder = f + 1, s._inner = !1
+              }
+          else s._sorder = 0;
+          i.push(s), i.length > (i.max_count || 0) ? (i.max_count = i.length, s._count = i.length) : s._count = s._count ? s._count : 1
+        }
+        for (var p = 0; p < t.length; p++) t[p]._count = i.max_count;
+        for (var m = 0; n > m; m++) a += e.render_timeline_event.call(this, t[m], !1)
+      }
+      return a
+    }, e._timeline_y_scale = function(t) {
+      var a = "<table style='table-layout:fixed;' cellspacing='0' cellpadding='0'>";
+      e._load_mode && e._load();
+      for (var i = e._prepare_timeline_events(this), n = 0, r = 0; r < e._cols.length; r++) n += e._cols[r];
+      var s = new Date,
+        d = e._cols.length - e._ignores_detected;
+      s = (e.date.add(s, this.x_step * d, this.x_unit) - s - (this._start_correction + this._end_correction) * d) / n, this._step = s, this._summ = n;
+      var o = e._colsS.heights = [],
+        _ = [];
+      this._events_height = {}, this._section_height = {};
+      for (var r = 0; r < this.y_unit.length; r++) {
+        var l = this._logic(this.render, this.y_unit[r], this);
+        e._merge(l, {
+          height: this.dy
+        }), this.section_autoheight && (this.y_unit.length * l.height < t.offsetHeight && (l.height = Math.max(l.height, Math.floor((t.offsetHeight - 1) / this.y_unit.length))),
+          this._section_height[this.y_unit[r].key] = l.height), l.td_className || (l.td_className = "dhx_matrix_scell" + (e.templates[this.name + "_scaley_class"](this.y_unit[r].key, this.y_unit[r].label, this.y_unit[r]) ? " " + e.templates[this.name + "_scaley_class"](this.y_unit[r].key, this.y_unit[r].label, this.y_unit[r]) : "")), l.td_content || (l.td_content = e.templates[this.name + "_scale_label"](this.y_unit[r].key, this.y_unit[r].label, this.y_unit[r])), e._merge(l, {
+          tr_className: "",
+          style_height: "height:" + l.height + "px;",
+          style_width: "width:" + this.dx + "px;",
+          summ_width: "width:" + n + "px;",
+          table_className: ""
+        });
+        var c = e._timeline_get_events_html.call(this, i[r]);
+        if (this.fit_events) {
+          var h = this._events_height[this.y_unit[r].key] || 0;
+          l.height = h > l.height ? h : l.height, l.style_height = "height:" + l.height + "px;", this._section_height[this.y_unit[r].key] = l.height
+        }
+        if (a += "<tr class='" + l.tr_className + "' style='" + l.style_height + "'><td class='" + l.td_className + "' style='" + l.style_width + " height:" + (l.height - 1) + "px;' " + e._waiAria.label(l.td_content) + ">" + l.td_content + "</td>", "cell" == this.render)
+          for (var u = 0; u < e._cols.length; u++) a += e._ignores[u] ? "<td></td>" : "<td class='dhx_matrix_cell " + e.templates[this.name + "_cell_class"](i[r][u], this._trace_x[u], this.y_unit[r]) + "' style='width:" + e._cols[u] + "px'><div style='width:auto'>" + e.templates[this.name + "_cell_value"](i[r][u], this._trace_x[u], this.y_unit[r]) + "</div></td>";
+        else {
+          a += "<td><div style='" + l.summ_width + " " + l.style_height + " position:relative;' class='dhx_matrix_line'>", a += c, a += "<table class='" + l.table_className + "' cellpadding='0' cellspacing='0' style='" + l.summ_width + " " + l.style_height + "' >";
+          for (var u = 0; u < e._cols.length; u++) a += e._ignores[u] ? "<td></td>" : "<td class='dhx_matrix_cell " + e.templates[this.name + "_cell_class"](i[r], this._trace_x[u], this.y_unit[r]) + "' style='width:" + e._cols[u] + "px'></td>";
+          a += "</table>", a += "</div></td>"
+        }
+        a += "</tr>", _.push(l)
+      }
+      a += "</table>",
+        this._matrix = i, t.innerHTML = a, e._populate_timeline_rendered(t), this._scales = {};
+      for (var v = t.firstChild.rows, f = null, r = 0, g = _.length; g > r; r++) {
+        f = this.y_unit[r], o.push(_[r].height);
+        var p = f.key,
+          m = this._scales[p] = e._isRender("cell") ? v[r] : v[r].childNodes[1].getElementsByTagName("div")[0];
+        e.callEvent("onScaleAdd", [m, p])
+      }
+    }, e._timeline_x_dates = function(t) {
+      var a = e._min_date,
+        i = e._max_date;
+      e._process_ignores(a, this.x_size, this.x_unit, this.x_step, t);
+      for (var n = (this.x_size + (t ? e._ignores_detected : 0), 0), r = 0; + i > +a;)
+        if (this._trace_x[r] = new Date(a),
+          "month" == this.x_unit && e.date[this.x_unit + "_start"] && (a = e.date[this.x_unit + "_start"](new Date(a))), a = e.date.add(a, this.x_step, this.x_unit), e.date[this.x_unit + "_start"] && (a = e.date[this.x_unit + "_start"](a)), e._ignores[r] || n++, r++, t)
+          if (n < this.x_size && !(+i > +a)) i = e.date["add_" + this.name + "_private"](i, (this.x_length || this.x_size) * this.x_step);
+          else if (n >= this.x_size) {
+        e._max_date = a;
+        break
+      }
+      return {
+        total: r,
+        displayed: n
+      }
+    }, e._timeline_x_scale = function(t) {
+      var a = e.xy.scale_height,
+        i = this._header_resized || e.xy.scale_height;
+      e._cols = [], e._colsS = {
+        height: 0
+      }, this._trace_x = [];
+      var n = e._x - this.dx - e.xy.scroll_width,
+        r = [this.dx],
+        s = e._els.dhx_cal_header[0];
+      s.style.width = r[0] + n + "px";
+      for (var d = e._min_date_timeline = e._min_date, o = e.config.preserve_scale_length, _ = e._timeline_x_dates.call(this, o), l = _.displayed, c = _.total, h = 0; c > h; h++) e._ignores[h] ? (e._cols[h] = 0, l++) : e._cols[h] = Math.floor(n / (l - h)), n -= e._cols[h], r[h + 1] = r[h] + e._cols[h];
+      if (t.innerHTML = "<div></div>", this.second_scale) {
+        for (var u = this.second_scale.x_unit, v = [this._trace_x[0]], f = [], g = [this.dx, this.dx], p = 0, m = 0; m < this._trace_x.length; m++) {
+          var y = this._trace_x[m],
+            x = e._timeline_is_new_interval(u, y, v[p]);
+          x && (++p, v[p] = y, g[p + 1] = g[p]);
+          var b = p + 1;
+          f[p] = e._cols[m] + (f[p] || 0), g[b] += e._cols[m]
+        }
+        t.innerHTML = "<div></div><div></div>";
+        var w = t.firstChild;
+        w.style.height = i + "px";
+        var k = t.lastChild;
+        k.style.position = "relative";
+        for (var E = 0; E < v.length; E++) {
+          var D = v[E],
+            N = e.templates[this.name + "_second_scalex_class"](D),
+            S = document.createElement("DIV");
+          S.className = "dhx_scale_bar dhx_second_scale_bar" + (N ? " " + N : ""), e.set_xy(S, f[E] - 1, i - 3, g[E], 0), S.innerHTML = e.templates[this.name + "_second_scale_date"](D),
+            w.appendChild(S)
         }
       }
-    }
-  });
-
-})();
+      e.xy.scale_height = i, t = t.lastChild;
+      for (var C = 0; C < this._trace_x.length; C++)
+        if (!e._ignores[C]) {
+          d = this._trace_x[C], e._render_x_header(C, r[C], d, t);
+          var M = e.templates[this.name + "_scalex_class"](d);
+          M && (t.lastChild.className += " " + M)
+        }
+      e.xy.scale_height = a;
+      var A = this._trace_x;
+      t.onclick = function(t) {
+        var a = e._timeline_locate_hcell(t);
+        a && e.callEvent("onXScaleClick", [a.x, A[a.x], t || event])
+      }, t.ondblclick = function(t) {
+        var a = e._timeline_locate_hcell(t);
+        a && e.callEvent("onXScaleDblClick", [a.x, A[a.x], t || event]);
+      }
+    }, e._timeline_is_new_interval = function(t, a, i) {
+      switch (t) {
+        case "hour":
+          return a.getHours() != i.getHours() || e._timeline_is_new_interval("day", a, i);
+        case "day":
+          return !(a.getDate() == i.getDate() && a.getMonth() == i.getMonth() && a.getFullYear() == i.getFullYear());
+        case "week":
+          return !(e.date.week_start(new Date(a)).valueOf() == e.date.week_start(new Date(i)).valueOf());
+        case "month":
+          return !(a.getMonth() == i.getMonth() && a.getFullYear() == i.getFullYear());
+        case "year":
+          return !(a.getFullYear() == i.getFullYear());
+        default:
+          return !1;
+      }
+    }, e._timeline_reset_scale_height = function(t) {
+      if (this._header_resized && (!t || !this.second_scale)) {
+        e.xy.scale_height /= 2, this._header_resized = !1;
+        var a = e._els.dhx_cal_header[0];
+        a.className = a.className.replace(/ dhx_second_cal_header/gi, "")
+      }
+    }, e._timeline_set_full_view = function(t) {
+      if (e._timeline_reset_scale_height.call(this, t), t) {
+        this.second_scale && !this._header_resized && (this._header_resized = e.xy.scale_height, e.xy.scale_height *= 2, e._els.dhx_cal_header[0].className += " dhx_second_cal_header"), e.set_sizes(),
+          e._init_matrix_tooltip();
+        var a = e._min_date;
+        e._timeline_x_scale.call(this, e._els.dhx_cal_header[0]), e._timeline_y_scale.call(this, e._els.dhx_cal_data[0]), e._min_date = a, e._els.dhx_cal_date[0].innerHTML = e.templates[this.name + "_date"](e._min_date, e._max_date), e._mark_now && e._mark_now(), e._timeline_reset_scale_height.call(this, t)
+      }
+      e._timeline_hideToolTip()
+    }, e._timeline_hideToolTip = function() {
+      e._tooltip && (e._tooltip.style.display = "none", e._tooltip.date = "")
+    }, e._timeline_showToolTip = function(t, a, i) {
+      if ("cell" == t.render) {
+        var n = a.x + "_" + a.y,
+          r = t._matrix[a.y][a.x];
+        if (!r) return e._timeline_hideToolTip();
+        if (r.sort(function(e, t) {
+            return e.start_date > t.start_date ? 1 : -1
+          }), e._tooltip) {
+          if (e._tooltip.date == n) return;
+          e._tooltip.innerHTML = ""
+        } else {
+          var s = e._tooltip = document.createElement("DIV");
+          s.className = "dhx_year_tooltip", document.body.appendChild(s), s.onclick = e._click.dhx_cal_data
+        }
+        for (var d = "", o = 0; o < r.length; o++) {
+          var _ = r[o].color ? "background-color:" + r[o].color + ";" : "",
+            l = r[o].textColor ? "color:" + r[o].textColor + ";" : "";
+          d += "<div class='dhx_tooltip_line' event_id='" + r[o].id + "' style='" + _ + l + "'>",
+            d += "<div class='dhx_tooltip_date'>" + (r[o]._timed ? e.templates.event_date(r[o].start_date) : "") + "</div>", d += "<div class='dhx_event_icon icon_details'>&nbsp;</div>", d += e.templates[t.name + "_tooltip"](r[o].start_date, r[o].end_date, r[o]) + "</div>"
+        }
+        e._tooltip.style.display = "", e._tooltip.style.top = "0px", document.body.offsetWidth - i.left - e._tooltip.offsetWidth < 0 ? e._tooltip.style.left = i.left - e._tooltip.offsetWidth + "px" : e._tooltip.style.left = i.left + a.src.offsetWidth + "px", e._tooltip.date = n, e._tooltip.innerHTML = d,
+          document.body.offsetHeight - i.top - e._tooltip.offsetHeight < 0 ? e._tooltip.style.top = i.top - e._tooltip.offsetHeight + a.src.offsetHeight + "px" : e._tooltip.style.top = i.top + "px"
+      }
+    }, e._matrix_tooltip_handler = function(t) {
+      var a = e.matrix[e._mode];
+      if (a && "cell" == a.render) {
+        if (a) {
+          var i = e._locate_cell_timeline(t),
+            t = t || event;
+          t.target || t.srcElement;
+          if (i) return e._timeline_showToolTip(a, i, getOffset(i.src))
+        }
+        e._timeline_hideToolTip()
+      }
+    }, e._init_matrix_tooltip = function() {
+      e._detachDomEvent(e._els.dhx_cal_data[0], "mouseover", e._matrix_tooltip_handler),
+        dhtmlxEvent(e._els.dhx_cal_data[0], "mouseover", e._matrix_tooltip_handler)
+    }, e._set_timeline_dates = function(t) {
+      e._min_date = e.date[t.name + "_start"](new Date(e._date)), e._max_date = e.date["add_" + t.name + "_private"](e._min_date, t.x_size * t.x_step), e.date[t.x_unit + "_start"] && (e._max_date = e.date[t.x_unit + "_start"](e._max_date)), e._table_view = !0
+    }, e._renderMatrix = function(t, a) {
+      a || (e._els.dhx_cal_data[0].scrollTop = 0), e._set_timeline_dates(this), e._timeline_set_full_view.call(this, t)
+    }, e._timeline_html_index = function(t) {
+      for (var a = t.parentNode.childNodes, i = -1, n = 0; n < a.length; n++)
+        if (a[n] == t) {
+          i = n;
+          break
+        }
+      var r = i;
+      if (e._ignores_detected)
+        for (var s in e._ignores) e._ignores[s] && r >= 1 * s && r++;
+      return r
+    }, e._timeline_locate_hcell = function(t) {
+      t = t || event;
+      for (var a = t.target ? t.target : t.srcElement; a && "DIV" != a.tagName;) a = a.parentNode;
+      if (a && "DIV" == a.tagName) {
+        var i = e._getClassName(a).split(" ")[0];
+        if ("dhx_scale_bar" == i) return {
+          x: e._timeline_html_index(a),
+          y: -1,
+          src: a,
+          scale: !0
+        }
+      }
+    }, e._locate_cell_timeline = function(t) {
+      t = t || event;
+      for (var a = t.target ? t.target : t.srcElement, i = {}, n = e.matrix[e._mode], r = e.getActionData(t), s = e._ignores, d = 0, o = 0; o < n._trace_x.length - 1 && !(+r.date < n._trace_x[o + 1]); o++) s[o] || d++;
+      i.x = 0 === d ? 0 : o, i.y = n.order[r.section];
+      var _ = e._isRender("cell") ? 1 : 0;
+      i.src = n._scales[r.section] ? n._scales[r.section].getElementsByTagName("td")[o + _] : null;
+      for (var l = !1; 0 === i.x && "dhx_cal_data" != e._getClassName(a) && a.parentNode;) {
+        if ("dhx_matrix_scell" == e._getClassName(a).split(" ")[0]) {
+          l = !0;
+          break
+        }
+        a = a.parentNode
+      }
+      return l ? (i.x = -1, i.src = a, i.scale = !0) : i.x = o, i
+    };
+    var t = e._click.dhx_cal_data;
+    e._click.dhx_marked_timespan = e._click.dhx_cal_data = function(a) {
+      var i = t.apply(this, arguments),
+        n = e.matrix[e._mode];
+      if (n) {
+        var r = e._locate_cell_timeline(a);
+        r && (r.scale ? e.callEvent("onYScaleClick", [r.y, n.y_unit[r.y], a || event]) : e.callEvent("onCellClick", [r.x, r.y, n._trace_x[r.x], (n._matrix[r.y] || {})[r.x] || [], a || event]))
+      }
+      return i
+    }, e.dblclick_dhx_matrix_cell = function(t) {
+      var a = e.matrix[e._mode];
+      if (a) {
+        var i = e._locate_cell_timeline(t);
+        i && (i.scale ? e.callEvent("onYScaleDblClick", [i.y, a.y_unit[i.y], t || event]) : e.callEvent("onCellDblClick", [i.x, i.y, a._trace_x[i.x], (a._matrix[i.y] || {})[i.x] || [], t || event]))
+      }
+    };
+    var a = e.dblclick_dhx_marked_timespan || function() {};
+    e.dblclick_dhx_marked_timespan = function(t) {
+      var i = e.matrix[e._mode];
+      return i ? e.dblclick_dhx_matrix_cell(t) : a.apply(this, arguments)
+    }, e.dblclick_dhx_matrix_scell = function(t) {
+      return e.dblclick_dhx_matrix_cell(t)
+    }, e._isRender = function(t) {
+      return e.matrix[e._mode] && e.matrix[e._mode].render == t
+    }, e.attachEvent("onCellDblClick", function(t, a, i, n, r) {
+      if (!this.config.readonly && ("dblclick" != r.type || this.config.dblclick_create)) {
+        var s = e.matrix[e._mode],
+          d = {};
+        d.start_date = s._trace_x[t], d.end_date = s._trace_x[t + 1] ? s._trace_x[t + 1] : e.date.add(s._trace_x[t], s.x_step, s.x_unit),
+          s._start_correction && (d.start_date = new Date(1 * d.start_date + s._start_correction)), s._end_correction && (d.end_date = new Date(d.end_date - s._end_correction)), d[s.y_property] = s.y_unit[a].key, e.addEventNow(d, null, r)
+      }
+    }), e.attachEvent("onBeforeDrag", function(t, a, i) {
+      return !e._isRender("cell")
+    }), e.attachEvent("onEventChanged", function(e, t) {
+      t._timed = this.isOneDayEvent(t)
+    }), e.attachEvent("onBeforeEventChanged", function(e, t, a, i) {
+      return e && (e._move_delta = void 0), i && (i._move_delta = void 0), !0
+    }), e._is_column_visible = function(t) {
+      var a = e.matrix[e._mode],
+        i = e._get_date_index(a, t);
+      return !e._ignores[i]
+    };
+    var i = e._render_marked_timespan;
+    e._render_marked_timespan = function(t, a, n, r, s) {
+      if (!e.config.display_marked_timespans) return [];
+      if (e.matrix && e.matrix[e._mode]) {
+        if (e._isRender("cell")) return;
+        var d = e._lame_copy({}, e.matrix[e._mode]);
+        d.round_position = !1;
+        var o = [],
+          _ = [],
+          l = [],
+          c = t.sections ? t.sections.units || t.sections.timeline : null;
+        if (n) l = [a], _ = [n];
+        else {
+          var h = d.order;
+          if (c) h.hasOwnProperty(c) && (_.push(c), l.push(d._scales[c]));
+          else if (d._scales)
+            for (var u in h) h.hasOwnProperty(u) && (_.push(u),
+              l.push(d._scales[u]))
+        }
+        var r = r ? new Date(r) : e._min_date,
+          s = s ? new Date(s) : e._max_date;
+        if (r.valueOf() < e._min_date.valueOf() && (r = new Date(e._min_date)), s.valueOf() > e._max_date.valueOf() && (s = new Date(e._max_date)), !d._trace_x) return;
+        for (var v = 0; v < d._trace_x.length && !e._is_column_visible(d._trace_x[v]); v++);
+        if (v == d._trace_x.length) return;
+        var f = [];
+        if (t.days > 6) {
+          var g = new Date(t.days);
+          e.date.date_part(new Date(r)) <= +g && +s >= +g && f.push(g)
+        } else f.push.apply(f, e._get_dates_by_index(t.days));
+        for (var p = t.zones, m = e._get_css_classes_by_config(t), y = 0; y < _.length; y++) {
+          a = l[y], n = _[y];
+          for (var v = 0; v < f.length; v++)
+            for (var x = f[v], b = 0; b < p.length; b += 2) {
+              var w = p[b],
+                k = p[b + 1],
+                E = new Date(+x + 60 * w * 1e3),
+                D = new Date(+x + 60 * k * 1e3);
+              if (E = new Date(E.valueOf() + 1e3 * (E.getTimezoneOffset() - x.getTimezoneOffset()) * 60), D = new Date(D.valueOf() + 1e3 * (D.getTimezoneOffset() - x.getTimezoneOffset()) * 60), D > r && s > E) {
+                var N = e._get_block_by_config(t);
+                N.className = m;
+                var S = e._timeline_getX({
+                    start_date: E
+                  }, !1, d) - 1,
+                  C = e._timeline_getX({
+                    start_date: D
+                  }, !1, d) - 1,
+                  M = Math.max(1, C - S - 1),
+                  A = d._section_height[n] - 1 || d.dy - 1;
+                N.style.cssText = "height: " + A + "px; left: " + S + "px; width: " + M + "px; top: 0;",
+                  a.insertBefore(N, a.firstChild), o.push(N)
+              }
+            }
+        }
+        return o
+      }
+      return i.apply(e, [t, a, n])
+    };
+    var n = e._append_mark_now;
+    e._append_mark_now = function(t, a) {
+      if (e.matrix && e.matrix[e._mode]) {
+        var i = e._currentDate(),
+          r = e._get_zone_minutes(i),
+          s = {
+            days: +e.date.date_part(i),
+            zones: [r, r + 1],
+            css: "dhx_matrix_now_time",
+            type: "dhx_now_time"
+          };
+        return e._render_marked_timespan(s)
+      }
+      return n.apply(e, [t, a])
+    };
+    var r = e._mark_timespans;
+    e._mark_timespans = function() {
+      if (e.matrix && e.matrix[e.getState().mode]) {
+        for (var t = [], a = e.matrix[e.getState().mode], i = a.y_unit, n = 0; n < i.length; n++) {
+          var s = i[n].key,
+            d = a._scales[s],
+            o = e._on_scale_add_marker(d, s);
+          t.push.apply(t, o)
+        }
+        return t
+      }
+      return r.apply(this, arguments)
+    };
+    var s = e._on_scale_add_marker;
+    e._on_scale_add_marker = function(t, a) {
+      if (e.matrix && e.matrix[e._mode]) {
+        var i = [],
+          n = e._marked_timespans;
+        if (n && e.matrix && e.matrix[e._mode])
+          for (var r = e._mode, d = e._min_date, o = e._max_date, _ = n.global, l = e.date.date_part(new Date(d)); o > l; l = e.date.add(l, 1, "day")) {
+            var c = +l,
+              h = l.getDay(),
+              u = [],
+              v = _[c] || _[h];
+            if (u.push.apply(u, e._get_configs_to_render(v)), n[r] && n[r][a]) {
+              var f = [],
+                g = e._get_types_to_render(n[r][a][h], n[r][a][c]);
+              f.push.apply(f, e._get_configs_to_render(g)), f.length && (u = f)
+            }
+            for (var p = 0; p < u.length; p++) {
+              var m = u[p],
+                y = m.days;
+              7 > y ? (y = c, i.push.apply(i, e._render_marked_timespan(m, t, a, l, e.date.add(l, 1, "day"))), y = h) : i.push.apply(i, e._render_marked_timespan(m, t, a, l, e.date.add(l, 1, "day")))
+            }
+          }
+        return i
+      }
+      return s.apply(this, arguments)
+    }, e._resolve_timeline_section = function(e, t) {
+      var a = 0,
+        i = 0;
+      for (a; a < this._colsS.heights.length && (i += this._colsS.heights[a], !(i > t.y)); a++);
+      e.y_unit[a] || (a = e.y_unit.length - 1),
+        this._drag_event && !this._drag_event._orig_section && (this._drag_event._orig_section = e.y_unit[a].key), t.fields = {}, a >= 0 && e.y_unit[a] && (t.section = t.fields[e.y_property] = e.y_unit[a].key)
+    }, e._update_timeline_section = function(e) {
+      var t = e.view,
+        a = e.event,
+        i = e.pos;
+      if (a) {
+        if (a[t.y_property] != i.section) {
+          var n = this._get_timeline_event_height(a, t);
+          a._sorder = this._get_dnd_order(a._sorder, n, t._section_height[i.section])
+        }
+        a[t.y_property] = i.section
+      }
+    }, e._get_date_index = function(e, t) {
+      for (var a = 0, i = e._trace_x; a < i.length - 1 && +t >= +i[a + 1];) a++;
+      return a
+    }, e._timeline_drag_date = function(t, a) {
+      var i, n, r = t,
+        s = {
+          x: a
+        },
+        d = 0,
+        o = 0;
+      for (o; o <= this._cols.length - 1; o++)
+        if (n = this._cols[o], d += n, d > s.x) {
+          i = (s.x - (d - n)) / n, i = 0 > i ? 0 : i;
+          break
+        }
+      if (r.round_position) {
+        var _ = 1,
+          l = e.getState().drag_mode;
+        l && "move" != l && "create" != l && (_ = .5), i >= _ && o++, i = 0
+      }
+      if (0 === o && this._ignores[0])
+        for (o = 1, i = 0; this._ignores[o];) o++;
+      else if (o == this._cols.length && this._ignores[o - 1]) {
+        for (o = this._cols.length - 1, i = 0; this._ignores[o];) o--;
+        o++
+      }
+      var c;
+      if (o >= r._trace_x.length) c = e.date.add(r._trace_x[r._trace_x.length - 1], r.x_step, r.x_unit),
+        r._end_correction && (c = new Date(c - r._end_correction));
+      else {
+        var h = i * n * r._step + r._start_correction;
+        c = new Date(+r._trace_x[o] + h)
+      }
+      return c
+    }, e.attachEvent("onBeforeTodayDisplayed", function() {
+      for (var t in e.matrix) {
+        var a = e.matrix[t];
+        a.x_start = a._original_x_start
+      }
+      return !0
+    }), e.attachEvent("onOptionsLoad", function() {
+      for (var t in e.matrix) {
+        var a = e.matrix[t];
+        a.order = {}, e.callEvent("onOptionsLoadStart", []);
+        for (var t = 0; t < a.y_unit.length; t++) a.order[a.y_unit[t].key] = t;
+        e.callEvent("onOptionsLoadFinal", []), e._date && a.name == e._mode && e.setCurrentView(e._date, e._mode);
+      }
+    }), e.attachEvent("onSchedulerResize", function() {
+      if (e.matrix[this._mode]) {
+        var t = e.matrix[this._mode];
+        return e._renderMatrix.call(t, !0, !0), !1
+      }
+      return !0
+    }), e.attachEvent("onBeforeDrag", function(t, a, i) {
+      if ("resize" == a) {
+        var n = i.target || i.srcElement,
+          r = e._getClassName(n);
+        r.indexOf("dhx_event_resize_end") < 0 ? e._drag_from_start = !0 : e._drag_from_start = !1
+      }
+      return !0
+    })
+  }, e._temp_matrix_scope()
+});
+//# sourceMappingURL=../sources/ext/dhtmlxscheduler_timeline.js.map

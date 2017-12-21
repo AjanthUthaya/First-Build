@@ -1,10 +1,13 @@
 /*
 @license
-dhtmlxScheduler v.4.4.0 Stardard
+dhtmlxScheduler v.4.4.9 Professional
 
-This software is covered by GPL license. You also can obtain Commercial or Enterprise license to use it in non-GPL project - please contact sales@dhtmlx.com. Usage without proper license is prohibited.
+This software can be used only as part of dhtmlx.com site.
+You are not allowed to use it on any other site
 
 (c) Dinamenta, UAB.
+
+
 */
 
 .dhtmlx_message_area {
@@ -1226,10 +1229,32 @@ div.icon_delete {
   outline-style: auto
 }
 
+.dhx_no_select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  user-select: none
+}
+
+.dhx_drag_placeholder {
+  z-index: 10;
+  opacity: .8
+}
+
+.dhx_drag_placeholder .dhx_cal_select_menu {
+  display: none
+}
+
 .dhtmlx_modal_box *, .dhx_cal_data, .dhx_cal_data div, .dhx_cal_data table *, .dhx_cal_header, .dhx_cal_header div, .dhx_cal_light .dhx_cal_lsection, .dhx_cal_light .dhx_wrap_section, .dhx_cal_navline div, .dhx_cal_quick_info, .dhx_cal_quick_info div, .dhx_multi_day, .dhx_multi_day div, .dhx_tooltip_line div {
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box
+}
+
+.dhx_form_repeat label {
+  margin-bottom: 0
 }
 
 .dhx_cal_data div.dhx_scale_hour, .dhx_cal_data table .dhx_matrix_cell, .dhx_cal_data table .dhx_matrix_scell {

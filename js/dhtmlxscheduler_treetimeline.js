@@ -1,289 +1,133 @@
 /*
-This software is allowed to use under GPL or you need to obtain Commercial or Enterise License
-to use it in non-GPL project. Please contact sales@dhtmlx.com for details
+@license
+dhtmlxScheduler v.4.4.9 Professional
+
+This software can be used only as part of dhtmlx.com site.
+You are not allowed to use it on any other site
+
+(c) Dinamenta, UAB.
+
+
 */
-scheduler.attachEvent("onTimelineCreated", function(obj) {
-
-  if (obj.render == "tree") {
-    obj.y_unit_original = obj.y_unit;
-    obj.y_unit = scheduler._getArrayToDisplay(obj.y_unit_original);
-
-    scheduler.attachEvent('onOptionsLoadStart', function() {
-      obj.y_unit = scheduler._getArrayToDisplay(obj.y_unit_original);
-    });
-
-    scheduler.form_blocks[obj.name] = {
-      render: function(sns) {
-        var _result = "<div class='dhx_section_timeline' style='overflow: hidden; height: " + sns.height + "px'></div>";
-        return _result;
+Scheduler.plugin(function(e) {
+  e.attachEvent("onTimelineCreated", function(t) {
+    "tree" == t.render && (t.y_unit_original = t.y_unit, t.y_unit = e._getArrayToDisplay(t.y_unit_original), e.attachEvent("onOptionsLoadStart", function() {
+      t.y_unit = e._getArrayToDisplay(t.y_unit_original)
+    }), e.form_blocks[t.name] = {
+      render: function(e) {
+        var t = "<div class='dhx_section_timeline' style='overflow: hidden; height: " + e.height + "px'></div>";
+        return t
       },
-      set_value: function(node, value, ev, config) {
-        var options = scheduler._getArrayForSelect(scheduler.matrix[config.type].y_unit_original, config.type);
-        node.innerHTML = '';
-        var temp_select = document.createElement('select');
-        node.appendChild(temp_select);
-
-        var select = node.getElementsByTagName('select')[0];
-
-        for (var i = 0; i < options.length; i++) {
-          var temp_option = document.createElement('option');
-          temp_option.value = options[i].key;
-          if (temp_option.value == ev[scheduler.matrix[config.type].y_property])
-            temp_option.selected = true;
-          temp_option.innerHTML = options[i].label;
-          select.appendChild(temp_option);
+      set_value: function(t, a, i, n) {
+        var r = e._getArrayForSelect(e.matrix[n.type].y_unit_original, n.type);
+        t.innerHTML = "";
+        var s = document.createElement("select");
+        t.appendChild(s);
+        var o = t.getElementsByTagName("select")[0];
+        !o._dhx_onchange && n.onchange && (o.onchange = n.onchange, o._dhx_onchange = !0);
+        for (var d = 0; d < r.length; d++) {
+          var _ = document.createElement("option");
+          _.value = r[d].key, _.value == i[e.matrix[n.type].y_property] && (_.selected = !0), _.innerHTML = r[d].label, o.appendChild(_)
         }
-
       },
-      get_value: function(node, ev, config) {
-        return node.firstChild.value;
+      get_value: function(e, t, a) {
+        return e.firstChild.value
       },
-      focus: function(node) {}
-    };
+      focus: function(e) {}
+    })
+  }), e.attachEvent("onBeforeSectionRender", function(t, a, i) {
+    var n = {};
+    if ("tree" == t) {
+      var r, s, o, d, _, l;
+      d = "dhx_matrix_scell", a.children ? (r = i.folder_dy || i.dy, i.folder_dy && !i.section_autoheight && (o = "height:" + i.folder_dy + "px;"), s = "dhx_row_folder", d += " folder", _ = "<div class='dhx_scell_expand'>" + (a.open ? "-" : "+") + "</div>", l = i.folder_events_available ? "dhx_data_table folder_events" : "dhx_data_table folder") : (r = i.dy, s = "dhx_row_item", d += " item", _ = "", l = "dhx_data_table"), d += e.templates[i.name + "_scaley_class"](a.key, a.label, a) ? " " + e.templates[i.name + "_scaley_class"](a.key, a.label, a) : "";
+      var c = "<div class='dhx_scell_level" + a.level + "'>" + _ + "<div class='dhx_scell_name'>" + (e.templates[i.name + "_scale_label"](a.key, a.label, a) || a.label) + "</div></div>";
+      n = {
+        height: r,
+        style_height: o,
+        tr_className: s,
+        td_className: d,
+        td_content: c,
+        table_className: l
+      }
+    }
+    return n
+  });
+  var t;
+  e.attachEvent("onBeforeEventChanged", function(a, i, n) {
+    if (e._isRender("tree"))
+      for (var r = e._get_event_sections ? e._get_event_sections(a) : [a[e.matrix[e._mode].y_property]], s = 0; s < r.length; s++) {
+        var o = e.getSection(r[s]);
+        if (o && o.children && !e.matrix[e._mode].folder_events_available) return n || (a[e.matrix[e._mode].y_property] = t), !1
+      }
+    return !0
+  }), e.attachEvent("onBeforeDrag", function(a, i, n) {
+    if (e._isRender("tree")) {
+      var r, s = e._locate_cell_timeline(n);
+      if (s && (r = e.matrix[e._mode].y_unit[s.y].key, e.matrix[e._mode].y_unit[s.y].children && !e.matrix[e._mode].folder_events_available)) return !1;
+      var o = e.getEvent(a),
+        d = e.matrix[e._mode].y_property;
+      t = o && o[d] ? o[d] : r
+    }
+    return !0
+  }), e._getArrayToDisplay = function(t) {
+    var a = [],
+      i = function(t, n) {
+        for (var r = n || 0, s = 0; s < t.length; s++) t[s].level = r, t[s].children && "undefined" == typeof t[s].key && (t[s].key = e.uid()),
+          a.push(t[s]), t[s].open && t[s].children && i(t[s].children, r + 1)
+      };
+    return i(t), a
+  }, e._getArrayForSelect = function(t, a) {
+    var i = [],
+      n = function(t) {
+        for (var r = 0; r < t.length; r++) e.matrix[a].folder_events_available ? i.push(t[r]) : t[r].children || i.push(t[r]), t[r].children && n(t[r].children, a)
+      };
+    return n(t), i
+  }, e._toggleFolderDisplay = function(t, a, i) {
+    var n, r = function(e, t, a, i) {
+        for (var s = 0; s < t.length && (t[s].key != e && !i || !t[s].children || (t[s].open = "undefined" != typeof a ? a : !t[s].open, n = !0, i || !n)); s++) t[s].children && r(e, t[s].children, a, i);
+      },
+      s = e.getSection(t);
+    "undefined" != typeof a || i || (a = !s.open), e.callEvent("onBeforeFolderToggle", [s, a, i]) && (r(t, e.matrix[e._mode].y_unit_original, a, i), e.matrix[e._mode].y_unit = e._getArrayToDisplay(e.matrix[e._mode].y_unit_original), e.callEvent("onOptionsLoad", []), e.callEvent("onAfterFolderToggle", [s, a, i]))
+  }, e.attachEvent("onCellClick", function(t, a, i, n, r) {
+    e._isRender("tree") && (e.matrix[e._mode].folder_events_available || "undefined" != typeof e.matrix[e._mode].y_unit[a] && e.matrix[e._mode].y_unit[a].children && e._toggleFolderDisplay(e.matrix[e._mode].y_unit[a].key));
+  }), e.attachEvent("onYScaleClick", function(t, a, i) {
+    e._isRender("tree") && a.children && e._toggleFolderDisplay(a.key)
+  }), e.getSection = function(t) {
+    if (e._isRender("tree")) {
+      var a, i = function(e, t) {
+        for (var n = 0; n < t.length; n++) t[n].key == e && (a = t[n]), t[n].children && i(e, t[n].children)
+      };
+      return i(t, e.matrix[e._mode].y_unit_original), a || null
+    }
+  }, e.deleteSection = function(t) {
+    if (e._isRender("tree")) {
+      var a = !1,
+        i = function(e, t) {
+          for (var n = 0; n < t.length && (t[n].key == e && (t.splice(n, 1), a = !0), !a); n++) t[n].children && i(e, t[n].children);
+        };
+      return i(t, e.matrix[e._mode].y_unit_original), e.matrix[e._mode].y_unit = e._getArrayToDisplay(e.matrix[e._mode].y_unit_original), e.callEvent("onOptionsLoad", []), a
+    }
+  }, e.deleteAllSections = function() {
+    e._isRender("tree") && (e.matrix[e._mode].y_unit_original = [], e.matrix[e._mode].y_unit = e._getArrayToDisplay(e.matrix[e._mode].y_unit_original), e.callEvent("onOptionsLoad", []))
+  }, e.addSection = function(t, a) {
+    if (e._isRender("tree")) {
+      var i = !1,
+        n = function(e, t, r) {
+          if (a)
+            for (var s = 0; s < r.length && (r[s].key == t && r[s].children && (r[s].children.push(e),
+                i = !0), !i); s++) r[s].children && n(e, t, r[s].children);
+          else r.push(e), i = !0
+        };
+      return n(t, a, e.matrix[e._mode].y_unit_original), e.matrix[e._mode].y_unit = e._getArrayToDisplay(e.matrix[e._mode].y_unit_original), e.callEvent("onOptionsLoad", []), i
+    }
+  }, e.openAllSections = function() {
+    e._isRender("tree") && e._toggleFolderDisplay(1, !0, !0)
+  }, e.closeAllSections = function() {
+    e._isRender("tree") && e._toggleFolderDisplay(1, !1, !0)
+  }, e.openSection = function(t) {
+    e._isRender("tree") && e._toggleFolderDisplay(t, !0)
+  }, e.closeSection = function(t) {
+    e._isRender("tree") && e._toggleFolderDisplay(t, !1)
   }
 });
-
-scheduler.attachEvent("onBeforeViewRender", function(render_name, y_unit, timeline) {
-  var res = {};
-  if (render_name == "tree") {
-    var height;
-    // section 1
-    var tr_className, style_height, td_className;
-    var div_expand;
-    // section 3
-    var table_className;
-    if (y_unit.children) {
-      height = timeline.folder_dy || timeline.dy;
-      if (timeline.folder_dy && !timeline.section_autoheight) {
-        style_height = "height:" + timeline.folder_dy + "px;";
-      }
-      tr_className = "dhx_row_folder";
-      td_className = "dhx_matrix_scell folder";
-      div_expand = "<div class='dhx_scell_expand'>" + ((y_unit.open) ? '-' : '+') + "</div>";
-      table_className = (timeline.folder_events_available) ? "dhx_data_table folder_events" : "dhx_data_table folder";
-    } else {
-      height = timeline.dy;
-      tr_className = "dhx_row_item";
-      td_className = "dhx_matrix_scell item";
-      div_expand = '';
-      table_className = "dhx_data_table";
-    }
-    td_content = "<div class='dhx_scell_level" + y_unit.level + "'>" + div_expand + "<div class='dhx_scell_name'>" + (scheduler.templates[timeline.name + '_scale_label'](y_unit.key, y_unit.label, y_unit) || y_unit.label) + "</div></div>";
-
-    res = {
-      height: height,
-      style_height: style_height,
-      //section 1
-      tr_className: tr_className,
-      td_className: td_className,
-      td_content: td_content,
-      //section 3
-      table_className: table_className
-    };
-  };
-  return res;
-});
-
-var section_id_before; // section id of the event before dragging (to bring it back if user drop's event on folder without folder_events_available)
-
-scheduler.attachEvent("onBeforeEventChanged", function(event_object, native_event, is_new) {
-  if (scheduler._isRender("tree")) { // if mode's render == tree
-    var section = scheduler.getSection(event_object[scheduler.matrix[scheduler._mode].y_property]);
-    if (section && typeof section.children != 'undefined' && !scheduler.matrix[scheduler._mode].folder_events_available) { // section itself could be not defined in case of new event (addEventNow)
-      if (!is_new) { //if old - move back
-        event_object[scheduler.matrix[scheduler._mode].y_property] = section_id_before;
-      }
-      return false;
-    }
-  }
-  return true;
-});
-
-scheduler.attachEvent("onBeforeDrag", function(event_id, mode, native_event_object) {
-  if (scheduler._isRender("tree")) {
-    var cell = scheduler._locate_cell_timeline(native_event_object);
-    if (cell) {
-      var section_id = scheduler.matrix[scheduler._mode].y_unit[cell.y].key;
-      if (typeof scheduler.matrix[scheduler._mode].y_unit[cell.y].children != "undefined" && !scheduler.matrix[scheduler._mode].folder_events_available) {
-        return false;
-      }
-    }
-
-    var ev = scheduler.getEvent(event_id);
-    section_id_before = section_id || ev[scheduler.matrix[scheduler._mode].y_property]; // either event id or section_id will be available
-  }
-  return true;
-});
-
-scheduler._getArrayToDisplay = function(array) { // function to flatten out hierarhical array, used for tree view
-  var result = [];
-  var fillResultArray = function(array, lvl) {
-    var level = lvl || 0;
-    for (var i = 0; i < array.length; i++) {
-      array[i].level = level;
-      if (typeof array[i].children != "undefined" && typeof array[i].key == "undefined")
-        array[i].key = scheduler.uid();
-      result.push(array[i]);
-      if (array[i].open && array[i].children) {
-        fillResultArray(array[i].children, level + 1);
-      }
-    }
-  };
-  fillResultArray(array);
-  return result;
-};
-
-
-scheduler._getArrayForSelect = function(array, mode) { // function to flatten out hierarhical array, used for tree view
-  var result = [];
-  var fillResultArray = function(array) {
-    for (var i = 0; i < array.length; i++) {
-      if (scheduler.matrix[mode].folder_events_available) {
-        result.push(array[i]);
-      } else {
-        if (typeof array[i].children == "undefined") {
-          result.push(array[i]);
-        }
-      }
-      if (array[i].children)
-        fillResultArray(array[i].children, mode);
-    }
-  };
-  fillResultArray(array);
-  return result;
-};
-
-
-/*
-scheduler._toggleFolderDisplay(4) -- toggle display of the section with key 4 (closed -> open)
-scheduler._toggleFolderDisplay(4, true) -- open section with the key 4 (doesn't matter what status was before). False - close.
-scheduler._toggleFolderDisplay(4, false, true) -- close ALL sections. Key is not used in such condition.
-*/
-scheduler._toggleFolderDisplay = function(key, status, all_sections) { // used for tree view
-  var marked;
-  var toggleElement = function(key, array, status, all_sections) {
-    for (var i = 0; i < array.length; i++) {
-      if ((array[i].key == key || all_sections) && array[i].children) {
-        array[i].open = (typeof status != "undefined") ? status : !array[i].open;
-        marked = true;
-        if (!all_sections && marked)
-          break;
-      }
-      if (array[i].children) {
-        toggleElement(key, array[i].children, status, all_sections);
-      }
-    }
-  };
-  toggleElement(key, scheduler.matrix[scheduler._mode].y_unit_original, status, all_sections);
-  scheduler.matrix[scheduler._mode].y_unit = scheduler._getArrayToDisplay(scheduler.matrix[scheduler._mode].y_unit_original);
-  scheduler.callEvent("onOptionsLoad", []);
-};
-
-scheduler.attachEvent("onCellClick", function(x, y, a, b, event) {
-  if (scheduler._isRender("tree")) {
-    if (!scheduler.matrix[scheduler._mode].folder_events_available) {
-      if (typeof scheduler.matrix[scheduler._mode].y_unit[y].children != "undefined") {
-        scheduler._toggleFolderDisplay(scheduler.matrix[scheduler._mode].y_unit[y].key);
-      }
-    }
-  }
-});
-
-scheduler.attachEvent("onYScaleClick", function(index, value, event) {
-  if (scheduler._isRender("tree")) {
-    if (typeof value.children != "undefined") {
-      scheduler._toggleFolderDisplay(value.key);
-    }
-  }
-});
-
-scheduler.getSection = function(id) {
-  if (scheduler._isRender("tree")) {
-    var obj;
-    var findElement = function(key, array) {
-      for (var i = 0; i < array.length; i++) {
-        if (array[i].key == key)
-          obj = array[i];
-        if (array[i].children)
-          findElement(key, array[i].children);
-      }
-    };
-    findElement(id, scheduler.matrix[scheduler._mode].y_unit_original);
-    return obj || null;
-  }
-};
-
-scheduler.deleteSection = function(id) {
-  if (scheduler._isRender("tree")) {
-    var result = false;
-    var deleteElement = function(key, array) {
-      for (var i = 0; i < array.length; i++) {
-        if (array[i].key == key) {
-          array.splice(i, 1);
-          result = true;
-        }
-        if (result)
-          break;
-        if (array[i].children)
-          deleteElement(key, array[i].children);
-      }
-    };
-    deleteElement(id, scheduler.matrix[scheduler._mode].y_unit_original);
-    scheduler.matrix[scheduler._mode].y_unit = scheduler._getArrayToDisplay(scheduler.matrix[scheduler._mode].y_unit_original);
-    scheduler.callEvent("onOptionsLoad", []);
-    return result;
-  }
-};
-
-scheduler.deleteAllSections = function() {
-  if (scheduler._isRender("tree")) {
-    scheduler.matrix[scheduler._mode].y_unit_original = [];
-    scheduler.matrix[scheduler._mode].y_unit = scheduler._getArrayToDisplay(scheduler.matrix[scheduler._mode].y_unit_original);
-    scheduler.callEvent("onOptionsLoad", []);
-  }
-};
-
-scheduler.addSection = function(obj, parent_id) {
-  if (scheduler._isRender("tree")) {
-    var result = false;
-    var addElement = function(obj, parent_key, array) {
-      if (!parent_id) {
-        array.push(obj);
-        result = true;
-      } else {
-        for (var i = 0; i < array.length; i++) {
-          if (array[i].key == parent_key && typeof array[i].children != "undefined") {
-            array[i].children.push(obj);
-            result = true;
-          }
-          if (result)
-            break;
-          if (array[i].children)
-            addElement(obj, parent_key, array[i].children);
-        }
-      }
-    };
-    addElement(obj, parent_id, scheduler.matrix[scheduler._mode].y_unit_original);
-    scheduler.matrix[scheduler._mode].y_unit = scheduler._getArrayToDisplay(scheduler.matrix[scheduler._mode].y_unit_original);
-    scheduler.callEvent("onOptionsLoad", []);
-    return result;
-  }
-};
-
-
-scheduler.openAllSections = function() {
-  if (scheduler._isRender("tree"))
-    scheduler._toggleFolderDisplay(1, true, true);
-};
-scheduler.closeAllSections = function() {
-  if (scheduler._isRender("tree"))
-    scheduler._toggleFolderDisplay(1, false, true);
-};
-scheduler.openSection = function(section_id) {
-  if (scheduler._isRender("tree"))
-    scheduler._toggleFolderDisplay(section_id, true);
-};
-scheduler.closeSection = function(section_id) {
-  if (scheduler._isRender("tree"))
-    scheduler._toggleFolderDisplay(section_id, false);
-};
+//# sourceMappingURL=../sources/ext/dhtmlxscheduler_treetimeline.js.map

@@ -22,10 +22,11 @@
 
   <event
     id='1261150493'
-    start_date='20-12-2017 09:00'
-    end_date='20-12-2017 11:00'
+    start_date='21-12-2017 09:00'
+    end_date='21-12-2017 11:00'
     major="Naturfag"
     sub="Energi"
+    section_id="100"
     room="206"
     details='Olympia'
   />

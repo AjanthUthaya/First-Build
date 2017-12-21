@@ -11,38 +11,118 @@ if (mm < 10) {
 }
 
 function init() {
+
+
+  scheduler.locale.labels.timeline_tab = "Timeline";
+  scheduler.locale.labels.section_custom = "Section";
+  scheduler.config.details_on_create = true;
+  scheduler.config.details_on_dblclick = true;
+  scheduler.config.xml_date = "%Y-%m-%d %H:%i";
+
+
+  //===============
+  //Configuration
+  //===============
+
+  var elements = [ // original hierarhical array to display
+    {
+      key: 10,
+      label: "Block-A",
+      open: true,
+      children: [{
+          key: 100,
+          label: "Room 100"
+        },
+        {
+          key: 60,
+          label: "Linda Brown"
+        },
+        {
+          key: 70,
+          label: "George Lucas"
+        }
+      ]
+    },
+    {
+      key: 110,
+      label: "Block-B",
+      /*open: true, //to make it open by default*/
+      children: [{
+          key: 80,
+          label: "Kate Moss"
+        },
+        {
+          key: 90,
+          label: "Dian Fossey"
+        }
+      ]
+    }
+  ];
+
+
+
+  scheduler.createTimelineView({
+    section_autoheight: false,
+    name: "timeline",
+    x_unit: "minute",
+    x_date: "%H:%i",
+    x_step: 30,
+    x_size: 24,
+    x_start: 16,
+    x_length: 48,
+    y_unit: elements,
+    y_property: "section_id",
+    render: "tree",
+    fit_events: true,
+    folder_dy: 50,
+    dy: 50
+  });
+
+  scheduler.attachEvent("onTemplatesReady", function() {
+    scheduler.templates.event_bar_text = function(start, end, event) {
+      return event.major;
+    }
+  });
+//This function below is for resizing screen, not resizing of an element
+  scheduler.attachEvent("onSchedulerResize", function() {
+    console.log("re");
+  });
+
+  //===============
+  //Data loading
+  //===============
+  scheduler.config.lightbox.sections = [{
+      name: "description",
+      height: 40,
+      map_to: "major",
+      type: "textarea",
+      focus: true
+    },
+    {
+      name: "custom",
+      height: 23,
+      type: "timeline",
+      options: null,
+      map_to: "section_id"
+    }, //type should be the same as name of the tab
+    {
+      name: "time",
+      height: 72,
+      type: "time",
+      map_to: "auto"
+    }
+  ]
+  scheduler.config.details_on_create = true;
+  scheduler.config.details_on_dblclick = true;
+
   //Set date format for xml data
   scheduler.config.xml_date = "%d-%m-%Y %H:%i";
 
-
-  scheduler.templates.event_class = function(start, end, event) {
-    if (event.major == 'Naturfag') return "Major-Naturfag";
-
-    //Returns a default css class if none of the above match
-    return "Default-Event";
-  };
-
-  scheduler.attachEvent("onTemplatesReady", function() {
-    scheduler.templates.event_text = function(start, end, event) {
-      return "<div><b>" + event.major + "</b></div> <div class=\"Sub\"><i>" + event.sub + "</i></div> <div class=\"Room\"><i>" + event.room + "</i></div>";
-    }
-  });
-
-  //Set Start and end calendar
   scheduler.config.first_hour = 8;
-  scheduler.config.last_hour = 18;
-
-  //Separates events if they have the same time, instead of overlapping
-  scheduler.config.separate_short_events = true;
-
-  //Change height of hour scale
-/*  scheduler.config.hour_size_px = 80;*/
-
-  //Shows multi day evets
-/*  scheduler.config.multi_day = true;*/
+  scheduler.config.last_hour = 17;
 
   //init and sets date to current
-  scheduler.init('scheduler_here', new Date(yyyy, mm, dd), "week");
+  scheduler.init('scheduler_here', new Date(yyyy, mm, dd), "timeline");
 
   //Gets all events and loads it in
   scheduler.load("../data/Test.xml");
