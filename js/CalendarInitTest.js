@@ -12,12 +12,12 @@ if (mm < 10) {
 
 function init() {
 
-
-  scheduler.locale.labels.timeline_tab = "Timeline";
-  scheduler.locale.labels.section_custom = "Section";
   scheduler.config.details_on_create = true;
   scheduler.config.details_on_dblclick = true;
-  scheduler.config.xml_date = "%Y-%m-%d %H:%i";
+  //Set date format for xml data
+  scheduler.config.xml_date = "%d-%m-%Y %H:%i";
+  scheduler.config.first_hour = 8;
+  scheduler.config.last_hour = 17;
 
 
   //===============
@@ -59,8 +59,6 @@ function init() {
     }
   ];
 
-
-
   scheduler.createTimelineView({
     section_autoheight: false,
     name: "timeline",
@@ -75,7 +73,8 @@ function init() {
     render: "tree",
     fit_events: true,
     folder_dy: 50,
-    dy: 50
+    dy: 50,
+    event_dy: 50
   });
 
   scheduler.attachEvent("onTemplatesReady", function() {
@@ -83,10 +82,12 @@ function init() {
       return event.major;
     }
   });
-//This function below is for resizing screen, not resizing of an element
-  scheduler.attachEvent("onSchedulerResize", function() {
-    console.log("re");
-  });
+  //This function below is for resizing screen, not resizing of an element
+  /*  scheduler.attachEvent("onSchedulerResize", function() {
+      console.log("Resizing");
+    });*/
+
+
 
   //===============
   //Data loading
@@ -112,14 +113,6 @@ function init() {
       map_to: "auto"
     }
   ]
-  scheduler.config.details_on_create = true;
-  scheduler.config.details_on_dblclick = true;
-
-  //Set date format for xml data
-  scheduler.config.xml_date = "%d-%m-%Y %H:%i";
-
-  scheduler.config.first_hour = 8;
-  scheduler.config.last_hour = 17;
 
   //init and sets date to current
   scheduler.init('scheduler_here', new Date(yyyy, mm, dd), "timeline");
@@ -127,4 +120,19 @@ function init() {
   //Gets all events and loads it in
   scheduler.load("../data/Test.xml");
 
+  //For picking date and updating current view
+  /*scheduler.setCurrentView(new Date(2012,7,4));*/
+
 }
+
+$('#TestDate').val(yyyy + "-" + mm + "-" + dd);
+
+
+setInterval(function() {
+
+var InputDate = $('#TestDate').val();
+
+console.log(InputDate);
+
+
+}, 1000);

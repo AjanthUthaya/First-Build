@@ -46,41 +46,70 @@
   min-height: calc(100vh - 80px);
 }
 
-div#scheduler_here{
+/* Removes the background of the verticall calendar */
+
+div#scheduler_here {
   background-color: inherit;
 }
 
-.dhx_cal_navline{
+/* Gives header and time of calendar white background */
+
+.dhx_cal_navline {
   background-color: white;
 }
+
+.dhx_cal_header {
+    background-color: white;
+}
+
+/* Removes unnecessary padding to each cell given by foundation */
 
 table tbody th, table tbody td {
   padding: 0;
 }
 
-.dhtmlx-error, .dhtmlx-info {
-  display: none;
-}
+/* Makes it so that one option doesn't get 100% width, instead it divides the width equally between the elements */
 
 .dhx_section_time {
   display: flex;
 }
 
+/* Gives event full height and centers text vertically and horizontally */
+
 .dhx_cal_event_line {
-  height: 100% !important;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0 5px;
 }
 
+/* Makes resize dots at the start and end full height aswell */
+
 .dhx_cal_event_line .dhx_event_resize {
   height: 100% !important;
 }
 
+/* Makes it so that text area fits inside the container */
+
 textarea {
   min-height: inherit;
   margin: 0;
+}
+
+/* Removes unnecessary height to every select element given by foundation */
+
+select {
+  height: inherit;
+}
+
+
+/* Removes yellow highlight/background on clicked element */
+.dhx_focus_slot{
+  display:none;
+}
+
+.dhx_cal_data{
+   outline:0;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

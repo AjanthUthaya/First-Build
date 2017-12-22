@@ -42,7 +42,7 @@ function init() {
 
   scheduler.attachEvent("onTemplatesReady", function() {
     scheduler.templates.event_text = function(start, end, event) {
-      return "<div><b>" + event.major + "</b></div> <div class=\"Sub\"><i>" + event.sub + "</i></div> <div class=\"Room\"><i>" + event.room + "</i></div>";
+      return "<div class=\"Content\"><div class=\"Major\"><b>" + event.major + "</b></div> <div class=\"Sub\"><i>" + event.sub + "</i></div></div> <div class=\"Room\"><i>" + event.room + "</i></div>";
     }
   });
 
