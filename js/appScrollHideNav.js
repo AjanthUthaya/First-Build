@@ -11,7 +11,11 @@ $(document).scroll(function() {
     nav.toggleClass('hidden', scrollTop > prev);
     prev = scrollTop;
     //document.getElementById("Test-Content").style.marginTop = '0px';
+  } else if (y < 400) {
+    nav.toggleClass('hidden', scrollTop < prev);
   } else {
     //document.getElementById("Test-Content").style.marginTop = '80px';
   }
+
+
 });

@@ -52,6 +52,10 @@ div#scheduler_here {
   background-color: inherit;
 }
 
+table tbody tr:nth-child(even) {
+    background-color: inherit;
+}
+
 /* Gives header and time of calendar white background */
 
 .dhx_cal_navline {

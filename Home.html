@@ -156,27 +156,20 @@
 
       <section id="Content-Main">
 
+
         <div class="Display-Main">
 
 
           <div class="Display-Item Display-Next">
-
-
-
-            <label>Next Lesson in</label>
-
-            <div class="Display-Item-Screen" CountDownTo="01/01/2018 23:59" id="NextClassMain">
+            <!-- CountDownTo Format is "MM/DD/YYYY HH:MM" -->
+            <div class="Display-Item-Screen" CountDownTo="12/23/2017 23:59" id="NextClassMain">
 
               <div class="Item-Next-Bottom" id="NextClassMajor">
-
                 <label>Naturfag - 206</label>
-
               </div>
 
               <div class="Item-Next-Top" id="NextClassNo">
-
                 <h5>No lessons</h5>
-
               </div>
 
               <div class="Item-Next-Top" id="NextClassHours">
@@ -221,12 +214,10 @@
 
 
             </div>
-
+            <label class="Display-Item-Title">Next Lesson in</label>
           </div>
 
           <div class="Display-Item Display-Test">
-
-            <label>Next available test date</label>
 
             <div class="Display-Item-Screen">
 
@@ -237,11 +228,11 @@
 
             </div>
 
+            <label class="Display-Item-Title">Next available test date</label>
+
           </div>
 
           <div class="Display-Item Display-Fravaer">
-
-            <label>Absence in S1</label>
 
             <div class="Display-Item-Screen">
 
@@ -294,6 +285,8 @@
               </div>
 
             </div>
+
+            <label class="Display-Item-Title">Absence in S1</label>
 
           </div>
 
@@ -382,8 +375,22 @@
   <script src="js/vendor/what-input.js"></script>
   <script src="js/vendor/foundation.js"></script>
   <!-- NOTE: No clue what this does, but if your keeping it make it avalable offline -->
+  <!-- NOTE: A jQuery plugin that adds cross-browser mouse wheel support. No clue why this is here, can not remember.
+  // using on
+  $('#my_elem').on('mousewheel', function(event) {
+      console.log(event.deltaX, event.deltaY, event.deltaFactor);
+  });
+
+  // using the event helper
+  $('#my_elem').mousewheel(function(event) {
+      console.log(event.deltaX, event.deltaY, event.deltaFactor);
+  });
+ -->
   <!--<script src="https://rawgit.com/jquery/jquery-mousewheel/master/jquery.mousewheel.js"></script>-->
+  <script src="js/appScrollHideNav.js"></script>
   <script src="js/dhtmlxscheduler.js"></script>
+  <script src="js/dhtmlxscheduler_readonly.js"></script>
+  <script src="js/dhtmlxscheduler_limit.js"></script>
   <script src="js/CalendarInit.js"></script>
   <script src="js/PreventParentScroll.js"></script>
   <script src="js/AbsenceSwitch.js"></script>

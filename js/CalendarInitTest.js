@@ -74,7 +74,7 @@ function init() {
     fit_events: true,
     folder_dy: 50,
     dy: 50,
-    event_dy: 50
+    event_dy: 46
   });
 
   scheduler.attachEvent("onTemplatesReady", function() {
@@ -93,14 +93,14 @@ function init() {
   //Data loading
   //===============
   scheduler.config.lightbox.sections = [{
-      name: "description",
+      name: "Major",
       height: 40,
       map_to: "major",
       type: "textarea",
       focus: true
     },
     {
-      name: "custom",
+      name: "Room",
       height: 23,
       type: "timeline",
       options: null,

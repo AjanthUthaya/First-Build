@@ -42,6 +42,16 @@
   line-height: 1;
 }
 
+.Display-Item-Title {
+  background-color: #36414d;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #NextClassHours {
   display: none;
 }
@@ -120,7 +130,7 @@
   position: relative;
   width: 90vw;
   height: 900px;
-  margin-top: 5vh;
+  margin-top: 30px;
   margin-left: 5vw;
 }
 
@@ -193,6 +203,20 @@ data {
 .dhx_body {
   display: flex;
   flex-flow: column;
+  cursor: text;
+}
+
+.dhx_cal_event .dhx_title {
+  cursor: -webkit-grab;
+}
+
+.dhx_cal_event .dhx_title:active {
+  cursor: -webkit-grabbing;
+}
+
+div.dhx_menu_head {
+  background-image: inherit;
+  display: none;
 }
 
 .Room {
@@ -234,19 +258,78 @@ data {
   height: 1px;
   background-color: #8C929A;
   right: 0;
-  top: 40.5px;
+  top: 39.5px;
   width: 20px;
 }
 
-/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+/* Changing color scheme of the calendar */
 
+.dhx_cal_container {
+  background-color: inherit;
+}
 
-- - - - - - - - - - - - - - - - - - - - - - - - - - */
+.dhx_cal_data {
+  border-top: 1px solid black;
+}
 
-/* ***************************************************
-  EDIT TO FOUNDATION CODE
-  (Top-Right-Bottom-Left)
-*************************************************** */
+.dhx_cal_header {
+  border-top-color: black;
+  border-right-color: black;
+}
+
+.dhx_cal_date, .dhx_cal_next_button, .dhx_cal_prev_button, .dhx_cal_tab, .dhx_cal_today_button {
+  color: black;
+  border: 1px solid black;
+}
+
+.dhx_cal_tab.active {
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+  text-shadow: inherit
+}
+
+.dhx_cal_tab[name=week_tab] {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.dhx_cal_today_button:active {
+  background-color: black;
+  color: white;
+}
+
+.dhx_scale_bar {
+  border-left: 1px solid black;
+  color: black;
+  background-color: inherit;
+}
+
+.dhx_scale_holder {
+  border-right: 1px solid black;
+}
+
+.dhx_multi_day, .dhx_multi_day_icon, .dhx_multi_day_icon_small {
+  background-color: inherit;
+  border-bottom: 0;
+  border-color: black;
+}
+
+.dhx_scale_holder_now {
+  background-color: #ffef9759;
+  border-right: 1px solid black;
+  border-right-color: black;
+}
+
+.dhx_scale_hour {
+  border-bottom: 1px solid black;
+  background-color: inherit;
+  color: black;
+}
+
+.dhx_scale_hour_sep {
+  background-color: black;
+}
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
