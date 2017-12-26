@@ -33,6 +33,18 @@
   />
 
   <event
+    id='1261150499'
+    start_date='24-12-2017 09:00'
+    end_date='24-12-2017 11:00'
+    title="Norsk"
+    major="2"
+    sub="Energi"
+    section_id="100"
+    room="206"
+    details="Olympia"
+  />
+
+  <event
     id='1261150494'
     start_date='01-01-2018 09:00'
     end_date='01-01-2018 10:45'
@@ -44,9 +56,9 @@
 
 
   <event
-    id='1261150495'
+    id='1261150239'
     start_date='25-12-2017 09:00'
-    end_date='01-12-2018 10:45'
+    end_date='29-12-2017 10:45'
     major="Naturfag"
     sub="Energi"
     room="206"

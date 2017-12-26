@@ -23,6 +23,8 @@ function init() {
   };
   //Sets width for editor field
   scheduler.xy.editor_width = 0;
+  //Removes the whitespace on right side of calendar
+  scheduler.xy.scroll_width = 0;
   //Displaying the current time
   scheduler.config.mark_now = true;
 
@@ -86,12 +88,23 @@ function init() {
     }
   });
 
+  scheduler.attachEvent("onBeforeDrag", function() {
+    //Leave this in if you want to disable the user from being able to create events by dragging
+  });
+
+  scheduler.attachEvent("onclick", function() {
+    //Leave this in if you want to disable options from popping up when user clicks on a event
+  });
+
+  //On double click show lightbox
+  scheduler.config.details_on_dblclick = true;
+
   //Set Start and end calendar
   scheduler.config.first_hour = 8;
   scheduler.config.last_hour = 18;
 
   //Change calendar to ReadOnly format if = true;
-  scheduler.config.readonly = true;
+  scheduler.config.readonly_form = true;
 
   //Change calendar to ReadOnly format if = true, but gives the user the pop-up form(no edit);
   /*scheduler.config.readonly_form = true;*/

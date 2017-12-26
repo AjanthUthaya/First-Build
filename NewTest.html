@@ -161,7 +161,8 @@
           <h2>Create new test date</h2>
         </div>
 
-        <div class="Input-Main grid-x">
+        <!--
+       <div class="Input-Main grid-x">
 
           <div class="Date medium-4">
             <label>Date</label>
@@ -181,23 +182,24 @@
             <label>Max students</label>
             <input type="number" value="30" placeholder="Enter a max value">
           </div>
-
         </div>
+      -->
 
         <div class="Calendar-Main">
 
           <div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
-        		<div class="dhx_cal_navline">
-        			<div class="dhx_cal_prev_button">&nbsp;</div>
-        			<div class="dhx_cal_next_button">&nbsp;</div>
-        			<div class="dhx_cal_today_button"></div>
-        			<div class="dhx_cal_date"></div>
-        		</div>
-        		<div class="dhx_cal_header">
-        		</div>
-        		<div class="dhx_cal_data">
-        		</div>
-        	</div>
+            <div class="dhx_cal_navline">
+              <div class="dhx_minical_icon" id="dhx_minical_icon" onclick="show_minical()">&nbsp;</div>
+              <div class="dhx_cal_date"></div>
+              <div class="dhx_cal_today_button" aria-label="Today" role="button">Today</div>
+              <div class="dhx_cal_prev_button" role="button" aria-label="Previous">&nbsp;</div>
+              <div class="dhx_cal_next_button" role="button" aria-label="Next">&nbsp;</div>
+            </div>
+            <div class="dhx_cal_header">
+            </div>
+            <div class="dhx_cal_data">
+            </div>
+          </div>
 
         </div>
 
@@ -257,6 +259,8 @@
     </div>
   </div>
 
+
+
   <script src="js/vendor/jquery.js"></script>
   <script src="js/vendor/what-input.js"></script>
   <script src="js/vendor/foundation.js"></script>
@@ -266,9 +270,13 @@
   <script src="js/dhtmlxscheduler_collision.js"></script>
   <script src="js/dhtmlxscheduler_key_nav.js"></script>
   <script src="js/dhtmlxscheduler_readonly.js"></script>
+  <script src="js/dhtmlxscheduler_minical.js"></script>
+  <script src="js/dhtmlxscheduler_tooltip.js"></script>
+  <script src="js/dhtmlxscheduler_recurring.js"></script>
   <script src="js/CalendarInitTest.js"></script>
   <script src="js/PreventParentScroll.js"></script>
   <script src="js/app.js"></script>
+
 </body>
 
 </html>

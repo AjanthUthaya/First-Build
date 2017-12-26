@@ -12,12 +12,15 @@ if (mm < 10) {
 
 function init() {
 
-  scheduler.config.details_on_create = true;
   scheduler.config.details_on_dblclick = true;
   //Set date format for xml data
   scheduler.config.xml_date = "%d-%m-%Y %H:%i";
   scheduler.config.first_hour = 8;
   scheduler.config.last_hour = 17;
+  //Resizes the calendars height, but it needs dhtmlxscheduler_container_autoresize.js script added
+  scheduler.config.container_autoresize = false;
+  //Removes the whitespace on right side of calendar
+  scheduler.xy.scroll_width = 0;
 
 
   //===============
@@ -65,7 +68,7 @@ function init() {
     x_unit: "minute",
     x_date: "%H:%i",
     x_step: 30,
-    x_size: 24,
+    x_size: 19,
     x_start: 16,
     x_length: 48,
     y_unit: elements,
@@ -79,7 +82,7 @@ function init() {
 
   scheduler.attachEvent("onTemplatesReady", function() {
     scheduler.templates.event_bar_text = function(start, end, event) {
-      return event.major;
+      return event.title;
     }
   });
   //This function below is for resizing screen, not resizing of an element
@@ -96,8 +99,21 @@ function init() {
       name: "Major",
       height: 40,
       map_to: "major",
-      type: "textarea",
-      focus: true
+      type: "select",
+      focus: true,
+      options: [{
+          key: 1,
+          label: "Naturfag"
+        },
+        {
+          key: 2,
+          label: "Norsk"
+        },
+        {
+          key: 3,
+          label: "Nynorsk"
+        }
+      ]
     },
     {
       name: "Room",
@@ -108,7 +124,7 @@ function init() {
     }, //type should be the same as name of the tab
     {
       name: "time",
-      height: 72,
+      height: 120,
       type: "time",
       map_to: "auto"
     }
@@ -125,14 +141,67 @@ function init() {
 
 }
 
-$('#TestDate').val(yyyy + "-" + mm + "-" + dd);
+/*
+//Script for input, so that the active view changes to that date. Mission on variable change only, update active view
+$('#TestDate').val(yyyy + "-" + (mm + 1) + "-" + dd);
 
 
 setInterval(function() {
 
-var InputDate = $('#TestDate').val();
+  var InputDate = $('#TestDate').val();
+  var Year = InputDate.substr(0, 4);
+  var Month = InputDate.substr(5, 2);
+  var Day = InputDate.substr(8, 2);
+  // console.log(InputDate);
+  // console.log(Year + "-" + Month + "-" + Day);
 
-console.log(InputDate);
+
+  // displays the yyyy,mm,dd in the currently active view
+  scheduler.setCurrentView(new Date(Year, Month - 1, Day));
 
 
-}, 1000);
+}, 100);*/
+
+function show_minical() {
+  if (scheduler.isCalendarVisible()) {
+    scheduler.destroyCalendar();
+  } else {
+    scheduler.renderCalendar({
+      position: "dhx_minical_icon",
+      date: scheduler._date,
+      navigation: true,
+      handler: function(date, calendar) {
+        scheduler.setCurrentView(date);
+        scheduler.destroyCalendar()
+      }
+    });
+  }
+}
+
+//dhtmlxscheduler_tooltip
+var format = scheduler.date.date_to_str("%Y-%m-%d %H:%i");
+scheduler.templates.tooltip_text = function(start, end, event) {
+  return "<b>Event:</b> " + event.text + "<br/><b>Start date:</b> " +
+    format(start) + "<br/><b>End date:</b> " + format(end);
+};
+
+//Close lightbox on click outside of the lightbox
+dhtmlxEvent(document.body, "click", function(e) {
+  var boxId = scheduler.getState().lightbox_id;
+  if (boxId) {
+    var el = e ? e.target : event.srcElement,
+      cover = document.querySelector(".dhx_cal_cover");
+
+    if (cover && cover.contains(el)) {
+      var box = scheduler.getLightbox();
+      scheduler.endLightbox(false, box);
+    }
+  }
+});
+
+//Delete event on backspace
+scheduler.addShortcut("backspace", function(e) {
+  var eventId = scheduler.getState().select_id;
+  if (eventId)
+    scheduler.deleteEvent(eventId);
+}, "event");

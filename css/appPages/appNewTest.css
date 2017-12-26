@@ -4,8 +4,12 @@
 *************************************************** */
 
 .Title {
-  padding-top: 20px;
+  padding: 20px 0;
   text-align: center;
+}
+
+.Title.cell * {
+  font-size: 30px;
 }
 
 .Submit {
@@ -53,7 +57,7 @@ div#scheduler_here {
 }
 
 table tbody tr:nth-child(even) {
-    background-color: inherit;
+  background-color: inherit;
 }
 
 /* Gives header and time of calendar white background */
@@ -62,8 +66,12 @@ table tbody tr:nth-child(even) {
   background-color: white;
 }
 
+div#dhx_minical_icon {
+  left: 50px !important;
+}
+
 .dhx_cal_header {
-    background-color: white;
+  background-color: white;
 }
 
 /* Removes unnecessary padding to each cell given by foundation */
@@ -106,14 +114,14 @@ select {
   height: inherit;
 }
 
-
 /* Removes yellow highlight/background on clicked element */
-.dhx_focus_slot{
-  display:none;
+
+.dhx_focus_slot {
+  display: none;
 }
 
-.dhx_cal_data{
-   outline:0;
+.dhx_cal_data {
+  outline: 0;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

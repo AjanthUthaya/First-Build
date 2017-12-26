@@ -35,19 +35,19 @@
 }
 
 .Display-Item-Screen {
+  line-height: 1;
   width: 100%;
   height: 80px;
   text-align: center;
   background-color: white;
-  line-height: 1;
 }
 
 .Display-Item-Title {
-  background-color: #36414d;
-  color: white;
-  font-weight: bold;
   font-size: 12px;
+  font-weight: bold;
   display: flex;
+  color: white;
+  background-color: #36414d;
   justify-content: center;
   align-items: center;
 }
@@ -79,9 +79,9 @@
 
 .Item-Next-Top {
   display: inline-flex;
+  margin-top: 2px;
   align-items: center;
   justify-content: center;
-  margin-top: 2px;
 }
 
 .Item-Next-Top div {
@@ -128,7 +128,7 @@
 
 .Calendar-Main {
   position: relative;
-  width: 90vw;
+  width: 100vw;
   height: 900px;
   margin-top: 30px;
   margin-left: 5vw;
@@ -185,6 +185,7 @@ data {
 *************************************************** */
 
 .dhx_cal_event .dhx_footer {
+  display: none;
   background: inherit;
 }
 
@@ -200,51 +201,41 @@ data {
   }
 }
 
-.dhx_body {
-  display: flex;
-  flex-flow: column;
-  cursor: text;
-}
-
-.dhx_cal_event .dhx_title {
-  cursor: -webkit-grab;
-}
-
-.dhx_cal_event .dhx_title:active {
-  cursor: -webkit-grabbing;
+.dhx_cal_event {
+  cursor: pointer;
 }
 
 div.dhx_menu_head {
-  background-image: inherit;
   display: none;
+  background-image: inherit;
 }
 
 .Room {
-  margin-top: 10px;
   display: flex;
+  min-height: fit-content;
+  margin-top: 10px;
   justify-content: center;
   align-items: flex-end;
-  min-height: fit-content;
   flex: 1;
 }
 
 /* Hour_Scale */
 
 .dhx_cal_event_cont_selected {
-  background-color: #9cc1db;
   color: white;
+  background-color: #9cc1db;
 }
 
 .dhx_scale_hour_main {
-  float: left;
-  text-align: right;
   font-size: 16px;
   font-weight: bold;
+  float: left;
+  text-align: right;
 }
 
 .dhx_scale_hour_minute_cont {
-  float: left;
   position: relative;
+  float: left;
   text-align: right;
 }
 
@@ -255,11 +246,11 @@ div.dhx_menu_head {
 
 .dhx_scale_hour_sep {
   position: absolute;
-  height: 1px;
-  background-color: #8C929A;
-  right: 0;
   top: 39.5px;
+  right: 0;
   width: 20px;
+  height: 1px;
+  background-color: #8c929a;
 }
 
 /* Changing color scheme of the calendar */
@@ -283,10 +274,10 @@ div.dhx_menu_head {
 }
 
 .dhx_cal_tab.active {
-  background-color: black;
   color: white;
   border: 1px solid black;
-  text-shadow: inherit
+  background-color: black;
+  text-shadow: inherit;
 }
 
 .dhx_cal_tab[name=week_tab] {
@@ -295,13 +286,13 @@ div.dhx_menu_head {
 }
 
 .dhx_cal_today_button:active {
-  background-color: black;
   color: white;
+  background-color: black;
 }
 
 .dhx_scale_bar {
-  border-left: 1px solid black;
   color: black;
+  border-left: 1px solid black;
   background-color: inherit;
 }
 
@@ -310,21 +301,21 @@ div.dhx_menu_head {
 }
 
 .dhx_multi_day, .dhx_multi_day_icon, .dhx_multi_day_icon_small {
-  background-color: inherit;
-  border-bottom: 0;
   border-color: black;
+  border-bottom: 0;
+  background-color: inherit;
 }
 
 .dhx_scale_holder_now {
-  background-color: #ffef9759;
   border-right: 1px solid black;
   border-right-color: black;
+  background-color: #ffef9759;
 }
 
 .dhx_scale_hour {
+  color: black;
   border-bottom: 1px solid black;
   background-color: inherit;
-  color: black;
 }
 
 .dhx_scale_hour_sep {
