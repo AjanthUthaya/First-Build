@@ -96,18 +96,22 @@ function init() {
     //Leave this in if you want to disable options from popping up when user clicks on a event
   });
 
+
   //On double click show lightbox
   scheduler.config.details_on_dblclick = true;
+
+  //Disables create event on double click
+  scheduler.config.dblclick_create = false;
 
   //Set Start and end calendar
   scheduler.config.first_hour = 8;
   scheduler.config.last_hour = 18;
 
   //Change calendar to ReadOnly format if = true;
-  scheduler.config.readonly_form = true;
+  /*scheduler.config.readonly = true;*/
 
   //Change calendar to ReadOnly format if = true, but gives the user the pop-up form(no edit);
-  /*scheduler.config.readonly_form = true;*/
+  scheduler.config.readonly_form = true;
 
   //Separates events if they have the same time, instead of overlapping
   scheduler.config.separate_short_events = true;

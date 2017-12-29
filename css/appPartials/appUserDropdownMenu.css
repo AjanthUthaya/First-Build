@@ -3,17 +3,23 @@
   (Top-Right-Bottom-Left)
 *************************************************** */
 
+#User-Menu-Dropdown {
+  width: 300px;
+  height: 310px;
+}
+
 .dropdown-pane {
   top: 80px !important;
   right: 0;
   left: unset !important;
-  padding: 20px 0 0 0;
+  padding: 0 0 0 0;
   border: 0;
   background-color: #35414d;
 }
 
 .User-Menu-Image {
   text-align: center;
+  padding-top: 20px;
 }
 
 /* Circle image with no strech: https://stackoverflow.com/questions/32477563/css-fit-rounded-circle-image-do-not-stretch-it */
@@ -38,13 +44,9 @@
 }
 
 .User-Menu-Content a {
-  padding: 15px 0;
+  padding: 15.3px 0;
   text-align: center;
   color: white;
-}
-
-.User-Menu-Content a:first-child {
-  border-top: 1px solid #35353580;
 }
 
 .User-Menu-Content a:last-child {
@@ -57,6 +59,94 @@
 
 .User-Menu-Content :hover {
   background-color: #292c30;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  Tabs
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+.Slider {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+}
+
+.Slider {
+  display: flex;
+}
+
+.Slider>div {
+  height: 310px;
+  min-width: 300px;
+  flex: 1;
+}
+
+.Tab-Profile, .Tab-Notifi {
+  display: none;
+  background-color: #36414d;
+}
+
+.Tab-Profile-Content, .Tab-Notifi-Content {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.Profile-Content-Head, .Notifi-Content-Head {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 40px;
+  line-height: 2.4;
+}
+
+.Profile-Content-Head a, .Notifi-Content-Head a {
+  position: absolute;
+  z-index: 10;
+  background-color: black;
+  height: 100%;
+  width: 50px;
+  color: white;
+  line-height: 2.4;
+}
+
+.Profile-Content-Head a:hover, .Notifi-Content-Head a:hover {
+background-color: #292c30;
+}
+
+.Profile-Content-Head span, .Notifi-Content-Head span {
+width: 100%;
+text-align: center;
+}
+
+
+.Profile-Content-Head label, .Notifi-Content-Head label {
+  position: sticky;
+  color: white;
+  width: 100%;
+  height: 100%;
+  padding: 0 50px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  z-index: 9;
+  line-height: 2em;
+  background-color: black;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.Profile-Content-Content, .Notifi-Content-Content{
+  height: calc(100% - 40px);
+  width: 100%;
+  overflow: scroll;
+  font-size: 12px;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

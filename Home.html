@@ -40,7 +40,7 @@
 
             <div class="Menu-OffCanvas-Title-Main">
 
-              <h3 class="Menu-OffCanvas-Title">Menu</h3>
+              <h3 class="Menu-OffCanvas-Title unselectable">Menu</h3>
 
             </div>
 
@@ -48,15 +48,15 @@
 
           <ul class="vertical menu align-center">
             <li><a href="Home.html" class="OffCanvas-Menu-List-Active">Home</a></li>
-            <li><a href="Majors.html" data-toggle="Sub-Major">Major</a></li>
-            <li><a href="Lesson.html">Lesson</a></li>
             <li><a href="Absence.html">Absence</a></li>
+            <li><a href="Lesson.html">Lesson</a></li>
+            <li><a href="Majors.html" data-toggle="Sub-Major">Major</a></li>
             <li><a href="Test.html">Test</a></li>
           </ul>
 
         </div>
 
-        <div class="OffCanvas-Menu-Social">
+        <div class="OffCanvas-Menu-Social unselectable">
 
           <span><a class="fa fa-facebook-square"></a></span>
           <span><a class="fa fa-youtube-play"></a></span>
@@ -74,7 +74,7 @@
 
     <div class="Sub-Menu Sub-Menu-Major dropdown-pane ChildScroll" id="Sub-Major" data-dropdown data-hover="true" data-hover-pane="true">
       <div class="Sub-Menu-Head">
-        <h3 class="Sub-Menu-Head-Main">Major</h3>
+        <h3 class="Sub-Menu-Head-Main unselectable">Major</h3>
       </div>
 
       <ul class="vertical menu align-center">
@@ -105,7 +105,7 @@
           </div>
 
           <div class="Rectangle">
-            <a href="index.html"><img src="http://via.placeholder.com/50x50" alt="Logo-TopNav" id="TopBar-Logo"/></a>
+            <a href="index.html"><img src="http://via.placeholder.com/50x50" alt="Logo-TopNav" id="TopBar-Logo" class="unselectable"/></a>
           </div>
 
           <div class="Triangle-Right">
@@ -124,28 +124,61 @@
 
 
         <div class="dropdown-pane" id="User-Menu-Dropdown" data-dropdown data-close-on-click="true">
+          <div class="Slider">
 
-          <div class="User-Menu-Image">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" alt="Profile-Picture">
+            <div class="Tab-Main">
+              <div class="User-Menu-Image">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" alt="Profile-Picture">
+              </div>
+
+              <div class="User-Menu-Name">
+                <h5 class="unselectable">Firstname Lastname</h5>
+              </div>
+
+              <div class="User-Menu-Content grid-x">
+                <a class="cell Profile" data-TabValue="view">Profile</a>
+                <a class="cell Notifi" data-TabValue="view">Notification</a>
+                <a href="index.html" class="cell">Logout</a>
+              </div>
+            </div>
+
+
+            <div class="Tab-Profile">
+              <div class="Tab-Profile-Content">
+                <div class="Profile-Content-Head">
+                  <a class="Profile" data-TabValue="back"><span class="fa fa-arrow-left"></span></a>
+                  <label>Profile</label>
+                </div>
+                <div class="Profile-Content-Content">
+
+                </div>
+              </div>
+            </div>
+
+            <div class="Tab-Notifi">
+              <div class="Tab-Notifi-Content">
+                <div class="Notifi-Content-Head">
+                  <a class="Notifi" data-TabValue="back"><span class="fa fa-arrow-left"></span></a>
+                  <label>Notification</label>
+                </div>
+                <div class="Notifi-Content-Content ChildScroll">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+              </div>
+            </div>
+
           </div>
-
-          <div class="User-Menu-Name">
-            <h5>Firstname Lastname</h5>
-          </div>
-
-          <div class="User-Menu-Content grid-x">
-            <a class="cell">Profile</a>
-            <a class="cell">Notification</a>
-            <a href="index.html" class="cell">Logout</a>
-          </div>
-
         </div>
 
 
       </div>
 
       <div class="Breadcrumb" aria-label="You are here:" role="navigation">
-        <ul class="breadcrumbs">
+        <ul class="breadcrumbs unselectable">
           <li><span class="fa fa-home Breadcrumb-Home"></span>Home</li>
         </ul>
       </div>
@@ -214,7 +247,7 @@
 
 
             </div>
-            <label class="Display-Item-Title">Next Lesson in</label>
+            <label class="Display-Item-Title unselectable">Next Lesson in</label>
           </div>
 
           <div class="Display-Item Display-Test">
@@ -228,7 +261,7 @@
 
             </div>
 
-            <label class="Display-Item-Title">Next available test date</label>
+            <label class="Display-Item-Title unselectable">Next available test date</label>
 
           </div>
 
@@ -286,7 +319,7 @@
 
             </div>
 
-            <label class="Display-Item-Title">Absence in S1</label>
+            <label class="Display-Item-Title unselectable">Absence in S1</label>
 
           </div>
 
@@ -328,12 +361,12 @@
         <div class="Footer-Logo">
 
           <div class="Footer-Logo-Underlayer">
-            <a><img src="http://via.placeholder.com/90x90" width="90px" height="90px" alt="Logo-Footer"></a>
+            <a><img src="http://via.placeholder.com/90x90" width="90px" height="90px" alt="Logo-Footer" class="unselectable"></a>
           </div>
 
         </div>
 
-        <div class="Footer-Label">
+        <div class="Footer-Label unselectable">
           <label>First Build</label>
         </div>
 
@@ -341,7 +374,7 @@
           <hr>
         </div>
 
-        <div class="Footer-Social">
+        <div class="Footer-Social unselectable">
 
           <div class="Footer-Icon">
             <a><span class="fa fa-facebook-square"></span></a>
@@ -391,10 +424,12 @@
   <script src="js/dhtmlxscheduler.js"></script>
   <script src="js/dhtmlxscheduler_readonly.js"></script>
   <script src="js/dhtmlxscheduler_limit.js"></script>
+  <script src="js/dhtmlxscheduler_tooltip.js"></script>
   <script src="js/CalendarInit.js"></script>
   <script src="js/PreventParentScroll.js"></script>
   <script src="js/AbsenceSwitch.js"></script>
   <script src="js/CountDown.js"></script>
+  <script src="js/SliderForProfile.js"></script>
   <script src="js/app.js"></script>
 </body>
 

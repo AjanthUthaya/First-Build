@@ -213,7 +213,7 @@ div.dhx_menu_head {
 .Room {
   display: flex;
   min-height: fit-content;
-  margin-top: 10px;
+  margin-top: 5px;
   justify-content: center;
   align-items: flex-end;
   flex: 1;
@@ -261,6 +261,11 @@ div.dhx_menu_head {
 
 .dhx_cal_data {
   border-top: 1px solid black;
+}
+
+.dhx_body {
+  display: flex;
+  flex-flow: column nowrap;
 }
 
 .dhx_cal_header {

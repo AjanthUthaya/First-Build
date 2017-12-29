@@ -51,4 +51,56 @@
     details='Olympia'
   />
 
+  <!-- Test day, fill up one room to see how it looks -->
+
+  <event
+    id='9'
+    start_date='27-12-2017 08:00'
+    end_date='27-12-2017 10:20'
+    major="IKT-1"
+    sub="Energi"
+    room="206"
+    details='Olympia'
+  />
+
+  <event
+    id='1'
+    start_date='27-12-2017 10:30'
+    end_date='27-12-2017 11:15'
+    major="NAT-3"
+    sub="Energi"
+    room="206"
+    details='Olympia'
+  />
+
+  <event
+    id='2'
+    start_date='27-12-2017 12:00'
+    end_date='27-12-2017 13:30'
+    major="NAT-3"
+    sub="Energi"
+    room="206"
+    details='Olympia'
+  />
+
+  <event
+    id='3'
+    start_date='27-12-2017 13:40'
+    end_date='27-12-2017 14:25'
+    major="NOR-3"
+    sub="Energi"
+    room="206"
+    details='Olympia'
+  />
+
+  <event
+    id='4'
+    start_date='27-12-2017 14:30'
+    end_date='27-12-2017 16:00'
+    major="KRØ-3"
+    sub="Energi"
+    room="206"
+    details='Olympia'
+  />
+
 </data>

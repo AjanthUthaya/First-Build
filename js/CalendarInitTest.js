@@ -17,10 +17,9 @@ function init() {
   scheduler.config.xml_date = "%d-%m-%Y %H:%i";
   scheduler.config.first_hour = 8;
   scheduler.config.last_hour = 17;
-  //Resizes the calendars height, but it needs dhtmlxscheduler_container_autoresize.js script added
-  scheduler.config.container_autoresize = false;
   //Removes the whitespace on right side of calendar
   scheduler.xy.scroll_width = 0;
+  scheduler.config.container_autoresize = true;
 
 
   //===============
@@ -33,8 +32,8 @@ function init() {
       label: "Block-A",
       open: true,
       children: [{
-          key: 100,
-          label: "Room 100"
+          key: 206,
+          label: "Room 206"
         },
         {
           key: 60,
@@ -62,20 +61,36 @@ function init() {
     }
   ];
 
+  // NOTE: Trying to make div "data" scrollable but time stop at a certain point
+  //link to possible solutions https://docs.dhtmlx.com/scheduler/api__scheduler_%7Btimelinename%7D_scale_date_template.html
+
+  scheduler.templates.timeline_scale_date = function(date) {
+    var timeline = scheduler.matrix.timeline;
+    var func = scheduler.date.date_to_str(timeline.x_date || scheduler.config.hour_date);
+    return func(date);
+  }
+
+
+  //Adding css propertyies date_hour
+  scheduler.templates.timeline_scalex_class = function(test){
+    return '';
+};
+
   scheduler.createTimelineView({
     section_autoheight: false,
     name: "timeline",
     x_unit: "minute",
     x_date: "%H:%i",
     x_step: 30,
-    x_size: 19,
+    x_size: 18,
     x_start: 16,
     x_length: 48,
     y_unit: elements,
-    y_property: "section_id",
+    y_property: "room",
     render: "tree",
     fit_events: true,
     folder_dy: 50,
+    folder_dx: 50,
     dy: 50,
     event_dy: 46
   });
@@ -90,11 +105,6 @@ function init() {
       console.log("Resizing");
     });*/
 
-
-
-  //===============
-  //Data loading
-  //===============
   scheduler.config.lightbox.sections = [{
       name: "Major",
       height: 40,
@@ -120,7 +130,7 @@ function init() {
       height: 23,
       type: "timeline",
       options: null,
-      map_to: "section_id"
+      map_to: "room"
     }, //type should be the same as name of the tab
     {
       name: "time",

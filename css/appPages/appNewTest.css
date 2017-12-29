@@ -31,7 +31,7 @@
 }
 
 .Date * {
-  font-size: 12px
+  font-size: 12px;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -45,15 +45,17 @@
 *************************************************** */
 
 .Calendar-Main {
+  overflow-x: auto;
   width: 100vw;
-  height: calc(100vh - 80px);
   min-height: calc(100vh - 80px);
+  white-space: nowrap;
 }
 
 /* Removes the background of the verticall calendar */
 
 div#scheduler_here {
-  background-color: inherit;
+  overflow-x: scroll;
+  background-color: white;
 }
 
 table tbody tr:nth-child(even) {
@@ -63,6 +65,7 @@ table tbody tr:nth-child(even) {
 /* Gives header and time of calendar white background */
 
 .dhx_cal_navline {
+  position: sticky;
   background-color: white;
 }
 
@@ -72,6 +75,9 @@ div#dhx_minical_icon {
 
 .dhx_cal_header {
   background-color: white;
+  border-top: 0;
+  padding-top: 1px;
+  /*width: 1000px !important;*/
 }
 
 /* Removes unnecessary padding to each cell given by foundation */
@@ -86,19 +92,69 @@ table tbody th, table tbody td {
   display: flex;
 }
 
+@media print, screen and (max-width: 900px) {
+  .dhx_scale_bar {
+    font-size: 10px !important;
+  }
+}
+
+@media print, screen and (max-width: 700px) {
+  .dhx_scale_bar {
+    font-size: 8px !important;
+  }
+  .dhx_cal_event .dhx_body, .dhx_cal_event_line {
+    font-size: 10px !important;
+  }
+}
+
+.dhx_scale_bar {
+  font-size: 12px;
+}
+
+.dhx_cal_event .dhx_body, .dhx_cal_event_line {
+  font-size: 12px;
+}
+
+.dhx_cal_event_line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* Gives event full height and centers text vertically and horizontally */
 
 .dhx_cal_event_line {
   display: flex;
+  padding: 0 5px;
   justify-content: center;
   align-items: center;
-  padding: 0 5px;
 }
 
 /* Makes resize dots at the start and end full height aswell */
 
 .dhx_cal_event_line .dhx_event_resize {
-  height: 100% !important;
+  /*height: 100% !important;*/
+}
+
+.dhx_cal_data {
+  /*width: 1000px !important;*/
+  outline: 0;
+}
+
+tr.dhx_row_folder {
+  /*width: 1000px;*/
+}
+
+.dhx_matrix_line {
+  /*width: 1000px !important;*/
+}
+
+table.dhx_data_table {
+  /*width: 1000px !important;*/
+}
+
+tr.dhx_row_item {
+  /*width: 1000px;*/
 }
 
 /* Makes it so that text area fits inside the container */
@@ -118,10 +174,6 @@ select {
 
 .dhx_focus_slot {
   display: none;
-}
-
-.dhx_cal_data {
-  outline: 0;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
