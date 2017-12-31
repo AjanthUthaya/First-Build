@@ -449,23 +449,95 @@ input, p {
 
 .Lightbox-Footer-Main {
   display: flex;
-  flex-direction: column;
+  flex-direction: inherit;
+  justify-content: center;
   width: 100%;
-  height: 100px;
-  background-color: red;
+  height: 100%;
+  background-color: #292c31;
 }
 
 .Lightbox-Footer-Main-DateTime {
-  width: 100%;
+  display: flex;
+  width: fit-content;
   height: 100%;
+  padding: 10px 0;
+  text-align: center;
+  justify-content: flex-end;
+}
+
+.Footer-DateTime-Date, .Footer-DateTime-Time {
+  display: flex;
+  padding: 0 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.Footer-DateTime-Date span, .Footer-DateTime-Time span {
+  font-size: 20px;
+  padding-right: 10px;
+  color: white;
+}
+
+.Footer-DateTime-Date label, .Footer-DateTime-Time label {
+  color: white;
 }
 
 .Lightbox-Footer-Main-RoomAva {
-  width: 100%;
+  display: flex;
+  width: fit-content;
   height: 100%;
+  padding: 10px 0;
+  text-align: center;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
+  justify-content: flex-start;
 }
+
+.Footer-Main-Room, .Footer-Main-Ava {
+  display: flex;
+  padding: 0 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.Footer-Main-Room span, .Footer-Main-Ava span {
+  font-size: 20px;
+  padding-right: 10px;
+  color: white;
+}
+
+.Footer-Main-Room label, .Footer-Main-Ava label {
+  color: white;
+}
+
+/* NOTE: If you want the lightbox footer to have dual line, Remove the commenting below  */
+
+/*
+.Lightbox-Footer-Main {
+  flex-direction: column;
+}
+
+.Lightbox-Footer-Main-DateTime, .Lightbox-Footer-Main-RoomAva{
+  width: 100%;
+  justify-content: center;
+}
+
+.Lightbox-Footer-Main-DateTime{
+  padding-bottom: 5px;
+}
+
+.Footer-DateTime-Date, .Footer-DateTime-Time {
+  padding: 0 20px;
+}
+
+.Lightbox-Footer-Main-RoomAva {
+  padding-bottom: 15px;
+}
+
+.Footer-Main-Room, .Footer-Main-Ava {
+  padding: 0 20px;
+}
+*/
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 

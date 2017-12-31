@@ -160,13 +160,17 @@ function init() {
       var Lightbox_Content_Main = "<div class=\"Lightbox-Content-Main\">" + Lightbox_Content_Main_Title + Lightbox_Content_Main_Content + "</div>";
 
 
-      var Lightbox_Footer_Main_DateTime = "<div class=\"Lightbox-Footer-Main-DateTime\"></div>"
-      var Lightbox_Footer_Main_RoomAva = "<div class=\"Lightbox-Footer-Main-RoomAva\"></div>"
+      var Footer_DateTime_Date = "<div class=\"Footer-DateTime-Date\"><span class=\"fa fa-calendar-o\"></span><label>Date(dd-mm-yyyy)</label></div>";
+      var Footer_DateTime_Time = "<div class=\"Footer-DateTime-Time\"><span class=\"fa fa-clock-o\"></span><label>Time(hh:mm - hh:mm)</label></div>";
+      var Lightbox_Footer_Main_DateTime = "<div class=\"Lightbox-Footer-Main-DateTime\">" + Footer_DateTime_Date + Footer_DateTime_Time + "</div>";
+
+      var Footer_Main_Room = "<div class=\"Footer-Main-Room\"><span class=\"fa fa-home\"></span><label>Room(roomNR (block X))</label></div>";
+      var Footer_Main_Ava = "<div class=\"Footer-Main-Ava\"><span class=\"fa fa-users\"></span><label>Ava(current / max)</label></div>";
+      var Lightbox_Footer_Main_RoomAva = "<div class=\"Lightbox-Footer-Main-RoomAva\">" + Footer_Main_Room + Footer_Main_Ava + "</div>";
+
       var Lightbox_Footer_Main = "<div class=\"Lightbox-Footer-Main\">" + Lightbox_Footer_Main_DateTime + Lightbox_Footer_Main_RoomAva + "</div>";
 
       var space = " ";
-      console.log();
-
 
 
       return "<div class=\"Lightbox-Content\">" + Lightbox_Content_Main + Lightbox_Footer_Main + "</div>";
@@ -187,8 +191,29 @@ function init() {
       //$(Selector).text(For replacing text inside element);
       //$(Selector).val(For replacing value inside element);
 
+      //Sub Title
       $(".Lightbox-Content-Main-Title").text(ev.sub);
+      //Content
       $(".Lightbox-Content-Main-Content").text(ev.details);
+
+
+      var EventStart = String(ev.start_date);
+      var EventEnd = String(ev.end_date);
+      var EventDay = EventStart.slice(8, 11);
+      var EventMonth = EventStart.slice(4, 8);
+      var EventYear = EventStart.slice(11, 16);
+      var EventTimeStart = EventStart.slice(16, 21);
+      var EventTimeEnd = EventEnd.slice(16, 21);
+
+      //Date
+      $(".Footer-DateTime-Date label").text(EventDay + " " + EventMonth + " " + EventYear);
+      //Time
+      $(".Footer-DateTime-Time label").text(EventTimeStart + " - " + EventTimeEnd);
+
+      //Room
+      $(".Footer-Main-Room label").text(ev.room);
+      //Ava
+      $(".Footer-Main-Ava label").text(ev.Ava);
 
     }
     /*,
