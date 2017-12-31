@@ -11,6 +11,7 @@ if (mm < 10) {
 }
 
 function init() {
+  scheduler.config.details_on_dblclick = true;
   //Set date format for xml data
   scheduler.config.xml_date = "%d-%m-%Y %H:%i";
   //Set format for date
@@ -122,10 +123,106 @@ function init() {
   //Shows multi day evets
   scheduler.config.multi_day = true;
 
+  //Removes all buttons in lightbox
+  scheduler.config.buttons_left = "";
+  scheduler.config.buttons_right = "";
+
+
+  // NOTE: Not working
+  if ($(document).width() < 800) {
+    //Makes the lightbox wide if = true;
+    scheduler.config.wide_form = false;
+  } else {
+    //Makes the lightbox wide if = true;
+    scheduler.config.wide_form = true;
+  }
+
   //init and sets date to current
   scheduler.init('scheduler_here', new Date(yyyy, mm, dd), "week");
 
-  //Gets all events and loads it in
+  //Gets all events from xml and loads it in the calendar
   scheduler.load("../data/Events.xml");
+
+  //Custom header for lightbox
+  scheduler.templates.lightbox_header = function(start, end, event) {
+    //event.major to get major from xml
+    return "<div class='Lightbox-Header-Main Major-Naturfag'><span>" + event.major + "</span><a class=\"dhx_cancel_btn\">x</a></div>";
+  };
+
+
+  //Custom lightbox for events detail pop-up on double click
+  scheduler.form_blocks["my_editor"] = {
+    render: function(sns) { // sns - section configuration object
+
+
+      var Lightbox_Content_Main_Title = "<label class=\"Lightbox-Content-Main-Title\">Sub major</label>";
+      var Lightbox_Content_Main_Content = "<p class=\"Lightbox-Content-Main-Content\">Main content</p>";
+      var Lightbox_Content_Main = "<div class=\"Lightbox-Content-Main\">" + Lightbox_Content_Main_Title + Lightbox_Content_Main_Content + "</div>";
+
+
+      var Lightbox_Footer_Main_DateTime = "<div class=\"Lightbox-Footer-Main-DateTime\"></div>"
+      var Lightbox_Footer_Main_RoomAva = "<div class=\"Lightbox-Footer-Main-RoomAva\"></div>"
+      var Lightbox_Footer_Main = "<div class=\"Lightbox-Footer-Main\">" + Lightbox_Footer_Main_DateTime + Lightbox_Footer_Main_RoomAva + "</div>";
+
+      var space = " ";
+      console.log();
+
+
+
+      return "<div class=\"Lightbox-Content\">" + Lightbox_Content_Main + Lightbox_Footer_Main + "</div>";
+
+
+    },
+    set_value: function(node, value, ev) {
+      // node - HTML object related to HTML defined above
+      // value - value defined by map_to property
+      // ev - event object
+      /*   //Old way of setting data values
+        node.childNodes[1].value = ev.major || "";
+        node.childNodes[4].value = ev.details || "";
+        node.childNodes[5].childNodes[1].value = ev.details || "";
+      */
+
+      //New way of setting data values
+      //$(Selector).text(For replacing text inside element);
+      //$(Selector).val(For replacing value inside element);
+
+      $(".Lightbox-Content-Main-Title").text(ev.sub);
+      $(".Lightbox-Content-Main-Content").text(ev.details);
+
+    }
+    /*,
+        get_value: function(node, ev) {
+          // node - HTML object related to HTML defined above
+          // event object
+
+        }*/
+  }
+
+
+  //This part has display: none; as value
+  scheduler.config.lightbox.sections = [{
+    name: "SubMajor",
+    height: 200,
+    map_to: "text",
+    type: "my_editor",
+    focus: false
+  }]
+
+
+  //Close lightbox on click outside of the lightbox
+  dhtmlxEvent(document.body, "click", function(e) {
+    var boxId = scheduler.getState().lightbox_id;
+    if (boxId) {
+      var el = e ? e.target : event.srcElement,
+        cover = document.querySelector(".dhx_cal_cover");
+
+      if (cover && cover.contains(el)) {
+        var box = scheduler.getLightbox();
+        scheduler.endLightbox(false, box);
+      }
+    }
+  });
+
 
 }

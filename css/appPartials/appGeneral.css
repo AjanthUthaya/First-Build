@@ -75,6 +75,11 @@ a, button, img {
   user-select: none;
 }
 
+/* Change layer index to side menu overlay */
+.js-off-canvas-overlay.is-closable{
+  z-index: 99;
+}
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 

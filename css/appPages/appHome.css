@@ -17,7 +17,7 @@
   position: relative;
   display: inline-flex;
   width: 100%;
-  margin-top: 5vh;
+  margin-top: 40px;
   text-align: center;
   justify-content: center;
 }
@@ -143,14 +143,6 @@
   GENERAL
   (Top-Right-Bottom-Left)
 *************************************************** */
-
-data {
-  position: absolute;
-  display: none;
-  overflow: scroll;
-  width: 100vw;
-  height: 100%;
-}
 
 #Overlay {
   position: fixed;
@@ -325,6 +317,154 @@ div.dhx_menu_head {
 
 .dhx_scale_hour_sep {
   background-color: black;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  Lightbox
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+/* Chaning opacity of underlayer */
+
+.dhx_cal_cover {
+  opacity: .5;
+}
+
+/* Removing under glow for ligthbox */
+
+.dhx_cal_light, .dhx_cal_light_wide {
+  box-shadow: inherit;
+}
+
+.dhx_cal_ltitle {
+  width: 100%;
+  height: fit-content;
+  padding: 0;
+  border-bottom: 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+span.dhx_time, span.dhx_mark {
+  display: none;
+}
+
+span.dhx_title {
+  position: flex;
+  width: 100%;
+  padding-left: 0 !important;
+}
+
+.dhx_cal_light {
+  height: fit-content !important;
+  border: 0;
+}
+
+/* removing standard box */
+
+.dhx_cal_lsection {
+  display: none;
+}
+
+/* removing padding from box */
+
+.dhx_cal_light_wide .dhx_wrap_section, .dhx_cal_larea {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+/* removing standard padding to input from foundation */
+
+input, p {
+  margin-bottom: 0 !important;
+}
+
+.Lightbox-Header-Main {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  height: 50px;
+  cursor: move;
+  text-align: center;
+  background-color: green;
+  justify-content: center;
+  align-items: center;
+}
+
+.Lightbox-Header-Main span {
+  font-size: 20px;
+  font-weight: bold;
+  position: absolute;
+  color: white;
+}
+
+.Lightbox-Header-Main a {
+  font-size: 20px;
+  font-weight: bold;
+  position: absolute;
+  right: 0;
+  display: flex;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  color: white;
+  border-top-right-radius: 5px;
+  background: red;
+  justify-content: center;
+  align-items: center;
+}
+
+.Lightbox-Content {
+  width: 100%;
+}
+
+.Lightbox-Content-Main {
+  font-size: 14px;
+  overflow: auto;
+  width: 100%;
+  max-height: 500px;
+}
+
+.Lightbox-Content-Main-Title {
+  font-size: 16px;
+  font-weight: bold;
+  width: 100%;
+  padding: 15px 0;
+  text-align: center;
+}
+
+.Lightbox-Content-Main-Content {
+  padding: 0 40px;
+  padding-bottom: 40px;
+}
+
+.Lightbox-Footer-Main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100px;
+  background-color: red;
+}
+
+.Lightbox-Footer-Main-DateTime {
+  width: 100%;
+  height: 100%;
+}
+
+.Lightbox-Footer-Main-RoomAva {
+  width: 100%;
+  height: 100%;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
