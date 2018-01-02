@@ -76,12 +76,13 @@ function init() {
     return html;
   };
 
-  scheduler.templates.event_class = function(start, end, event) {
-    if (event.major == 'Naturfag') return "Major-Naturfag";
+  //Targets all events with corresponding results and gives you the ability to set a class
+  /*  scheduler.templates.event_class = function(start, end, event) {
+      if (event.major == 'Naturfag') return "Major-Naturfag";
 
-    //Returns a default css class if none of the above match
-    return "Default-Event";
-  };
+      //Returns a default css class if none of the above match
+      return "Default-Event";
+    };*/
 
   scheduler.attachEvent("onTemplatesReady", function() {
     scheduler.templates.event_text = function(start, end, event) {
@@ -128,7 +129,7 @@ function init() {
   scheduler.config.buttons_right = "";
 
 
-  // NOTE: Not working
+  // NOTE: Working but requires refresh if you resize the screen
   if ($(document).width() < 800) {
     //Makes the lightbox wide if = true;
     scheduler.config.wide_form = false;
@@ -141,12 +142,12 @@ function init() {
   scheduler.init('scheduler_here', new Date(yyyy, mm, dd), "week");
 
   //Gets all events from xml and loads it in the calendar
-  scheduler.load("../data/Events.xml");
+  scheduler.load("../data/Lecture.xml", "xml");
 
   //Custom header for lightbox
   scheduler.templates.lightbox_header = function(start, end, event) {
     //event.major to get major from xml
-    return "<div class='Lightbox-Header-Main Major-Naturfag'><span>" + event.major + "</span><a class=\"dhx_cancel_btn\">x</a></div>";
+    return "<div class='Lightbox-Header-Main' style='background: " + event.color + ";'><span>" + event.major + " (" + event.teacher + ")" + "</span><a class=\"dhx_cancel_btn\">x</a></div>";
   };
 
 
@@ -213,7 +214,7 @@ function init() {
       //Room
       $(".Footer-Main-Room label").text(ev.room);
       //Ava
-      $(".Footer-Main-Ava label").text(ev.Ava);
+      $(".Footer-Main-Ava label").text(ev.ava);
 
     }
     /*,
@@ -233,6 +234,9 @@ function init() {
     type: "my_editor",
     focus: false
   }]
+
+  //Adding br
+  scheduler.attachEvent("onLightbox", function(id) {});
 
 
   //Close lightbox on click outside of the lightbox

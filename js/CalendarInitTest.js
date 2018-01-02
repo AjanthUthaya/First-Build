@@ -21,6 +21,14 @@ function init() {
   scheduler.xy.scroll_width = 0;
   scheduler.config.container_autoresize = true;
 
+  // NOTE: Working but requires refresh if you resize the screen
+  if ($(document).width() < 800) {
+    //Makes the lightbox wide if = true;
+    scheduler.config.wide_form = false;
+  } else {
+    //Makes the lightbox wide if = true;
+    scheduler.config.wide_form = true;
+  }
 
   //===============
   //Configuration
@@ -32,16 +40,16 @@ function init() {
       label: "Block-A",
       open: true,
       children: [{
+          key: 204,
+          label: "Room 204 (30)"
+        },
+        {
+          key: 205,
+          label: "Room 205 (30)"
+        },
+        {
           key: 206,
-          label: "Room 206"
-        },
-        {
-          key: 60,
-          label: "Linda Brown"
-        },
-        {
-          key: 70,
-          label: "George Lucas"
+          label: "Room 206 (30)"
         }
       ]
     },
@@ -70,12 +78,6 @@ function init() {
     return func(date);
   }
 
-
-  //Adding css propertyies date_hour
-  scheduler.templates.timeline_scalex_class = function(test){
-    return '';
-};
-
   scheduler.createTimelineView({
     section_autoheight: false,
     name: "timeline",
@@ -97,54 +99,69 @@ function init() {
 
   scheduler.attachEvent("onTemplatesReady", function() {
     scheduler.templates.event_bar_text = function(start, end, event) {
-      return event.title;
+      var EventStart = String(event.start_date);
+      var EventEnd = String(event.end_date);
+      var EventDay = EventStart.slice(8, 11);
+      var EventMonth = EventStart.slice(4, 8);
+      var EventYear = EventStart.slice(11, 16);
+      var EventTimeStart = EventStart.slice(16, 21);
+      var EventTimeEnd = EventEnd.slice(16, 21);
+      if (event.xml == "Test") {
+        return "<div class=\"Event-Content-Main\"><label class=\"Event-Content-Time\">" + EventTimeStart + " - " + EventTimeEnd + "</label><label class=\"Event-Content-Type\">" + event.type + "</label></div>";
+      } else if (event.vgs == "1") {
+
+        return "VGS 1";
+
+      } else if (event.xml == "Lecture") {
+        scheduler.getEvent(event.id).readonly = true; //Makes all the lectures un-editable
+        return "<div class=\"Event-Content-Main\"><label class=\"Event-Content-Time\">" + EventTimeStart + " - " + EventTimeEnd + "</label><label class=\"Event-Content-Type\">" + event.major + "</label></div>";
+      }
+
     }
+
   });
+
+
+  scheduler.config.readonly_form = false;
   //This function below is for resizing screen, not resizing of an element
   /*  scheduler.attachEvent("onSchedulerResize", function() {
       console.log("Resizing");
     });*/
 
+
+  //Set content before lightbox opens
+  scheduler.attachEvent("onBeforeLightbox", function(id) {
+    var ev = scheduler.getEvent(id);
+    ev.my_template = "<input id=\"TestId\" value='" + ev.block + "'></input>";
+    return true;
+  });
+
+
+  //For saving custom fields
+  scheduler.attachEvent("onEventSave", function(id, ev, is_new) {
+    var ev = scheduler.getEvent(id);
+    var bla = $('#TestId').val();
+    ev.block = bla; //changes event's data
+    scheduler.updateEvent(ev); // renders the updated event
+
+
+    return true;
+  })
+
+  //https://docs.dhtmlx.com/scheduler/template.html to change view, this below is just basic config
   scheduler.config.lightbox.sections = [{
-      name: "Major",
-      height: 40,
-      map_to: "major",
-      type: "select",
-      focus: true,
-      options: [{
-          key: 1,
-          label: "Naturfag"
-        },
-        {
-          key: 2,
-          label: "Norsk"
-        },
-        {
-          key: 3,
-          label: "Nynorsk"
-        }
-      ]
-    },
-    {
-      name: "Room",
-      height: 23,
-      type: "timeline",
-      options: null,
-      map_to: "room"
-    }, //type should be the same as name of the tab
-    {
-      name: "time",
-      height: 120,
-      type: "time",
-      map_to: "auto"
-    }
-  ]
+    name: "test",
+    height: 40,
+    type: "template",
+    map_to: "my_template"
+  }]
 
   //init and sets date to current
   scheduler.init('scheduler_here', new Date(yyyy, mm, dd), "timeline");
 
   //Gets all events and loads it in
   scheduler.load("../data/Test.xml");
+  scheduler.load("../data/Lecture.xml");
 
   //For picking date and updating current view
   /*scheduler.setCurrentView(new Date(2012,7,4));*/
@@ -191,9 +208,21 @@ function show_minical() {
 //dhtmlxscheduler_tooltip
 var format = scheduler.date.date_to_str("%Y-%m-%d %H:%i");
 scheduler.templates.tooltip_text = function(start, end, event) {
-  return "<b>Event:</b> " + event.text + "<br/><b>Start date:</b> " +
-    format(start) + "<br/><b>End date:</b> " + format(end);
+  var EventStart = String(event.start_date);
+  var EventEnd = String(event.end_date);
+  var EventDay = EventStart.slice(8, 11);
+  var EventMonth = EventStart.slice(4, 8);
+  var EventYear = EventStart.slice(11, 16);
+  var EventTimeStart = EventStart.slice(16, 21);
+  var EventTimeEnd = EventEnd.slice(16, 21);
+  if (event.xml == "Test") {
+    return "Title: " + event.title + "<br>Date: " + EventDay + " " + EventMonth + " " + EventYear + "<br>Time: " + EventTimeStart + " - " + EventTimeEnd;
+  } else if (event.xml == "Lecture") {
+    return "Title: " + event.major + "<br>Date: " + EventDay + " " + EventMonth + " " + EventYear + "<br>Time: " + EventTimeStart + " - " + EventTimeEnd;
+  }
+
 };
+
 
 //Close lightbox on click outside of the lightbox
 dhtmlxEvent(document.body, "click", function(e) {

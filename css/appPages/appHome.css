@@ -197,9 +197,19 @@
   cursor: pointer;
 }
 
+.dhx_cal_event .dhx_body, .dhx_cal_event .dhx_footer, .dhx_cal_event .dhx_header, .dhx_cal_event .dhx_title{
+  background-color: #36414d;
+}
+
 div.dhx_menu_head {
   display: none;
   background-image: inherit;
+}
+
+.Sub {
+  font-size: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .Room {
@@ -395,7 +405,7 @@ input, p {
   height: 50px;
   cursor: move;
   text-align: center;
-  background-color: green;
+  background-color: #36414d;
   justify-content: center;
   align-items: center;
 }
@@ -418,9 +428,13 @@ input, p {
   cursor: pointer;
   color: white;
   border-top-right-radius: 5px;
-  background: red;
+  background: #da0e0e;
   justify-content: center;
   align-items: center;
+}
+
+.Lightbox-Header-Main a:hover {
+  background-color: #ef1d1d;
 }
 
 .Lightbox-Content {
@@ -444,7 +458,7 @@ input, p {
 
 .Lightbox-Content-Main-Content {
   padding: 0 40px;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
 }
 
 .Lightbox-Footer-Main {

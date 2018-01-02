@@ -1,55 +1,21 @@
 <data>
 
-  <!-- Test day, fill up one room to see how it looks -->
-<!-- Glitch setting id as 0, on folder exspand. The event with id 0 moves to folder row -->
-  <event
-    id='9'
-    start_date='27-12-2017 08:00'
-    end_date='27-12-2017 10:20'
-    major="IKT-1"
-    sub="Energi"
-    room="206"
-    details='Olympia'
-  />
-
-  <event
-    id='1'
-    start_date='27-12-2017 10:30'
-    end_date='27-12-2017 11:15'
-    major="NAT-3"
-    sub="Energi"
-    room="206"
-    details='Olympia'
-  />
-
+  <!-- Glitch setting id as 0, on folder expansion. The event with id 0 moves to folder row -->
+  <!-- ID - Date - Time - Title - Type - Color - Room - Ava - VGS - Teacher/s -->
   <event
     id='2'
-    start_date='27-12-2017 12:00'
-    end_date='27-12-2017 13:30'
-    major="NAT-3"
-    sub="Energi"
-    room="206"
-    details='Olympia'
-  />
-
-  <event
-    id='3'
-    start_date='27-12-2017 13:40'
-    end_date='27-12-2017 14:25'
-    major="NOR-3"
-    sub="Energi"
-    room="206"
-    details='Olympia'
-  />
-
-  <event
-    id='4'
-    start_date='27-12-2017 14:30'
-    end_date='27-12-2017 16:00'
-    major="KRØ-3"
-    sub="Energi"
-    room="206"
-    details='Olympia'
+    xml='Test'
+    start_date='02-01-2018 08:00'
+    end_date='02-01-2018 10:30'
+    teacher='John Doe'
+    title='Norsk tentamen'
+    type='Tentamen'
+    room='206'
+    block='A'
+    color='#36414d'
+    joined="1"
+    vgs='All'
+    ava='00 / 30'
   />
 
 </data>
