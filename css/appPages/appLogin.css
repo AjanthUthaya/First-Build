@@ -22,6 +22,7 @@
 .Login-Main {
   z-index: 0;
   width: 100vw;
+  max-width: 100%;
   height: calc(100vh - 60px);
 }
 

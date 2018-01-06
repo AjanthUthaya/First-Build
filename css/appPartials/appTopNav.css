@@ -104,7 +104,6 @@
 #Name-Label {
   overflow: hidden;
   max-width: 160px;
-  padding: 1rem 0;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -116,6 +115,10 @@
   color: white;
   line-height: 2;
   padding-left: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

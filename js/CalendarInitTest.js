@@ -20,6 +20,10 @@ function init() {
   //Removes the whitespace on right side of calendar
   scheduler.xy.scroll_width = 0;
   scheduler.config.container_autoresize = true;
+  //Sets the esc key to close lightbox
+  scheduler.keys.edit_cancel = 27;
+  //Disables save on enter
+  scheduler.keys.edit_save = false;
 
   // NOTE: Working but requires refresh if you resize the screen
   if ($(document).width() < 800) {
@@ -36,34 +40,64 @@ function init() {
 
   var elements = [ // original hierarhical array to display
     {
-      key: 10,
-      label: "Block-A",
+      key: "Room",
+      label: "Room",
       open: true,
       children: [{
-          key: 204,
+          key: "204",
           label: "Room 204 (30)"
         },
         {
-          key: 205,
+          key: "205",
           label: "Room 205 (30)"
         },
         {
-          key: 206,
+          key: "206",
           label: "Room 206 (30)"
         }
       ]
     },
     {
-      key: 110,
-      label: "Block-B",
+      key: "Group",
+      label: "Group",
       /*open: true, //to make it open by default*/
       children: [{
-          key: 80,
-          label: "Kate Moss"
+          key: "200-A",
+          label: "200-A"
         },
         {
-          key: 90,
-          label: "Dian Fossey"
+          key: "201-A",
+          label: "201-A"
+        },
+        {
+          key: "202-A",
+          label: "202-A"
+        }
+      ]
+    },
+    {
+      key: "Special",
+      label: "Special",
+      /*open: true, //to make it open by default*/
+      children: [{
+          key: "Training",
+          label: "Training"
+        },
+        {
+          key: "Spinning",
+          label: "Spinning"
+        },
+        {
+          key: "Dance",
+          label: "Dance"
+        },
+        {
+          key: "Lyd",
+          label: "Lyd"
+        },
+        {
+          key: "Gym",
+          label: "Gym"
         }
       ]
     }
@@ -97,6 +131,16 @@ function init() {
     event_dy: 46
   });
 
+  scheduler.templates.event_class = function(start, end, event) {
+
+    if (event.xml != "Test") {
+      $(this).css("opacity", "0.5");
+      return "Event-Disabled";
+    } else {
+      return "";
+    }
+  };
+
   scheduler.attachEvent("onTemplatesReady", function() {
     scheduler.templates.event_bar_text = function(start, end, event) {
       var EventStart = String(event.start_date);
@@ -128,33 +172,231 @@ function init() {
       console.log("Resizing");
     });*/
 
+  //Custom header for lightbox
+  scheduler.templates.lightbox_header = function(start, end, event) {
+    //event.major to get major from xml
+    //Make it so "Lecture" does not have a delete button
+    if (event.xml == "Test") {
+      return "<div class='Lightbox-Header-Main' style='background: " + event.color + ";'><a class=\"dhx_delete_btn\" id=\"deleteButton\"><span class=\"fa fa-trash\" onClick=\"document.getElementById('deleteButton').click()\"></span></a><label class=\"Lightbox-Header-Title\">Major</label><a class=\"dhx_cancel_btn\">X</a></div>";
+    } else if (event.xml == "Lecture") {
+      return "<div class='Lightbox-Header-Main' style='background: " + event.color + ";'><label class=\"Lightbox-Header-Title\">Major</label><a class=\"dhx_cancel_btn\">X</a></div>";
+    } else {
+      return "<div class='Lightbox-Header-Main' style='background: " + event.color + ";'><label class=\"Lightbox-Header-Title\">Major</label><a class=\"dhx_cancel_btn\">X</a></div>";
+    }
+  };
 
-  //Set content before lightbox opens
-  scheduler.attachEvent("onBeforeLightbox", function(id) {
+
+  // NOTE: Make a function that prevents events that are readonly from being draged
+
+  scheduler.attachEvent("onBeforeDrag", function(id, mode, e) {
+
     var ev = scheduler.getEvent(id);
-    ev.my_template = "<input id=\"TestId\" value='" + ev.block + "'></input>";
-    return true;
+
+    if (ev == null || ev.xml == "Test") {
+      return true;
+    } else if (ev.xml == "Lecture") {
+      return false;
+    } else {
+      return true;
+    }
+
+  });
+
+  scheduler.attachEvent("onEventCreated", function(id) {
+    var ev = scheduler.getEvent(id);
+    ev.type = "Test";
+    ev.vgs = "All";
+    ev.color = "#36414d";
+    ev.xml = "Test";
+    ev.maxava = "30";
+    ev.details = "";
   });
 
 
-  //For saving custom fields
-  scheduler.attachEvent("onEventSave", function(id, ev, is_new) {
-    var ev = scheduler.getEvent(id);
-    var bla = $('#TestId').val();
-    ev.block = bla; //changes event's data
-    scheduler.updateEvent(ev); // renders the updated event
+  //Set content before lightbox opens
+  scheduler.attachEvent("onBeforeLightbox", function(id) {
 
+    var ev = scheduler.getEvent(id);
+
+    var EventStart = String(ev.start_date);
+    var EventEnd = String(ev.end_date);
+    var EventDay = EventStart.slice(8, 11);
+    var EventMonth = EventStart.slice(4, 8);
+    var EventYear = EventStart.slice(11, 16);
+    var EventTimeStart = EventStart.slice(16, 21);
+    var EventTimeEnd = EventEnd.slice(16, 21);
+    var DayLetterArray = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    var EventDayLetter = DayLetterArray[Number(EventDay) - 1];
+
+    //EventMonth = value of Month + " "(space)
+    switch (EventMonth) {
+      case "Jan ":
+        EventMonth = "January";
+        break;
+      case "Feb ":
+        EventMonth = "February";
+        break;
+      case "Mar ":
+        EventMonth = "March";
+        break;
+      case "Apr ":
+        EventMonth = "April";
+        break;
+      case "May ":
+        EventMonth = "May";
+        break;
+      case "Jun ":
+        EventMonth = "June";
+        break;
+      case "Jul ":
+        EventMonth = "July";
+        break;
+      case "Aug ":
+        EventMonth = "August";
+        break;
+      case "Sep ":
+        EventMonth = "September";
+        break;
+      case "Oct ":
+        EventMonth = "October";
+        break;
+      case "Nov ":
+        EventMonth = "November";
+        break;
+      case "Dec ":
+        EventMonth = "December";
+      default:
+        EventMonth = "Refresh or Contact Admin";
+    }
+
+    var Cal_Time = "<label class=\"Cal-Time\">" + EventTimeStart + " - " + EventTimeEnd + "</label>";
+    var Cal_Date_MonthLetter = "<label class=\"Cal-Date-MonthLetter\">" + EventMonth + "</label>";
+    var Cal_Date_DayNumber = "<label class=\"Cal-Date-DayNumber\">" + EventDay + "</label>";
+    var Cal_Date_DayLetter = "<label class=\"Cal-Date-DayLetter\">" + EventDayLetter + "</label>";
+
+    var Cal_Date = "<div class=\"Cal-Date\">" + Cal_Date_MonthLetter + Cal_Date_DayNumber + Cal_Date_DayLetter + "</div>";
+    var Cal_Type = "<label class=\"Cal-Type\" style=\"background:" + ev.color + ";\">" + ev.type + "</label>";
+    var Cal_Room = "<label class=\"Cal-Room\">" + ev.room + "</label>";
+    var Lightbox_Content_Block = "<div class=\"Lightbox-Content-Block\">" + Cal_Time + Cal_Date + Cal_Type + Cal_Room + "</div>";
+
+    var Input_VGS = "<div class=\"Input-VGS\"><label>VGS</label><input value=\"" + ev.vgs + "\" autofocus></input></div>";
+    var Input_Color = "<div class=\"Input-Color\"><label>Color</label><input type=\"color\" id=\"ColorSelector\" class=\"jscolor\" value=\"" + ev.color + "\"></input></div>";
+    var Input_AVA = "<div class=\"Input-AVA\"><label>AVA</label><input value=\"" + ev.maxava + "\"></input></div>";
+    var Lightbox_Content_Input = "<div class=\"Lightbox-Content-Input\">" + Input_VGS + Input_Color + Input_AVA + "</div>";
+
+    var Lightbox_Content_Text = "<div class=\"Lightbox-Content-Text\"><label class=\"fa fa-wpforms\"></label><textarea>" + ev.details + "</textarea></div>";
+
+    var Lightbox_Content_Teacher;
+
+    var Lightbox_Save = "<a class=\"Lightbox-Content-Save dhx_save_btn\">Save</a>";
+
+    var Lightbox_Content_Main = "<div class=\"Lightbox-Content-Main\">" + "<div class=\"Lightbox-Content-First\">" + Lightbox_Content_Block + Lightbox_Content_Input + "</div>" + Lightbox_Content_Text + "</div>" + Lightbox_Save;
+    ev.my_template = Lightbox_Content_Main;
+
+    //Set custom style to lightbox
+    /*    scheduler.showCover = function(box) {
+          if (box) {
+            box.style.display = "block";
+
+
+            var Width = $(".Lightbox-Content-Main").width();
+            console.log(Width);
+            //set custom position
+            box.style.left = "10px";
+            box.style.top = "100px";
+          }
+
+          scheduler.show_cover();
+        }*/
 
     return true;
-  })
+
+  });
+
+
+  scheduler.attachEvent("onLightbox", function(id) {
+
+    var ev = scheduler.getEvent(id);
+    // Header-Main .dhx_title
+    // Content-Main .dhx_cal_larea
+    //Lightbox .dhx_cal_light
+
+    //Set the ev.id value to element as id
+    $('.dhx_cal_light').attr('id', ev.id);
+
+
+    //Function: lightbox center of screen
+    jQuery.fn.center = function() {
+      this.css("position", "absolute");
+      this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) +
+        $(window).scrollTop()) + "px");
+      this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) +
+        $(window).scrollLeft()) + "px");
+      return this;
+    }
+
+    $('#' + ev.id).center();
+    $(".Input-VGS input").focus();
+
+    //OnClick Run script that makes header and Cal-Type change Color
+    $("#ColorSelector").click(function() {
+      $("#ColorSelector").on("change", function() {
+        //Get Color
+        var color = $("#ColorSelector").val();
+        //apply cuurent color to divs
+        $(".Cal-Type").css("background", color);
+        $(".Lightbox-Header-Main").css("background", color);
+
+      });
+    });
+
+    //On save button click
+    $(".dhx_save_btn").click(function() {
+      //Get values from input fields(NEW VALUES)
+      var NewVgs = $('.Input-VGS input').val();
+      var NewColor = $('.Input-Color input').val();
+      var NewMaxAva = $('.Input-AVA input').val();
+      var NewDetails = $('.Lightbox-Content-Text textarea').val();
+
+
+      //Gets event values(OLD VALUES)
+      var ev = scheduler.getEvent(scheduler.getState().lightbox_id);
+
+
+      //Update data here
+      if (ev.xml == "Test") {
+        ev.vgs = NewVgs;
+        ev.color = NewColor;
+        ev.maxava = NewMaxAva;
+        ev.details = NewDetails;
+      }
+
+      //Ends or closes lightbox
+      scheduler.endLightbox(true, document.getElementById(ev.id));
+    });
+
+  });
+  /*  //For saving custom fields
+    scheduler.attachEvent("onEventSave", function(id, ev, is_new) {
+      var ev = scheduler.getEvent(id);
+      var bla = $('#TestId').val();
+      ev.room = bla; //changes event's data
+      scheduler.updateEvent(ev); // renders the updated event
+      console.log("Saving");
+      return true;
+    })*/
+
 
   //https://docs.dhtmlx.com/scheduler/template.html to change view, this below is just basic config
   scheduler.config.lightbox.sections = [{
     name: "test",
-    height: 40,
     type: "template",
     map_to: "my_template"
   }]
+
+  //Removes all buttons in lightbox
+  scheduler.config.buttons_left = "";
+  scheduler.config.buttons_right = "";
 
   //init and sets date to current
   scheduler.init('scheduler_here', new Date(yyyy, mm, dd), "timeline");
@@ -237,10 +479,3 @@ dhtmlxEvent(document.body, "click", function(e) {
     }
   }
 });
-
-//Delete event on backspace
-scheduler.addShortcut("backspace", function(e) {
-  var eventId = scheduler.getState().select_id;
-  if (eventId)
-    scheduler.deleteEvent(eventId);
-}, "event");

@@ -235,8 +235,23 @@ function init() {
     focus: false
   }]
 
-  //Adding br
-  scheduler.attachEvent("onLightbox", function(id) {});
+  scheduler.attachEvent("onLightbox", function(id) {
+    var ev = scheduler.getEvent(id);
+
+    //Set the ev.id value to element as id
+    $('.dhx_cal_light').attr('id', ev.id);
+
+    jQuery.fn.center = function() {
+      this.css("position", "absolute");
+      this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) +
+        $(window).scrollTop()) + "px");
+      this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) +
+        $(window).scrollLeft()) + "px");
+      return this;
+    }
+
+    $('#' + ev.id).center();
+  });
 
 
   //Close lightbox on click outside of the lightbox

@@ -57,6 +57,7 @@
 }
 
 /* Makes all buttons, anchors and images unselectable */
+
 a, button, img {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -64,6 +65,10 @@ a, button, img {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+table {
+  margin-bottom: 0;
 }
 
 .unselectable {
@@ -76,7 +81,8 @@ a, button, img {
 }
 
 /* Change layer index to side menu overlay */
-.js-off-canvas-overlay.is-closable{
+
+.js-off-canvas-overlay.is-closable {
   z-index: 99;
 }
 
@@ -119,6 +125,12 @@ a, button, img {
 .dhtmlx_message_area {
   display: none;
   z-index: 1000;
+}
+
+.dhx_data_table.folder .dhx_matrix_cell, .dhx_matrix_scell.folder {
+  background-color: #36414d;
+  color: white;
+  cursor: pointer;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

@@ -3,17 +3,18 @@
   <event
     id='1'
     xml='Lecture'
-    start_date='02-01-2018 10:45'
-    end_date='02-01-2018 13:45'
+    start_date='06-01-2018 11:00'
+    end_date='06-01-2018 11:45'
     teacher='John Doe'
     major='Naturfag'
     sub='Energi'
-    room='206'
+    room='202-A'
     block='A'
-    color='#000000'
+    color='#4169e1'
     joined='1'
     vgs='2'
-    ava='01 / 30'
+    ava='01'
+    maxava='30'
     details='Lorem ipsum dolor sit amet, et lorem quaestio has, nam dicta petentium at.
     At etiam praesent maiestatis vim, eum dicam legendos ea. Sea option invidunt gloriatur
     ne. Ut eos tempor scripta, eu pro enim causae ocurreret. Mel cu quem error, an propriae
