@@ -134,11 +134,11 @@ function init() {
   scheduler.templates.event_class = function(start, end, event) {
 
     if (event.xml != "Test") {
-      $(this).css("opacity", "0.5");
       return "Event-Disabled";
     } else {
       return "";
     }
+
   };
 
   scheduler.attachEvent("onTemplatesReady", function() {

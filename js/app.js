@@ -1,2 +1,2 @@
 // INIT Foundation js
-$(document).foundation()
+$(document).foundation();
