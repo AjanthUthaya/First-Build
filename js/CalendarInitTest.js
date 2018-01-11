@@ -226,7 +226,18 @@ function init() {
     var EventTimeStart = EventStart.slice(16, 21);
     var EventTimeEnd = EventEnd.slice(16, 21);
     var DayLetterArray = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-    var EventDayLetter = DayLetterArray[Number(EventDay) - 1];
+
+    var d = new Date(EventMonth + "/" + EventDay + "/" + EventYear);
+    var weekday = new Array(7);
+    weekday[0] = "Sunday";
+    weekday[1] = "Monday";
+    weekday[2] = "Tuesday";
+    weekday[3] = "Wednesday";
+    weekday[4] = "Thursday";
+    weekday[5] = "Friday";
+    weekday[6] = "Saturday";
+
+    var EventDayLetter = weekday[d.getDay()];
 
     //EventMonth = value of Month + " "(space)
     switch (EventMonth) {
@@ -284,13 +295,15 @@ function init() {
     var Input_AVA = "<div class=\"Input-AVA\"><label>AVA</label><input value=\"" + ev.maxava + "\"></input></div>";
     var Lightbox_Content_Input = "<div class=\"Lightbox-Content-Input\">" + Input_VGS + Input_Color + Input_AVA + "</div>";
 
+    //ChildScroll not working on textarea
     var Lightbox_Content_Text = "<div class=\"Lightbox-Content-Text\"><label class=\"fa fa-wpforms\"></label><textarea>" + ev.details + "</textarea></div>";
 
-    var Lightbox_Content_Teacher;
+    //onkeyup=\"myFunction()\"
+    var Lightbox_Content_Teacher = "<div class=\"Lightbox-Content-Teacher\"><div id=\"Teacher-Input-Main\"><div id=\"Teacher-Input-Dropdown\"></div><span id=\"Teacher-Input-Add\" class=\"fa fa-plus\"></span></div><ul class=\"Teacher-List\"><li>test</li><li>test</li></ul></div>";
 
     var Lightbox_Save = "<a class=\"Lightbox-Content-Save dhx_save_btn\">Save</a>";
 
-    var Lightbox_Content_Main = "<div class=\"Lightbox-Content-Main\">" + "<div class=\"Lightbox-Content-First\">" + Lightbox_Content_Block + Lightbox_Content_Input + "</div>" + Lightbox_Content_Text + "</div>" + Lightbox_Save;
+    var Lightbox_Content_Main = "<div class=\"Lightbox-Content-Main\">" + "<div class=\"Lightbox-Content-First\">" + Lightbox_Content_Block + Lightbox_Content_Input + "</div>" + Lightbox_Content_Text + Lightbox_Content_Teacher + "</div>" + Lightbox_Save;
     ev.my_template = Lightbox_Content_Main;
 
     //Set custom style to lightbox
@@ -315,6 +328,36 @@ function init() {
 
 
   scheduler.attachEvent("onLightbox", function(id) {
+
+    //Get json and put it into a javascript object
+    var TeacherList = (function() {
+      var TeacherList = null;
+      $.ajax({
+        'async': false,
+        'global': false,
+        'url': "data/DataTeacher.json",
+        'dataType': "json",
+        'success': function(data) {
+          TeacherList = data;
+          alert("Done loading list of teachers");
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          alert("Status: " + textStatus);
+          alert("Error: " + errorThrown);
+        }
+      });
+      return TeacherList;
+    })();
+
+    //Init teacher dropdown
+    $('#Teacher-Input-Dropdown').ddslick({
+      data: TeacherList,
+      imagePosition: "left",
+      onSelected: function(data) {
+        console.log("test");
+      },
+      selectText: "Select and add a teacher"
+    });
 
     var ev = scheduler.getEvent(id);
     // Header-Main .dhx_title
@@ -349,6 +392,34 @@ function init() {
 
       });
     });
+
+
+    //Script for adding teacher/s
+    //For the button, onClick add new
+    $("#Teacher-Input-Add").click(function() {
+      var TeacherInputVal = $("#Teacher-Input-Input").val();
+      $(".Lightbox-Content-Teacher ul").append('<li>' + TeacherInputVal + '</li>');
+      console.log(TeacherInputVal);
+    });
+
+    //For the input, on enter released
+    $('#Teacher-Input-Input').bind("enterKey", function(e) {
+      var TeacherInputVal = $(this).val();
+      $(".Lightbox-Content-Teacher ul").append('<li>' + TeacherInputVal + '</li>');
+      console.log(TeacherInputVal);
+    });
+    $('#Teacher-Input-Input').keyup(function(e) {
+      if (e.keyCode == 13) {
+        $(this).trigger("enterKey");
+      }
+    });
+
+
+    //Script for removing li element onClick
+    $(".Teacher-List").on("click", "li", function() {
+      $(this).css("background-color", "black");
+    });
+
 
     //On save button click
     $(".dhx_save_btn").click(function() {
@@ -479,3 +550,11 @@ dhtmlxEvent(document.body, "click", function(e) {
     }
   }
 });
+
+
+//Change font size based on screen size
+var DocumentWidth = $(document).width();
+var EventElement = $(".Event-Content-Main label");
+if (DocumentWidth > 1030) {
+  EventDocument.css("font-size", "8px");
+}

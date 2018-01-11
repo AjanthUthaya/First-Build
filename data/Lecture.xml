@@ -3,8 +3,8 @@
   <event
     id='1'
     xml='Lecture'
-    start_date='06-01-2018 11:00'
-    end_date='06-01-2018 11:45'
+    start_date='11-01-2018 11:00'
+    end_date='11-01-2018 11:45'
     teacher='John Doe'
     major='Naturfag'
     sub='Energi'

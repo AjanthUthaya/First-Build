@@ -36,6 +36,10 @@
   font-size: 12px;
 }
 
+[type='text'], [type='password'], [type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], [type='email'], [type='number'], [type='search'], [type='tel'], [type='time'], [type='url'], [type='color'], textarea {
+  margin: 0;
+}
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -580,9 +584,87 @@ input#ColorSelector {
 
 .Lightbox-Content-Text textarea {
   height: fit-content;
-  min-height: 300px;
+  min-height: 200px;
+  max-height: 250px;
   padding: 20px 20px;
   border: 0;
+}
+
+.Lightbox-Content-Teacher {
+  padding: 0 50px;
+}
+
+#Teacher-Input-Main {
+  display: flex;
+}
+
+div#Teacher-Input-Dropdown {
+  width: 100%;
+  flex: 1;
+  height: 40px;
+}
+
+.dd-select {
+  width: 100% !important;
+  height: 40px;
+  background: rgb(255, 255, 255) !important;
+  border: 0;
+}
+
+.dd-option {
+  background: rgb(255, 255, 255) !important;
+}
+
+.dd-selected {
+  padding: 0 !important;
+  height: 100%;
+  display: flex;
+}
+
+.dd-selected-main{
+  display: flex;
+  flex-direction: column;
+  padding-right: 30px;
+}
+
+.dd-selected img {
+  height: 32px;
+  width: 32px;
+  margin: 4px;
+  margin-left: 10px;
+}
+
+ul.dd-options.dd-click-off-close {
+  width: 100% !important;
+  height: 159px;
+}
+
+#Teacher-Input-Add {
+  width: 45px;
+  height: 40px;
+  background-color: #444444;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.Lightbox-Content-Teacher .Teacher-List {
+  list-style-type: none;
+  margin: 20px 0;
+}
+
+.Lightbox-Content-Teacher .Teacher-List li {
+  background-color: blue;
+  margin-top: 10px;
+  padding: 20px 0;
+  color: white;
+}
+
+ul.Teacher-List {
+  min-height: 125px;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
