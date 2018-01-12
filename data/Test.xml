@@ -5,8 +5,8 @@
   <event
     id='2'
     xml='Test'
-    start_date='11-01-2018 08:00'
-    end_date='11-01-2018 10:30'
+    start_date='12-01-2018 08:00'
+    end_date='12-01-2018 10:30'
     teacher='John Doe'
     title='Norsk tentamen'
     type='Tentamen'

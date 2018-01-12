@@ -299,28 +299,34 @@ function init() {
     var Lightbox_Content_Text = "<div class=\"Lightbox-Content-Text\"><label class=\"fa fa-wpforms\"></label><textarea>" + ev.details + "</textarea></div>";
 
     //onkeyup=\"myFunction()\"
-    var Lightbox_Content_Teacher = "<div class=\"Lightbox-Content-Teacher\"><div id=\"Teacher-Input-Main\"><div id=\"Teacher-Input-Dropdown\"></div><span id=\"Teacher-Input-Add\" class=\"fa fa-plus\"></span></div><ul class=\"Teacher-List\"><li>test</li><li>test</li></ul></div>";
+    /*<span id=\"Teacher-Input-Add\" class=\"fa fa-plus\"></span>*/
+    //var Lightbox_Content_Teacher = "<div class=\"Teacher-Header-Main\"><span class=\"Teacher-Header fa fa-user-circle\"></span></div><div class=\"Lightbox-Content-Teacher\"><div id=\"Teacher-Input-Main\"><div id=\"Teacher-Input-Dropdown\"></div></div><ul class=\"Teacher-List\"><li><div class=\"Teacher-List-Item\"><a>x</a></div></li><li><div class=\"Teacher-List-Item\"><a>x</a></div></li></ul></div>";
+    var Teacher_Header_Main = "<div class=\"Teacher-Header-Main\"><span class=\"Teacher-Header fa fa-user-circle\"></span></div>";
+
+    var Teacher_Input_Main = "<div id=\"Teacher-Input-Main\"><div id=\"Teacher-Input-Dropdown\"></div></div>";
+
+    /*    var Li_Content_Id = "<input class=\"List-Item-Id\" type=\"hidden\" value=\"2\">";
+        var Li_Content_Image = "<div class=\"List-Item-Image-Main\"><img class=\"List-Item-Image\" src=\"http://i.imgur.com/8ScLNnk.png\"></div>";
+        var Li_Content_Name = "<label class=\"List-Item-Name\">John Doe</label>";
+
+        var LI_Content_Details_Email = "<div class=\"List-Item-Detail-Item List-Item-Details-Email\"><span>Email: </span><label>JohnDoe123@gmail.com</label></div>";
+        var LI_Content_Details_Phone = "<div class=\"List-Item-Detail-Item List-Item-Details-Phone\"><span>Phone: </span><label>46432923</label></div>";
+        var LI_Content_Details = "<div class=\"List-Item-Details\">" + LI_Content_Details_Email + LI_Content_Details_Phone + "</div>";
+
+        var Li_Content_Main = "<a class=\"List-Item-Option\">" + Li_Content_Id + Li_Content_Image + "<div class=\"List-Item-Info\">" + Li_Content_Name + LI_Content_Details + "</div>" + "</a>";
+        var Teacher_List_Li = "<li><div class=\"Teacher-List-Item\">" + Li_Content_Main + "<a class=\"Teacher-Li-Delete\">x</a></div></li>";*/
+
+    var Teacher_List_Main = "<ul class=\"Teacher-List-Main\">" + "</ul>";
+    var Teacher_Content_Main = "<div class=\"Teacher-Content-Main\">" + Teacher_Input_Main + Teacher_List_Main + "</div>";
+
+    var Lightbox_Content_Teacher = "<div class=\"Lightbox-Content-Teacher\">" + Teacher_Header_Main + Teacher_Content_Main + "</div>";
+
 
     var Lightbox_Save = "<a class=\"Lightbox-Content-Save dhx_save_btn\">Save</a>";
 
     var Lightbox_Content_Main = "<div class=\"Lightbox-Content-Main\">" + "<div class=\"Lightbox-Content-First\">" + Lightbox_Content_Block + Lightbox_Content_Input + "</div>" + Lightbox_Content_Text + Lightbox_Content_Teacher + "</div>" + Lightbox_Save;
     ev.my_template = Lightbox_Content_Main;
 
-    //Set custom style to lightbox
-    /*    scheduler.showCover = function(box) {
-          if (box) {
-            box.style.display = "block";
-
-
-            var Width = $(".Lightbox-Content-Main").width();
-            console.log(Width);
-            //set custom position
-            box.style.left = "10px";
-            box.style.top = "100px";
-          }
-
-          scheduler.show_cover();
-        }*/
 
     return true;
 
@@ -339,7 +345,7 @@ function init() {
         'dataType': "json",
         'success': function(data) {
           TeacherList = data;
-          alert("Done loading list of teachers");
+          /*alert("Done loading list of teachers");*/
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
           alert("Status: " + textStatus);
@@ -354,10 +360,48 @@ function init() {
       data: TeacherList,
       imagePosition: "left",
       onSelected: function(data) {
-        console.log("test");
+        //On select run whatever is in here
+        $(".Teacher-Input").val("");
+        var ddData = $('#Teacher-Input-Dropdown').data('ddslick');
+        console.log(ddData);
+
+        var ev = data.selectedData;
+        //console.log(data.selectedData);
+
+        var Li_Content_Id = "<input class=\"List-Item-Id\" type=\"hidden\" value=\"" + ev.id + "\">";
+        var Li_Content_Image = "<div class=\"List-Item-Image-Main\"><img class=\"List-Item-Image\" src=\"" + ev.imageSrc + "\"></div>";
+        var Li_Content_Name = "<label class=\"List-Item-Name\">" + ev.name + "</label>";
+
+        var LI_Content_Details_Email = "<div class=\"List-Item-Detail-Item List-Item-Details-Email\"><span>Email: </span><label>" + ev.email + "</label></div>";
+        var LI_Content_Details_Phone = "<div class=\"List-Item-Detail-Item List-Item-Details-Phone\"><span>Phone: </span><label>" + ev.phone + "</label></div>";
+        var LI_Content_Details = "<div class=\"List-Item-Details\">" + LI_Content_Details_Email + LI_Content_Details_Phone + "</div>";
+
+        var Li_Content_Main = "<a class=\"List-Item-Option\">" + Li_Content_Id + Li_Content_Image + "<div class=\"List-Item-Info\">" + Li_Content_Name + LI_Content_Details + "</div>" + "</a>";
+        var Teacher_List_Li = "<li><div class=\"Teacher-List-Item\">" + Li_Content_Main + "<a class=\"Teacher-Li-Delete\">x</a></div></li>";
+        $(".Teacher-Content-Main .Teacher-List-Main").append(Teacher_List_Li);
       },
       selectText: "Select and add a teacher"
     });
+
+    //Init input filter
+    var options = {
+      valueNames: ['List-Item-Name', 'List-Item-Details-Email', 'List-Item-Details-Phone']
+    };
+
+    var userList = new List('Teacher-Input-Dropdown', options);
+
+    //When teacher input is in focus show dropdown
+    /*    var Teacher_Input = $(".Teacher-Input").is(':focus');
+
+        $('.Teacher-Input').on("focus", function() {
+          $('#Teacher-Input-Dropdown').ddslick('open');
+        });*/
+
+
+    $(".List-Item-Option").click(function() {
+      console.log(this);
+    });
+
 
     var ev = scheduler.getEvent(id);
     // Header-Main .dhx_title
@@ -416,8 +460,8 @@ function init() {
 
 
     //Script for removing li element onClick
-    $(".Teacher-List").on("click", "li", function() {
-      $(this).css("background-color", "black");
+    $(".Teacher-List-Main").on("click", ".Teacher-List-Item a.Teacher-Li-Delete", function() {
+      $(this).closest("li").remove();
     });
 
 
@@ -550,11 +594,3 @@ dhtmlxEvent(document.body, "click", function(e) {
     }
   }
 });
-
-
-//Change font size based on screen size
-var DocumentWidth = $(document).width();
-var EventElement = $(".Event-Content-Main label");
-if (DocumentWidth > 1030) {
-  EventDocument.css("font-size", "8px");
-}

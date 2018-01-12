@@ -1,25 +1,29 @@
 [{
-  "text": "Facebook",
-  "value": 1,
+  "name": "Facebook",
+  "id": 1,
   "selected": false,
-  "description": "Description with Facebook",
+  "email": "JohnDoe123@gmail.it",
+  "phone": "46432923",
   "imageSrc": "http://i.imgur.com/XkuTj3B.png"
 }, {
-  "text": "Twitter",
-  "value": 2,
+  "name": "Twitter",
+  "id": 2,
   "selected": false,
-  "description": "Description with Twitter",
+  "email": "JohnDoe123@gmail.com",
+  "phone": "46432947",
   "imageSrc": "http://i.imgur.com/8ScLNnk.png"
 }, {
-  "text": "LinkedIn",
-  "value": 3,
+  "name": "LinkedIn",
+  "id": 3,
   "selected": false,
-  "description": "Description with LinkedIn",
+  "email": "JohnDoe123@gmail.com",
+  "phone": "46432923",
   "imageSrc": "http://i.imgur.com/aDNdibj.png"
 }, {
-  "text": "Foursquare",
-  "value": 4,
+  "name": "Foursquare",
+  "id": 4,
   "selected": false,
-  "description": "Description with Foursquare",
+  "email": "JohnDoe123@gmail.com",
+  "phone": "46432923",
   "imageSrc": "http://i.imgur.com/kFAk2DX.png"
 }]

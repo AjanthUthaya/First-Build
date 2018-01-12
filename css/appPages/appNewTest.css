@@ -134,10 +134,10 @@ table tbody th, table tbody td {
 
 .dhx_cal_event_line {
   display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 0 5px;
   cursor: url('../../img/cursor/Form-Edit-Color.png'), pointer !important;
+  align-items: center;
+  justify-content: center;
 }
 
 .dhx_cal_event_line * {
@@ -155,7 +155,7 @@ table tbody th, table tbody td {
 
 .dhx_cal_event_line.Event-Disabled {
   cursor: url('../../img/cursor/Form-View-Color.png'), no-drop !important;
-  opacity: 0.5;
+  opacity: .5;
 }
 
 .dhx_cal_event_line.Event-Disabled * {
@@ -167,7 +167,7 @@ table tbody th, table tbody td {
 }
 
 .dhx_cal_event_line.Event-Disabled label {
-  opacity: 0.8;
+  opacity: .8;
 }
 
 /* END Event disabled style */
@@ -230,25 +230,25 @@ label {
 }
 
 .Event-Content-Time {
+  font-size: 10px;
   display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   padding-top: 5px;
   padding-bottom: 5px;
   cursor: context-menu;
   color: white;
-  font-size: 10px;
+  align-items: center;
+  justify-content: center;
 }
 
 .Event-Content-Type {
+  font-size: 12px;
   display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   cursor: context-menu;
   color: white;
-  font-size: 12px;
+  align-items: center;
+  justify-content: center;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -303,13 +303,13 @@ label {
 
 .Lightbox-Header-Main {
   display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   height: 100%;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   background-color: #36414d;
+  align-items: center;
+  justify-content: center;
 }
 
 .dhx_delete_btn {
@@ -318,26 +318,26 @@ label {
 
 .dhx_delete_btn span {
   font-size: 25px;
-  height: 0;
-  width: 0;
   display: flex;
-  justify-content: center;
+  width: 0;
+  height: 0;
   align-items: center;
+  justify-content: center;
 }
 
 .Lightbox-Header-Main a.dhx_delete_btn {
+  font-size: 15px;
+  font-weight: bold;
   position: absolute;
   left: 0;
   display: flex !important;
-  align-items: center;
-  justify-content: center;
   width: 50px;
   height: 50px;
   color: white;
   border-top-left-radius: 5px;
   background-color: #f44336;
-  font-size: 15px;
-  font-weight: bold;
+  align-items: center;
+  justify-content: center;
 }
 
 .Lightbox-Header-Main a.dhx_delete_btn:hover {
@@ -360,9 +360,9 @@ label {
 }
 
 .Lightbox-Header-Main label {
-  color: white;
   font-size: 16px;
   font-weight: bold;
+  color: white;
 }
 
 .Lightbox-Header-Title {
@@ -374,18 +374,18 @@ label {
 }
 
 .Lightbox-Header-Main a.dhx_cancel_btn {
+  font-size: 23px;
+  font-weight: bold;
   position: absolute;
   right: 0;
   display: flex !important;
-  align-items: center;
-  justify-content: center;
   width: 50px;
   height: 50px;
   color: white;
   border-top-right-radius: 5px;
   background-color: #3a5461;
-  font-size: 23px;
-  font-weight: bold;
+  align-items: center;
+  justify-content: center;
 }
 
 .Lightbox-Header-Main a.dhx_cancel_btn:hover {
@@ -431,11 +431,11 @@ label {
 
 .Lightbox-Content-Save {
   display: flex;
-  align-items: center;
-  justify-content: center;
   height: 40px;
   color: white !important;
   background-color: #4caf50;
+  align-items: center;
+  justify-content: center;
 }
 
 .Lightbox-Content-Save:hover {
@@ -446,27 +446,27 @@ label {
 
 .Lightbox-Content-Block {
   display: flex;
-  align-items: center;
   flex-direction: column;
-  justify-content: center;
   width: 35%;
   height: 100%;
   margin: 40px;
   background-color: grey;
+  align-items: center;
+  justify-content: center;
 }
 
 .Lightbox-Content-Block * {
   display: flex;
+  width: 100%;
   align-items: center;
   justify-content: center;
-  width: 100%;
 }
 
 .Cal-Time {
   height: 26px;
   padding: 3px 0;
   color: white;
-  background-color: #444444;
+  background-color: #444;
 }
 
 .Cal-Date {
@@ -477,9 +477,9 @@ label {
 }
 
 .Cal-Date-MonthLetter {
-  padding-bottom: 15px;
   font-size: 16px;
   font-weight: bold;
+  padding-bottom: 15px;
 }
 
 .Cal-Date-DayNumber {
@@ -488,77 +488,77 @@ label {
 }
 
 .Cal-Date-DayLetter {
-  padding-top: 15px;
   font-size: 16px;
   font-weight: bold;
+  padding-top: 15px;
 }
 
 .Cal-Type {
+  font-weight: bold;
   padding: 15px 0;
   color: white;
   background: red;
-  font-weight: bold;
 }
 
 .Cal-Room {
-  padding: 10px 0;
-  background-color: white;
   font-size: 25px;
   font-weight: bold;
+  padding: 10px 0;
+  background-color: white;
 }
 
 .Lightbox-Content-Input {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
   padding: 50px 0;
+  flex-grow: 1;
 }
 
 .Input-VGS {
   display: flex;
+  height: 100%;
   align-items: center;
   justify-content: center;
-  height: 100%;
 }
 
 .Input-Color {
   display: flex;
+  height: 100%;
   align-items: center;
   justify-content: center;
-  height: 100%;
 }
 
 .Input-AVA {
   display: flex;
+  height: 100%;
   align-items: center;
   justify-content: center;
-  height: 100%;
 }
 
 .Input-VGS label, .Input-Color label, .Input-AVA label {
   display: flex;
-  align-items: center;
-  justify-content: center;
   width: 30%;
   min-width: fit-content;
   height: 40px;
   text-align: center;
   color: white;
   background-color: grey;
+  align-items: center;
+  justify-content: center;
 }
 
 .Input-VGS input, .Input-Color input, .Input-AVA input {
   display: flex;
-  align-items: center;
-  justify-content: center;
   width: 55%;
   height: 40px;
   max-height: 40px;
   margin: 0;
-  padding: 0px 5px;
+  padding: 0 5px;
   text-align: center;
   border: 0;
   background-color: white;
+  align-items: center;
+  justify-content: center;
 }
 
 input#ColorSelector {
@@ -568,18 +568,18 @@ input#ColorSelector {
 .Lightbox-Content-Text {
   max-width: 100%;
   height: fit-content;
-  padding: 0 50px;
+  padding: 0 45px;
   padding-bottom: 40px;
 }
 
 .Lightbox-Content-Text label {
+  font-size: 30px;
   display: flex;
-  align-items: center;
-  justify-content: center;
   height: 45px;
   color: white;
-  background-color: #444444;
-  font-size: 30px;
+  background-color: #444;
+  align-items: center;
+  justify-content: center;
 }
 
 .Lightbox-Content-Text textarea {
@@ -590,8 +590,26 @@ input#ColorSelector {
   border: 0;
 }
 
-.Lightbox-Content-Teacher {
-  padding: 0 50px;
+.Teacher-Header-Main {
+  height: 45px;
+  padding: 0 45px;
+}
+
+.Teacher-Header {
+  font-size: 30px;
+  display: flex;
+  width: 100%;
+  height: 45px;
+  color: white;
+  background-color: #444;
+  align-items: center;
+  justify-content: center;
+}
+
+.Teacher-Content-Main {
+  margin: 0 45px;
+  margin-bottom: 40px;
+  background-color: #292c30;
 }
 
 #Teacher-Input-Main {
@@ -600,15 +618,23 @@ input#ColorSelector {
 
 div#Teacher-Input-Dropdown {
   width: 100%;
-  flex: 1;
   height: 40px;
+  flex: 1;
+}
+
+.Teacher-Input {
+  font-size: 16px !important;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border: 0;
 }
 
 .dd-select {
   width: 100% !important;
   height: 40px;
+  border: 1px solid #ddd;
   background: rgb(255, 255, 255) !important;
-  border: 0;
 }
 
 .dd-option {
@@ -616,55 +642,159 @@ div#Teacher-Input-Dropdown {
 }
 
 .dd-selected {
-  padding: 0 !important;
-  height: 100%;
   display: flex;
+  height: 100%;
+  padding: 0 !important;
 }
 
-.dd-selected-main{
+.dd-selected-main {
   display: flex;
   flex-direction: column;
   padding-right: 30px;
 }
 
 .dd-selected img {
-  height: 32px;
   width: 32px;
+  height: 32px;
   margin: 4px;
   margin-left: 10px;
 }
 
 ul.dd-options.dd-click-off-close {
   width: 100% !important;
-  height: 159px;
+  max-height: 165px;
+}
+
+ul.dd-options li {
+  border-bottom: 1px solid #ddd;
+}
+
+ul.dd-options .List-Item-Option {
+  padding-right: 0 !important;
 }
 
 #Teacher-Input-Add {
+  font-size: 20px;
+  display: flex;
   width: 45px;
   height: 40px;
-  background-color: #444444;
+  cursor: pointer;
   color: white;
+  background-color: #444;
+  align-items: center;
+  justify-content: center;
+}
+
+.Teacher-Content-Main .Teacher-List-Main {
+  margin: 0;
+  list-style-type: none;
+}
+
+ul.Teacher-List-Main {
+  overflow: auto;
+  min-height: 165px;
+  max-height: 238px;
+}
+
+.Teacher-Content-Main .Teacher-List-Main li {
   display: flex;
+  margin: 15px 20px;
+  background-color: white;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+}
+
+div.Teacher-List-Item {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  height: 60px;
+  justify-content: center;
+}
+
+a.List-Item-Option {
+  display: flex;
+  height: 60px;
+  padding-right: 60px !important;
+  flex: 1;
+}
+
+a.List-Item-Option * {
+  cursor: pointer;
+}
+
+.List-Item-Image-Main {
+  display: flex;
+  width: 60px;
+  height: 100%;
+  margin-left: 10px;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
-  font-size: 20px;
 }
 
-.Lightbox-Content-Teacher .Teacher-List {
-  list-style-type: none;
-  margin: 20px 0;
+img.List-Item-Image {
+  width: 45px;
+  height: 45px;
 }
 
-.Lightbox-Content-Teacher .Teacher-List li {
-  background-color: blue;
-  margin-top: 10px;
-  padding: 20px 0;
+.List-Item-Info {
+  display: flex;
+  flex-direction: column;
+  padding: 3px 10px;
+  flex: 1;
+}
+
+label.List-Item-Name {
+  padding: 5px 0;
+  text-align: center;
+}
+
+.List-Item-Details {
+  display: flex;
+  flex: 1;
+}
+
+.List-Item-Detail-Item {
+  display: flex;
+  padding: 0 10px;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.List-Item-Detail-Item.List-Item-Details-Email {
+  justify-content: flex-end;
+}
+
+.List-Item-Detail-Item.List-Item-Details-Phone {
+  justify-content: flex-start;
+}
+
+.List-Item-Detail-Item span {
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.List-Item-Detail-Item label {
+  font-size: 10px;
+}
+
+.Teacher-List-Item a.Teacher-Li-Delete {
+  font-size: 25px;
+  font-weight: bold;
+  position: absolute;
+  right: 0;
+  display: flex;
+  width: 60px;
+  height: 60px;
+  padding-bottom: 3px;
   color: white;
-}
-
-ul.Teacher-List {
-  min-height: 125px;
+  background-color: red;
+  align-items: center;
+  justify-content: center;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

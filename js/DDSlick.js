@@ -26,8 +26,8 @@
       embedCSS: true,
       onSelected: function() {}
     },
-    i = '<div class="dd-select"><input class="dd-selected-value" type="hidden" /><a class="dd-selected"></a><span class="dd-pointer dd-pointer-down"></span></div>',
-    a = '<ul class="dd-options"></ul>',
+    i = '<input class="Teacher-Input dd-select search" placeholder="Search and select to add teacher"></input>',
+    a = '<ul class="dd-options list"></ul>',
     b = '<style id="css-ddslick" type="text/css">.dd-select{ border-radius:2px; border:solid 1px #ccc; position:relative; cursor:pointer;}.dd-desc { color:#aaa; display:block; overflow: hidden; font-weight:normal; line-height: 1.4em; }.dd-selected{ overflow:hidden; display:block; padding:10px; font-weight:bold;}.dd-pointer{ width:0; height:0; position:absolute; right:10px; top:50%; margin-top:-3px;}.dd-pointer-down{ border:solid 5px transparent; border-top:solid 5px #000; }.dd-pointer-up{border:solid 5px transparent !important; border-bottom:solid 5px #000 !important; margin-top:-8px;}.dd-options{ border:solid 1px #ccc; border-top:none; list-style:none; box-shadow:0px 1px 5px #ddd; display:none; position:absolute; z-index:2000; margin:0; padding:0;background:#fff; overflow:auto;}.dd-option{ padding:10px; display:block; border-bottom:solid 1px #ddd; overflow:hidden; text-decoration:none; color:#333; cursor:pointer;-webkit-transition: all 0.25s ease-in-out; -moz-transition: all 0.25s ease-in-out;-o-transition: all 0.25s ease-in-out;-ms-transition: all 0.25s ease-in-out; }.dd-options > li:last-child > .dd-option{ border-bottom:none;}.dd-option:hover{ background:#f3f3f3; color:#000;}.dd-selected-description-truncated { text-overflow: ellipsis; white-space:nowrap; }.dd-option-selected { background:#f6f6f6; }.dd-option-image, .dd-selected-image { vertical-align:middle; float:left; margin-right:5px; max-width:64px;}.dd-image-right { float:right; margin-right:15px; margin-left:5px;}.dd-container{ position:relative;}​ .dd-selected-text { font-weight:bold}​</style>';
   c.init = function(l) {
     var l = e.extend({}, d, l);
@@ -83,7 +83,17 @@
           if (w.selected) {
             l.defaultSelectedIndex = v
           }
-          u.append('<li><a class="dd-option">' + (w.value ? ' <input class="dd-option-value" type="hidden" value="' + w.value + '" />' : "") + (w.imageSrc ? ' <img class="dd-option-image' + (l.imagePosition == "right" ? " dd-image-right" : "") + '" src="' + w.imageSrc + '" />' : "") + (w.text ? ' <label class="dd-option-text">' + w.text + "</label>" : "") + (w.description ? ' <small class="dd-option-description dd-desc">' + w.description + "</small>" : "") + "</a></li>")
+          var Li_Content_Id = "<input class=\"List-Item-Id\" type=\"hidden\" value=\"" + w.id + "\">";
+          var Li_Content_Image = "<div class=\"List-Item-Image-Main\"><img class=\"List-Item-Image\" src=\"" + w.imageSrc + "\"></div>";
+          var Li_Content_Name = "<label class=\"List-Item-Name\">" + w.name + "</label>";
+
+          var LI_Content_Details_Email = "<div class=\"List-Item-Detail-Item List-Item-Details-Email\"><span>Email: </span><label>" + w.email + "</label></div>";
+          var LI_Content_Details_Phone = "<div class=\"List-Item-Detail-Item List-Item-Details-Phone\"><span>Phone: </span><label>" + w.phone + "</label></div>";
+          var LI_Content_Details = "<div class=\"List-Item-Details\">" + LI_Content_Details_Email + LI_Content_Details_Phone + "</div>";
+
+          var Li_Content_Main = "<a class=\"List-Item-Option\">" + Li_Content_Id + Li_Content_Image + "<div class=\"List-Item-Info\">" + Li_Content_Name + LI_Content_Details + "</div>" + "</a>";
+          var Teacher_List_Li = "<li>" + Li_Content_Main + "</li>";
+          u.append(Teacher_List_Li)
         });
         var t = {
           settings: l,
@@ -102,7 +112,7 @@
         p.find(".dd-select").on("click.ddslick", function() {
           f(p)
         });
-        p.find(".dd-option").on("click.ddslick", function() {
+        p.find(".List-Item-Option").on("click.ddslick", function() {
           j(p, e(this).closest("li").index())
         });
         if (l.clickOffToClose) {
@@ -159,11 +169,11 @@
       n = r.siblings(".dd-selected-value"),
       v = q.find(".dd-options"),
       l = r.siblings(".dd-pointer"),
-      p = q.find(".dd-option").eq(s),
+      p = q.find(".List-Item-Option").eq(s),
       m = p.closest("li"),
       o = u.settings,
       t = u.settings.data[s];
-    q.find(".dd-option").removeClass("dd-option-selected");
+    q.find(".List-Item-Option").removeClass("dd-option-selected");
     p.addClass("dd-option-selected");
     u.selectedIndex = s;
     u.selectedItem = m;
@@ -216,7 +226,7 @@
   }
 
   function h(l) {
-    l.find(".dd-option").each(function() {
+    l.find(".List-Item-Option").each(function() {
       var p = e(this);
       var n = p.css("height");
       var o = p.find(".dd-option-description");
