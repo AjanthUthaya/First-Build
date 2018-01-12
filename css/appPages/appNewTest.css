@@ -628,6 +628,7 @@ div#Teacher-Input-Dropdown {
   height: 100%;
   text-align: center;
   border: 0;
+  padding: 0;
 }
 
 .dd-select {
@@ -790,7 +791,6 @@ label.List-Item-Name {
   display: flex;
   width: 60px;
   height: 60px;
-  padding-bottom: 3px;
   color: white;
   background-color: red;
   align-items: center;

@@ -363,10 +363,9 @@ function init() {
         //On select run whatever is in here
         $(".Teacher-Input").val("");
         var ddData = $('#Teacher-Input-Dropdown').data('ddslick');
-        console.log(ddData);
 
         var ev = data.selectedData;
-        //console.log(data.selectedData);
+        console.log(data.selectedData);
 
         var Li_Content_Id = "<input class=\"List-Item-Id\" type=\"hidden\" value=\"" + ev.id + "\">";
         var Li_Content_Image = "<div class=\"List-Item-Image-Main\"><img class=\"List-Item-Image\" src=\"" + ev.imageSrc + "\"></div>";
@@ -384,11 +383,11 @@ function init() {
     });
 
     //Init input filter
-    var options = {
+/*    var options = {
       valueNames: ['List-Item-Name', 'List-Item-Details-Email', 'List-Item-Details-Phone']
     };
 
-    var userList = new List('Teacher-Input-Dropdown', options);
+    var userList = new List('Teacher-Input-Dropdown', options);*/
 
     //When teacher input is in focus show dropdown
     /*    var Teacher_Input = $(".Teacher-Input").is(':focus');
@@ -396,6 +395,46 @@ function init() {
         $('.Teacher-Input').on("focus", function() {
           $('#Teacher-Input-Dropdown').ddslick('open');
         });*/
+
+        var TeacherSearch = '.Teacher-Input';
+        var TeacherUl = ".dd-options";
+        var TeacherLi = ".dd-options li";
+
+
+        /*$(TeacherSearch).keyup(function() {
+          var $rows = $(TeacherLi);
+          var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+          $rows.show().filter(function() {
+            var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+            return !~text.indexOf(val);
+          }).hide();
+        });*/
+
+        $(TeacherSearch).keyup(function(){
+            var valThis = $(this).val().toLowerCase();
+            var noresult = 0;
+            if(valThis == ""){
+                $(TeacherLi).show();
+                noresult = 1;
+        	    $('.no-results-found').remove();
+            } else {
+                $(TeacherLi).each(function(){
+                    var text = $(this).text().toLowerCase();
+                    var match = text.indexOf(valThis);
+                    if (match >= 0) {
+                        $(this).show();
+                        noresult = 1;
+        		        $('.no-results-found').remove();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+           };
+            if (noresult == 0) {
+                $(".navList").append('<li class="no-results-found">No results found</li>');
+            }
+        });
 
 
     $(".List-Item-Option").click(function() {
