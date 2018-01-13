@@ -210,7 +210,29 @@ function init() {
     ev.xml = "Test";
     ev.maxava = "30";
     ev.details = "";
+    ev.teacherid = "";
   });
+
+
+  //Get json and put it into a javascript object
+  var TeacherList = (function() {
+    var TeacherList = null;
+    $.ajax({
+      'async': false,
+      'global': false,
+      'url': "data/DataTeacher.json",
+      'dataType': "json",
+      'success': function(data) {
+        TeacherList = data;
+        /*alert("Done loading list of teachers");*/
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        alert("Status: " + textStatus);
+        alert("Error: " + errorThrown);
+      }
+    });
+    return TeacherList;
+  })();
 
 
   //Set content before lightbox opens
@@ -286,7 +308,7 @@ function init() {
     var Cal_Date_DayLetter = "<label class=\"Cal-Date-DayLetter\">" + EventDayLetter + "</label>";
 
     var Cal_Date = "<div class=\"Cal-Date\">" + Cal_Date_MonthLetter + Cal_Date_DayNumber + Cal_Date_DayLetter + "</div>";
-    var Cal_Type = "<label class=\"Cal-Type\" style=\"background:" + ev.color + ";\">" + ev.type + "</label>";
+    var Cal_Type = "<label class=\"Cal-Type editable\" style=\"background:" + ev.color + ";\">" + ev.type + "</label>";
     var Cal_Room = "<label class=\"Cal-Room\">" + ev.room + "</label>";
     var Lightbox_Content_Block = "<div class=\"Lightbox-Content-Block\">" + Cal_Time + Cal_Date + Cal_Type + Cal_Room + "</div>";
 
@@ -335,113 +357,6 @@ function init() {
 
   scheduler.attachEvent("onLightbox", function(id) {
 
-    //Get json and put it into a javascript object
-    var TeacherList = (function() {
-      var TeacherList = null;
-      $.ajax({
-        'async': false,
-        'global': false,
-        'url': "data/DataTeacher.json",
-        'dataType': "json",
-        'success': function(data) {
-          TeacherList = data;
-          /*alert("Done loading list of teachers");*/
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-          alert("Status: " + textStatus);
-          alert("Error: " + errorThrown);
-        }
-      });
-      return TeacherList;
-    })();
-
-    //Init teacher dropdown
-    $('#Teacher-Input-Dropdown').ddslick({
-      data: TeacherList,
-      imagePosition: "left",
-      onSelected: function(data) {
-        //On select run whatever is in here
-        $(".Teacher-Input").val("");
-        var ddData = $('#Teacher-Input-Dropdown').data('ddslick');
-
-        var ev = data.selectedData;
-        console.log(data.selectedData);
-
-        var Li_Content_Id = "<input class=\"List-Item-Id\" type=\"hidden\" value=\"" + ev.id + "\">";
-        var Li_Content_Image = "<div class=\"List-Item-Image-Main\"><img class=\"List-Item-Image\" src=\"" + ev.imageSrc + "\"></div>";
-        var Li_Content_Name = "<label class=\"List-Item-Name\">" + ev.name + "</label>";
-
-        var LI_Content_Details_Email = "<div class=\"List-Item-Detail-Item List-Item-Details-Email\"><span>Email: </span><label>" + ev.email + "</label></div>";
-        var LI_Content_Details_Phone = "<div class=\"List-Item-Detail-Item List-Item-Details-Phone\"><span>Phone: </span><label>" + ev.phone + "</label></div>";
-        var LI_Content_Details = "<div class=\"List-Item-Details\">" + LI_Content_Details_Email + LI_Content_Details_Phone + "</div>";
-
-        var Li_Content_Main = "<a class=\"List-Item-Option\">" + Li_Content_Id + Li_Content_Image + "<div class=\"List-Item-Info\">" + Li_Content_Name + LI_Content_Details + "</div>" + "</a>";
-        var Teacher_List_Li = "<li><div class=\"Teacher-List-Item\">" + Li_Content_Main + "<a class=\"Teacher-Li-Delete\">x</a></div></li>";
-        $(".Teacher-Content-Main .Teacher-List-Main").append(Teacher_List_Li);
-      },
-      selectText: "Select and add a teacher"
-    });
-
-    //Init input filter
-/*    var options = {
-      valueNames: ['List-Item-Name', 'List-Item-Details-Email', 'List-Item-Details-Phone']
-    };
-
-    var userList = new List('Teacher-Input-Dropdown', options);*/
-
-    //When teacher input is in focus show dropdown
-    /*    var Teacher_Input = $(".Teacher-Input").is(':focus');
-
-        $('.Teacher-Input').on("focus", function() {
-          $('#Teacher-Input-Dropdown').ddslick('open');
-        });*/
-
-        var TeacherSearch = '.Teacher-Input';
-        var TeacherUl = ".dd-options";
-        var TeacherLi = ".dd-options li";
-
-
-        /*$(TeacherSearch).keyup(function() {
-          var $rows = $(TeacherLi);
-          var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-
-          $rows.show().filter(function() {
-            var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-            return !~text.indexOf(val);
-          }).hide();
-        });*/
-
-        $(TeacherSearch).keyup(function(){
-            var valThis = $(this).val().toLowerCase();
-            var noresult = 0;
-            if(valThis == ""){
-                $(TeacherLi).show();
-                noresult = 1;
-        	    $('.no-results-found').remove();
-            } else {
-                $(TeacherLi).each(function(){
-                    var text = $(this).text().toLowerCase();
-                    var match = text.indexOf(valThis);
-                    if (match >= 0) {
-                        $(this).show();
-                        noresult = 1;
-        		        $('.no-results-found').remove();
-                    } else {
-                        $(this).hide();
-                    }
-                });
-           };
-            if (noresult == 0) {
-                $(".navList").append('<li class="no-results-found">No results found</li>');
-            }
-        });
-
-
-    $(".List-Item-Option").click(function() {
-      console.log(this);
-    });
-
-
     var ev = scheduler.getEvent(id);
     // Header-Main .dhx_title
     // Content-Main .dhx_cal_larea
@@ -461,7 +376,17 @@ function init() {
       return this;
     }
 
-    $('#' + ev.id).center();
+    jQuery.fn.CustomPos = function(x) {
+      //X = TopPos
+      this.css("position", "absolute");
+      this.css("top", Math.max(0, x +
+        $(window).scrollTop()) + "px");
+      this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) +
+        $(window).scrollLeft()) + "px");
+      return this;
+    }
+
+    $('#' + ev.id).CustomPos(80);
     $(".Input-VGS input").focus();
 
     //OnClick Run script that makes header and Cal-Type change Color
@@ -477,30 +402,247 @@ function init() {
     });
 
 
-    //Script for adding teacher/s
-    //For the button, onClick add new
-    $("#Teacher-Input-Add").click(function() {
-      var TeacherInputVal = $("#Teacher-Input-Input").val();
-      $(".Lightbox-Content-Teacher ul").append('<li>' + TeacherInputVal + '</li>');
-      console.log(TeacherInputVal);
+    //Init teacher dropdown
+    $('#Teacher-Input-Dropdown').ddslick({
+      data: TeacherList,
+      imagePosition: "left",
+      onSelected: function(data) {
+        //On select run whatever is in here
+        $(".Teacher-Input").val("");
+        var ddData = $('#Teacher-Input-Dropdown').data('ddslick');
+
+        var evt = data.selectedData;
+
+        var Li_Content_Id = "<input class=\"List-Item-Id\" type=\"hidden\" value=\"" + evt.id + "\">";
+        var Li_Content_Image = "<div class=\"List-Item-Image-Main\"><img class=\"List-Item-Image\" src=\"" + evt.imageSrc + "\"></div>";
+        var Li_Content_Name = "<label class=\"List-Item-Name\">" + evt.name + "</label>";
+
+        var LI_Content_Details_Email = "<div class=\"List-Item-Detail-Item List-Item-Details-Email\"><span>Email: </span><label>" + evt.email + "</label></div>";
+        var LI_Content_Details_Phone = "<div class=\"List-Item-Detail-Item List-Item-Details-Phone\"><span>Phone: </span><label>" + evt.phone + "</label></div>";
+        var LI_Content_Details = "<div class=\"List-Item-Details\">" + LI_Content_Details_Email + LI_Content_Details_Phone + "</div>";
+
+        var Li_Content_Main = "<a class=\"List-Item-Option\">" + Li_Content_Id + Li_Content_Image + "<div class=\"List-Item-Info\">" + Li_Content_Name + LI_Content_Details + "</div>" + "</a>";
+        var Teacher_List_Li = "<li><div class=\"Teacher-List-Item\">" + Li_Content_Main + "<a class=\"Teacher-Li-Delete\">x</a></div></li>";
+
+        //Script that makes it so that the user can not pick one teacher twice
+        /*        $(".dd-options").find(".dd-option-selected").each(function(i) {
+                  var li = $(this);
+                  var Id = li.find("input").val();
+
+                  console.log(Id);
+                });*/
+        //Get Value from teacher
+        var TeacherLength = $('ul.Teacher-List-Main li').length >= 1;
+
+        //////Checks to see if teacher is already added
+
+        //items cotains id of of teacher/s that are added
+        var items = [];
+        $(".Teacher-List-Main").find("li").each(function(i) {
+          var li = $(this);
+          var Id = li.find("input").val();
+
+          items.push(Id);
+        });
+
+
+        //Function to check if value exists inside of array
+        function checkValue(value, arr) {
+          var status = false;
+
+          for (var i = 0; i < arr.length; i++) {
+            var name = arr[i];
+            if (name == value) {
+              status = true;
+              break;
+            }
+          }
+
+          return status;
+        }
+
+        var AlreadyExists = checkValue(data.selectedData.id, items);
+
+        if (AlreadyExists == true) {
+          alert("Teacher is already added to this event")
+        } else {
+          $(".Teacher-Content-Main .Teacher-List-Main").append(Teacher_List_Li);
+        }
+
+      },
+      selectText: "Select and add a teacher"
     });
 
-    //For the input, on enter released
-    $('#Teacher-Input-Input').bind("enterKey", function(e) {
-      var TeacherInputVal = $(this).val();
-      $(".Lightbox-Content-Teacher ul").append('<li>' + TeacherInputVal + '</li>');
-      console.log(TeacherInputVal);
-    });
-    $('#Teacher-Input-Input').keyup(function(e) {
-      if (e.keyCode == 13) {
-        $(this).trigger("enterKey");
+    //Getting teacher/s id and showing them in Teacher-List-Main
+    var ev = scheduler.getEvent(id);
+    if (ev.teacherid != "") {
+
+      var TeacherIdArr = ev.teacherid.split("§");
+      // Display array values on page
+      for (var i = 0; i < TeacherIdArr.length; i++) {
+        //console.log(TeacherIdArr[i]);
+        arr = jQuery.grep(TeacherList, function(e) {
+          if (e.id == TeacherIdArr[i]) {
+            return e;
+          }
+        });
+
+        var evt = arr[0];
+
+        var Li_Content_Id = "<input class=\"List-Item-Id\" type=\"hidden\" value=\"" + evt.id + "\">";
+        var Li_Content_Image = "<div class=\"List-Item-Image-Main\"><img class=\"List-Item-Image\" src=\"" + evt.imageSrc + "\"></div>";
+        var Li_Content_Name = "<label class=\"List-Item-Name\">" + evt.name + "</label>";
+
+        var LI_Content_Details_Email = "<div class=\"List-Item-Detail-Item List-Item-Details-Email\"><span>Email: </span><label>" + evt.email + "</label></div>";
+        var LI_Content_Details_Phone = "<div class=\"List-Item-Detail-Item List-Item-Details-Phone\"><span>Phone: </span><label>" + evt.phone + "</label></div>";
+        var LI_Content_Details = "<div class=\"List-Item-Details\">" + LI_Content_Details_Email + LI_Content_Details_Phone + "</div>";
+
+        var Li_Content_Main = "<a class=\"List-Item-Option\">" + Li_Content_Id + Li_Content_Image + "<div class=\"List-Item-Info\">" + Li_Content_Name + LI_Content_Details + "</div>" + "</a>";
+        var Teacher_List_Li = "<li><div class=\"Teacher-List-Item\">" + Li_Content_Main + "<a class=\"Teacher-Li-Delete\">x</a></div></li>";
+        $(".Teacher-Content-Main .Teacher-List-Main").append(Teacher_List_Li);
+        //console.log(evt);
+      }
+    }
+
+    //Filter on type, for teacher dropdown list
+    var TeacherSearch = '.Teacher-Input';
+    var TeacherUl = ".dd-options";
+    var TeacherLi = ".dd-options li";
+
+    $(TeacherSearch).keyup(function() {
+      var valThis = $(this).val().toLowerCase();
+      var noresult = 0;
+      if (valThis == "") {
+        $(TeacherLi).show();
+        noresult = 1;
+        $('.no-results-found').remove();
+      } else {
+        $(TeacherLi).each(function() {
+          var text = $(this).text().toLowerCase();
+          var match = text.indexOf(valThis);
+          if (match >= 0) {
+            $(this).show();
+            noresult = 1;
+            $('.no-results-found').remove();
+          } else {
+            $(this).hide();
+          }
+        });
+      };
+      if (noresult == 0) {
+        $(".dd-options").append('<li class="no-results-found">No results</li>');
       }
     });
+
+
+    //Foldable fields OnClick, and store show or hide values with localvalues
+    //If localStorage variable empty set default value
+    var currentValue = localStorage['FieldOne'];
+    if (!currentValue || currentValue === null || currentValue == '') {
+      var defaultValue = "Shown";
+      localStorage['FieldOne'] = defaultValue;
+    }
+    //Function below requires click, so this just runs it once
+    if (localStorage['FieldOne'] == "Shown") {
+      $(".Lightbox-Content-Text textarea").css("display", "block");
+    } else {
+      $(".Lightbox-Content-Text textarea").css("display", "none");
+    }
+
+    $(".fa-wpforms").click(function() {
+      if (localStorage['FieldOne'] == "Shown") {
+        localStorage['FieldOne'] = 'Hidden';
+        $(".Lightbox-Content-Text textarea").css("display", "none");
+      } else {
+        localStorage['FieldOne'] = 'Shown';
+        $(".Lightbox-Content-Text textarea").css("display", "block");
+      }
+    });
+
+
+    var currentValue = localStorage['FieldTwo'];
+    if (!currentValue || currentValue === null || currentValue == '') {
+      var defaultValue = "Hidden";
+      localStorage['FieldTwo'] = defaultValue;
+    }
+    //Function below requires click, so this just runs it once
+    if (localStorage['FieldTwo'] == "Shown") {
+      $(".Teacher-Content-Main").css("display", "block");
+    } else {
+      $(".Teacher-Content-Main").css("display", "none");
+    }
+
+    $(".Teacher-Header").click(function() {
+      if (localStorage['FieldTwo'] == "Shown") {
+        localStorage['FieldTwo'] = 'Hidden';
+        $(".Teacher-Content-Main").css("display", "none");
+      } else {
+        localStorage['FieldTwo'] = 'Shown';
+        $(".Teacher-Content-Main").css("display", "block");
+      }
+    });
+
+
+    //Script for adding teacher/s
+    //For the button, onClick add new
+    /*    $("#Teacher-Input-Add").click(function() {
+          var TeacherInputVal = $("#Teacher-Input-Input").val();
+          $(".Lightbox-Content-Teacher ul").append('<li>' + TeacherInputVal + '</li>');
+          console.log(TeacherInputVal);
+        });
+
+        //For the input, on enter released
+        $('#Teacher-Input-Input').bind("enterKey", function(e) {
+          var TeacherInputVal = $(this).val();
+          $(".Lightbox-Content-Teacher ul").append('<li>' + TeacherInputVal + '</li>');
+          console.log(TeacherInputVal);
+        });
+        $('#Teacher-Input-Input').keyup(function(e) {
+          if (e.keyCode == 13) {
+            $(this).trigger("enterKey");
+          }
+        });*/
 
 
     //Script for removing li element onClick
     $(".Teacher-List-Main").on("click", ".Teacher-List-Item a.Teacher-Li-Delete", function() {
       $(this).closest("li").remove();
+    });
+
+
+    //Editable Label
+    $(function() {
+      //Loop through all Labels with class 'editable'.
+      $(".editable").each(function() {
+        //Reference the Label.
+        var label = $(this);
+
+        //Add a TextBox next to the Label.
+        label.after("<input type = 'text' class = 'Cal-Type-Input' style = 'display:none' />");
+
+        //Reference the TextBox.
+        var textbox = $(this).next();
+
+        //Set the name attribute of the TextBox.
+        textbox[0].name = this.id.replace("lbl", "txt");
+
+        //Assign the value of Label to TextBox.
+        textbox.val(label.html());
+
+        //When Label is clicked, hide Label and show TextBox.
+        label.click(function() {
+          $(this).hide();
+          $(this).next().show();
+          $(".Cal-Type-Input").focus();
+        });
+
+        //When focus is lost from TextBox, hide TextBox and show Label.
+        textbox.focusout(function() {
+          $(this).hide();
+          $(this).prev().html($(this).val());
+          $(this).prev().show();
+        });
+      });
     });
 
 
@@ -511,10 +653,46 @@ function init() {
       var NewColor = $('.Input-Color input').val();
       var NewMaxAva = $('.Input-AVA input').val();
       var NewDetails = $('.Lightbox-Content-Text textarea').val();
+      var NewType = $(".Cal-Type").text();
 
+      //Get Value from teacher
+      var TeacherLength = $('ul.Teacher-List-Main li').length >= 1;
+
+      if (TeacherLength == true) {
+        var items = [];
+
+
+        $(".Teacher-List-Main").find("li").each(function(i) {
+          var li = $(this);
+          var Id = li.find("input").val();
+
+          items.push(Id);
+        });
+
+        var TeacherIdVar = items.join("§");
+
+        console.log(TeacherIdVar);
+
+
+      } else if (TeacherLength == false) {
+        console.log("Teacher lenght is 0");
+      }
 
       //Gets event values(OLD VALUES)
       var ev = scheduler.getEvent(scheduler.getState().lightbox_id);
+
+      var NewVgsVali = false;
+      //Validation of fields
+      if (NewVgs.toLowerCase() == "all" || NewVgs == "1" || NewVgs == "2" || NewVgs == "3") {
+        var NewVgsVali = true;
+      } else {
+        var NewVgsVali = false;
+      }
+      console.log(NewVgsVali);
+
+      //NewVgsVali for vgs
+      //TeacherLength for teacher list
+
 
 
       //Update data here
@@ -523,7 +701,14 @@ function init() {
         ev.color = NewColor;
         ev.maxava = NewMaxAva;
         ev.details = NewDetails;
+        ev.type = NewType;
+        if (TeacherLength == true) {
+          ev.teacherid = TeacherIdVar;
+        } else {
+          ev.teacherid = "";
+        }
       }
+
 
       //Ends or closes lightbox
       scheduler.endLightbox(true, document.getElementById(ev.id));

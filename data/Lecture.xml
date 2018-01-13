@@ -3,9 +3,9 @@
   <event
     id='1'
     xml='Lecture'
-    start_date='12-01-2018 11:00'
-    end_date='12-01-2018 11:45'
-    teacher='John Doe'
+    start_date='13-01-2018 11:00'
+    end_date='13-01-2018 11:45'
+    teacherid='1§2'
     major='Naturfag'
     sub='Energi'
     room='202-A'
