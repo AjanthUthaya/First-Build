@@ -435,7 +435,6 @@ function init() {
         var TeacherLength = $('ul.Teacher-List-Main li').length >= 1;
 
         //////Checks to see if teacher is already added
-
         //items cotains id of of teacher/s that are added
         var items = [];
         $(".Teacher-List-Main").find("li").each(function(i) {
@@ -464,7 +463,8 @@ function init() {
         var AlreadyExists = checkValue(data.selectedData.id, items);
 
         if (AlreadyExists == true) {
-          alert("Teacher is already added to this event")
+          alert("Teacher is already added to this event");
+          $(".Teacher-Input").focus();
         } else {
           $(".Teacher-Content-Main .Teacher-List-Main").append(Teacher_List_Li);
         }
@@ -556,6 +556,9 @@ function init() {
       } else {
         localStorage['FieldOne'] = 'Shown';
         $(".Lightbox-Content-Text textarea").css("display", "block");
+
+        localStorage['FieldTwo'] = 'Hidden';
+        $(".Teacher-Content-Main").css("display", "none");
       }
     });
 
@@ -579,8 +582,16 @@ function init() {
       } else {
         localStorage['FieldTwo'] = 'Shown';
         $(".Teacher-Content-Main").css("display", "block");
+
+        localStorage['FieldOne'] = 'Hidden';
+        $(".Lightbox-Content-Text textarea").css("display", "none");
       }
     });
+
+    //If one section is open the other closes
+    if (true) {
+
+    }
 
 
     //Script for adding teacher/s
