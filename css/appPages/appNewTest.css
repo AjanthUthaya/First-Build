@@ -40,6 +40,16 @@
   margin: 0;
 }
 
+#powerTip {
+  padding: 10px;
+  margin: 10px;
+  margin-bottom: 0;
+}
+
+.notify .notify-close-btn {
+  padding: 15px;
+}
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -498,7 +508,9 @@ label {
   font-weight: bold;
   padding: 15px 0;
   color: white;
+  height: 46px;
   background: red;
+  cursor: text;
 }
 
 input.Cal-Type-Input {
@@ -518,7 +530,7 @@ input.Cal-Type-Input {
 .Lightbox-Content-Input {
   display: flex;
   flex-direction: column;
-  padding: 50px 0;
+  padding: 50px 6%;
   flex-grow: 1;
 }
 
@@ -557,7 +569,6 @@ input.Cal-Type-Input {
 
 .Input-VGS input, .Input-Color input, .Input-AVA input {
   display: flex;
-  width: 55%;
   height: 40px;
   max-height: 40px;
   margin: 0;
@@ -567,6 +578,7 @@ input.Cal-Type-Input {
   background-color: white;
   align-items: center;
   justify-content: center;
+  flex: 1;
 }
 
 input#ColorSelector {

@@ -588,11 +588,6 @@ function init() {
       }
     });
 
-    //If one section is open the other closes
-    if (true) {
-
-    }
-
 
     //Script for adding teacher/s
     //For the button, onClick add new
@@ -656,6 +651,20 @@ function init() {
       });
     });
 
+    //Tooltip
+    //Setting values
+    $('.Lightbox-Content-Text label').attr('title', 'Details of the event');
+    $('.Teacher-Header').attr('title', 'List of teacher/s attending');
+    //Init tooltip
+    $(function() {
+      $('.Lightbox-Content-Text label').powerTip({
+        placement: 'n'
+      });
+      $('.Teacher-Header').powerTip({
+        placement: 'n'
+      });
+    });
+
 
     //On save button click
     $(".dhx_save_btn").click(function() {
@@ -666,27 +675,34 @@ function init() {
       var NewDetails = $('.Lightbox-Content-Text textarea').val();
       var NewType = $(".Cal-Type").text();
 
-      //Get Value from teacher
+
+      if (NewType !== "") {
+        NewTypeVali = true;
+      } else {
+        NewTypeVali = false;
+      }
+
+      if (NewMaxAva !== "" && NewMaxAva !== "0" && NewMaxAva !== "00" && NewMaxAva !== "000" && NewMaxAva !== "0000") {
+        NewMaxAvaVali = true;
+      } else {
+        NewMaxAvaVali = false;
+      }
+
       var TeacherLength = $('ul.Teacher-List-Main li').length >= 1;
 
       if (TeacherLength == true) {
+
         var items = [];
-
-
         $(".Teacher-List-Main").find("li").each(function(i) {
           var li = $(this);
           var Id = li.find("input").val();
-
           items.push(Id);
         });
 
         var TeacherIdVar = items.join("§");
-
-        console.log(TeacherIdVar);
-
-
+        //console.log(TeacherIdVar);
       } else if (TeacherLength == false) {
-        console.log("Teacher lenght is 0");
+        //console.log("Teacher lenght is 0");
       }
 
       //Gets event values(OLD VALUES)
@@ -699,30 +715,107 @@ function init() {
       } else {
         var NewVgsVali = false;
       }
-      console.log(NewVgsVali);
+      //console.log(NewVgsVali);
 
       //NewVgsVali for vgs
       //TeacherLength for teacher list
+      //NewTypeVali for type
+      //NewMaxAvaVali for MaxAva
+
+      if (NewVgsVali == false || TeacherLength == false || NewTypeVali == false || NewMaxAvaVali == false) {
+        console.log("Validation failed");
+
+
+        var ReturnFalse = [];
 
 
 
-      //Update data here
-      if (ev.xml == "Test") {
-        ev.vgs = NewVgs;
-        ev.color = NewColor;
-        ev.maxava = NewMaxAva;
-        ev.details = NewDetails;
-        ev.type = NewType;
-        if (TeacherLength == true) {
-          ev.teacherid = TeacherIdVar;
-        } else {
-          ev.teacherid = "";
+        if (NewVgsVali == false) {
+          var Name = "VGS value must be \"All, 1, 2 or 3\"";
+          ReturnFalse.push(Name);
         }
+        if (TeacherLength == false) {
+          var Name = "Select atleast one teacher";
+          ReturnFalse.push(Name);
+        }
+        if (NewTypeVali == false) {
+          var Name = "You can not leave label above room number empty";
+          ReturnFalse.push(Name);
+        }
+        if (NewMaxAvaVali == false) {
+          var Name = "You can not leave max students filed empty, or have a higher than 4-digits";
+          ReturnFalse.push(Name);
+        }
+
+        //For each false value, show PopUp_Message
+        ReturnFalse.forEach(function(Item, i) {
+          notify({
+            //alert | success | error | warning | info
+            type: "error",
+            title: "Validation failed",
+
+            //custom message
+            message: Item,
+
+            position: {
+
+              //right | left | center
+              x: "right",
+
+              //top | bottom | center
+              y: "bottom"
+            },
+
+            // notify icon
+            icon: '<img src="img/PopUp_Message/paper_plane.png" />',
+
+            overlay: false,
+            closeBtn: true,
+            overflowHide: false,
+            spacing: 20,
+
+            //default | dark-theme
+            theme: "default",
+
+            //auto-hide after a timeout
+            autoHide: true,
+
+            // timeout
+            delay: 5000,
+
+            // callback functions
+            onShow: null,
+            onClick: null,
+            onHide: null,
+
+            //custom template
+            template: '<div class="notify"><div class="notify-text"></div></div>'
+          });
+        });
+
+
+
+
+      } else {
+        //Update data here
+        if (ev.xml == "Test") {
+          ev.vgs = NewVgs;
+          ev.color = NewColor;
+          ev.maxava = NewMaxAva;
+          ev.details = NewDetails;
+          ev.type = NewType;
+          if (TeacherLength == true) {
+            ev.teacherid = TeacherIdVar;
+          } else {
+            ev.teacherid = "";
+          }
+        }
+
+        //Ends or closes lightbox
+        scheduler.endLightbox(true, document.getElementById(ev.id));
       }
 
 
-      //Ends or closes lightbox
-      scheduler.endLightbox(true, document.getElementById(ev.id));
     });
 
   });
