@@ -5,12 +5,12 @@
   <event
     id='2'
     xml='Test'
-    start_date='14-01-2018 08:00'
+    start_date='14-01-2018 09:00'
     end_date='14-01-2018 10:30'
     teacherid='1§2'
     title='Norsk tentamen'
     type='Tentamen'
-    room='206'
+    room='205'
     block='A'
     color='#36414d'
     joined="1"

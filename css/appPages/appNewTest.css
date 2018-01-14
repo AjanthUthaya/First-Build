@@ -4,10 +4,12 @@
 *************************************************** */
 
 .Title {
-  padding: 10px 0;
-  padding-top: 25px;
+  padding-top: 20px;
   text-align: center;
   background-color: white;
+  position: fixed;
+  top: 80px;
+  z-index: 13;
 }
 
 .Title.cell * {
@@ -66,6 +68,8 @@
   max-width: 100%;
   height: auto;
   white-space: nowrap;
+  position: absolute;
+  top: 149px;
 }
 
 /* Removes the background of the verticall calendar */
@@ -84,8 +88,9 @@ table tbody tr:nth-child(even) {
 /* Gives header and time of calendar white background */
 
 .dhx_cal_navline {
-  position: sticky;
   background-color: white;
+  position: fixed;
+  top: 149px !important;
 }
 
 div#dhx_minical_icon {
@@ -93,10 +98,12 @@ div#dhx_minical_icon {
 }
 
 .dhx_cal_header {
+  position: fixed;
+  top: 208px !important;
   padding-top: 1px;
   border-top: 0;
   background-color: white;
-  /*width: 1000px !important;*/
+  border-bottom: 2px solid black;
 }
 
 /* Removes unnecessary padding to each cell given by foundation */
@@ -508,14 +515,13 @@ label {
   font-weight: bold;
   padding: 15px 0;
   color: white;
-  height: 46px;
   background: red;
   cursor: text;
 }
 
 input.Cal-Type-Input {
   font-size: 16px;
-  height: 46px;
+  height: 45px;
   text-align: center;
   color: black;
 }

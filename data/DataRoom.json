@@ -1,0 +1,67 @@
+[{
+    "key": "Room",
+    "label": "Room",
+    "open": true,
+    "children": [{
+        "key": "202",
+        "label": "Room 202 (30)"
+      },{
+        "key": "203",
+        "label": "Room 203 (30)"
+      },{
+        "key": "204",
+        "label": "Room 204 (30)"
+      },
+      {
+        "key": "205",
+        "label": "Room 205 (30)"
+      },
+      {
+        "key": "206",
+        "label": "Room 206 (30)"
+      }
+    ]
+  },
+  {
+    "key": "Group",
+    "label": "Group",
+    "children": [{
+        "key": "200-A",
+        "label": "200-A"
+      },
+      {
+        "key": "201-A",
+        "label": "201-A"
+      },
+      {
+        "key": "202-A",
+        "label": "202-A"
+      }
+    ]
+  },
+  {
+    "key": "Special",
+    "label": "Special",
+    "children": [{
+        "key": "Training",
+        "label": "Training"
+      },
+      {
+        "key": "Spinning",
+        "label": "Spinning"
+      },
+      {
+        "key": "Dance",
+        "label": "Dance"
+      },
+      {
+        "key": "Lyd",
+        "label": "Lyd"
+      },
+      {
+        "key": "Gym",
+        "label": "Gym"
+      }
+    ]
+  }
+]

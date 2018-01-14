@@ -38,7 +38,27 @@ function init() {
   //Configuration
   //===============
 
-  var elements = [ // original hierarhical array to display
+  //Get json and put it into a javascript object
+  var RoomArr = (function() {
+    var RoomArr = null;
+    $.ajax({
+      'async': false,
+      'global': false,
+      'url': "data/DataRoom.json",
+      'dataType': "json",
+      'success': function(data) {
+        RoomArr = data;
+        /*alert("Done loading list of teachers");*/
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        alert("Status: " + textStatus);
+        alert("Error: " + errorThrown);
+      }
+    });
+    return RoomArr;
+  })();
+
+/*  var RoomArr = [ // original hierarhical array to display
     {
       key: "Room",
       label: "Room",
@@ -60,7 +80,7 @@ function init() {
     {
       key: "Group",
       label: "Group",
-      /*open: true, //to make it open by default*/
+      //open: true, to make it open by default
       children: [{
           key: "200-A",
           label: "200-A"
@@ -78,7 +98,7 @@ function init() {
     {
       key: "Special",
       label: "Special",
-      /*open: true, //to make it open by default*/
+      //open: true, to make it open by default
       children: [{
           key: "Training",
           label: "Training"
@@ -101,7 +121,7 @@ function init() {
         }
       ]
     }
-  ];
+  ];*/
 
   // NOTE: Trying to make div "data" scrollable but time stop at a certain point
   //link to possible solutions https://docs.dhtmlx.com/scheduler/api__scheduler_%7Btimelinename%7D_scale_date_template.html
@@ -113,7 +133,7 @@ function init() {
   }
 
   scheduler.createTimelineView({
-    section_autoheight: false,
+    section_autoheight: true,
     name: "timeline",
     x_unit: "minute",
     x_date: "%H:%i",
@@ -121,14 +141,14 @@ function init() {
     x_size: 18,
     x_start: 16,
     x_length: 48,
-    y_unit: elements,
+    y_unit: RoomArr,
     y_property: "room",
     render: "tree",
     fit_events: true,
     folder_dy: 50,
     folder_dx: 50,
     dy: 50,
-    event_dy: 46
+    event_dy: 46,
   });
 
   scheduler.templates.event_class = function(start, end, event) {
@@ -177,7 +197,7 @@ function init() {
     //event.major to get major from xml
     //Make it so "Lecture" does not have a delete button
     if (event.xml == "Test") {
-      return "<div class='Lightbox-Header-Main' style='background: " + event.color + ";'><a class=\"dhx_delete_btn\" id=\"deleteButton\"><span class=\"fa fa-trash\" onClick=\"document.getElementById('deleteButton').click()\"></span></a><label class=\"Lightbox-Header-Title\">Major</label><a class=\"dhx_cancel_btn\">X</a></div>";
+      return "<div class='Lightbox-Header-Main' style='background: " + event.color + ";'><a class=\"dhx_delete_btn\" id=\"deleteButton\"><span class=\"fa fa-trash\" onClick=\"document.getElementById('deleteButton').click()\"></span></a><label class=\"Lightbox-Header-Title\">" + event.title + "</label><a class=\"dhx_cancel_btn\">X</a></div>";
     } else if (event.xml == "Lecture") {
       return "<div class='Lightbox-Header-Main' style='background: " + event.color + ";'><label class=\"Lightbox-Header-Title\">Major</label><a class=\"dhx_cancel_btn\">X</a></div>";
     } else {
@@ -204,6 +224,7 @@ function init() {
 
   scheduler.attachEvent("onEventCreated", function(id) {
     var ev = scheduler.getEvent(id);
+    ev.title = "Title"
     ev.type = "Test";
     ev.vgs = "All";
     ev.color = "#36414d";
@@ -767,7 +788,7 @@ function init() {
             },
 
             // notify icon
-            icon: '<img src="img/PopUp_Message/paper_plane.png" />',
+            icon: '<img src="img/PopUp_Message/error.png" />',
 
             overlay: false,
             closeBtn: true,
@@ -813,6 +834,49 @@ function init() {
 
         //Ends or closes lightbox
         scheduler.endLightbox(true, document.getElementById(ev.id));
+
+        notify({
+          //alert | success | error | warning | info
+          type: "success",
+          title: ev.title + " Updated",
+
+          //custom message
+          message: "",
+
+          position: {
+
+            //right | left | center
+            x: "right",
+
+            //top | bottom | center
+            y: "bottom"
+          },
+
+          // notify icon
+          icon: '<img src="img/PopUp_Message/success.png" />',
+
+          overlay: false,
+          closeBtn: true,
+          overflowHide: false,
+          spacing: 20,
+
+          //default | dark-theme
+          theme: "default",
+
+          //auto-hide after a timeout
+          autoHide: true,
+
+          // timeout
+          delay: 1500,
+
+          // callback functions
+          onShow: null,
+          onClick: null,
+          onHide: null,
+
+          //custom template
+          template: '<div class="notify"><div class="notify-text"></div></div>'
+        });
       }
 
 

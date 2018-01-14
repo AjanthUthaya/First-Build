@@ -176,7 +176,7 @@ Scheduler.plugin(function(e) {
       var h = t.color ? "background:" + t.color + ";" : "",
         u = t.textColor ? "color:" + t.textColor + ";" : "",
         v = e.templates.event_bar_text(t.start_date, t.end_date, t),
-        f = "<div " + e._waiAria.eventBarAttrString(t) + " event_id='" + t.id + "' class='" + c + "' style='" + h + u + "position:absolute; top:" + _ + "px; height: " + o + "px; left:" + r + "px; width:" + Math.max(0, s - r) + "px;" + (t._text_style || "") + "'>";
+        f = "<div " + e._waiAria.eventBarAttrString(t) + " event_id='" + t.id + "' class='" + c + "' style='" + h + u + "position:absolute; top:" + _ + "px; height: " + o + "px; left:" + (r - 2) + "px; width:" + Math.max(0, s - r) + "px;" + (t._text_style || "") + "'>";
       if (e.config.drag_resize && !e.config.readonly) {
         var g = "dhx_event_resize",
           p = "<div class='" + g + " " + g + "_start' style='height: " + o + "px;'></div>",

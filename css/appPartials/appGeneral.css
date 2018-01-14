@@ -127,6 +127,23 @@ table {
   z-index: 1000;
 }
 
+.dhtmlx_popup_button, .dhtmlx_popup_button div, .dhtmlx_popup_button div:active, .dhtmlx_popup_button:active {
+  color: white;
+  background: darkgrey;
+}
+
+.dhtmlx_popup_button:hover, .dhtmlx_popup_button div:hover, .dhtmlx_popup_button div:active:hover, .dhtmlx_popup_button:active:hover {
+  background: grey;
+}
+
+.dhtmlx_button, .dhtmlx_popup_button {
+  border: 0;
+}
+
+.dhtmlx_button input, .dhtmlx_popup_button div {
+  border: 0;
+}
+
 .dhx_data_table.folder .dhx_matrix_cell, .dhx_matrix_scell.folder {
   background-color: #36414d;
   color: white;
