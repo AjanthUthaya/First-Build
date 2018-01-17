@@ -140,9 +140,9 @@ function init() {
     scheduler.config.wide_form = true;
   }
 
-  scheduler.attachEvent("onDataRender", function(i) {
+/*  scheduler.attachEvent("onDataRender", function(i) {
     $("#Loading-Main").toggle();
-  });
+  });*/
 
   //init and sets date to current
   scheduler.init('scheduler_here', new Date(yyyy, mm, dd), "week");
