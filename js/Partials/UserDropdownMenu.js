@@ -1,8 +1,3 @@
-// INIT Foundation js
-$(document).foundation();
-
-
-// NOTE: Create a file for this script
 if ($("#User-Menu-Dropdown").length != 0) {
   //Both email and phone class name
   var EmailInput = ".Profile-Content-Email input";
