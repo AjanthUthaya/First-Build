@@ -18,10 +18,10 @@
     display: none;
   }
   #Mobile-View {
-    text-align: center;
-    height: 100vh;
     display: flex;
     flex-direction: column;
+    height: 100vh;
+    text-align: center;
     justify-content: center;
     align-items: center;
   }
@@ -59,12 +59,12 @@
 /* Makes all buttons, anchors and images unselectable */
 
 a, button, img {
-  -webkit-touch-callout: none;
   -webkit-user-select: none;
-  -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
 }
 
 table {
@@ -72,12 +72,12 @@ table {
 }
 
 .unselectable {
-  -webkit-touch-callout: none;
   -webkit-user-select: none;
-  -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
 }
 
 /* Change layer index to side menu overlay */
@@ -103,8 +103,8 @@ table {
 }
 
 .easyPaginateNav a.current {
-  text-decoration: underline;
   font-weight: bold;
+  text-decoration: underline;
 }
 
 .easyPaginateNav {
@@ -123,8 +123,8 @@ table {
 *************************************************** */
 
 .dhtmlx_message_area {
-  display: none;
   z-index: 1000;
+  display: none;
 }
 
 .dhtmlx_popup_button, .dhtmlx_popup_button div, .dhtmlx_popup_button div:active, .dhtmlx_popup_button:active {
@@ -145,9 +145,42 @@ table {
 }
 
 .dhx_data_table.folder .dhx_matrix_cell, .dhx_matrix_scell.folder {
-  background-color: #36414d;
-  color: white;
   cursor: pointer;
+  color: white;
+  background-color: #36414d;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  Loading
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+#Loading-Main {
+  position: fixed;
+  z-index: 13;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: calc(100vh - 80px);
+  color: white;
+  background: rgba(0, 0, 0, .7);
+  justify-content: center;
+  align-items: center;
+}
+
+#Loading-Icon img {
+  width: 200px;
+}
+
+#Loading-Text {
+  font-size: 20px;
+  color: white;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

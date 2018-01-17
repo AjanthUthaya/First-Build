@@ -17,14 +17,6 @@ if ($("#User-Menu-Dropdown").length != 0) {
 
   //$(".Profile-Content-Save").addClass("Profile-Content-Save-Active");
 
-
-
-
-
-
-
-
-
   $(EmailInput + ", " + PhoneInput).on('input', function() {
     //Get current values from fields
     var CurrentEmailVal = $(EmailInput).val();
@@ -53,22 +45,6 @@ if ($("#User-Menu-Dropdown").length != 0) {
       console.log("Error: checking if email values are alike");
     }
   })
-
-
-
-
-
-
-
-
-
-  /*  setTimeout(function() {
-      console.log(test + " after 5 sec");
-    }, 5000);
-
-    setTimeout(function() {
-      console.log(test + " after 10 sec");
-    }, 10000);*/
 
 
 } //Ending of does class exist

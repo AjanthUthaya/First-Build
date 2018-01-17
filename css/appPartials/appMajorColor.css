@@ -96,19 +96,16 @@
 /*event in day or week view*/
 
 .dhx_cal_event.Major-Naturfag div {
-  background-color: #009966 !important;
+  background-color: #096 !important;
 }
 
 /*multi-day event in month view*/
 
 .dhx_cal_event_line.Major-Naturfag {
-  background-color: #009966 !important;
+  background-color: #096 !important;
 }
 
 /*event with fixed time, in month view*/
-
-.dhx_cal_event_clear.Major-Naturfag {
-}
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 

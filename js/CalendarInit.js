@@ -10,6 +10,8 @@ if (mm < 10) {
   mm = '0' + mm;
 }
 
+$('#Loading-Main').hide();
+
 function init() {
   scheduler.config.details_on_dblclick = true;
   //Set date format for xml data
@@ -78,7 +80,7 @@ function init() {
 
   //Targets all events with corresponding results and gives you the ability to set a class
   /*  scheduler.templates.event_class = function(start, end, event) {
-      if (event.major == 'Naturfag') return "Major-Naturfag";
+      if (event.title == 'Naturfag') return "Major-Naturfag";
 
       //Returns a default css class if none of the above match
       return "Default-Event";
@@ -86,7 +88,7 @@ function init() {
 
   scheduler.attachEvent("onTemplatesReady", function() {
     scheduler.templates.event_text = function(start, end, event) {
-      return "<div class=\"Content\"><div class=\"Major\"><b>" + event.major + "</b></div> <div class=\"Sub\"><i>" + event.sub + "</i></div></div> <div class=\"Room\"><i>" + event.room + "</i></div>";
+      return "<div class=\"Content\"><div class=\"Major\"><b>" + event.title + "</b></div> <div class=\"Sub\"><i>" + event.sub + "</i></div></div> <div class=\"Room\"><i>" + event.room + "</i></div>";
     }
   });
 
@@ -138,16 +140,21 @@ function init() {
     scheduler.config.wide_form = true;
   }
 
+  scheduler.attachEvent("onDataRender", function(i) {
+    $("#Loading-Main").toggle();
+  });
+
   //init and sets date to current
   scheduler.init('scheduler_here', new Date(yyyy, mm, dd), "week");
 
   //Gets all events from xml and loads it in the calendar
   scheduler.load("../data/Lecture.xml", "xml");
 
+
   //Custom header for lightbox
   scheduler.templates.lightbox_header = function(start, end, event) {
-    //event.major to get major from xml
-    return "<div class='Lightbox-Header-Main' style='background: " + event.color + ";'><span>" + event.major + " (" + event.teacher + ")" + "</span><a class=\"dhx_cancel_btn\">x</a></div>";
+    //event.title to get major from xml
+    return "<div class='Lightbox-Header-Main' style='background: " + event.color + ";'><span>" + event.title + "</span><a class=\"dhx_cancel_btn\">x</a></div>";
   };
 
 
@@ -183,7 +190,7 @@ function init() {
       // value - value defined by map_to property
       // ev - event object
       /*   //Old way of setting data values
-        node.childNodes[1].value = ev.major || "";
+        node.childNodes[1].value = ev.title || "";
         node.childNodes[4].value = ev.details || "";
         node.childNodes[5].childNodes[1].value = ev.details || "";
       */

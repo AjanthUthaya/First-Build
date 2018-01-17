@@ -29,9 +29,9 @@
 /* Hamburger menu bar icon */
 
 .Top-Bar-Menu {
-  color: white;
   font-size: 20px;
   font-weight: lighter;
+  color: white;
 }
 
 .Top-Bar-Menu a {
@@ -71,11 +71,11 @@
 .Rectangle {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   width: 90px;
   height: 60px;
   text-align: center;
   background: #292c30;
+  justify-content: center;
 }
 
 .Triangle-Right {
@@ -89,12 +89,12 @@
 /* Top bar login button */
 
 #Login-Button {
+  font-weight: 500;
   position: relative;
   width: 90px;
   height: 60px;
   padding: 22px;
   background-color: #8cc63f;
-  font-weight: 500;
 }
 
 #Login-Button:hover {
@@ -102,8 +102,12 @@
 }
 
 #Name-Label {
+  font-size: 14px;
+  line-height: 2;
+  display: flex;
   overflow: hidden;
   max-width: 160px;
+  padding-left: 1rem;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -113,12 +117,8 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   color: white;
-  line-height: 2;
-  padding-left: 1rem;
-  display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 14px;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -134,11 +134,11 @@
 /* Removes the blue border and color on a tags */
 
 body {
-  background: #ebebeb;
   font-family: helvetica;
   font-size: 14px;
   font-weight: normal;
   font-style: normal;
+  background: #ebebeb;
 }
 
 body.modal-open {

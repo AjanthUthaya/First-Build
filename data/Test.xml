@@ -1,23 +1,31 @@
 <data>
-
   <!-- Glitch setting id as 0, on folder expansion. The event with id 0 moves to folder row -->
   <!-- ID - Date - Time - Title - Type - Color - Room - Ava - VGS - Teacher/s -->
   <event
-    id='2'
-    xml='Test'
-    start_date='14-01-2018 09:00'
-    end_date='14-01-2018 10:30'
+    id='1'
+    type='Test'
+    start_date='16-01-2018 09:00'
+    end_date='16-01-2018 10:30'
     teacherid='1§2'
     title='Norsk tentamen'
-    type='Tentamen'
-    room='205'
-    block='A'
+    sub='Tentamen'
+    room='204'
     color='#36414d'
     joined="1"
     vgs='All'
-    ava='01'
+    ava='15'
     maxava='30'
-    details='Lorem ipsum dolor sit amet, et lorem quaestio has, nam dicta petentium at. At etiam praesent maiestatis vim, eum dicam legendos ea. Sea option invidunt gloriaturne. Ut eos tempor scripta, eu pro enim causae ocurreret. Mel cu quem error, an propriaetincidunt dissentiunt mel, aliquid postulant pertinacia vel ad. Est elaboraret honestatiex. In vidit laboramus eos. Elitr aliquam sit no, in incorrupte disputando duo. Cnisl erant duo, te usu At etiam praesent maiestatis vim, eum dicam legendos ea. Sea optioinvidunt gloriatur ne. Ut eos tempor scripta, eu pro enim causae ocurreret. Mel cu queerror, an propriae tincidunt dissentiunt mel, aliquid postulant pertinacia vel ad. Eselaboraret honestatis ex. In vidit laboramus eos. Elitr aliquam sit no, in incorruptdisputando duo. Cu nisl erant duo, te usu At etiam praesent maiestatis vim, eum dicam legendos ea.'
+    details='Lorem ipsum dolor sit amet, et lorem quaestio has, nam dicta petentium at.
+    At etiam praesent maiestatis vim, eum dicam legendos ea. Sea option invidunt gloriatur
+    ne. Ut eos tempor scripta, eu pro enim causae ocurreret. Mel cu quem error, an propriae
+    tincidunt dissentiunt mel, aliquid postulant pertinacia vel ad. Est elaboraret honestatis
+    ex. In vidit laboramus eos. Elitr aliquam sit no, in incorrupte disputando duo. Cu
+    nisl erant duo, te usu At etiam praesent maiestatis vim, eum dicam legendos ea. Sea option
+    invidunt gloriatur ne. Ut eos tempor scripta, eu pro enim causae ocurreret. Mel cu quem
+    error, an propriae tincidunt dissentiunt mel, aliquid postulant pertinacia vel ad. Est
+    elaboraret honestatis ex. In vidit laboramus eos. Elitr aliquam sit no, in incorrupte
+    disputando duo. Cu nisl erant duo, te usu At etiam praesent maiestatis vim, eum dicam legendos ea.'
   />
+
 
 </data>

@@ -1,19 +1,19 @@
 <data>
 
+
   <event
     id='1'
-    xml='Lecture'
-    start_date='14-01-2018 11:00'
-    end_date='14-01-2018 11:45'
+    type='Lecture'
+    start_date='16-01-2018 11:00'
+    end_date='16-01-2018 11:45'
     teacherid='1§2'
-    major='Naturfag'
+    title='Naturfag'
     sub='Energi'
     room='202-A'
-    block='A'
     color='#4169e1'
     joined='1'
     vgs='2'
-    ava='01'
+    ava='15'
     maxava='30'
     details='Lorem ipsum dolor sit amet, et lorem quaestio has, nam dicta petentium at.
     At etiam praesent maiestatis vim, eum dicam legendos ea. Sea option invidunt gloriatur
@@ -26,5 +26,6 @@
     elaboraret honestatis ex. In vidit laboramus eos. Elitr aliquam sit no, in incorrupte
     disputando duo. Cu nisl erant duo, te usu At etiam praesent maiestatis vim, eum dicam legendos ea.'
   />
+
 
 </data>

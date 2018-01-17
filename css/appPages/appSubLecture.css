@@ -64,7 +64,7 @@ data {
 
 .Sub-Edit-Button {
   position: absolute;
-  right: 0px;
+  right: 0;
   display: flex;
   margin: 0;
   padding: 23px 20px;
@@ -86,10 +86,10 @@ data {
 
 .Sub-Major-Menu-Main {
   overflow: auto;
+  max-width: 200px;
   min-height: calc(100vh - 80px - 60px + 75px);
   max-height: 100%;
   background-color: #6e7882;
-  max-width: 200px;
 }
 
 .Sub-Major-Menu-Main ul li {
@@ -129,9 +129,9 @@ data {
 
 .Accord-List li a {
   width: 100%;
+  padding: 20px 10px !important;
   color: #dcdcdc;
   border-right: 5px solid #ebebeb;
-  padding: 20px 10px !important;
 }
 
 .Accord-List li a:focus {

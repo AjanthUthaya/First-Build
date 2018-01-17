@@ -97,7 +97,7 @@ $($NotifiButton).click(function() {
         transform: "translateX(-300px)"
       });
     }, 450);
-    
+
 
   } else if (TabValue == "back") {
 

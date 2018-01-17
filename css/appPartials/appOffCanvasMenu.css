@@ -55,14 +55,14 @@
 /* Offcanvas menu title, targets h(x) tag */
 
 .Menu-OffCanvas-Title {
+  font-size: 25px;
+  font-weight: bold;
+  display: flex;
   height: 100%;
   margin: 0;
   text-align: center;
-  display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 25px;
-  font-weight: bold;
 }
 
 /* Offcanvas menu close box(red button) */
@@ -120,18 +120,18 @@
 }
 
 .OffCanvas-Menu-List ul li a {
+  font-weight: 500;
   width: 100%;
   padding: 1em 0;
   text-align: center;
-  font-weight: 500;
 }
 
 .OffCanvas-Menu-List-Active {
-  background-color: #292c30;
   border: 0;
   border: 2px solid gray;
-  border-left: 0;
   border-right: 0;
+  border-left: 0;
+  background-color: #292c30;
 }
 
 /* Social icons at the bottom */
@@ -182,11 +182,11 @@
 
 .Sub-Menu-Head {
   font-size: .8em;
+  display: flex;
   height: 55px;
   padding: .3rem 0;
   text-align: center;
   background-color: #3d5165;
-  display: flex;
   justify-content: center;
   align-items: center;
 }

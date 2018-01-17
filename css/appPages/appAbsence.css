@@ -3,31 +3,31 @@
   (Top-Right-Bottom-Left)
 *************************************************** */
 
-#Content-Main{
-  min-height: calc(100vh - 80px);
-  padding-top: 20px;
+#Content-Main {
   display: flex;
   flex-direction: column;
+  min-height: calc(100vh - 80px);
+  padding-top: 20px;
 }
 
 .Absence-Title {
-  text-align: center;
   height: fit-Content;
+  text-align: center;
 }
 
 .Absence-Table-Overlay {
-  text-align: center;
   display: flex;
+  text-align: center;
   flex: 1;
   justify-content: center;
   align-items: center;
 }
 
 .Absence-Table {
+  display: inline-block;
   width: inherit;
   margin: 0 40px;
   margin-top: 20px;
-  display: inline-block;
 }
 
 .Absence-Table tbody tr td * {
@@ -49,15 +49,15 @@
 *************************************************** */
 
 .dashboard-table td {
-  border-bottom: 1px dashed #d7d7d7;
   text-align: center;
+  border-bottom: 1px dashed #d7d7d7;
 }
 
 .dashboard-table th {
-  background-color: #35414d;
-  color: white;
-  text-align: center;
   padding: 1.5em 15px;
+  text-align: center;
+  color: white;
+  background-color: #35414d;
 }
 
 .dashboard-table tbody {
@@ -65,13 +65,13 @@
 }
 
 .dashboard-table tbody tr {
-  transition: all 0.3s ease;
+  transition: all .3s ease;
 }
 
 .dashboard-table tbody tr:hover {
-  background: #292c30 !important;
-  transition: all 0.3s ease;
+  transition: all .3s ease;
   color: white;
+  background: #292c30 !important;
 }
 
 td.Major {

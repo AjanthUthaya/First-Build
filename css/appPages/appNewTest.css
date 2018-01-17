@@ -4,12 +4,12 @@
 *************************************************** */
 
 .Title {
+  position: fixed;
+  z-index: 13;
+  top: 80px;
   padding-top: 20px;
   text-align: center;
   background-color: white;
-  position: fixed;
-  top: 80px;
-  z-index: 13;
 }
 
 .Title.cell * {
@@ -43,9 +43,9 @@
 }
 
 #powerTip {
-  padding: 10px;
   margin: 10px;
   margin-bottom: 0;
+  padding: 10px;
 }
 
 .notify .notify-close-btn {
@@ -63,13 +63,13 @@
 *************************************************** */
 
 .Calendar-Main {
+  position: absolute;
+  top: 149px;
   overflow-x: auto;
   width: 100vw;
   max-width: 100%;
   height: auto;
   white-space: nowrap;
-  position: absolute;
-  top: 149px;
 }
 
 /* Removes the background of the verticall calendar */
@@ -88,9 +88,9 @@ table tbody tr:nth-child(even) {
 /* Gives header and time of calendar white background */
 
 .dhx_cal_navline {
-  background-color: white;
   position: fixed;
   top: 149px !important;
+  background-color: white;
 }
 
 div#dhx_minical_icon {
@@ -102,8 +102,8 @@ div#dhx_minical_icon {
   top: 208px !important;
   padding-top: 1px;
   border-top: 0;
-  background-color: white;
   border-bottom: 2px solid black;
+  background-color: white;
 }
 
 /* Removes unnecessary padding to each cell given by foundation */
@@ -366,20 +366,35 @@ label {
   background-color: #f44336;
 }
 
-.dhtmlx_popup_button.dhtmlx_ok_button:hover {
-  border: 0;
-  background-color: #e53935;
-}
-
 .dhtmlx_popup_button.dhtmlx_ok_button div {
   border: 0;
-  background-color: initial;
+  background-color: #f44336;
+}
+
+.dhtmlx_popup_button.dhtmlx_ok_button div:hover {
+  border: 0;
+  background-color: #e53935;
 }
 
 .Lightbox-Header-Main label {
   font-size: 16px;
   font-weight: bold;
+  display: flex;
+  height: 50px;
+  padding: 10px 20px;
   color: white;
+  justify-content: center;
+  align-items: center;
+}
+
+.Lightbox-Header-Main input {
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  height: 30px;
+  margin: 0 55px;
+  justify-content: center;
+  align-items: center;
 }
 
 .Lightbox-Header-Title {
@@ -449,11 +464,11 @@ label {
 .Lightbox-Content-Save {
   display: flex;
   height: 40px;
+  margin-top: 40px;
   color: white !important;
   background-color: #4caf50;
   align-items: center;
   justify-content: center;
-  margin-top: 40px;
 }
 
 .Lightbox-Content-Save:hover {
@@ -514,9 +529,9 @@ label {
 .Cal-Type {
   font-weight: bold;
   padding: 15px 0;
+  cursor: text;
   color: white;
   background: red;
-  cursor: text;
 }
 
 input.Cal-Type-Input {
@@ -609,12 +624,12 @@ input#ColorSelector {
 }
 
 .Lightbox-Content-Text textarea {
+  display: block;
   height: fit-content;
   min-height: 200px;
   max-height: 250px;
   padding: 20px 20px;
   border: 0;
-  display: block;
 }
 
 .Teacher-Header-Main {
@@ -634,9 +649,9 @@ input#ColorSelector {
 }
 
 .Teacher-Content-Main {
+  display: none;
   margin: 0 45px;
   background-color: #292c30;
-  display: none;
 }
 
 #Teacher-Input-Main {
@@ -702,11 +717,11 @@ ul.dd-options .List-Item-Option {
 }
 
 .no-results-found {
+  font-size: 15px;
   display: flex;
+  height: 30px;
   justify-content: center;
   align-items: center;
-  height: 30px;
-  font-size: 15px;
 }
 
 #Teacher-Input-Add {
@@ -830,6 +845,82 @@ label.List-Item-Name {
   background-color: red;
   align-items: center;
   justify-content: center;
+}
+
+.Lightbox-Content-Main-Title {
+  font-size: 16px;
+  font-weight: bold;
+  width: 100%;
+  padding: 15px 0;
+  text-align: center;
+}
+
+.Lightbox-Content-Main-Content {
+  padding: 0 40px;
+  padding-bottom: 20px;
+}
+
+.Lightbox-Footer-Main {
+  display: flex;
+  flex-direction: inherit;
+  width: 100%;
+  height: 100%;
+  background-color: #292c31;
+  justify-content: center;
+}
+
+.Lightbox-Footer-Main-DateTime {
+  display: flex;
+  width: fit-content;
+  height: 100%;
+  padding: 10px 0;
+  text-align: center;
+  justify-content: flex-end;
+}
+
+.Footer-DateTime-Date, .Footer-DateTime-Time {
+  display: flex;
+  padding: 0 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.Footer-DateTime-Date span, .Footer-DateTime-Time span {
+  font-size: 20px;
+  padding-right: 10px;
+  color: white;
+}
+
+.Footer-DateTime-Date label, .Footer-DateTime-Time label {
+  color: white;
+}
+
+.Lightbox-Footer-Main-RoomAva {
+  display: flex;
+  width: fit-content;
+  height: 100%;
+  padding: 10px 0;
+  text-align: center;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  justify-content: flex-start;
+}
+
+.Footer-Main-Room, .Footer-Main-Ava {
+  display: flex;
+  padding: 0 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.Footer-Main-Room span, .Footer-Main-Ava span {
+  font-size: 20px;
+  padding-right: 10px;
+  color: white;
+}
+
+.Footer-Main-Room label, .Footer-Main-Ava label {
+  color: white;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
