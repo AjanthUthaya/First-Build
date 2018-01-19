@@ -682,7 +682,7 @@ function init() {
       //Gets event values(OLD VALUES)
       var ev = scheduler.getEvent(scheduler.getState().lightbox_id);
 
-      if (ev.type == "Lecture") {
+      if (ev.type == "Test") {
 
         //Get values from input fields(NEW VALUES)
         var NewVgs = $('.Input-VGS input').val();

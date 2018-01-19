@@ -105,7 +105,7 @@
 }
 
 .OffCanvas-Menu-List ul {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   height: calc(100% - 27.5px);
   color: white;
@@ -178,6 +178,7 @@
   border-right: 1px solid white;
   border-left: 1px solid white;
   background-color: #526171;
+  font-size: 14px;
 }
 
 .Sub-Menu-Head {

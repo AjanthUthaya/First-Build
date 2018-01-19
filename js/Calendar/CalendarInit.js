@@ -149,6 +149,7 @@ function init() {
 
   //Gets all events from xml and loads it in the calendar
   scheduler.load("../data/Lecture.xml", "xml");
+  scheduler.load("../data/Test.xml", "xml");
 
 
   //Custom header for lightbox
@@ -221,7 +222,7 @@ function init() {
       //Room
       $(".Footer-Main-Room label").text(ev.room);
       //Ava
-      $(".Footer-Main-Ava label").text(ev.ava);
+      $(".Footer-Main-Ava label").text(ev.ava + " / " + ev.maxava);
 
     }
     /*,

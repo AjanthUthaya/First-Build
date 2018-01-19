@@ -871,6 +871,11 @@ label.List-Item-Name {
   height: 100%;
   background-color: #292c31;
   justify-content: center;
+  font-size: 13px;
+}
+
+.Lightbox-Footer-Main * {
+  font-size: inherit;
 }
 
 .Lightbox-Footer-Main-DateTime {

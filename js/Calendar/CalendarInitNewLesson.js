@@ -196,9 +196,9 @@ function init() {
   scheduler.templates.lightbox_header = function(start, end, event) {
     //event.title to get major from xml
     //Make it so "Lecture" does not have a delete button
-    if (event.type == "Test") {
+    if (event.type == "Lecture") {
       return "<div class='Lightbox-Header-Main' style='background: " + event.color + ";'><a class=\"dhx_delete_btn\" id=\"deleteButton\"><span class=\"fa fa-trash\" onClick=\"document.getElementById('deleteButton').click()\"></span></a><label class=\"Lightbox-Header-Title editable\">" + event.title + "</label><a class=\"dhx_cancel_btn\">X</a></div>";
-    } else if (event.type == "Lecture") {
+    } else if (event.type == "Test") {
       return "<div class='Lightbox-Header-Main' style='background: " + event.color + ";'><label class=\"Lightbox-Header-Title\">" + event.title + "</label><a class=\"dhx_cancel_btn\">X</a></div>";
     } else {
       return "<div class='Lightbox-Header-Main' style='background: " + event.color + ";'><label class=\"Lightbox-Header-Title\">" + event.title + "</label><a class=\"dhx_cancel_btn\">X</a></div>";
@@ -224,8 +224,8 @@ function init() {
 
   scheduler.attachEvent("onEventCreated", function(id) {
     var ev = scheduler.getEvent(id);
-    ev.title = ""
-    ev.sub = "";
+    ev.title = "Select a major"
+    ev.sub = "Select sub";
     ev.vgs = "All";
     ev.color = "#36414d";
     ev.type = "Lecture";
@@ -323,7 +323,7 @@ function init() {
         EventMonth = "Refresh or Contact Admin";
     }
 
-    if (ev.type == "Test") {
+    if (ev.type == "Lecture") {
       var Cal_Time = "<label class=\"Cal-Time\">" + EventTimeStart + " - " + EventTimeEnd + "</label>";
       var Cal_Date_MonthLetter = "<label class=\"Cal-Date-MonthLetter\">" + EventMonth + "</label>";
       var Cal_Date_DayNumber = "<label class=\"Cal-Date-DayNumber\">" + EventDay + "</label>";
@@ -337,7 +337,7 @@ function init() {
       var Input_VGS = "<div class=\"Input-VGS\"><label>VGS</label><input value=\"" + ev.vgs + "\" autofocus></input></div>";
       var Input_Color = "<div class=\"Input-Color\"><label>Color</label><input type=\"color\" id=\"ColorSelector\" class=\"jscolor\" value=\"" + ev.color + "\"></input></div>";
       var Input_AVA = "<div class=\"Input-AVA\"><label>AVA</label><input type=\"number\" value=\"" + ev.maxava + "\"></input></div>";
-      var Lightbox_Content_Input = "<div class=\"Lightbox-Content-Input\">" + Input_VGS + Input_Color + Input_AVA + "</div>";
+      var Lightbox_Content_Input = "<div class=\"Lightbox-Content-Input\">" + Input_VGS + Input_Color + "</div>";
 
 
       var Lightbox_Content_Text = "<div class=\"Lightbox-Content-Text\"><label class=\"fa fa-wpforms\"></label><textarea>" + ev.details + "</textarea></div>";
@@ -358,7 +358,7 @@ function init() {
 
       var Lightbox_Content_Main = "<div class=\"Lightbox-Content-Main\">" + "<div class=\"Lightbox-Content-First\">" + Lightbox_Content_Block + Lightbox_Content_Input + "</div>" + Lightbox_Content_Text + Lightbox_Content_Teacher + "</div>" + Lightbox_Save;
       ev.my_template = Lightbox_Content_Main;
-    } else if (ev.type == "Lecture") {
+    } else if (ev.type == "Test") {
 
       var Lightbox_Content_Main_Title = "<label class=\"Lightbox-Content-Main-Title\">" + ev.sub + "</label>";
       var Lightbox_Content_Main_Content = "<p class=\"Lightbox-Content-Main-Content\">" + ev.details + "</p>";
@@ -830,7 +830,7 @@ function init() {
 
         } else {
           //Update data here
-          if (ev.type == "Test") {
+          if (ev.type == "Lecture") {
             ev.vgs = NewVgs;
             ev.color = NewColor;
             ev.maxava = NewMaxAva;
