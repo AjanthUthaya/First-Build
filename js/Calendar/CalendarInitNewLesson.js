@@ -682,110 +682,178 @@ function init() {
       //Gets event values(OLD VALUES)
       var ev = scheduler.getEvent(scheduler.getState().lightbox_id);
 
-      //Get values from input fields(NEW VALUES)
-      var NewVgs = $('.Input-VGS input').val();
-      var NewColor = $('.Input-Color input').val();
-      var NewMaxAva = $('.Input-AVA input').val();
-      var NewDetails = $('.Lightbox-Content-Text textarea').val();
-      var NewType = $(".Cal-Type").text();
-      var NewTitle = $(".Lightbox-Header-Title").text();
+      if (ev.type == "Lecture") {
+
+        //Get values from input fields(NEW VALUES)
+        var NewVgs = $('.Input-VGS input').val();
+        var NewColor = $('.Input-Color input').val();
+        var NewMaxAva = $('.Input-AVA input').val();
+        var NewDetails = $('.Lightbox-Content-Text textarea').val();
+        var NewType = $(".Cal-Type").text();
+        var NewTitle = $(".Lightbox-Header-Title").text();
 
 
-      if (NewType !== "") {
-        NewTypeVali = true;
-      } else {
-        NewTypeVali = false;
-      }
-
-      if (NewTitle !== "") {
-        NewTitleVali = true;
-      } else {
-        NewTitleVali = false;
-      }
-
-      if (NewMaxAva !== "" && NewMaxAva !== "0" && NewMaxAva !== "00" && NewMaxAva !== "000" && NewMaxAva !== "0000") {
-        NewMaxAvaVali = true;
-      } else {
-        NewMaxAvaVali = false;
-      }
-
-      if (NewMaxAva <= ev.ava) {
-        NewMaxAvaVali = "Less";
-      }
-
-      var TeacherLength = $('ul.Teacher-List-Main li').length >= 1;
-
-      if (TeacherLength == true) {
-
-        var items = [];
-        $(".Teacher-List-Main").find("li").each(function(i) {
-          var li = $(this);
-          var Id = li.find("input").val();
-          items.push(Id);
-        });
-
-        var TeacherIdVar = items.join("§");
-        //console.log(TeacherIdVar);
-      } else if (TeacherLength == false) {
-        //console.log("Teacher lenght is 0");
-      }
-
-
-      //Validation of fields
-      if (NewVgs.toLowerCase() == "all" || NewVgs == "1" || NewVgs == "2" || NewVgs == "3") {
-        var NewVgsVali = true;
-      } else {
-        var NewVgsVali = false;
-      }
-      //console.log(NewVgsVali);
-
-      //NewVgsVali for vgs
-      //TeacherLength for teacher list
-      //NewTypeVali for type
-      //NewMaxAvaVali for MaxAva
-
-      if (NewVgsVali == false || TeacherLength == false || NewTypeVali == false || NewMaxAvaVali == false || NewMaxAvaVali == "Less" || NewTitleVali == false) {
-        console.log("Validation failed");
-
-
-        var ReturnFalse = [];
-
-
-
-        if (NewVgsVali == false) {
-          var Name = "VGS value must be \"All, 1, 2 or 3\"";
-          ReturnFalse.push(Name);
-        }
-        if (TeacherLength == false) {
-          var Name = "Select at least one teacher";
-          ReturnFalse.push(Name);
-        }
-        if (NewTypeVali == false) {
-          var Name = "You can not leave label above room number empty";
-          ReturnFalse.push(Name);
-        }
-        if (NewMaxAvaVali == false) {
-          var Name = "You can not leave max students filed empty, or have a higher than 4-digits";
-          ReturnFalse.push(Name);
-        }
-        if (NewMaxAvaVali == "Less") {
-          var Name = "There is currently " + ev.ava + " students enrolled in this event, max students can not be equal or less than that";
-          ReturnFalse.push(Name);
-        }
-        if (NewTitleVali == false) {
-          var Name = "Title can not be left empty";
-          ReturnFalse.push(Name);
+        if (NewType !== "") {
+          NewTypeVali = true;
+        } else {
+          NewTypeVali = false;
         }
 
-        //For each false value, show PopUp_Message
-        ReturnFalse.forEach(function(Item, i) {
+        if (NewTitle !== "") {
+          NewTitleVali = true;
+        } else {
+          NewTitleVali = false;
+        }
+
+        if (NewMaxAva !== "" && NewMaxAva !== "0" && NewMaxAva !== "00" && NewMaxAva !== "000" && NewMaxAva !== "0000") {
+          NewMaxAvaVali = true;
+        } else {
+          NewMaxAvaVali = false;
+        }
+
+        if (NewMaxAva <= ev.ava) {
+          NewMaxAvaVali = "Less";
+        }
+
+        var TeacherLength = $('ul.Teacher-List-Main li').length >= 1;
+
+        if (TeacherLength == true) {
+
+          var items = [];
+          $(".Teacher-List-Main").find("li").each(function(i) {
+            var li = $(this);
+            var Id = li.find("input").val();
+            items.push(Id);
+          });
+
+          var TeacherIdVar = items.join("§");
+          //console.log(TeacherIdVar);
+        } else if (TeacherLength == false) {
+          //console.log("Teacher lenght is 0");
+        }
+
+
+        //Validation of fields
+        if (NewVgs.toLowerCase() == "all" || NewVgs == "1" || NewVgs == "2" || NewVgs == "3") {
+          var NewVgsVali = true;
+        } else {
+          var NewVgsVali = false;
+        }
+        //console.log(NewVgsVali);
+
+        //NewVgsVali for vgs
+        //TeacherLength for teacher list
+        //NewTypeVali for type
+        //NewMaxAvaVali for MaxAva
+
+        if (NewVgsVali == false || TeacherLength == false || NewTypeVali == false || NewMaxAvaVali == false || NewMaxAvaVali == "Less" || NewTitleVali == false) {
+          console.log("Validation failed");
+
+
+          var ReturnFalse = [];
+
+
+
+          if (NewVgsVali == false) {
+            var Name = "VGS value must be \"All, 1, 2 or 3\"";
+            ReturnFalse.push(Name);
+          }
+          if (TeacherLength == false) {
+            var Name = "Select at least one teacher";
+            ReturnFalse.push(Name);
+          }
+          if (NewTypeVali == false) {
+            var Name = "You can not leave label above room number empty";
+            ReturnFalse.push(Name);
+          }
+          if (NewMaxAvaVali == false) {
+            var Name = "You can not leave max students filed empty, or have a higher than 4-digits";
+            ReturnFalse.push(Name);
+          }
+          if (NewMaxAvaVali == "Less") {
+            var Name = "There is currently " + ev.ava + " students enrolled in this event, max students can not be equal or less than that";
+            ReturnFalse.push(Name);
+          }
+          if (NewTitleVali == false) {
+            var Name = "Title can not be left empty";
+            ReturnFalse.push(Name);
+          }
+
+          //For each false value, show PopUp_Message
+          ReturnFalse.forEach(function(Item, i) {
+            notify({
+              //alert | success | error | warning | info
+              type: "error",
+              title: "Validation failed",
+
+              //custom message
+              message: Item,
+
+              position: {
+
+                //right | left | center
+                x: "right",
+
+                //top | bottom | center
+                y: "bottom"
+              },
+
+              // notify icon
+              icon: '<img src="img/PopUp_Message/error.png" />',
+
+              overlay: false,
+              closeBtn: true,
+              overflowHide: false,
+              spacing: 20,
+
+              //default | dark-theme
+              theme: "default",
+
+              //auto-hide after a timeout
+              autoHide: true,
+
+              // timeout
+              delay: 5000,
+
+              // callback functions
+              onShow: null,
+              onClick: null,
+              onHide: null,
+
+              //custom template
+              template: '<div class="notify"><div class="notify-text"></div></div>'
+            });
+          });
+
+
+
+
+        } else {
+          //Update data here
+          if (ev.type == "Test") {
+            ev.vgs = NewVgs;
+            ev.color = NewColor;
+            ev.maxava = NewMaxAva;
+            ev.details = NewDetails;
+            ev.sub = NewType;
+            ev.title = NewTitle;
+            if (TeacherLength == true) {
+              ev.teacherid = TeacherIdVar;
+            } else {
+              ev.teacherid = "";
+            }
+          }
+
+          //Ends or closes lightbox
+          scheduler.endLightbox(true, document.getElementById(ev.id));
+
           notify({
             //alert | success | error | warning | info
-            type: "error",
-            title: "Validation failed",
+            type: "success",
+            title: ev.title + " Updated",
 
             //custom message
-            message: Item,
+            message: "",
 
             position: {
 
@@ -797,7 +865,7 @@ function init() {
             },
 
             // notify icon
-            icon: '<img src="img/PopUp_Message/error.png" />',
+            icon: '<img src="img/PopUp_Message/success.png" />',
 
             overlay: false,
             closeBtn: true,
@@ -811,7 +879,7 @@ function init() {
             autoHide: true,
 
             // timeout
-            delay: 5000,
+            delay: 3000,
 
             // callback functions
             onShow: null,
@@ -821,74 +889,11 @@ function init() {
             //custom template
             template: '<div class="notify"><div class="notify-text"></div></div>'
           });
-        });
-
-
-
-
-      } else {
-        //Update data here
-        if (ev.type == "Test") {
-          ev.vgs = NewVgs;
-          ev.color = NewColor;
-          ev.maxava = NewMaxAva;
-          ev.details = NewDetails;
-          ev.sub = NewType;
-          ev.title = NewTitle;
-          if (TeacherLength == true) {
-            ev.teacherid = TeacherIdVar;
-          } else {
-            ev.teacherid = "";
-          }
         }
 
-        //Ends or closes lightbox
-        scheduler.endLightbox(true, document.getElementById(ev.id));
+      } else {
 
-        notify({
-          //alert | success | error | warning | info
-          type: "success",
-          title: ev.title + " Updated",
-
-          //custom message
-          message: "",
-
-          position: {
-
-            //right | left | center
-            x: "right",
-
-            //top | bottom | center
-            y: "bottom"
-          },
-
-          // notify icon
-          icon: '<img src="img/PopUp_Message/success.png" />',
-
-          overlay: false,
-          closeBtn: true,
-          overflowHide: false,
-          spacing: 20,
-
-          //default | dark-theme
-          theme: "default",
-
-          //auto-hide after a timeout
-          autoHide: true,
-
-          // timeout
-          delay: 3000,
-
-          // callback functions
-          onShow: null,
-          onClick: null,
-          onHide: null,
-
-          //custom template
-          template: '<div class="notify"><div class="notify-text"></div></div>'
-        });
       }
-
 
     });
 
@@ -951,8 +956,9 @@ scheduler.templates.tooltip_text = function(start, end, event) {
     var DateTest = "Date: " + EventDay + " " + EventMonth + " " + EventYear;
     var TimeTest = "Time: " + EventTimeStart + " - " + EventTimeEnd;
     var VgsTest = "VGS: " + event.vgs;
+    var AvaTest = "Ava: " + event.ava + " / " + event.maxava;
 
-    return TitleTest + "<br>" + SubTest + "<br>" + VgsTest;
+    return TitleTest + "<br>" + SubTest + "<br>" + TimeTest + "<br>" + VgsTest + "<br>" + AvaTest;
 
   } else if (event.type == "Lecture") {
 
@@ -961,8 +967,9 @@ scheduler.templates.tooltip_text = function(start, end, event) {
     var DateLec = "Date: " + EventDay + " " + EventMonth + " " + EventYear;
     var TimeLec = "Time: " + EventTimeStart + " - " + EventTimeEnd;
     var VgsLec = "VGS: " + event.vgs;
+    var AvaLec = "Ava: " + event.ava + " / " + event.maxava;
 
-    return TitleLec + "<br>" + SubLec + "<br>" + VgsLec;
+    return TitleLec + "<br>" + SubLec + "<br>" + TimeLec + "<br>" + VgsLec + "<br>" + AvaLec;
 
   }
 };
