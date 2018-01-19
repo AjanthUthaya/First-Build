@@ -6,12 +6,12 @@ var nav = $('.scrollhide-nav');
 
 $(document).scroll(function() {
   var y = $(this).scrollTop();
-  if (y > 400) {
+  if (y > 200) {
     var scrollTop = $window.scrollTop();
     nav.toggleClass('hidden', scrollTop > prev);
     prev = scrollTop;
     //document.getElementById("Test-Content").style.marginTop = '0px';
-  } else if (y < 400) {
+  } else if (y < 200) {
     nav.toggleClass('hidden', scrollTop < prev);
   } else {
     //document.getElementById("Test-Content").style.marginTop = '80px';

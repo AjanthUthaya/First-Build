@@ -847,6 +847,10 @@ label.List-Item-Name {
   justify-content: center;
 }
 
+.Teacher-List-Item a.Teacher-Li-Delete:hover {
+  background-color: #bd0808;
+}
+
 .Lightbox-Content-Main-Title {
   font-size: 16px;
   font-weight: bold;

@@ -1,7 +1,7 @@
 function init() {
   //Get json and put it into a javascript object
-  var LectureData = (function() {
-    var LectureData = null;
+  var TestData = (function() {
+    var TestData = null;
     $.ajax({
       'async': false,
       'global': false,
@@ -13,7 +13,7 @@ function init() {
       },
       success: function(data) {
         $('#Loading-Main').hide();
-        LectureData = data;
+        TestData = data;
         /*alert("Done loading list of teachers");*/
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -21,10 +21,10 @@ function init() {
         alert("Error: " + errorThrown);
       }
     });
-    return LectureData;
+    return TestData;
   })();
 
-  var ev = $(LectureData).find("event");
+  var ev = $(TestData).find("event");
 
   ev.each(function(i, e) {
     //Declaring values

@@ -1,0 +1,933 @@
+/* ***************************************************
+  Main Content
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+.Title {
+  position: fixed;
+  z-index: 13;
+  top: 80px;
+  padding-top: 20px;
+  text-align: center;
+  background-color: white;
+}
+
+.Title.cell * {
+  font-size: 30px;
+}
+
+.Submit {
+  margin: 40px 0;
+  text-align: center;
+}
+
+.Submit button {
+  padding: 20px 40px;
+}
+
+.Date, .MaxStudents {
+  padding: 20px 3em;
+  text-align: center;
+}
+
+.Date *, .MaxStudents * {
+  text-align: center;
+}
+
+.Date * {
+  font-size: 12px;
+}
+
+[type='text'], [type='password'], [type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], [type='email'], [type='number'], [type='search'], [type='tel'], [type='time'], [type='url'], [type='color'], textarea {
+  margin: 0;
+}
+
+#powerTip {
+  margin: 10px;
+  margin-bottom: 0;
+  padding: 10px;
+}
+
+.notify .notify-close-btn {
+  padding: 15px;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  Calendar
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+.Calendar-Main {
+  position: absolute;
+  top: 149px;
+  overflow-x: auto;
+  width: 100vw;
+  max-width: 100%;
+  height: auto;
+  white-space: nowrap;
+}
+
+/* Removes the background of the verticall calendar */
+
+div#scheduler_here {
+  overflow-x: auto;
+  width: 100vw;
+  max-width: 100%;
+  background-color: inherit;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: inherit;
+}
+
+/* Gives header and time of calendar white background */
+
+.dhx_cal_navline {
+  position: fixed;
+  top: 149px !important;
+  background-color: white;
+}
+
+div#dhx_minical_icon {
+  left: 50px !important;
+}
+
+.dhx_cal_header {
+  position: fixed;
+  top: 208px !important;
+  padding-top: 1px;
+  border-top: 0;
+  border-bottom: 2px solid black;
+  background-color: white;
+}
+
+/* Removes unnecessary padding to each cell given by foundation */
+
+table tbody th, table tbody td {
+  padding: 0;
+}
+
+/* Makes it so that one option doesn't get 100% width, instead it divides the width equally between the elements */
+
+.dhx_section_time {
+  display: flex;
+}
+
+@media print, screen and (max-width: 900px) {
+  .dhx_scale_bar {
+    font-size: 10px !important;
+  }
+}
+
+@media print, screen and (max-width: 700px) {
+  .dhx_scale_bar {
+    font-size: 8px !important;
+  }
+  .dhx_cal_event .dhx_body, .dhx_cal_event_line {
+    font-size: 10px !important;
+  }
+}
+
+.dhx_scale_bar {
+  font-size: 12px;
+}
+
+.dhx_cal_event .dhx_body, .dhx_cal_event_line {
+  font-size: 12px;
+}
+
+.dhx_cal_event_line {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Gives event full height and centers text vertically and horizontally */
+
+.dhx_cal_event_line {
+  display: flex;
+  padding: 0 5px;
+  cursor: url('../../img/cursor/Form-Edit-Color.png'), pointer !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.dhx_cal_event_line * {
+  cursor: url('../../img/cursor/Form-Edit-Color.png'), pointer !important;
+}
+
+/* Makes resize dots at the start and end full height aswell */
+
+.dhx_cal_event_line .dhx_event_resize {
+  /*height: 100% !important;*/
+  cursor: w-resize !important;
+}
+
+/* START Event disabled style */
+
+.dhx_cal_event_line.Event-Disabled {
+  cursor: url('../../img/cursor/Form-View-Color.png'), no-drop !important;
+  opacity: .5;
+}
+
+.dhx_cal_event_line.Event-Disabled * {
+  cursor: url('../../img/cursor/Form-View-Color.png'), no-drop !important;
+}
+
+.dhx_cal_event_line.Event-Disabled.dhx_cal_event_line .dhx_event_resize {
+  background-image: none;
+}
+
+.dhx_cal_event_line.Event-Disabled label {
+  opacity: .8;
+}
+
+/* END Event disabled style */
+
+.dhx_cal_data {
+  overflow: hidden;
+  /*width: 1000px !important;*/
+  outline: 0;
+}
+
+tr.dhx_row_folder {
+  /*width: 1000px;*/
+}
+
+.dhx_matrix_line {
+  /*width: 1000px !important;*/
+}
+
+table.dhx_data_table {
+  /*width: 1000px !important;*/
+}
+
+tr.dhx_row_item {
+  /*width: 1000px;*/
+}
+
+/* Makes it so that text area fits inside the container */
+
+textarea {
+  min-height: inherit;
+  margin: 0;
+}
+
+/* Removes unnecessary height to every select element given by foundation */
+
+select {
+  height: inherit;
+}
+
+label {
+  font-size: initial;
+  line-height: 1;
+}
+
+/* Removes yellow highlight/background on clicked element */
+
+.dhx_focus_slot {
+  display: none;
+}
+
+.Event-Content-Main {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 0 5px;
+  cursor: context-menu;
+  color: white;
+}
+
+.Event-Content-Time {
+  font-size: 10px;
+  display: flex;
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  cursor: context-menu;
+  color: white;
+  align-items: center;
+  justify-content: center;
+}
+
+.Event-Content-Type {
+  font-size: 12px;
+  display: flex;
+  width: 100%;
+  cursor: context-menu;
+  color: white;
+  align-items: center;
+  justify-content: center;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  Lightbox
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+/* Chaning opacity of underlayer */
+
+.dhx_cal_cover {
+  opacity: .5;
+}
+
+.dhx_cal_light {
+  height: fit-content !important;
+  margin-top: 85px;
+  border: 0;
+  box-shadow: inherit;
+}
+
+/*.dhx_cal_light.dhx_cal_light_rec {
+  height: fit-content !important;
+}*/
+
+.dhx_cal_ltitle {
+  width: 100%;
+  height: 50px;
+  padding: 0;
+  border-bottom: 0;
+}
+
+.dhx_cal_light .dhx_title {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.Lightbox-Content-Main {
+  display: block;
+  height: 100%;
+}
+
+.Lightbox-Content-First {
+  display: flex;
+  height: fit-content;
+}
+
+.Lightbox-Header-Main {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: #36414d;
+  align-items: center;
+  justify-content: center;
+}
+
+.dhx_delete_btn {
+  background-image: inherit;
+}
+
+.dhx_delete_btn span {
+  font-size: 25px;
+  display: flex;
+  width: 0;
+  height: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.Lightbox-Header-Main a.dhx_delete_btn {
+  font-size: 15px;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  display: flex !important;
+  width: 50px;
+  height: 50px;
+  color: white;
+  border-top-left-radius: 5px;
+  background-color: #f44336;
+  align-items: center;
+  justify-content: center;
+}
+
+.Lightbox-Header-Main a.dhx_delete_btn:hover {
+  background-color: #e53935;
+}
+
+.dhtmlx_popup_button.dhtmlx_ok_button {
+  border: 0;
+  background-color: #f44336;
+}
+
+.dhtmlx_popup_button.dhtmlx_ok_button div {
+  border: 0;
+  background-color: #f44336;
+}
+
+.dhtmlx_popup_button.dhtmlx_ok_button div:hover {
+  border: 0;
+  background-color: #e53935;
+}
+
+.Lightbox-Header-Main label {
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  height: 50px;
+  padding: 10px 20px;
+  color: white;
+  justify-content: center;
+  align-items: center;
+}
+
+.Lightbox-Header-Main input {
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  height: 30px;
+  margin: 0 55px;
+  justify-content: center;
+  align-items: center;
+}
+
+.Lightbox-Header-Title {
+  cursor: pointer;
+}
+
+.dhx_cancel_btn {
+  background-image: inherit;
+}
+
+.Lightbox-Header-Main a.dhx_cancel_btn {
+  font-size: 23px;
+  font-weight: bold;
+  position: absolute;
+  right: 0;
+  display: flex !important;
+  width: 50px;
+  height: 50px;
+  color: white;
+  border-top-right-radius: 5px;
+  background-color: #3a5461;
+  align-items: center;
+  justify-content: center;
+}
+
+.Lightbox-Header-Main a.dhx_cancel_btn:hover {
+  background-color: #344f5d;
+}
+
+.dhx_cal_light_wide .dhx_wrap_section {
+  padding: 0;
+  border: 0;
+}
+
+.dhx_cal_larea {
+  width: 100% !important;
+  height: fit-content !important;
+  border: 0;
+}
+
+.dhx_cal_light_wide .dhx_cal_larea {
+  margin: 0;
+}
+
+.dhx_cal_ltext.dhx_cal_template {
+  padding: 0;
+}
+
+.dhx_cal_light_wide .dhx_cal_ltext.dhx_cal_template {
+  height: 100% !important;
+}
+
+.dhx_cal_lsection {
+  display: none;
+}
+
+.dhx_cal_ltext.dhx_cal_template {
+  height: 100% !important;
+  background-color: #ebebeb;
+}
+
+.dhx_save_btn {
+  width: 100%;
+  background-image: inherit;
+}
+
+.Lightbox-Content-Save {
+  display: flex;
+  height: 40px;
+  margin-top: 40px;
+  color: white !important;
+  background-color: #4caf50;
+  align-items: center;
+  justify-content: center;
+}
+
+.Lightbox-Content-Save:hover {
+  background-color: #43a047;
+}
+
+/* NOTE: Content section starts here */
+
+.Lightbox-Content-Block {
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  height: 100%;
+  margin: 40px;
+  background-color: grey;
+  align-items: center;
+  justify-content: center;
+}
+
+.Lightbox-Content-Block * {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.Cal-Time {
+  height: 26px;
+  padding: 3px 0;
+  color: white;
+  background-color: #444;
+}
+
+.Cal-Date {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  background-color: white;
+}
+
+.Cal-Date-MonthLetter {
+  font-size: 16px;
+  font-weight: bold;
+  padding-bottom: 15px;
+}
+
+.Cal-Date-DayNumber {
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.Cal-Date-DayLetter {
+  font-size: 16px;
+  font-weight: bold;
+  padding-top: 15px;
+}
+
+.Cal-Type {
+  font-weight: bold;
+  padding: 15px 0;
+  cursor: text;
+  color: white;
+  background: red;
+}
+
+input.Cal-Type-Input {
+  font-size: 16px;
+  height: 45px;
+  text-align: center;
+  color: black;
+}
+
+.Cal-Room {
+  font-size: 25px;
+  font-weight: bold;
+  padding: 10px 0;
+  background-color: white;
+}
+
+.Lightbox-Content-Input {
+  display: flex;
+  flex-direction: column;
+  padding: 50px 6%;
+  flex-grow: 1;
+}
+
+.Input-VGS {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.Input-Color {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.Input-AVA {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.Input-VGS label, .Input-Color label, .Input-AVA label {
+  display: flex;
+  width: 30%;
+  min-width: fit-content;
+  height: 40px;
+  text-align: center;
+  color: white;
+  background-color: grey;
+  align-items: center;
+  justify-content: center;
+}
+
+.Input-VGS input, .Input-Color input, .Input-AVA input {
+  display: flex;
+  height: 40px;
+  max-height: 40px;
+  margin: 0;
+  padding: 0 5px;
+  text-align: center;
+  border: 0;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+input#ColorSelector {
+  padding: 3px;
+}
+
+.Lightbox-Content-Text {
+  max-width: 100%;
+  height: fit-content;
+  padding: 0 45px;
+  padding-bottom: 40px;
+}
+
+.Lightbox-Content-Text label {
+  font-size: 30px;
+  display: flex;
+  height: 45px;
+  color: white;
+  background-color: #444;
+  align-items: center;
+  justify-content: center;
+}
+
+.Lightbox-Content-Text textarea {
+  display: block;
+  height: fit-content;
+  min-height: 200px;
+  max-height: 250px;
+  padding: 20px 20px;
+  border: 0;
+}
+
+.Teacher-Header-Main {
+  height: 45px;
+  padding: 0 45px;
+}
+
+.Teacher-Header {
+  font-size: 30px;
+  display: flex;
+  width: 100%;
+  height: 45px;
+  color: white;
+  background-color: #444;
+  align-items: center;
+  justify-content: center;
+}
+
+.Teacher-Content-Main {
+  display: none;
+  margin: 0 45px;
+  background-color: #292c30;
+}
+
+#Teacher-Input-Main {
+  display: flex;
+}
+
+div#Teacher-Input-Dropdown {
+  width: 100%;
+  height: 40px;
+  flex: 1;
+}
+
+.Teacher-Input {
+  font-size: 16px !important;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  text-align: center;
+  border: 0;
+}
+
+.dd-select {
+  width: 100% !important;
+  height: 40px;
+  border: 1px solid #ddd;
+  background: rgb(255, 255, 255) !important;
+}
+
+.dd-option {
+  background: rgb(255, 255, 255) !important;
+}
+
+.dd-selected {
+  display: flex;
+  height: 100%;
+  padding: 0 !important;
+}
+
+.dd-selected-main {
+  display: flex;
+  flex-direction: column;
+  padding-right: 30px;
+}
+
+.dd-selected img {
+  width: 32px;
+  height: 32px;
+  margin: 4px;
+  margin-left: 10px;
+}
+
+ul.dd-options.dd-click-off-close {
+  width: 100% !important;
+  max-height: 165px;
+}
+
+ul.dd-options li {
+  border-bottom: 1px solid #ddd;
+}
+
+ul.dd-options .List-Item-Option {
+  padding-right: 0 !important;
+}
+
+.no-results-found {
+  font-size: 15px;
+  display: flex;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+#Teacher-Input-Add {
+  font-size: 20px;
+  display: flex;
+  width: 45px;
+  height: 40px;
+  cursor: pointer;
+  color: white;
+  background-color: #444;
+  align-items: center;
+  justify-content: center;
+}
+
+.Teacher-Content-Main .Teacher-List-Main {
+  margin: 0;
+  list-style-type: none;
+}
+
+ul.Teacher-List-Main {
+  overflow: auto;
+  min-height: 165px;
+  max-height: 238px;
+}
+
+.Teacher-Content-Main .Teacher-List-Main li {
+  display: flex;
+  margin: 15px 20px;
+  background-color: white;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+}
+
+div.Teacher-List-Item {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  height: 60px;
+  justify-content: center;
+}
+
+a.List-Item-Option {
+  display: flex;
+  height: 60px;
+  padding-right: 60px !important;
+  flex: 1;
+}
+
+a.List-Item-Option * {
+  cursor: pointer;
+}
+
+.List-Item-Image-Main {
+  display: flex;
+  width: 60px;
+  height: 100%;
+  margin-left: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+img.List-Item-Image {
+  width: 45px;
+  height: 45px;
+}
+
+.List-Item-Info {
+  display: flex;
+  flex-direction: column;
+  padding: 3px 10px;
+  flex: 1;
+}
+
+label.List-Item-Name {
+  padding: 5px 0;
+  text-align: center;
+}
+
+.List-Item-Details {
+  display: flex;
+  flex: 1;
+}
+
+.List-Item-Detail-Item {
+  display: flex;
+  padding: 0 10px;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.List-Item-Detail-Item.List-Item-Details-Email {
+  justify-content: flex-end;
+}
+
+.List-Item-Detail-Item.List-Item-Details-Phone {
+  justify-content: flex-start;
+}
+
+.List-Item-Detail-Item span {
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.List-Item-Detail-Item label {
+  font-size: 10px;
+}
+
+.Teacher-List-Item a.Teacher-Li-Delete {
+  font-size: 25px;
+  font-weight: bold;
+  position: absolute;
+  right: 0;
+  display: flex;
+  width: 60px;
+  height: 60px;
+  color: white;
+  background-color: red;
+  align-items: center;
+  justify-content: center;
+}
+
+.Teacher-List-Item a.Teacher-Li-Delete:hover {
+  background-color: #bd0808;
+}
+
+.Lightbox-Content-Main-Title {
+  font-size: 16px;
+  font-weight: bold;
+  width: 100%;
+  padding: 15px 0;
+  text-align: center;
+}
+
+.Lightbox-Content-Main-Content {
+  padding: 0 40px;
+  padding-bottom: 20px;
+}
+
+.Lightbox-Footer-Main {
+  display: flex;
+  flex-direction: inherit;
+  width: 100%;
+  height: 100%;
+  background-color: #292c31;
+  justify-content: center;
+}
+
+.Lightbox-Footer-Main-DateTime {
+  display: flex;
+  width: fit-content;
+  height: 100%;
+  padding: 10px 0;
+  text-align: center;
+  justify-content: flex-end;
+}
+
+.Footer-DateTime-Date, .Footer-DateTime-Time {
+  display: flex;
+  padding: 0 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.Footer-DateTime-Date span, .Footer-DateTime-Time span {
+  font-size: 20px;
+  padding-right: 10px;
+  color: white;
+}
+
+.Footer-DateTime-Date label, .Footer-DateTime-Time label {
+  color: white;
+}
+
+.Lightbox-Footer-Main-RoomAva {
+  display: flex;
+  width: fit-content;
+  height: 100%;
+  padding: 10px 0;
+  text-align: center;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  justify-content: flex-start;
+}
+
+.Footer-Main-Room, .Footer-Main-Ava {
+  display: flex;
+  padding: 0 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.Footer-Main-Room span, .Footer-Main-Ava span {
+  font-size: 20px;
+  padding-right: 10px;
+  color: white;
+}
+
+.Footer-Main-Room label, .Footer-Main-Ava label {
+  color: white;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */

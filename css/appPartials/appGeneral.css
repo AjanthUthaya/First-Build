@@ -150,6 +150,16 @@ table {
   background-color: #36414d;
 }
 
+.dhx_month_head.dhx_year_event {
+  background-color: #ffabab;
+}
+
+.dhx_now .dhx_month_body, .dhx_now .dhx_month_head {
+  background-color: #37414d;
+  font-weight: 400;
+  color: white;
+}
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -164,7 +174,8 @@ table {
   position: fixed;
   z-index: 13;
   top: 80px;
-  display: flex;
+  display: none;
+  /* Display flex in js to get the loading screen */
   flex-direction: column;
   width: 100vw;
   height: calc(100vh - 80px);
@@ -177,6 +188,8 @@ table {
 #Loading-Icon img {
   width: 200px;
 }
+
+/* Target this selector to add text */
 
 #Loading-Text {
   font-size: 20px;
