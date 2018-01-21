@@ -286,7 +286,7 @@ label {
 
 .dhx_cal_light {
   height: fit-content !important;
-  margin-top: 85px;
+  margin-top: 25px;
   border: 0;
   box-shadow: inherit;
 }
@@ -538,7 +538,7 @@ input.Cal-Type-Input {
   font-size: 16px;
   height: 45px;
   text-align: center;
-  color: black;
+  color: #747473;
 }
 
 .Cal-Room {
@@ -586,6 +586,14 @@ input.Cal-Type-Input {
   background-color: grey;
   align-items: center;
   justify-content: center;
+}
+
+div#DropDown-Main {
+  width: 70% !important;
+}
+
+.dd-select {
+  border: 0 !important;
 }
 
 .Input-VGS input, .Input-Color input, .Input-AVA input {
@@ -682,18 +690,39 @@ div#Teacher-Input-Dropdown {
 
 .dd-option {
   background: rgb(255, 255, 255) !important;
+  border: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
 }
 
 .dd-selected {
-  display: flex;
+  display: flex !important;
   height: 100%;
   padding: 0 !important;
+  justify-content: center;
+  align-items: center;
 }
 
 .dd-selected-main {
   display: flex;
   flex-direction: column;
   padding-right: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+label.dd-option-text {
+  background: white;
+  color: #747473;
+  justify-content: center;
+  align-items: center;
+}
+
+label.dd-selected-text {
+  background: white;
+  color: #747473;
 }
 
 .dd-selected img {

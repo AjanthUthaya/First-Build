@@ -334,7 +334,7 @@ function init() {
       var Cal_Room = "<label class=\"Cal-Room\">" + ev.room + "</label>";
       var Lightbox_Content_Block = "<div class=\"Lightbox-Content-Block\">" + Cal_Time + Cal_Date + Cal_Type + Cal_Room + "</div>";
 
-      var Input_VGS = "<div class=\"Input-VGS\"><label>VGS</label><input value=\"" + ev.vgs + "\" autofocus></input></div>";
+      var Input_VGS = "<div class=\"Input-VGS\"><label>VGS</label><select autofocus></select></div>";
       var Input_Color = "<div class=\"Input-Color\"><label>Color</label><input type=\"color\" id=\"ColorSelector\" class=\"jscolor\" value=\"" + ev.color + "\"></input></div>";
       var Input_AVA = "<div class=\"Input-AVA\"><label>AVA</label><input type=\"number\" value=\"" + ev.maxava + "\"></input></div>";
       var Lightbox_Content_Input = "<div class=\"Lightbox-Content-Input\">" + Input_VGS + Input_Color + Input_AVA + "</div>";
@@ -434,7 +434,7 @@ function init() {
 
 
     //Init teacher dropdown
-    $('#Teacher-Input-Dropdown').ddslick({
+    $('#Teacher-Input-Dropdown').ddslickTeacher({
       data: TeacherList,
       imagePosition: "left",
       onSelected: function(data) {
@@ -503,6 +503,40 @@ function init() {
       },
       selectText: "Select and add a teacher"
     });
+
+    var ddBasic = [{
+        text: "1",
+        value: "1",
+      },
+      {
+        text: "2",
+        value: "2",
+      },
+      {
+        text: "3",
+        value: "3",
+      },
+      {
+        text: "All",
+        value: "All",
+      }
+    ];
+    if (ev.vgs == "All") {
+      $('.Input-VGS select').ddslickVGS({
+        data: ddBasic,
+        selectText: "Select VGS",
+        onSelected: function(data) {},
+        defaultSelectedIndex: 3
+      });
+    }else {
+      $('.Input-VGS select').ddslickVGS({
+        data: ddBasic,
+        selectText: "Select VGS",
+        onSelected: function(data) {},
+        defaultSelectedIndex: ev.vgs -1
+      });
+    }
+
 
     //Getting teacher/s id and showing them in Teacher-List-Main
     var ev = scheduler.getEvent(id);

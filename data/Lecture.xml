@@ -4,15 +4,15 @@
   <event
     id='11'
     type='Lecture'
-    start_date='19-01-2018 11:00'
-    end_date='19-01-2018 13:00'
+    start_date='21-01-2018 11:00'
+    end_date='21-01-2018 13:00'
     teacherid='1§2'
     title='Naturfag'
     sub='Energi'
     room='205'
     color='#4169e1'
     joined='1'
-    vgs='2'
+    vgs='All'
     ava='15'
     maxava='30'
     details='Lorem ipsum dolor sit amet, et lorem quaestio has, nam dicta petentium at.
