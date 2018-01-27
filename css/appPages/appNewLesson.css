@@ -5,7 +5,7 @@
 
 .Title {
   position: fixed;
-  z-index: 13;
+  z-index: 9;
   top: 80px;
   padding-top: 20px;
   text-align: center;
@@ -381,18 +381,17 @@ label {
   font-weight: bold;
   display: flex;
   height: 50px;
-  padding: 10px 20px;
+  padding: 5px 55px;
   color: white;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
-.Lightbox-Header-Main input {
+.Lightbox-Header-Input {
   font-size: 16px;
   font-weight: bold;
   display: flex;
-  height: 30px;
-  margin: 0 55px;
   justify-content: center;
   align-items: center;
 }
@@ -551,7 +550,7 @@ input.Cal-Type-Input {
 .Lightbox-Content-Input {
   display: flex;
   flex-direction: column;
-  padding: 50px 6%;
+  padding: 90px 6%;
   flex-grow: 1;
 }
 
@@ -689,10 +688,10 @@ div#Teacher-Input-Dropdown {
 }
 
 .dd-option {
-  background: rgb(255, 255, 255) !important;
-  border: 0 !important;
-  padding: 0 !important;
   display: flex !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: rgb(255, 255, 255) !important;
   justify-content: center;
   align-items: center;
 }
@@ -714,15 +713,15 @@ div#Teacher-Input-Dropdown {
 }
 
 label.dd-option-text {
-  background: white;
   color: #747473;
+  background: white;
   justify-content: center;
   align-items: center;
 }
 
 label.dd-selected-text {
-  background: white;
   color: #747473;
+  background: white;
 }
 
 .dd-selected img {
@@ -894,13 +893,13 @@ label.List-Item-Name {
 }
 
 .Lightbox-Footer-Main {
+  font-size: 13px;
   display: flex;
   flex-direction: inherit;
   width: 100%;
   height: 100%;
   background-color: #292c31;
   justify-content: center;
-  font-size: 13px;
 }
 
 .Lightbox-Footer-Main * {
@@ -959,6 +958,121 @@ label.List-Item-Name {
 
 .Footer-Main-Room label, .Footer-Main-Ava label {
   color: white;
+}
+
+/* LECTURE BLOCK */
+
+.Lightbox-Lecture-Block {
+  width: 35%;
+  height: 100%;
+  margin: 40px;
+  background-color: red;
+}
+
+.Lecture-Block-Date {
+  display: flex;
+  height: 145px;
+  background-color: #4d4d4d;
+  justify-content: center;
+  align-items: center;
+}
+
+.Block-Date-Circle {
+  display: flex;
+  flex-direction: column;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid white;
+  background-color: #757575;
+  justify-content: center;
+  align-items: center;
+}
+
+.Block-Date-MonthL {
+  font-size: 14px;
+  padding-bottom: 15px;
+  color: white;
+}
+
+.Block-Date-DayN {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+.Block-Date-DayL {
+  font-size: 14px;
+  padding-top: 15px;
+  color: white;
+}
+
+.Lecture-Block-Sub {
+  display: flex;
+  height: 45px;
+  background-color: #35414d;
+  justify-content: center;
+  align-items: center;
+}
+
+.Block-Sub-Title {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: text;
+}
+
+.Block-Sub-Input {
+  font-size: 20px !important;
+  color: black !important;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.Lecture-Block-Data {
+  height: 100%;
+  background-color: darkred;
+}
+
+.Block-Data-List {
+  margin: 0;
+  padding: 5px 10px;
+  background-color: #757575;
+}
+
+.Block-Data-List li {
+  display: flex;
+  width: 100%;
+  height: 40px;
+  margin: 10px 0px;
+}
+
+.Block-Data-List li span {
+  display: flex;
+  width: 35px;
+  height: 100%;
+  text-align: center;
+  background-color: #4d4d4d;
+  color: white;
+  justify-content: center;
+  align-items: center;
+}
+
+.Block-Data-List li label {
+  display: flex;
+  height: 100%;
+  text-align: center;
+  background-color: #b9b9b9;
+  color: black;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

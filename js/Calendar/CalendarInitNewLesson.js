@@ -229,6 +229,7 @@ function init() {
     ev.vgs = "All";
     ev.color = "#36414d";
     ev.type = "Lecture";
+    ev.ava = "0";
     ev.maxava = "30";
     ev.details = "";
     ev.teacherid = "";
@@ -263,7 +264,7 @@ function init() {
 
     var EventStart = String(ev.start_date);
     var EventEnd = String(ev.end_date);
-    var EventDay = EventStart.slice(8, 11);
+    var EventDay = EventStart.slice(8, 10);
     var EventMonth = EventStart.slice(4, 8);
     var EventYear = EventStart.slice(11, 16);
     var EventTimeStart = EventStart.slice(16, 21);
@@ -324,29 +325,40 @@ function init() {
     }
 
     if (ev.type == "Lecture") {
-      var Cal_Time = "<label class=\"Cal-Time\">" + EventTimeStart + " - " + EventTimeEnd + "</label>";
-      var Cal_Date_MonthLetter = "<label class=\"Cal-Date-MonthLetter\">" + EventMonth + "</label>";
-      var Cal_Date_DayNumber = "<label class=\"Cal-Date-DayNumber\">" + EventDay + "</label>";
-      var Cal_Date_DayLetter = "<label class=\"Cal-Date-DayLetter\">" + EventDayLetter + "</label>";
+      //CALENDAR BLOCK
+      //DATE
+      var Block_Date_MonthL = "<label class=\"Block-Date-MonthL\">" + EventMonth + "</label>";
+      var Block_Date_DayN = "<label class=\"Block-Date-DayN\">" + EventDay + "</label>";
+      var Block_Date_DayL = "<label class=\"Block-Date-DayL\">" + EventDayLetter + "</label>";
+      var Lecture_Block_Date = "<div class=\"Lecture-Block-Date\"><div class=\"Block-Date-Circle\">" + Block_Date_MonthL + Block_Date_DayN + Block_Date_DayL + "</div></div>";
 
-      var Cal_Date = "<div class=\"Cal-Date\">" + Cal_Date_MonthLetter + Cal_Date_DayNumber + Cal_Date_DayLetter + "</div>";
-      var Cal_Type = "<label class=\"Cal-Type editable\" style=\"background:" + ev.color + ";\">" + ev.sub + "</label>";
-      var Cal_Room = "<label class=\"Cal-Room\">" + ev.room + "</label>";
-      var Lightbox_Content_Block = "<div class=\"Lightbox-Content-Block\">" + Cal_Time + Cal_Date + Cal_Type + Cal_Room + "</div>";
+      //SUB
+      var Lecture_Block_Sub = "<div class=\"Lecture-Block-Sub\"><label class=\"Block-Sub-Title editable\" style=\"background:" + ev.color + ";\">" + ev.sub + "</label></div>";
 
+      //DATA SECTION
+      var Data_ListItem_Time = "<li class=\"Data-ListItem-Time\"><span>X</span><label>" + EventTimeStart + " - " + EventTimeEnd + "</label></li>";
+      var Data_ListItem_Room = "<li class=\"Data-ListItem-Room\"><span>X</span><label>206</label></li>";
+      var Data_ListItem_Ava = "<li class=\"Data-ListItem-Ava\"><span>X</span><label>" + ev.ava + " / " + ev.maxava + "</label></li>";
+      var Block_Data_List = "<ul class=\"Block-Data-List\">" + Data_ListItem_Time + Data_ListItem_Room + Data_ListItem_Ava + "</ul>";
+      var Lecture_Block_Data = "<div class=\"Lecture-Block-Data\">" + Block_Data_List + "</div>";
+
+      var Lightbox_Lecture_Block = "<div class=\"Lightbox-Lecture-Block\">" + Lecture_Block_Date + Lecture_Block_Sub + Lecture_Block_Data + "</div>";
+
+      //INPUT AREA
       var Input_VGS = "<div class=\"Input-VGS\"><label>VGS</label><select autofocus></select></div>";
-      var Input_Color = "<div class=\"Input-Color\"><label>Color</label><input type=\"color\" id=\"ColorSelector\" class=\"jscolor\" value=\"" + ev.color + "\"></input></div>";
+      var Input_Color = "<div class=\"Input-Color\"><label>Color</label><input type=\"color\" id=\"ColorSelector\" class=\"jscolor\" value=\"" + ev.color + "\" disabled></input></div>";
       var Input_AVA = "<div class=\"Input-AVA\"><label>AVA</label><input type=\"number\" value=\"" + ev.maxava + "\"></input></div>";
-      var Lightbox_Content_Input = "<div class=\"Lightbox-Content-Input\">" + Input_VGS + Input_Color + "</div>";
+      var Lightbox_Content_Input = "<div class=\"Lightbox-Content-Input\">" + Input_VGS + Input_Color + Input_AVA + "</div>";
 
 
+      //TEXTAREA
       var Lightbox_Content_Text = "<div class=\"Lightbox-Content-Text\"><label class=\"fa fa-wpforms\"></label><textarea>" + ev.details + "</textarea></div>";
 
 
+      //TEACHER LIST
       var Teacher_Header_Main = "<div class=\"Teacher-Header-Main\"><span class=\"Teacher-Header fa fa-user-circle\"></span></div>";
 
       var Teacher_Input_Main = "<div id=\"Teacher-Input-Main\"><div id=\"Teacher-Input-Dropdown\"></div></div>";
-
 
       var Teacher_List_Main = "<ul class=\"Teacher-List-Main\">" + "</ul>";
       var Teacher_Content_Main = "<div class=\"Teacher-Content-Main\">" + Teacher_Input_Main + Teacher_List_Main + "</div>";
@@ -354,17 +366,23 @@ function init() {
       var Lightbox_Content_Teacher = "<div class=\"Lightbox-Content-Teacher\">" + Teacher_Header_Main + Teacher_Content_Main + "</div>";
 
 
+      //SAVE BUTTON
       var Lightbox_Save = "<a class=\"Lightbox-Content-Save dhx_save_btn\">Save</a>";
 
-      var Lightbox_Content_Main = "<div class=\"Lightbox-Content-Main\">" + "<div class=\"Lightbox-Content-First\">" + Lightbox_Content_Block + Lightbox_Content_Input + "</div>" + Lightbox_Content_Text + Lightbox_Content_Teacher + "</div>" + Lightbox_Save;
+
+      //MAIN RETURN VARIABLE
+      var Lightbox_Content_Main = "<div class=\"Lightbox-Content-Main\">" + "<div class=\"Lightbox-Content-First\">" + Lightbox_Lecture_Block + Lightbox_Content_Input + "</div>" + Lightbox_Content_Text + Lightbox_Content_Teacher + "</div>" + Lightbox_Save;
       ev.my_template = Lightbox_Content_Main;
+
+
     } else if (ev.type == "Test") {
 
+      //MAIN BODY
       var Lightbox_Content_Main_Title = "<label class=\"Lightbox-Content-Main-Title\">" + ev.sub + "</label>";
       var Lightbox_Content_Main_Content = "<p class=\"Lightbox-Content-Main-Content\">" + ev.details + "</p>";
       var Lightbox_Content_Main = "<div class=\"Lightbox-Content-Main\">" + Lightbox_Content_Main_Title + Lightbox_Content_Main_Content + "</div>";
 
-
+      //FOOTER
       var Footer_DateTime_Date = "<div class=\"Footer-DateTime-Date\"><span class=\"fa fa-calendar-o\"></span><label>" + EventDay + " " + EventMonth + " " + EventYear + "</label></div>";
       var Footer_DateTime_Time = "<div class=\"Footer-DateTime-Time\"><span class=\"fa fa-clock-o\"></span><label>" + EventTimeStart + " - " + EventTimeEnd + "</label></div>";
       var Lightbox_Footer_Main_DateTime = "<div class=\"Lightbox-Footer-Main-DateTime\">" + Footer_DateTime_Date + Footer_DateTime_Time + "</div>";
@@ -375,7 +393,10 @@ function init() {
 
       var Lightbox_Footer_Main = "<div class=\"Lightbox-Footer-Main\">" + Lightbox_Footer_Main_DateTime + Lightbox_Footer_Main_RoomAva + "</div>";
 
+      //MAIN RETURN VARIABLE
       ev.my_template = "<div class=\"Lightbox-Content\">" + Lightbox_Content_Main + Lightbox_Footer_Main + "</div>";
+
+
     } else {
       ev.my_template = "Contact admin, event data error(check console log)";
       console.log("Event data error: type does not match any values");
@@ -496,8 +517,48 @@ function init() {
         var AlreadyExists = checkValue(data.selectedData.id, items);
 
         if (AlreadyExists == true) {
-          alert("Teacher is already added to this event");
-          $(".Teacher-Input").focus();
+          notify({
+            //alert | success | error | warning | info
+            type: "warning",
+            title: "Teacher is already added to this event",
+
+            //custom message
+            message: "",
+
+            position: {
+
+              //right | left | center
+              x: "right",
+
+              //top | bottom | center
+              y: "bottom"
+            },
+
+            // notify icon
+            icon: '<img src="img/PopUp_Message/warning.png" />',
+
+            overlay: false,
+            closeBtn: true,
+            overflowHide: false,
+            spacing: 20,
+
+            //default | dark-theme
+            theme: "default",
+
+            //auto-hide after a timeout
+            autoHide: true,
+
+            // timeout
+            delay: 2000,
+
+            // callback functions
+            onShow: null,
+            onClick: null,
+            onHide: null,
+
+            //custom template
+            template: '<div class="notify"><div class="notify-text"></div></div>'
+          }); //End of warning message
         } else {
           $(".Teacher-Content-Main .Teacher-List-Main").append(Teacher_List_Li);
         }
@@ -530,12 +591,12 @@ function init() {
         onSelected: function(data) {},
         defaultSelectedIndex: 3
       });
-    }else {
+    } else {
       $('.Input-VGS select').ddslickVGS({
         data: ddBasic,
         selectText: "Select VGS",
         onSelected: function(data) {},
-        defaultSelectedIndex: ev.vgs -1
+        defaultSelectedIndex: ev.vgs - 1
       });
     }
 
@@ -668,11 +729,23 @@ function init() {
     $(function() {
       //Loop through all Labels with class 'editable'.
       $(".editable").each(function() {
+
         //Reference the Label.
         var label = $(this);
 
+
         //Add a TextBox next to the Label.
-        label.after("<input type = 'text' class = 'Cal-Type-Input' style = 'display:none' />");
+
+        //Gets the closest divs class name
+        var test = $(this).closest("div")[0].className;
+        if (test == "Lightbox-Header-Main") {
+          label.after("<input type = 'text' class = 'Lightbox-Header-Input' style = 'display:none' />");
+        } else if (test == "Lecture-Block-Sub") {
+          label.after("<input type = 'text' class = 'Block-Sub-Input' style = 'display:none' />");
+        } else {
+          label.after("<input type = 'text' class = 'LabelToInput' style = 'display:none' />");
+        }
+
 
         //Reference the TextBox.
         var textbox = $(this).next();
@@ -687,7 +760,15 @@ function init() {
         label.click(function() {
           $(this).hide();
           $(this).next().show();
-          $(".Cal-Type-Input").focus();
+
+          //OnClick focus on the input
+          if (test == "Lightbox-Header-Main") {
+            $(".Lightbox-Header-Input").focus();
+          } else if (test == "Lecture-Block-Sub") {
+            $(".Block-Sub-Input").focus();
+          } else {
+            $(".LabelToInput").focus();
+          }
         });
 
         //When focus is lost from TextBox, hide TextBox and show Label.
@@ -726,7 +807,7 @@ function init() {
         var NewColor = $('.Input-Color input').val();
         var NewMaxAva = $('.Input-AVA input').val();
         var NewDetails = $('.Lightbox-Content-Text textarea').val();
-        var NewType = $(".Cal-Type").text();
+        var NewType = $(".Block-Sub-Title").text();
         var NewTitle = $(".Lightbox-Header-Title").text();
 
         if (NewType !== "") {
@@ -799,7 +880,7 @@ function init() {
             ReturnFalse.push(Name);
           }
           if (NewTypeVali == false) {
-            var Name = "You can not leave label above room number empty";
+            var Name = "You can not leave label sub title empty";
             ReturnFalse.push(Name);
           }
           if (NewMaxAvaVali == false) {
@@ -868,7 +949,7 @@ function init() {
           //Update data here
           if (ev.type == "Lecture") {
             ev.vgs = NewVgs;
-            ev.color = NewColor;
+            //ev.color = NewColor;
             ev.maxava = NewMaxAva;
             ev.details = NewDetails;
             ev.sub = NewType;
@@ -915,7 +996,7 @@ function init() {
             autoHide: true,
 
             // timeout
-            delay: 3000,
+            delay: 2000,
 
             // callback functions
             onShow: null,
