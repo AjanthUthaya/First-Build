@@ -311,6 +311,9 @@ label {
 .Lightbox-Content-Main {
   display: block;
   height: 100%;
+  max-height: 70vh;
+  overflow-y: scroll;
+  padding-bottom: 50px;
 }
 
 .Lightbox-Content-First {
@@ -466,7 +469,6 @@ label {
 .Lightbox-Content-Save {
   display: flex;
   height: 40px;
-  margin-top: 40px;
   color: white !important;
   background-color: #4caf50;
   align-items: center;

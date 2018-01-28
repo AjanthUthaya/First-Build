@@ -1,9 +1,62 @@
-[{
-  "major": "Norsk",
-  "id": 1,
-  "subid": "1§4"
-}, {
-  "major": "Naturfag",
-  "id": 2,
-  "subid": "1§4"
-}]
+[
+  {
+    "major": "culpa",
+    "id": "5a6e2d056416f9b810d8c17e",
+    "subid": 2,
+    "color": "#fdd4d9"
+  },
+  {
+    "major": "laborum",
+    "id": "5a6e2d05be8def8654fad2df",
+    "subid": 2,
+    "color": "#dc4de5"
+  },
+  {
+    "major": "irure",
+    "id": "5a6e2d0561ccb6e0f155a8e4",
+    "subid": 2,
+    "color": "#67a4fb"
+  },
+  {
+    "major": "incididunt",
+    "id": "5a6e2d05dace93d290d20d64",
+    "subid": 2,
+    "color": "#b53ff8"
+  },
+  {
+    "major": "ipsum",
+    "id": "5a6e2d0546c2dceceb6e06c7",
+    "subid": 2,
+    "color": "#b2fed4"
+  },
+  {
+    "major": "reprehenderit",
+    "id": "5a6e2d056086b8d851940bec",
+    "subid": 2,
+    "color": "#dbaf2e"
+  },
+  {
+    "major": "et",
+    "id": "5a6e2d05088173b50ca10d0f",
+    "subid": 2,
+    "color": "#ab7a47"
+  },
+  {
+    "major": "enim",
+    "id": "5a6e2d05160826804247de04",
+    "subid": 2,
+    "color": "#fb9e1b"
+  },
+  {
+    "major": "ullamco",
+    "id": "5a6e2d052764ad5fdf709512",
+    "subid": 2,
+    "color": "#39c67f"
+  },
+  {
+    "major": "idast",
+    "id": "5a6e2d055e432ddbddba361b",
+    "subid": 2,
+    "color": "#e94e14"
+  }
+]

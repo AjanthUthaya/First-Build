@@ -401,7 +401,7 @@ function init() {
     jQuery.fn.center = function() {
       this.css("position", "absolute");
       this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) +
-        $(window).scrollTop()) + "px");
+        $(window).scrollTop()) + 15 + "px");
       this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) +
         $(window).scrollLeft()) + "px");
       return this;
@@ -417,7 +417,8 @@ function init() {
       return this;
     }
 
-    $('#' + ev.id).CustomPos(80);
+    //$('#' + ev.id).CustomPos(80);
+    $('#' + ev.id).center(); // Pluss 15
     $(".Input-VGS input").focus();
 
     //OnClick Run script that makes header and Cal-Type change Color
@@ -528,12 +529,12 @@ function init() {
         onSelected: function(data) {},
         defaultSelectedIndex: 3
       });
-    }else {
+    } else {
       $('.Input-VGS select').ddslickVGS({
         data: ddBasic,
         selectText: "Select VGS",
         onSelected: function(data) {},
-        defaultSelectedIndex: ev.vgs -1
+        defaultSelectedIndex: ev.vgs - 1
       });
     }
 
