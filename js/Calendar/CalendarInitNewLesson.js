@@ -336,9 +336,9 @@ function init() {
       var Lecture_Block_Sub = "<div class=\"Lecture-Block-Sub\"><label class=\"Block-Sub-Title editable\" style=\"background:" + ev.color + ";\">" + ev.sub + "</label></div>";
 
       //DATA SECTION
-      var Data_ListItem_Time = "<li class=\"Data-ListItem-Time\"><span>X</span><label>" + EventTimeStart + " - " + EventTimeEnd + "</label></li>";
-      var Data_ListItem_Room = "<li class=\"Data-ListItem-Room\"><span>X</span><label>206</label></li>";
-      var Data_ListItem_Ava = "<li class=\"Data-ListItem-Ava\"><span>X</span><label>" + ev.ava + " / " + ev.maxava + "</label></li>";
+      var Data_ListItem_Time = "<li class=\"Data-ListItem-Time\"><span class=\"fa fa-clock-o\"></span><label>" + EventTimeStart + " - " + EventTimeEnd + "</label></li>";
+      var Data_ListItem_Room = "<li class=\"Data-ListItem-Room\"><span class=\"fa fa-home\"></span><label>206</label></li>";
+      var Data_ListItem_Ava = "<li class=\"Data-ListItem-Ava\"><span class=\"fa fa-users\"></span><label>" + ev.ava + " / " + ev.maxava + "</label></li>";
       var Block_Data_List = "<ul class=\"Block-Data-List\">" + Data_ListItem_Time + Data_ListItem_Room + Data_ListItem_Ava + "</ul>";
       var Lecture_Block_Data = "<div class=\"Lecture-Block-Data\">" + Block_Data_List + "</div>";
 
