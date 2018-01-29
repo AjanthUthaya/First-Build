@@ -3,13 +3,26 @@
   (Top-Right-Bottom-Left)
 *************************************************** */
 
+/* NOTE: Leave top: 0; because it affects layout when content is present */
+
 footer {
   top: 0;
 }
 
 data {
   position: relative;
-  display: none;
+  display: block;
+}
+
+.Major-Null {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 80px);
+  width: 100vw;
+  margin-bottom: 50px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -53,6 +66,8 @@ data {
 *************************************************** */
 
 .Sub-Major-Title {
+  font-size: 25px;
+  font-weight: bold;
   display: flex;
   width: 100vw;
   height: 60px;
@@ -60,14 +75,6 @@ data {
   background-color: #36414d;
   align-items: center;
   justify-content: center;
-}
-
-.Sub-Edit-Button {
-  position: absolute;
-  right: 0;
-  display: flex;
-  margin: 0;
-  padding: 23px 20px;
 }
 
 .Sub-Major-Content-Main {
@@ -109,7 +116,6 @@ data {
 
 .Sub-Major-Menu-Main ul li a {
   font-size: 14px;
-  padding: 20px 30px;
 }
 
 .Sub-Major-Menu-Main ul .is-active {
@@ -122,16 +128,28 @@ data {
   background-color: #212427 !important;
 }
 
+.accordion-title {
+  height: 60px;
+  padding: 30px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .Accord-List li {
   border-bottom: 0 !important;
   background-color: #6e7882 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .Accord-List li a {
   width: 100%;
-  padding: 20px 10px !important;
+  height: 100%;
   color: #dcdcdc;
   border-right: 5px solid #ebebeb;
+  padding: 15px 10px;
 }
 
 .Accord-List li a:focus {
@@ -152,12 +170,31 @@ data {
 }
 
 .Content-Main-Title {
+  font-size: 25px;
+  font-weight: bold;
   margin-top: 15px;
+  margin-bottom: 15px;
   text-align: center;
 }
 
 .Content-Main-Content {
   padding: 0 20px;
+  font-size: 14px;
+}
+
+.Chapter-List li {
+  background-color: #8694a5 !important;
+  cursor: pointer;
+  height: 40px;
+}
+
+.Chapter-List li a {
+  height: 100%;
+  width: 100%;
+}
+
+.Chapter-List li:hover {
+  background-color: #4c5f75 !important;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

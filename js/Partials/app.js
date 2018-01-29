@@ -23,7 +23,10 @@ var MajorList = (function() {
 })();
 
 $.each(MajorList, function(key, ma) {
+  //LI element to be appended
   var MajorItem = "<li><a href=\"SubLecture.html#" + ma.major + "\" onClick=\"history.go(0)\" style=\"color: " + ma.color + ";\">" + ma.major + "</a></li>";
+
+  //Actual appening area
   $(".Sub-Menu-List").append(MajorItem);
-  console.log(ma.color);
+  //console.log(ma.color);
 });
