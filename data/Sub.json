@@ -1,9 +1,501 @@
 [{
-  "sub": "Energi",
   "id": 1,
-  "major": "Naturfag"
+  "major": 5,
+  "sub": "Research and Development",
+  "details": "Page 0 - 30"
 }, {
-  "sub": "Henrik Ibsen",
   "id": 2,
-  "major": "Norsk"
+  "major": 3,
+  "sub": "Support",
+  "details": "Page 30 - 60"
+}, {
+  "id": 3,
+  "major": 2,
+  "sub": "Marketing",
+  "details": "Page 60 - 90"
+}, {
+  "id": 4,
+  "major": 3,
+  "sub": "Sales",
+  "details": "Page 60 - 90"
+}, {
+  "id": 5,
+  "major": 1,
+  "sub": "Marketing",
+  "details": "Page 0 - 30"
+}, {
+  "id": 6,
+  "major": 6,
+  "sub": "Marketing",
+  "details": "Page 30 - 60"
+}, {
+  "id": 7,
+  "major": 8,
+  "sub": "Accounting",
+  "details": "Page 60 - 90"
+}, {
+  "id": 8,
+  "major": 6,
+  "sub": "Sales",
+  "details": "Page 0 - 30"
+}, {
+  "id": 9,
+  "major": 9,
+  "sub": "Business Development",
+  "details": "Page 60 - 90"
+}, {
+  "id": 10,
+  "major": 7,
+  "sub": "Legal",
+  "details": "Page 30 - 60"
+}, {
+  "id": 11,
+  "major": 10,
+  "sub": "Training",
+  "details": "Page 60 - 90"
+}, {
+  "id": 12,
+  "major": 4,
+  "sub": "Training",
+  "details": "Page 30 - 60"
+}, {
+  "id": 13,
+  "major": 10,
+  "sub": "Training",
+  "details": "Page 30 - 60"
+}, {
+  "id": 14,
+  "major": 5,
+  "sub": "Human Resources",
+  "details": "Page 60 - 90"
+}, {
+  "id": 15,
+  "major": 7,
+  "sub": "Product Management",
+  "details": "Page 0 - 30"
+}, {
+  "id": 16,
+  "major": 8,
+  "sub": "Services",
+  "details": "Page 0 - 30"
+}, {
+  "id": 17,
+  "major": 9,
+  "sub": "Sales",
+  "details": "Page 30 - 60"
+}, {
+  "id": 18,
+  "major": 8,
+  "sub": "Research and Development",
+  "details": "Page 60 - 90"
+}, {
+  "id": 19,
+  "major": 3,
+  "sub": "Accounting",
+  "details": "Page 30 - 60"
+}, {
+  "id": 20,
+  "major": 10,
+  "sub": "Human Resources",
+  "details": "Page 0 - 30"
+}, {
+  "id": 21,
+  "major": 2,
+  "sub": "Marketing",
+  "details": "Page 0 - 30"
+}, {
+  "id": 22,
+  "major": 10,
+  "sub": "Product Management",
+  "details": "Page 0 - 30"
+}, {
+  "id": 23,
+  "major": 3,
+  "sub": "Marketing",
+  "details": "Page 30 - 60"
+}, {
+  "id": 24,
+  "major": 3,
+  "sub": "Marketing",
+  "details": "Page 60 - 90"
+}, {
+  "id": 25,
+  "major": 5,
+  "sub": "Business Development",
+  "details": "Page 0 - 30"
+}, {
+  "id": 26,
+  "major": 10,
+  "sub": "Training",
+  "details": "Page 60 - 90"
+}, {
+  "id": 27,
+  "major": 3,
+  "sub": "Services",
+  "details": "Page 0 - 30"
+}, {
+  "id": 28,
+  "major": 3,
+  "sub": "Business Development",
+  "details": "Page 30 - 60"
+}, {
+  "id": 29,
+  "major": 9,
+  "sub": "Support",
+  "details": "Page 30 - 60"
+}, {
+  "id": 30,
+  "major": 2,
+  "sub": "Accounting",
+  "details": "Page 0 - 30"
+}, {
+  "id": 31,
+  "major": 4,
+  "sub": "Product Management",
+  "details": "Page 60 - 90"
+}, {
+  "id": 32,
+  "major": 10,
+  "sub": "Legal",
+  "details": "Page 0 - 30"
+}, {
+  "id": 33,
+  "major": 1,
+  "sub": "Training",
+  "details": "Page 30 - 60"
+}, {
+  "id": 34,
+  "major": 10,
+  "sub": "Support",
+  "details": "Page 30 - 60"
+}, {
+  "id": 35,
+  "major": 4,
+  "sub": "Engineering",
+  "details": "Page 30 - 60"
+}, {
+  "id": 36,
+  "major": 5,
+  "sub": "Research and Development",
+  "details": "Page 30 - 60"
+}, {
+  "id": 37,
+  "major": 9,
+  "sub": "Sales",
+  "details": "Page 60 - 90"
+}, {
+  "id": 38,
+  "major": 1,
+  "sub": "Research and Development",
+  "details": "Page 60 - 90"
+}, {
+  "id": 39,
+  "major": 3,
+  "sub": "Legal",
+  "details": "Page 60 - 90"
+}, {
+  "id": 40,
+  "major": 8,
+  "sub": "Business Development",
+  "details": "Page 30 - 60"
+}, {
+  "id": 41,
+  "major": 3,
+  "sub": "Marketing",
+  "details": "Page 30 - 60"
+}, {
+  "id": 42,
+  "major": 4,
+  "sub": "Support",
+  "details": "Page 0 - 30"
+}, {
+  "id": 43,
+  "major": 1,
+  "sub": "Accounting",
+  "details": "Page 0 - 30"
+}, {
+  "id": 44,
+  "major": 1,
+  "sub": "Services",
+  "details": "Page 30 - 60"
+}, {
+  "id": 45,
+  "major": 2,
+  "sub": "Legal",
+  "details": "Page 60 - 90"
+}, {
+  "id": 46,
+  "major": 2,
+  "sub": "Support",
+  "details": "Page 60 - 90"
+}, {
+  "id": 47,
+  "major": 6,
+  "sub": "Services",
+  "details": "Page 0 - 30"
+}, {
+  "id": 48,
+  "major": 8,
+  "sub": "Training",
+  "details": "Page 0 - 30"
+}, {
+  "id": 49,
+  "major": 10,
+  "sub": "Research and Development",
+  "details": "Page 60 - 90"
+}, {
+  "id": 50,
+  "major": 3,
+  "sub": "Marketing",
+  "details": "Page 30 - 60"
+}, {
+  "id": 51,
+  "major": 8,
+  "sub": "Legal",
+  "details": "Page 60 - 90"
+}, {
+  "id": 52,
+  "major": 10,
+  "sub": "Accounting",
+  "details": "Page 60 - 90"
+}, {
+  "id": 53,
+  "major": 9,
+  "sub": "Engineering",
+  "details": "Page 30 - 60"
+}, {
+  "id": 54,
+  "major": 3,
+  "sub": "Services",
+  "details": "Page 0 - 30"
+}, {
+  "id": 55,
+  "major": 8,
+  "sub": "Services",
+  "details": "Page 60 - 90"
+}, {
+  "id": 56,
+  "major": 2,
+  "sub": "Product Management",
+  "details": "Page 0 - 30"
+}, {
+  "id": 57,
+  "major": 6,
+  "sub": "Engineering",
+  "details": "Page 0 - 30"
+}, {
+  "id": 58,
+  "major": 10,
+  "sub": "Legal",
+  "details": "Page 60 - 90"
+}, {
+  "id": 59,
+  "major": 6,
+  "sub": "Human Resources",
+  "details": "Page 30 - 60"
+}, {
+  "id": 60,
+  "major": 4,
+  "sub": "Support",
+  "details": "Page 30 - 60"
+}, {
+  "id": 61,
+  "major": 9,
+  "sub": "Sales",
+  "details": "Page 0 - 30"
+}, {
+  "id": 62,
+  "major": 1,
+  "sub": "Marketing",
+  "details": "Page 0 - 30"
+}, {
+  "id": 63,
+  "major": 7,
+  "sub": "Accounting",
+  "details": "Page 60 - 90"
+}, {
+  "id": 64,
+  "major": 4,
+  "sub": "Support",
+  "details": "Page 60 - 90"
+}, {
+  "id": 65,
+  "major": 8,
+  "sub": "Marketing",
+  "details": "Page 60 - 90"
+}, {
+  "id": 66,
+  "major": 4,
+  "sub": "Services",
+  "details": "Page 0 - 30"
+}, {
+  "id": 67,
+  "major": 8,
+  "sub": "Engineering",
+  "details": "Page 30 - 60"
+}, {
+  "id": 68,
+  "major": 9,
+  "sub": "Support",
+  "details": "Page 30 - 60"
+}, {
+  "id": 69,
+  "major": 3,
+  "sub": "Business Development",
+  "details": "Page 30 - 60"
+}, {
+  "id": 70,
+  "major": 5,
+  "sub": "Human Resources",
+  "details": "Page 60 - 90"
+}, {
+  "id": 71,
+  "major": 8,
+  "sub": "Business Development",
+  "details": "Page 30 - 60"
+}, {
+  "id": 72,
+  "major": 1,
+  "sub": "Accounting",
+  "details": "Page 0 - 30"
+}, {
+  "id": 73,
+  "major": 3,
+  "sub": "Training",
+  "details": "Page 0 - 30"
+}, {
+  "id": 74,
+  "major": 5,
+  "sub": "Marketing",
+  "details": "Page 0 - 30"
+}, {
+  "id": 75,
+  "major": 9,
+  "sub": "Services",
+  "details": "Page 0 - 30"
+}, {
+  "id": 76,
+  "major": 3,
+  "sub": "Accounting",
+  "details": "Page 60 - 90"
+}, {
+  "id": 77,
+  "major": 1,
+  "sub": "Engineering",
+  "details": "Page 60 - 90"
+}, {
+  "id": 78,
+  "major": 5,
+  "sub": "Marketing",
+  "details": "Page 30 - 60"
+}, {
+  "id": 79,
+  "major": 8,
+  "sub": "Marketing",
+  "details": "Page 60 - 90"
+}, {
+  "id": 80,
+  "major": 6,
+  "sub": "Legal",
+  "details": "Page 60 - 90"
+}, {
+  "id": 81,
+  "major": 1,
+  "sub": "Sales",
+  "details": "Page 0 - 30"
+}, {
+  "id": 82,
+  "major": 6,
+  "sub": "Legal",
+  "details": "Page 0 - 30"
+}, {
+  "id": 83,
+  "major": 1,
+  "sub": "Business Development",
+  "details": "Page 30 - 60"
+}, {
+  "id": 84,
+  "major": 8,
+  "sub": "Legal",
+  "details": "Page 0 - 30"
+}, {
+  "id": 85,
+  "major": 2,
+  "sub": "Sales",
+  "details": "Page 0 - 30"
+}, {
+  "id": 86,
+  "major": 9,
+  "sub": "Human Resources",
+  "details": "Page 0 - 30"
+}, {
+  "id": 87,
+  "major": 8,
+  "sub": "Engineering",
+  "details": "Page 0 - 30"
+}, {
+  "id": 88,
+  "major": 10,
+  "sub": "Marketing",
+  "details": "Page 30 - 60"
+}, {
+  "id": 89,
+  "major": 3,
+  "sub": "Business Development",
+  "details": "Page 30 - 60"
+}, {
+  "id": 90,
+  "major": 10,
+  "sub": "Sales",
+  "details": "Page 0 - 30"
+}, {
+  "id": 91,
+  "major": 5,
+  "sub": "Training",
+  "details": "Page 30 - 60"
+}, {
+  "id": 92,
+  "major": 2,
+  "sub": "Services",
+  "details": "Page 60 - 90"
+}, {
+  "id": 93,
+  "major": 10,
+  "sub": "Training",
+  "details": "Page 60 - 90"
+}, {
+  "id": 94,
+  "major": 10,
+  "sub": "Business Development",
+  "details": "Page 60 - 90"
+}, {
+  "id": 95,
+  "major": 10,
+  "sub": "Sales",
+  "details": "Page 30 - 60"
+}, {
+  "id": 96,
+  "major": 7,
+  "sub": "Training",
+  "details": "Page 60 - 90"
+}, {
+  "id": 97,
+  "major": 3,
+  "sub": "Human Resources",
+  "details": "Page 60 - 90"
+}, {
+  "id": 98,
+  "major": 10,
+  "sub": "Training",
+  "details": "Page 0 - 30"
+}, {
+  "id": 99,
+  "major": 9,
+  "sub": "Business Development",
+  "details": "Page 30 - 60"
+}, {
+  "id": 100,
+  "major": 6,
+  "sub": "Services",
+  "details": "Page 60 - 90"
 }]
