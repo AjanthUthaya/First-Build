@@ -2,50 +2,60 @@
   "id": 1,
   "major": "Nurse Practicioner",
   "color": "#459982",
-  "vgs": "1"
+  "vgs": "1",
+  "imgsrc": "http://via.placeholder.com/50x50"
 }, {
   "id": 2,
   "major": "Pharmacist",
   "color": "#6187f8",
-  "vgs": "3"
+  "vgs": "3",
+  "imgsrc": "http://via.placeholder.com/50x50"
 }, {
   "id": 3,
   "major": "Help Desk Technician",
   "color": "#0681e8",
-  "vgs": "1"
+  "vgs": "1",
+  "imgsrc": "http://via.placeholder.com/50x50"
 }, {
   "id": 4,
   "major": "Graphic Designer",
   "color": "#fda2bf",
-  "vgs": "all"
+  "vgs": "all",
+  "imgsrc": "http://via.placeholder.com/50x50"
 }, {
   "id": 5,
   "major": "Geological Engineer",
   "color": "#be70a3",
-  "vgs": "2"
+  "vgs": "2",
+  "imgsrc": "http://via.placeholder.com/50x50"
 }, {
   "id": 6,
   "major": "Software Test Engineer IV",
   "color": "#665bcb",
-  "vgs": "2"
+  "vgs": "2",
+  "imgsrc": "http://via.placeholder.com/50x50"
 }, {
   "id": 7,
   "major": "Recruiter",
   "color": "#f0c867",
-  "vgs": "3"
+  "vgs": "3",
+  "imgsrc": "http://via.placeholder.com/50x50"
 }, {
   "id": 8,
   "major": "Junior Executive",
   "color": "#98b876",
-  "vgs": "1"
+  "vgs": "1",
+  "imgsrc": "http://via.placeholder.com/50x50"
 }, {
   "id": 9,
   "major": "VP Quality Control",
   "color": "#63915e",
-  "vgs": "2"
+  "vgs": "2",
+  "imgsrc": "http://via.placeholder.com/50x50"
 }, {
   "id": 10,
   "major": "Quality Control Specialist",
   "color": "#f5b1d3",
-  "vgs": "2"
+  "vgs": "2",
+  "imgsrc": "http://via.placeholder.com/50x50"
 }]

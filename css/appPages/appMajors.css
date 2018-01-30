@@ -41,7 +41,13 @@ label {
 .Major {
   margin: 15px;
   padding: 2em 0;
-  background-color: white;
+  color: white;
+  background-color: #35414d;
+}
+
+.Major:hover {
+  opacity: 0.8;
+  color: black;
 }
 
 .Major div {
@@ -68,6 +74,13 @@ label {
   cursor: pointer;
   align-items: center;
   justify-content: center;
+}
+
+a.MajorLink {
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

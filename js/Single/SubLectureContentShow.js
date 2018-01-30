@@ -151,7 +151,7 @@ if (ma == null) {
 
       var filterName = $(this).data('id-name');
 
-      var ChapterItem = ChapterList[filterName];
+      var ChapterItem = ChapterList[filterName - 1];
 
       $(".Content-Main-Title").text(ChapterItem.chapter);
       $(".Content-Main-Content").text(ChapterItem.details);
