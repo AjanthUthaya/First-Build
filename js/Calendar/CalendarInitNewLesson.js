@@ -469,7 +469,8 @@ function init() {
         var evt = data.selectedData;
 
         var Li_Content_Id = "<input class=\"List-Item-Id\" type=\"hidden\" value=\"" + evt.id + "\">";
-        var Li_Content_Image = "<div class=\"List-Item-Image-Main\"><img class=\"List-Item-Image\" src=\"" + evt.imageSrc + "\"></div>";
+        var Li_Content_Image = "<div class=\"List-Item-Image-Main\"><img class=\"List-Item-Image\" src=\"" + evt.imgsrc + "\"></div>";
+
         var Li_Content_Name = "<label class=\"List-Item-Name\">" + evt.name + "</label>";
 
         var LI_Content_Details_Email = "<div class=\"List-Item-Detail-Item List-Item-Details-Email\"><span>Email: </span><label>" + evt.email + "</label></div>";
@@ -620,7 +621,7 @@ function init() {
         var evt = arr[0];
 
         var Li_Content_Id = "<input class=\"List-Item-Id\" type=\"hidden\" value=\"" + evt.id + "\">";
-        var Li_Content_Image = "<div class=\"List-Item-Image-Main\"><img class=\"List-Item-Image\" src=\"" + evt.imageSrc + "\"></div>";
+        var Li_Content_Image = "<div class=\"List-Item-Image-Main\"><img class=\"List-Item-Image\" src=\"" + evt.imgsrc + "\"></div>";
         var Li_Content_Name = "<label class=\"List-Item-Name\">" + evt.name + "</label>";
 
         var LI_Content_Details_Email = "<div class=\"List-Item-Detail-Item List-Item-Details-Email\"><span>Email: </span><label>" + evt.email + "</label></div>";

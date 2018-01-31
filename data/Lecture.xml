@@ -1,11 +1,11 @@
 <data>
-
-
+  <!-- Glitch setting id as 0, on folder expansion. The event with id 0 moves to folder row -->
+  <!-- ID - Date - Time - Title - Type - Color - Room - Ava - VGS - Teacher/s -->
   <event
     id='11'
     type='Lecture'
-    start_date='28-01-2018 11:00'
-    end_date='28-01-2018 13:00'
+    start_date='31-01-2018 11:00'
+    end_date='31-01-2018 13:00'
     teacherid='1§2'
     title='Naturfag'
     sub='Energi'
@@ -26,6 +26,5 @@
     elaboraret honestatis ex. In vidit laboramus eos. Elitr aliquam sit no, in incorrupte
     disputando duo. Cu nisl erant duo, te usu At etiam praesent maiestatis vim, eum dicam legendos ea.'
   />
-
 
 </data>

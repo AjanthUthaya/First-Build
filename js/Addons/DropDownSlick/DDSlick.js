@@ -49,7 +49,7 @@
             value: w.val(),
             selected: w.is(":selected"),
             description: v.description,
-            imageSrc: v.imagesrc
+            imgsrc: v.imgsrc
           })
         });
         if (l.keepJSONItemsOnTop) {
@@ -85,7 +85,7 @@
             l.defaultSelectedIndex = v
           }
           var Li_Content_Id = "<input class=\"List-Item-Id\" type=\"hidden\" value=\"" + w.id + "\">";
-          var Li_Content_Image = "<div class=\"List-Item-Image-Main\"><img class=\"List-Item-Image\" src=\"" + w.imageSrc + "\"></div>";
+          var Li_Content_Image = "<div class=\"List-Item-Image-Main\"><img class=\"List-Item-Image\" src=\"" + w.imgsrc + "\"></div>";
           var Li_Content_Name = "<label class=\"List-Item-Name\">" + w.name + "</label>";
 
           var LI_Content_Details_Email = "<div class=\"List-Item-Detail-Item List-Item-Details-Email\"><span>Email: </span><label>" + w.email + "</label></div>";
@@ -181,7 +181,7 @@
     u.selectedData = t;
     if (o.showSelectedHTML) {
       //Return this when a data is selected from the list
-      r.html((t.imageSrc ? '<img class="dd-selected-image' + (o.imagePosition == "right" ? " dd-image-right" : "") + '" src="' + t.imageSrc + '" />' : "") + (t.text ? '<div class="dd-selected-main"><label class="dd-selected-text">' + t.text + "</label>" : "") + (t.description ? '<small class="dd-selected-description dd-desc' + (o.truncateDescription ? " dd-selected-description-truncated" : "") + '" >' + t.description + "</small></div>" : ""))
+      r.html((t.imgsrc ? '<img class="dd-selected-image' + (o.imagePosition == "right" ? " dd-image-right" : "") + '" src="' + t.imgsrc + '" />' : "") + (t.text ? '<div class="dd-selected-main"><label class="dd-selected-text">' + t.text + "</label>" : "") + (t.description ? '<small class="dd-selected-description dd-desc' + (o.truncateDescription ? " dd-selected-description-truncated" : "") + '" >' + t.description + "</small></div>" : ""))
     } else {
       r.html(t.text)
     }
@@ -298,7 +298,7 @@
             value: w.val(),
             selected: w.is(":selected"),
             description: v.description,
-            imageSrc: v.imagesrc
+            imgsrc: v.imgsrc
           })
         });
         if (l.keepJSONItemsOnTop) {
@@ -333,7 +333,7 @@
           if (w.selected) {
             l.defaultSelectedIndex = v
           }
-          u.append('<li><a class="dd-option">' + (w.value ? ' <input class="dd-option-value" type="hidden" value="' + w.value + '" />' : "") + (w.imageSrc ? ' <img class="dd-option-image' + (l.imagePosition == "right" ? " dd-image-right" : "") + '" src="' + w.imageSrc + '" />' : "") + (w.text ? ' <label class="dd-option-text">' + w.text + "</label>" : "") + (w.description ? ' <small class="dd-option-description dd-desc">' + w.description + "</small>" : "") + "</a></li>")
+          u.append('<li><a class="dd-option">' + (w.value ? ' <input class="dd-option-value" type="hidden" value="' + w.value + '" />' : "") + (w.imgsrc ? ' <img class="dd-option-image' + (l.imagePosition == "right" ? " dd-image-right" : "") + '" src="' + w.imgsrc + '" />' : "") + (w.text ? ' <label class="dd-option-text">' + w.text + "</label>" : "") + (w.description ? ' <small class="dd-option-description dd-desc">' + w.description + "</small>" : "") + "</a></li>")
         });
         var t = {
           settings: l,
@@ -419,7 +419,7 @@
     u.selectedItem = m;
     u.selectedData = t;
     if (o.showSelectedHTML) {
-      r.html((t.imageSrc ? '<img class="dd-selected-image' + (o.imagePosition == "right" ? " dd-image-right" : "") + '" src="' + t.imageSrc + '" />' : "") + (t.text ? '<label class="dd-selected-text">' + t.text + "</label>" : "") + (t.description ? '<small class="dd-selected-description dd-desc' + (o.truncateDescription ? " dd-selected-description-truncated" : "") + '" >' + t.description + "</small>" : ""))
+      r.html((t.imgsrc ? '<img class="dd-selected-image' + (o.imagePosition == "right" ? " dd-image-right" : "") + '" src="' + t.imgsrc + '" />' : "") + (t.text ? '<label class="dd-selected-text">' + t.text + "</label>" : "") + (t.description ? '<small class="dd-selected-description dd-desc' + (o.truncateDescription ? " dd-selected-description-truncated" : "") + '" >' + t.description + "</small>" : ""))
     } else {
       r.html(t.text)
     }

@@ -682,7 +682,7 @@ div#Teacher-Input-Dropdown {
   height: 100%;
   padding: 0;
   text-align: center;
-  border: 0;
+  border-radius: 0 !important;
 }
 
 .dd-select {
@@ -777,7 +777,7 @@ ul.dd-options .List-Item-Option {
 ul.Teacher-List-Main {
   overflow: auto;
   min-height: 165px;
-  max-height: 238px;
+  max-height: 315px;
 }
 
 .Teacher-Content-Main .Teacher-List-Main li {

@@ -85,7 +85,8 @@ if (ma == null) {
   $.each(subs, function(index, value) {
     //Side List
     //Folder
-    var accordion_title = '<a class="accordion-title"><span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="' + value.details + '">' + value.sub + '</span></a>';
+    //NOTE: TOOLTIP: <span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="1" title="' + value.details + '"></span>
+    var accordion_title = '<a class="accordion-title">' + value.sub + '</a>';
 
     //Item/s inside folder
     // NOTE: Get every item that matches sub and major id
