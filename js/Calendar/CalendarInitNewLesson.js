@@ -461,6 +461,7 @@ function init() {
     $('#Teacher-Input-Dropdown').ddslickTeacher({
       data: TeacherList,
       imagePosition: "left",
+      selectText: "Select and add a teacher",
       onSelected: function(data) {
         //On select run whatever is in here
         $(".Teacher-Input").val("");
@@ -517,7 +518,7 @@ function init() {
         }
 
         var AlreadyExists = checkValue(data.selectedData.id, items);
-
+        console.log(data); // NOTE: TESTING
         if (AlreadyExists == true) {
           notify({
             //alert | success | error | warning | info
@@ -562,11 +563,11 @@ function init() {
             template: '<div class="notify"><div class="notify-text"></div></div>'
           }); //End of warning message
         } else {
+          // NOTE: THIS LINE HAS A MAJOR BUG, SELECTED IS RAN ONCE ON START(TESTING)
           $(".Teacher-Content-Main .Teacher-List-Main").append(Teacher_List_Li);
         }
 
-      },
-      selectText: "Select and add a teacher"
+      }
     });
 
     var ddBasic = [{
@@ -607,7 +608,6 @@ function init() {
     //Getting teacher/s id and showing them in Teacher-List-Main
     var ev = scheduler.getEvent(id);
     if (ev.teacherid != "") {
-
       var TeacherIdArr = ev.teacherid.split("§");
       // Display array values on page
       for (var i = 0; i < TeacherIdArr.length; i++) {

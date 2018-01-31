@@ -190,9 +190,16 @@
     q.data("ddslick", u);
     k(q);
     g(q);
-    if (typeof o.onSelected == "function") {
-      o.onSelected.call(this, u)
-    }
+
+    // NOTE: REPLACED CODE BEACUSE OF MAJOR BUG, THAT MADE THE CODE RUN ONCE WITHOUT USER SELECTION
+    $(".dd-options li").unbind('click').click(
+      function() {
+        if (typeof o.onSelected == "function") {
+          o.onSelected.call(this, u)
+        }
+      }
+    )
+
   }
 
   function f(p) {
