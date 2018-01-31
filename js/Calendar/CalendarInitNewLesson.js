@@ -518,7 +518,6 @@ function init() {
         }
 
         var AlreadyExists = checkValue(data.selectedData.id, items);
-        console.log(data); // NOTE: TESTING
         if (AlreadyExists == true) {
           notify({
             //alert | success | error | warning | info
@@ -563,7 +562,6 @@ function init() {
             template: '<div class="notify"><div class="notify-text"></div></div>'
           }); //End of warning message
         } else {
-          // NOTE: THIS LINE HAS A MAJOR BUG, SELECTED IS RAN ONCE ON START(TESTING)
           $(".Teacher-Content-Main .Teacher-List-Main").append(Teacher_List_Li);
         }
 
