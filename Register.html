@@ -65,164 +65,171 @@
 
       <div id="Content-Main">
 
+
+
+
+
+
+
+
+
+
         <div class="Register-Main">
 
+          <div class="Register-Image">
+            <div class="Register-Image-Main">
+              <img src="img/Profile/Placeholder.png" alt="Profile picture">
+            </div>
+          </div>
 
-          <div class="Register-Content-Underlayer">
+          <div class="Register-Content">
 
-            <div class="Register-Icon">
+            <div class="Register-Title">
+              <label class="Register-Title-Main">REGISTRATION FORM</label>
+            </div>
 
-              <div class="Register-Icon-Underlayer">
-                <i class="fa fa-pencil"></i>
+            <div class="grid-x Register-Name">
+
+              <div class="medium-4 Register-Name-First">
+                <label>Firstname</label>
+                <input class="Name-First-Main" type="text" placeholder="Enter your firstname" required>
+              </div>
+
+              <div class="medium-4 Register-Name-Middle">
+                <label>Middlename(optional)</label>
+                <input class="Name-Middle-Main" type="text" placeholder="Enter your middlename">
+              </div>
+
+              <div class="medium-4 Register-Name-Last">
+                <label>Lastname</label>
+                <input class="Name-Last-Main" type="text" placeholder="Enter your lastname" required>
               </div>
 
             </div>
 
-            <div class="Register-Content-Main">
+            <div class="grid-x Register-Email_Phone">
 
-              <div class="grid-x Register-Content-Title">
+              <div class="medium-6 Register-Email">
 
-                <label class="medium-12 cell">Register:</label>
+                <label>Email</label>
 
-              </div>
-
-              <div class="grid-x Register-Content">
-
-                <div class="medium-4 cell Register-Content-Field">
-
-                  <label class="cell Content-Name-Label">Firstname:</label>
-
-                  <input class="input-group-field" placeholder="Enter your firstname" type="text" autofocus />
-
-                </div>
-
-                <div class="medium-4 cell Register-Content-Field">
-
-                  <label class="cell Content-Name-Label">Middlename(optional):</label>
-
-                  <input class="input-group-field" placeholder="Enter your middle name" type="text" />
-
-                </div>
-
-                <div class="medium-4 cell Register-Content-Field">
-
-                  <label class="cell Register-Content-Text">Lastname:</label>
-
-                  <input class="cell input-group-field" placeholder="Enter your Lastname" type="text" />
-
-                </div>
-
-              </div>
-
-
-              <div class="grid-x Register-Content">
-
-                <div class="medium-6 cell Register-Content-Field Email">
-
-                  <label class="cell">Email:</label>
-
-                  <div class="input-group">
-
-                    <div class="input-group-label">
-                      <span class="fa fa-envelope-o"></span>
-                    </div>
-
-                    <input class="input-group-field" placeholder="Enter your email" type="email" />
-
+                <div class="input-group">
+                  <div class="input-group-label">
+                    <span class="fa fa-envelope"></span>
                   </div>
 
-                </div>
-
-
-                <div class="medium-6 cell Register-Content-Field Phone">
-
-                  <label class="cell">Phone number:</label>
-
-                  <div class="input-group">
-
-                    <div class="input-group-label">
-                      <span class="fa fa-phone"></span>
-                    </div>
-
-                    <input class="cell input-group-field" placeholder="Enter your phone number" type="text" />
-
-                  </div>
-
-                </div>
-
-
-              </div>
-
-              <div class="grid-x Register-Content">
-
-                <div class="medium-12 cell Register-Content-Field Calendar">
-
-                  <label class="cell">Date of birth:</label>
-
-                  <div class="input-group">
-
-                    <div class="input-group-label">
-                      <span class="fa fa-calendar"></span>
-                    </div>
-
-                    <input class="input-group-field" type="date" />
-
-                  </div>
-
-                </div>
-
-
-              </div>
-
-              <div class="grid-x Register-Content">
-
-                <div class="medium-6 Password-Group Password">
-
-                  <label class="cell">Password:</label>
-
-                  <div class="input-group">
-
-                    <div class="input-group-label">
-                      <span class="fa fa-unlock-alt"></span>
-                    </div>
-
-                    <input class="cell input-group-field" placeholder="Enter your password" type="password" />
-
-                  </div>
-
-                </div>
-
-                <div class="medium-6 Password-Group Password-Confirm">
-
-                  <label class="cell">Confirm password:</label>
-
-                  <div class="input-group">
-
-                    <div class="input-group-label">
-                      <span class="fa fa-unlock-alt"></span>
-                    </div>
-
-                    <input class="cell input-group-field" placeholder="Confirm your password" type="password" />
-
-                  </div>
-
+                  <input class="input-group-field Register-Email-Input" type="email" placeholder="Enter your email" required>
                 </div>
 
               </div>
 
+              <div class="medium-6 Register-Phone">
 
-              <div class="grid-x Content-Button">
-                <div class="medium-12">
-                  <button type="button" name="button" class="button Button">Register</button>
+                <label>Phone</label>
+
+                <div class="input-group">
+                  <div class="input-group-label">
+                    <span class="fa fa-phone"></span>
+                  </div>
+
+                  <input class="input-group-field Register-Phone-Input" type="text" placeholder="Enter your phone number" required>
                 </div>
-              </div>
 
+              </div>
 
             </div>
+
+
+            <div class="Register-Birth_VGS">
+
+              <div class="Register-Birth">
+
+                <label>Birth</label>
+
+                <div class="input-group">
+                  <div class="input-group-label">
+                    <span class="fa fa-calendar"></span>
+                  </div>
+
+                  <input class="input-group-field Register-Birth-Input" type="date" placeholder="Enter your email" required>
+                </div>
+
+              </div>
+
+              <div class="Register-VGS">
+
+                <label>VGS</label>
+
+                <select class="Register-VGS-Select">
+                  <option disabled selected>Select VGS</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+
+              </div>
+
+            </div>
+
+
+            <div class="Register-Username">
+
+              <label>Username</label>
+
+              <div class="input-group Register-Username-Main">
+                <div class="input-group-label">
+                  <span class="fa fa-user"></span>
+                </div>
+
+                <input class="input-group-field Register-Username-Input" type="text" placeholder="Enter your username" required>
+              </div>
+
+            </div>
+
+            <div class="grid-x Register-Password_Confirm">
+
+              <div class="medium-6 Register-Password">
+
+                <label>Password</label>
+
+                <div class="input-group">
+                  <div class="input-group-label">
+                    <span class="fa fa-lock"></span>
+                  </div>
+
+                  <input class="input-group-field Register-Password-input" type="password" placeholder="Enter your password" required>
+                </div>
+
+              </div>
+
+              <div class="medium-6 Register-Confirm">
+
+                <label>Confirm password</label>
+
+                <div class="input-group">
+                  <div class="input-group-label">
+                    <span class="fa fa-repeat"></span>
+                  </div>
+
+                  <input class="input-group-field Register-Confirm-input" type="password" placeholder="Confirm your password" required>
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="Register-Submit">
+              <a class="button">Submit</a>
+            </div>
+
+
+
 
           </div>
 
         </div>
+
 
 
       </div>
@@ -282,6 +289,7 @@
     // INIT Foundation js
     $(document).foundation();
   </script>
+  <script src="js/Single/Register.js"></script>
 </body>
 
 </html>

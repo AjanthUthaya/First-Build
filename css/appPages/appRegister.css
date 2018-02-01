@@ -4,9 +4,21 @@
 *************************************************** */
 
 #Content-Main {
+  display: flex;
   width: auto;
-  height: 800px;
+  min-height: calc(100vh - 60px);
   margin-top: 60px;
+  justify-content: center;
+}
+
+select {
+  margin: 0;
+  text-align: center;
+  text-align-last: center;
+}
+
+option {
+  text-align: center;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -49,120 +61,217 @@
 
 .Register-Main {
   position: relative;
-  z-index: 0;
-  width: 100vw;
-  max-width: 100%;
-  height: calc(100% - 60px);
+  width: 80%;
+  min-width: 550px;
+  max-width: 900px;
+  height: fit-content;
+  margin-top: 50px;
 }
 
-.Register-Content-Underlayer {
+.Register-Image {
   position: relative;
-  top: 90px;
-  left: calc(50vw - 350px);
-  width: 700px;
-  height: calc(100% - 50px);
-  background-color: #35414d;
-}
-
-.Register-Icon {
-  position: relative;
-  top: -50px;
-  text-align: -webkit-center;
-  /* NOTE: This works to center circle, but is only a soulotion for chrome */
-}
-
-.Register-Icon-Underlayer {
-  font-size: 50px;
-  position: relative;
-  display: table-cell;
-  width: 100px;
-  height: 100px;
-  margin: 1px 1px 1px 1px;
-  text-align: center;
-  vertical-align: middle;
-  color: white;
-  border-radius: 100%;
-  background: #292c30;
-}
-
-.Register-Content-Main {
-  position: relative;
-  top: -100px;
+  z-index: 10;
+  display: flex;
   width: 100%;
   height: 100%;
-  padding: 60px 50px 50px 50px;
+  justify-content: center;
+  align-items: center;
 }
 
-.Register-Content-Title {
-  font-size: 25px;
-  font-weight: bold;
-  width: 100%;
-  height: fit-content;
-  text-align: center;
-  color: white;
+.Register-Image-Main img {
+  z-index: 10;
+  display: flex;
+  width: 120px;
+  height: 120px;
+  cursor: pointer;
+  border: 5px solid #292c30;
+  border-radius: 50%;
+  background-color: #292c30;
+  justify-content: center;
+  align-items: center;
 }
 
-.Register-Content-Title label {
-  font-size: 30px;
-  font-weight: bold;
-  width: 100%;
-  height: auto;
-  text-align: center;
-  color: white;
+.Register-Image-Main img:hover {
+  opacity: 1;
 }
 
 .Register-Content {
-  display: flex;
-  text-align: center;
+  position: relative;
+  z-index: 9;
+  top: -60px;
+  width: 100%;
+  height: 100%;
+  padding-top: 60px;
+  border-radius: 10px;
+  background-color: #292c30;
+}
+
+.Register-Content label {
+  font-size: 13px;
+  padding-left: 8px;
   color: white;
+}
+
+.Register-Content input {
+  font-size: 12px;
+  height: 2.4375rem;
+  margin: 0;
+  padding: 0;
+  padding-right: 10px;
+  padding-left: 10px;
+  text-align: left;
+  text-indent: 0;
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.Register-Title {
+  display: flex;
+  width: 100%;
+  height: 60px;
+  margin-top: 15px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.Register-Title-Main {
+  font-size: 25px !important;
+  font-weight: bold;
+  color: white;
+}
+
+.Register-Name {
+  padding: 0 30px;
+  padding-top: 20px;
+}
+
+.Register-Name input {
+  padding-right: 10px;
+  padding-left: 10px;
+  text-align: center;
+  text-indent: 0;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.input-group-label {
+  font-size: 18px;
+  border-radius: 5px !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.Register-Name-First, .Register-Name-Middle, .Register-Name-Last {
+  padding: 0 5px;
+}
+
+.Register-Email_Phone {
+  display: flex;
+  padding: 0 30px;
+  padding-top: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.Register-Email_Phone .Register-Email, .Register-Email_Phone .Register-Phone {
+  max-width: 300px;
+  padding: 0 5px;
+}
+
+.Register-Birth_VGS {
+  display: flex;
+  width: 100%;
+  padding: 0 60px;
+  padding-top: 10px;
   justify-content: center;
 }
 
-.Register-Content-Field {
-  font-size: 14px;
-  margin-top: 40px;
-  padding: 0 10px;
+.Register-Birth, .Register-VGS {
+  max-width: 300px;
+  padding: 0 5px;
+  flex: 1;
 }
 
-.Register-Content div label {
-  font-style: italic;
-  text-align: left;
-  color: white;
+.Register-Birth-Input {
+  text-align: center !important;
 }
 
-/* NOTE: (Top-Right-Bottom-Left) */
-
-.Calendar {
-  margin-top: 30px;
+.Register-VGS {
+  min-width: 60px;
+  max-width: 130px;
 }
 
-.Password-Group {
-  margin-top: 30px;
-}
-
-.Password {
-  padding: 0 10px 0 50px;
-}
-
-.Password-Confirm {
-  padding: 0 50px 0 10px;
-}
-
-.medium-12.cell.Register-Content-Field.Calendar {
-  width: 330px;
-}
-
-.medium-12.cell.Register-Content-Field.Calendar input {
+.Register-VGS label {
+  padding: 0;
   text-align: center;
 }
 
-.Content-Button {
-  margin-top: 40px;
+.Register-VGS select {
+  font-size: 12px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.Register-Username {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 60px;
+  padding-top: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.Register-Username * {
+  max-width: 300px;
+}
+
+.Register-Username label {
+  padding-left: 0;
+}
+
+.Register-Username-Main {
+  margin: 0;
+}
+
+.Register-Username-Main input {
   text-align: center;
 }
 
-.Button {
-  padding: 1.5em 4em;
+.Register-Password_Confirm {
+  display: flex;
+  padding: 0 30px;
+  padding-top: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.Register-Password, .Register-Confirm {
+  max-width: 300px;
+  padding: 0 5px;
+  text-align: center;
+}
+
+.Register-Password input, .Register-Confirm input {
+  text-align: center;
+}
+
+.Register-Submit {
+  display: flex;
+  padding: 40px 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.Register-Submit a {
+  display: flex;
+  width: 150px;
+  height: 50px;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
