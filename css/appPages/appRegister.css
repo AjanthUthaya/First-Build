@@ -21,6 +21,10 @@ option {
   text-align: center;
 }
 
+button {
+  margin: 0 !important;
+}
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -59,7 +63,7 @@ option {
   (Top-Right-Bottom-Left)
 *************************************************** */
 
-.Register-Main {
+#Register-Main {
   position: relative;
   width: 80%;
   min-width: 550px;
@@ -265,7 +269,7 @@ option {
   align-items: center;
 }
 
-.Register-Submit a {
+.Register-Submit #Register-Submit {
   display: flex;
   width: 150px;
   height: 50px;
@@ -273,6 +277,7 @@ option {
   justify-content: center;
   align-items: center;
 }
+
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 

@@ -24,20 +24,25 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `usertype` varchar(7) NOT NULL DEFAULT 'Student',
+  `active` varchar(5) NOT NULL DEFAULT 'true',
+  `user_id` int(11) DEFAULT '1',
+  `user_type` varchar(7) NOT NULL DEFAULT 'Student',
   `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `firstname` varchar(40) NOT NULL,
   `middlename` varchar(40) DEFAULT NULL,
   `lastname` varchar(40) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `phone` varchar(20) DEFAULT NULL,
-  `birthdate` varchar(10) NOT NULL,
-  `vgs` int(1) DEFAULT NULL,
-  `imgsrc` varchar(250) NOT NULL DEFAULT 'img/Profile/Placeholder.png',
+  `phone` varchar(20) NOT NULL,
+  `birth_date` varchar(10) NOT NULL,
+  `vgs` int(1) NOT NULL DEFAULT '0',
+  `imgsrc` varchar(255) NOT NULL DEFAULT 'img/Profile/Placeholder.png',
+  `creation_date` varchar(20) NOT NULL,
+  `edited` varchar(5) NOT NULL DEFAULT 'false',
+  `edit_date` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,6 +53,33 @@ LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER update_user_id BEFORE INSERT ON users
+FOR EACH ROW
+BEGIN
+
+	SET @user_id = (SELECT MAX(user_id) FROM users);
+
+	SET NEW.user_id = @user_id + 1;
+
+	IF NEW.user_id IS NULL THEN
+		SET NEW.user_id = 1;
+	END IF;
+
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -58,4 +90,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-31 20:42:59
+-- Dump completed on 2018-02-02 19:48:12

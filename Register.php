@@ -1,3 +1,6 @@
+<?php
+include 'php/Partials/DB.php';
+ ?>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
 <html>
@@ -66,15 +69,7 @@
       <div id="Content-Main">
 
 
-
-
-
-
-
-
-
-
-        <div class="Register-Main">
+        <form id="Register-Main">
 
           <div class="Register-Image">
             <div class="Register-Image-Main">
@@ -92,17 +87,17 @@
 
               <div class="medium-4 Register-Name-First">
                 <label>Firstname</label>
-                <input class="Name-First-Main" type="text" placeholder="Enter your firstname" required>
+                <input class="Name-First-Main" id="Register-Firstname" type="text" placeholder="Enter your firstname" value="Firstname" required>
               </div>
 
               <div class="medium-4 Register-Name-Middle">
                 <label>Middlename(optional)</label>
-                <input class="Name-Middle-Main" type="text" placeholder="Enter your middlename">
+                <input class="Name-Middle-Main" id="Register-Middlename" type="text" placeholder="Enter your middlename" value="Middlename">
               </div>
 
               <div class="medium-4 Register-Name-Last">
                 <label>Lastname</label>
-                <input class="Name-Last-Main" type="text" placeholder="Enter your lastname" required>
+                <input class="Name-Last-Main" id="Register-Lastname" type="text" placeholder="Enter your lastname" value="Lastname" required>
               </div>
 
             </div>
@@ -118,7 +113,7 @@
                     <span class="fa fa-envelope"></span>
                   </div>
 
-                  <input class="input-group-field Register-Email-Input" type="email" placeholder="Enter your email" required>
+                  <input class="input-group-field Register-Email-Input" id="Register-Email" type="email" placeholder="Enter your email" value="Email123@ex.com" required>
                 </div>
 
               </div>
@@ -132,7 +127,7 @@
                     <span class="fa fa-phone"></span>
                   </div>
 
-                  <input class="input-group-field Register-Phone-Input" type="text" placeholder="Enter your phone number" required>
+                  <input class="input-group-field Register-Phone-Input" id="Register-Phone" type="text" placeholder="Enter your phone number" value="00 000 000" required>
                 </div>
 
               </div>
@@ -151,7 +146,7 @@
                     <span class="fa fa-calendar"></span>
                   </div>
 
-                  <input class="input-group-field Register-Birth-Input" type="date" placeholder="Enter your email" required>
+                  <input class="input-group-field Register-Birth-Input" id="Register-Birth_Date" type="date" placeholder="Enter your birth of date" value="2018-02-01" required>
                 </div>
 
               </div>
@@ -160,9 +155,9 @@
 
                 <label>VGS</label>
 
-                <select class="Register-VGS-Select">
-                  <option disabled selected>Select VGS</option>
-                  <option value="1">1</option>
+                <select class="Register-VGS-Select" id="Register-Vgs" required>
+                  <option value="" disabled>Select VGS</option>
+                  <option value="1" selected>1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
                 </select>
@@ -181,7 +176,7 @@
                   <span class="fa fa-user"></span>
                 </div>
 
-                <input class="input-group-field Register-Username-Input" type="text" placeholder="Enter your username" required>
+                <input class="input-group-field Register-Username-Input" id="Register-Username" type="text" placeholder="Enter your username" value="Username" required>
               </div>
 
             </div>
@@ -197,7 +192,7 @@
                     <span class="fa fa-lock"></span>
                   </div>
 
-                  <input class="input-group-field Register-Password-input" type="password" placeholder="Enter your password" required>
+                  <input class="input-group-field Register-Password-input" id="Register-Password" type="password" placeholder="Enter your password" value="Password" required>
                 </div>
 
               </div>
@@ -211,7 +206,7 @@
                     <span class="fa fa-repeat"></span>
                   </div>
 
-                  <input class="input-group-field Register-Confirm-input" type="password" placeholder="Confirm your password" required>
+                  <input class="input-group-field Register-Confirm-input" id="Register-CPassword" type="password" placeholder="Confirm your password" value="CPassword" required>
                 </div>
 
               </div>
@@ -220,17 +215,13 @@
 
 
             <div class="Register-Submit">
-              <a class="button">Submit</a>
+              <button class="button" id="Register-Submit" type="submit">Submit</button>
             </div>
-
-
 
 
           </div>
 
-        </div>
-
-
+        </form>
 
       </div>
 
@@ -289,6 +280,7 @@
     // INIT Foundation js
     $(document).foundation();
   </script>
+  <script src="js/Addons/jquery.validate.js"></script>
   <script src="js/Single/Register.js"></script>
 </body>
 
