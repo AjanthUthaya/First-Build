@@ -94,6 +94,7 @@ table {
   bottom: 10px;
   z-index: 1000;
   background-color: #35414d;
+  border-radius: 10px;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
