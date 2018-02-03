@@ -87,14 +87,14 @@ table {
 }
 
 #Connection-Status {
-  display: flex;
-  padding: 10px 20px;
   position: fixed;
+  z-index: 1000;
   right: 10px;
   bottom: 10px;
-  z-index: 1000;
-  background-color: #35414d;
+  display: flex;
+  padding: 10px 20px;
   border-radius: 10px;
+  background-color: #35414d;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -166,9 +166,9 @@ table {
 }
 
 .dhx_now .dhx_month_body, .dhx_now .dhx_month_head {
-  background-color: #37414d;
   font-weight: 400;
   color: white;
+  background-color: #37414d;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

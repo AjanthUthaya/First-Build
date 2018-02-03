@@ -46,6 +46,7 @@ footer {
 *************************************************** */
 
 .top-bar-left h4 {
+  margin: 0;
   padding-left: 1em;
   color: #8cc63f;
 }

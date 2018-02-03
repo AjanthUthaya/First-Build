@@ -9,6 +9,10 @@
   margin-top: 60px;
 }
 
+button {
+  margin: 0;
+}
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -122,6 +126,11 @@
 .Login-Button button {
   width: 150px;
   height: 50px;
+  background-color: #7fb836;
+}
+
+.Login-Button button:hover {
+  background-color: #6ba027;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -144,12 +153,17 @@
 }
 
 .Top-Bar-Back a {
-  padding: 20px;
+  display: flex;
+  width: 60px;
+  height: 60px;
+  padding: 0;
   background-color: #e74c3c;
+  justify-content: center;
+  align-items: center;
 }
 
 .Top-Bar-Back a:hover {
-  background-color: #c0392b;
+  background-color: #cc3c2e;
 }
 
 /* Top bar register button */
@@ -157,14 +171,17 @@
 #Register-Button {
   font-weight: 500;
   position: relative;
+  display: flex;
   width: 90px;
   height: 60px;
-  padding: 22px;
-  background-color: dimgrey;
+  padding: 0;
+  background-color: #1779ba;
+  justify-content: center;
+  align-items: center;
 }
 
 #Register-Button:hover {
-  background-color: grey;
+  background-color: #14679e;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

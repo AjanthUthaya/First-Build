@@ -91,14 +91,17 @@
 #Login-Button {
   font-weight: 500;
   position: relative;
+  display: flex;
   width: 90px;
   height: 60px;
-  padding: 22px;
-  background-color: #8cc63f;
+  padding: 0;
+  background-color: #7fb836;
+  justify-content: center;
+  align-items: center;
 }
 
 #Login-Button:hover {
-  background-color: #7fb836;
+  background-color: #6ba027;
 }
 
 #Name-Label {

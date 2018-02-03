@@ -45,12 +45,16 @@ button {
 }
 
 .Top-Bar-Back a {
-  padding: 20px;
+  display: flex;
+  width: 60px;
+  height: 60px;
   background-color: #e74c3c;
+  justify-content: center;
+  align-items: center;
 }
 
 .Top-Bar-Back a:hover {
-  background-color: #c0392b;
+  background-color: #cc3c2e;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -199,8 +203,8 @@ button {
 }
 
 .Register-Birth-Input {
-  text-align: center !important;
   padding-left: 50px !important;
+  text-align: center !important;
 }
 
 .Register-VGS {
@@ -278,7 +282,6 @@ button {
   justify-content: center;
   align-items: center;
 }
-
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 

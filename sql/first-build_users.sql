@@ -37,12 +37,12 @@ CREATE TABLE `users` (
   `birth_date` varchar(10) NOT NULL,
   `vgs` int(1) NOT NULL DEFAULT '0',
   `imgsrc` varchar(255) NOT NULL DEFAULT 'img/Profile/Placeholder.png',
-  `creation_date` varchar(20) NOT NULL,
+  `creation_date` varchar(25) NOT NULL,
   `edited` varchar(5) NOT NULL DEFAULT 'false',
-  `edit_date` varchar(20) DEFAULT NULL,
+  `edit_date` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,4 +90,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-02 19:48:12
+-- Dump completed on 2018-02-03 18:50:30
