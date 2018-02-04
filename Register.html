@@ -155,8 +155,8 @@
                 <label>VGS</label>
 
                 <select class="Register-VGS-Select" id="Register-Vgs" name="Vgs">
-                  <option value="" selected disabled>Select VGS</option>
-                  <option value="1">1</option>
+                  <option value="" disabled>Select VGS</option>
+                  <option value="1" selected>1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
                 </select>
@@ -175,7 +175,7 @@
                   <span class="fa fa-user"></span>
                 </div>
 
-                <input class="input-group-field Register-Username-Input" id="Register-Username" name="Username" type="text" placeholder="Enter your username" value="Username" minlength="6" maxlength="50" required>
+                <input class="input-group-field Register-Username-Input" id="Register-Username" name="Username" type="text" placeholder="Enter your username" value="Username22" minlength="6" maxlength="50" required>
               </div>
 
             </div>
@@ -211,6 +211,9 @@
               </div>
 
             </div>
+
+
+            <div class="g-recaptcha" id="ReCaptcha" data-sitekey="6Ld6QkQUAAAAAL1AfXWgBp8F3fwCZL1_-LYnvlC-"></div>
 
 
             <div class="Register-Submit">
@@ -272,6 +275,7 @@
   </div>
   </div>
 
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script src="js/Addons/Foundation/vendor/jquery.js"></script>
   <script src="js/Addons/Foundation/vendor/what-input.js"></script>
   <script src="js/Addons/Foundation/vendor/foundation.js"></script>

@@ -37,7 +37,8 @@ $("#Register-Main").submit(function(event) {
     Vgs: $('#Register-Vgs').val(),
     Username: $('#Register-Username').val(),
     Password: encodeURIComponent($('#Register-Password').val()),
-    CPassword: encodeURIComponent($('#Register-CPassword').val())
+    CPassword: encodeURIComponent($('#Register-CPassword').val()),
+    'g-recaptcha-response': grecaptcha.getResponse()
   };
   /* ---------- END: Declaring field values ---------- */
 
@@ -187,6 +188,8 @@ $("#Register-Main").submit(function(event) {
     var Username_Taken = "Username_Taken";
     var SQL_Done = "SQL_Done";
     var SQL_Error = "SQL_Error";
+    var reCAPTCHA_Failed = "reCAPTCHA: Failed";
+    var reCAPTCHA_Not_Activated = "reCAPTCHA: Not activated";
 
     // Responce from Register.php
     if (data == Missing_Field) {
@@ -195,7 +198,11 @@ $("#Register-Main").submit(function(event) {
       alert("Username is taken");
     } else if (data == SQL_Error) {
       alert("Error: SQL error");
-    } else if (data == SQL_Done) {
+    } else if (data == reCAPTCHA_Failed) {
+      alert("reCAPTCHA: Failed");
+    }else if (data == reCAPTCHA_Not_Activated) {
+      alert("Click to verify your human");
+    }else if (data == SQL_Done) {
       alert("New user added successfully");
       window.location.replace("/Login.html");
     } else {
