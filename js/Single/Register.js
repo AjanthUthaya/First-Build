@@ -1,3 +1,8 @@
+// On click open files
+$('#Register-ImgTxt').click(function() {
+  $('#Register-ImgSrc').trigger('click');
+});
+
 // Variable to hold request
 var request;
 
@@ -31,10 +36,9 @@ $("#Register-Main").submit(function(event) {
     Birth_Date: Birth_Date,
     Vgs: $('#Register-Vgs').val(),
     Username: $('#Register-Username').val(),
-    Password: $('#Register-Password').val(),
-    CPassword: $('#Register-CPassword').val()
+    Password: encodeURIComponent($('#Register-Password').val()),
+    CPassword: encodeURIComponent($('#Register-CPassword').val())
   };
-
   /* ---------- END: Declaring field values ---------- */
 
 

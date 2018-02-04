@@ -49,7 +49,7 @@ echo "Missing_Field_Data";
     $Creation_Date = date("d-m-Y H:i:s");
 
     // Send data to the database
-    $CreateNewUser = "INSERT INTO users (firstname, middlename, lastname, email, phone, birth_date, vgs, username, password, creation_date) VALUES ('$Firstname', '$Middlename', '$Lastname', '$Email', '$Phone', '$Birth_Date', '$Vgs', '$Username', '$Password', '$Creation_Date')";
+    $CreateNewUser = "INSERT INTO users (firstname, middlename, lastname, email, phone, birth_date, vgs, username, password, creation_date) VALUES ('$Firstname', '$Middlename', '$Lastname', '$Email', '$Phone', '$Birth_Date', '$Vgs', '$Username', '$Encrypted_Password', '$Creation_Date')";
 
     if ($conn->query($CreateNewUser) === TRUE) {
       echo "SQL_Done";

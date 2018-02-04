@@ -66,11 +66,13 @@
       <div id="Content-Main">
 
 
-        <form id="Register-Main">
+        <form id="Register-Main" enctype="multipart/form-data">
 
           <div class="Register-Image">
             <div class="Register-Image-Main">
-              <img src="img/Profile/Placeholder.png" alt="Profile picture">
+              <span id="Register-ImgTxt">Select image</span>
+              <img src="img/Profile/Placeholder.png" id="Register-Img">
+              <input type="file" id="Register-ImgSrc" name="ImgSrc" style="display: none;">
             </div>
           </div>
 
