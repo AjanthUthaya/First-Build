@@ -116,7 +116,7 @@ button {
 
 .Register-Content label {
   font-size: 13px;
-  padding-left: 8px;
+  padding: 0 8px;
   color: white;
 }
 

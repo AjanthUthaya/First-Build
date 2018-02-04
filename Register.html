@@ -84,17 +84,17 @@
 
               <div class="medium-4 Register-Name-First">
                 <label>Firstname</label>
-                <input class="Name-First-Main" id="Register-Firstname" type="text" placeholder="Enter your firstname" value="Firstname" required autofocus>
+                <input class="Name-First-Main" id="Register-Firstname" name="Firstname" type="text" placeholder="Enter your firstname" value="Firstname" autofocus>
               </div>
 
               <div class="medium-4 Register-Name-Middle">
                 <label>Middlename(optional)</label>
-                <input class="Name-Middle-Main" id="Register-Middlename" type="text" placeholder="Enter your middlename" value="Middlename">
+                <input class="Name-Middle-Main" id="Register-Middlename" name="Middlename" type="text" placeholder="Enter your middlename" value="Middlename">
               </div>
 
               <div class="medium-4 Register-Name-Last">
                 <label>Lastname</label>
-                <input class="Name-Last-Main" id="Register-Lastname" type="text" placeholder="Enter your lastname" value="Lastname" required>
+                <input class="Name-Last-Main" id="Register-Lastname" name="Lastname" type="text" placeholder="Enter your lastname" value="Lastname">
               </div>
 
             </div>
@@ -110,7 +110,7 @@
                     <span class="fa fa-envelope"></span>
                   </div>
 
-                  <input class="input-group-field Register-Email-Input" id="Register-Email" type="email" placeholder="Enter your email" value="Email123@ex.com" required>
+                  <input class="input-group-field Register-Email-Input" id="Register-Email" name="Email" type="email" placeholder="Enter your email" value="Email123@ex.com" minlength="5" maxlength="50" required>
                 </div>
 
               </div>
@@ -124,7 +124,7 @@
                     <span class="fa fa-phone"></span>
                   </div>
 
-                  <input class="input-group-field Register-Phone-Input" id="Register-Phone" type="text" placeholder="Enter your phone number" value="00 000 000" required>
+                  <input class="input-group-field Register-Phone-Input" id="Register-Phone" name="Phone" type="text" placeholder="Enter your phone number" value="00000000" minlength="8" maxlength="8" required>
                 </div>
 
               </div>
@@ -143,7 +143,7 @@
                     <span class="fa fa-calendar"></span>
                   </div>
 
-                  <input class="input-group-field Register-Birth-Input" id="Register-Birth_Date" type="date" placeholder="Enter your birth of date" value="2018-02-01" required>
+                  <input class="input-group-field Register-Birth-Input" id="Register-Birth_Date" name="Birth_Date" type="date" placeholder="Enter your birth of date" value="2018-02-01" required>
                 </div>
 
               </div>
@@ -152,9 +152,9 @@
 
                 <label>VGS</label>
 
-                <select class="Register-VGS-Select" id="Register-Vgs" required>
-                  <option value="" disabled>Select VGS</option>
-                  <option value="1" selected>1</option>
+                <select class="Register-VGS-Select" id="Register-Vgs" name="Vgs">
+                  <option value="" selected disabled>Select VGS</option>
+                  <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
                 </select>
@@ -173,7 +173,7 @@
                   <span class="fa fa-user"></span>
                 </div>
 
-                <input class="input-group-field Register-Username-Input" id="Register-Username" type="text" placeholder="Enter your username" value="Username" required>
+                <input class="input-group-field Register-Username-Input" id="Register-Username" name="Username" type="text" placeholder="Enter your username" value="Username" minlength="6" maxlength="50" required>
               </div>
 
             </div>
@@ -189,7 +189,7 @@
                     <span class="fa fa-lock"></span>
                   </div>
 
-                  <input class="input-group-field Register-Password-input" id="Register-Password" type="password" placeholder="Enter your password" value="Password" required>
+                  <input class="input-group-field Register-Password-input" id="Register-Password" name="Password" type="password" placeholder="Enter your password" value="Password" minlength="6" maxlength="50" required>
                 </div>
 
               </div>
@@ -203,7 +203,7 @@
                     <span class="fa fa-repeat"></span>
                   </div>
 
-                  <input class="input-group-field Register-Confirm-input" id="Register-CPassword" type="password" placeholder="Confirm your password" value="Password" required>
+                  <input class="input-group-field Register-Confirm-input" id="Register-CPassword" name="CPassword" type="password" placeholder="Confirm your password" value="Password" minlength="6" maxlength="50" required>
                 </div>
 
               </div>
