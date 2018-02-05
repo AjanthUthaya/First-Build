@@ -78,7 +78,7 @@
 
               <span id="Register-ImgTxt">Select image</span>
               <img src="img/Profile/Placeholder.png" id="Register-Img">
-              <input type="file" id="Register-ImgSrc" name="ImgSrc" style="display: none;">
+              <input type="file" id="Register-ImgSrc" accept="image/png, image/jpg, image/jpeg" name="ImgSrc" style="display: none;">
 
             </div>
           </div>
@@ -152,7 +152,7 @@
                     <span class="fa fa-calendar"></span>
                   </div>
 
-                  <input class="input-group-field Register-Birth-Input" id="Register-Birth_Date" name="Birth_Date" type="date" placeholder="Enter your birth of date" value="2018-02-01" required>
+                  <input class="input-group-field Register-Birth-Input" id="Register-Birth_Date" name="Birth_Date" type="date" placeholder="Enter your birth of date" value="1999-08-16" required>
                 </div>
 
               </div>
@@ -162,8 +162,8 @@
                 <label>VGS</label>
 
                 <select class="Register-VGS-Select" id="Register-Vgs" name="Vgs">
-                  <option value="" disabled>Select VGS</option>
-                  <option value="1" selected>1</option>
+                  <option value="" selected disabled>Select VGS</option>
+                  <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
                 </select>
@@ -182,7 +182,7 @@
                   <span class="fa fa-user"></span>
                 </div>
 
-                <input class="input-group-field Register-Username-Input" id="Register-Username" name="Username" type="text" placeholder="Enter your username" value="Username229" minlength="6" maxlength="50" required>
+                <input class="input-group-field Register-Username-Input" id="Register-Username" name="Username" type="text" placeholder="Enter your username" value="Username" minlength="6" maxlength="50" required>
               </div>
 
             </div>

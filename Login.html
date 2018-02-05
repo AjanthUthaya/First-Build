@@ -66,76 +66,51 @@
 
       <div id="Content-Main">
 
-        <div class="Login-Main">
+        <form id="Login-Main">
 
+          <div id="Login-Icon">
 
-          <div class="Login-Content-Underlayer">
+            <span class="fa fa-user"></span>
 
-            <div class="Login-Icon">
+          </div>
 
-              <div class="Login-Icon-Underlayer">
-                <i class="fa fa-user"></i>
+          <div id="Login-Content">
+
+            <div class="Login-Content-Title">
+              <label class="Login-Content-Title-Main">Login</label>
+            </div>
+
+            <div class="Login-Content-Fields">
+
+              <div class="Content-Fields-Username">
+                <div class="input-group">
+                  <div class="input-group-label">
+                    <span class="fa fa-phone"></span>
+                  </div>
+
+                  <input class="input-group-field Register-Username-Input" id="Register-Username" name="Username" type="text" placeholder="Enter your username" value="Username" minlength="6" maxlength="50" required>
+                </div>
+              </div>
+
+              <div class="Content-Fields-Password">
+                <div class="input-group">
+                  <div class="input-group-label">
+                    <span class="fa fa-phone"></span>
+                  </div>
+
+                  <input class="input-group-field Register-Password-input" id="Register-Password" name="Password" type="password" placeholder="Enter your password" value="Password" minlength="6" maxlength="50" required>
+                </div>
               </div>
 
             </div>
 
-            <div class="Login-Content-Main">
-
-              <div class="Login-Content-Title">
-
-                <label>Login:</label>
-
-              </div>
-
-              <form id="Login-Form">
-
-                <div class="Login-Field">
-
-                  <div class="input-group Login-Fields">
-
-                    <div class="input-group-label Input-Group-Label">
-                      <span class="fa fa-user"></span>
-                    </div>
-
-                    <input class="input-group-field" placeholder="Enter your username" autofocus type="text" />
-
-                  </div>
-
-
-                  <div class="input-group Login-Fields">
-
-                    <div class="input-group-label Input-Group-Label">
-                      <span class="fa fa-unlock-alt"></span>
-                    </div>
-
-                    <input class="input-group-field" placeholder="Enter your password" type="password" />
-
-                  </div>
-
-                </div>
-
-
-                <div class="Login-Remember">
-                  <label>Remember password</label> <input type="checkbox">
-                </div>
-
-
-                <div class="Login-Button">
-
-                  <button type="submit" name="button" class="button" formaction="Home.html">Login</button>
-
-                </div>
-
-              </form>
-
-
+            <div class="Login-Submit">
+              <button class="button" id="Login-Submit" type="submit">Login</button>
             </div>
 
           </div>
 
-
-        </div>
-
+        </form>
 
       </div>
 
