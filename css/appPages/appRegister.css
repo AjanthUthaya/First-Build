@@ -90,6 +90,47 @@ button {
   display: flex;
 }
 
+#Register-Img-UploadError {
+  font-size: 12px;
+  position: absolute;
+  z-index: 100;
+  display: none;
+  flex-direction: column;
+  width: 120px;
+  height: 100%;
+  cursor: pointer;
+  color: white;
+  border: 5px solid #292c30;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, .5);
+  justify-content: center;
+  align-items: center;
+}
+
+#Img-UploadData-Accepted {
+  padding: 2px 2px;
+  text-align: center;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#Img-UploadData-Accepted span {
+  color: red;
+}
+
+#Img-UploadData-Current {
+  padding: 2px 2px;
+  text-align: center;
+  max-width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#Img-UploadData-Current span {
+  color: red;
+}
+
 .Register-Image-Main #Register-ImgTxt {
   font-size: 15px;
   font-weight: bold;
@@ -106,8 +147,8 @@ button {
   transition: all .5s ease;
   opacity: 0;
   color: white;
-  border-radius: 50%;
   border: 5px solid #292c30;
+  border-radius: 50%;
   background: rgba(0, 0, 0, .5);
   justify-content: center;
   align-items: center;
@@ -300,11 +341,11 @@ button {
 
 #ReCaptcha {
   display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
   height: fit-content;
   padding-top: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
 .Register-Submit {

@@ -2,6 +2,41 @@
 $('#Register-ImgTxt').click(function() {
   $('#Register-ImgSrc').trigger('click');
 });
+$('#Register-Img-UploadError').click(function() {
+  $('#Register-ImgSrc').trigger('click');
+  $('#Register-Img-UploadError').css('display', 'none');
+  $('#Register-ImgTxt').css('display', 'flex');
+});
+
+// IMG preview after select
+$("#Register-ImgSrc").on("change", function(e) {
+
+  /*  //IMG INFO
+    var file = this.files,
+      fileName = file.name,
+      fileSize = file.size;
+    //console.log(e);
+  */
+
+  function imageIsLoaded(e) {
+    $('#Register-Img').attr('src', e.target.result);
+  };
+
+  // Function to preview image after validation
+  $("#message").empty(); // To remove the previous error message
+  var file = this.files[0];
+  var imagefile = file.type;
+  var match = ["image/jpeg", "image/png", "image/jpg"];
+  if (!((imagefile == match[0]) || (imagefile == match[1]) || (imagefile == match[2]))) {
+    $('#Register-Img').attr('src', 'img/Profile/Placeholder.png');
+    $("#message").html("<p id='error'>Please Select A valid Image File</p>" + "<h4>Note</h4>" + "<span id='error_message'>Only jpeg, jpg and png Images type allowed</span>");
+    return false;
+  } else {
+    var reader = new FileReader();
+    reader.onload = imageIsLoaded;
+    reader.readAsDataURL(this.files[0]);
+  }
+});
 
 // Variable to hold request
 var request;
@@ -200,10 +235,11 @@ $("#Register-Main").submit(function(event) {
       alert("Error: SQL error");
     } else if (data == reCAPTCHA_Failed) {
       alert("reCAPTCHA: Failed");
-    }else if (data == reCAPTCHA_Not_Activated) {
+    } else if (data == reCAPTCHA_Not_Activated) {
       alert("Click to verify your human");
-    }else if (data == SQL_Done) {
+    } else if (data == SQL_Done) {
       alert("New user added successfully");
+      console.log(data);
       window.location.replace("/Login.html");
     } else {
       console.log(data);
