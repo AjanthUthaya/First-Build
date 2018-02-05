@@ -107,7 +107,7 @@ button {
   align-items: center;
 }
 
-#Img-UploadData-Accepted {
+#Img-UploadData-One {
   padding: 2px 2px;
   text-align: center;
   max-width: 100px;
@@ -115,11 +115,11 @@ button {
   text-overflow: ellipsis;
 }
 
-#Img-UploadData-Accepted span {
+#Img-UploadData-One span {
   color: red;
 }
 
-#Img-UploadData-Current {
+#Img-UploadData-Two {
   padding: 2px 2px;
   text-align: center;
   max-width: 80px;
@@ -127,7 +127,7 @@ button {
   text-overflow: ellipsis;
 }
 
-#Img-UploadData-Current span {
+#Img-UploadData-Two span {
   color: red;
 }
 
@@ -145,17 +145,17 @@ button {
   -moz-transition: all .5s ease;
   -o-transition: all .5s ease;
   transition: all .5s ease;
-  opacity: 0;
+  opacity: 0.5;
   color: white;
   border: 5px solid #292c30;
   border-radius: 50%;
-  background: rgba(0, 0, 0, .5);
+  background: rgba(0, 0, 0, .6);
   justify-content: center;
   align-items: center;
 }
 
 .Register-Image-Main #Register-ImgTxt:hover {
-  opacity: 1;
+  opacity: 1 !important;
 }
 
 .Register-Image-Main img {
