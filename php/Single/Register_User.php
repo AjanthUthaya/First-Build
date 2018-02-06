@@ -1,11 +1,9 @@
 <?php
 
 // Including db connection
-
 include '../Partials/DB.php';
 
 // Required field from registration
-
 $required = array(
   'Firstname',
   'Lastname',
@@ -19,7 +17,6 @@ $required = array(
 );
 
 // Loop over POST fields, make sure each one exists and is not empty
-
 $Empty_Field = false;
 
 foreach($required as $field) {
@@ -29,24 +26,20 @@ foreach($required as $field) {
 }
 
 // If any empty fields return Empty field
-
 if ($Empty_Field == true) {
   echo "Missing_Field_Data";
-}
-else {
+} else {
 
   // ---------- START: reCAPTCHA ---------- //
 
   if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
 
     // your site secret key
-
     $secret = '6Ld6QkQUAAAAAAfnqi9VR5W5a3pKZCdidTNKTEAp';
     $response = $_POST['g-recaptcha-response'];
     $remoteip = $_SERVER['REMOTE_ADDR'];
 
     // get verify response data
-
     $verifyResponse = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$response&remoteip=$remoteip");
     $responseData = json_decode($verifyResponse);
     if ($responseData->success) {
@@ -75,8 +68,7 @@ else {
       // Username is taken
       if ($Username_Taken->num_rows > 0) {
         echo "Username_Taken";
-      }
-      else {
+      } else {
 
         // ---------- START: Upload image ---------- //
 
@@ -97,13 +89,11 @@ else {
             if ($_FILES["ImgSrc"]["error"] > 0) {
               // ---------- Image error ---------- //
               echo "Image_Error";
-            }
-            else {
+            } else {
               if (file_exists("img/Profile/" . $_FILES["ImgSrc"]["name"])) {
                 // ---------- Image already exits ---------- //
                 echo $_FILES["ImgSrc"]["name"] . " <span id='invalid'><b>already exists.</b></span> ";
-              }
-              else {
+              } else {
                 // ---------- Upload image to folder ---------- //
                 $temp = explode(".", $_FILES["ImgSrc"]["tmp_name"]);
                 $fileType = $_FILES["ImgSrc"]["type"];
@@ -135,8 +125,7 @@ else {
                 if ($conn->query($CreateNewUser) === TRUE) {
                   echo "SQL_Done";
 
-                }
-                else {
+                } else {
                   echo "SQL_Error";
                 }
 
@@ -144,25 +133,23 @@ else {
                 $conn->close();
               }
             }
-          }
-          else {
+          } else {
             // ---------- Validation failed ---------- //
             echo "Image_Validation_Failed";
           }
-        }
-        else {
+        } else {
           // ---------- No file was selected ---------- //
           echo "Image_Non_Selected";
         }
 
         // ---------- END: Upload image ---------- //
       }
-    }else {
+    } else {
       // ---------- reCAPTCHA: Failed ---------- //
       $errMsg = 'reCAPTCHA: Failed';
       echo $errMsg;
     }
-  }else {
+  } else {
     // ---------- reCAPTCHA: Not activated ---------- //
     $errMsg = 'reCAPTCHA: Not activated';
     echo $errMsg;

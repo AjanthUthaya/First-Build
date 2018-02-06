@@ -13,7 +13,7 @@
   }
 }
 
-@media screen and (max-width: 40em), screen and (max-height: 600px) {
+@media screen and (max-width: 644px), screen and (max-height: 600px) {
   #Desktop-View {
     display: none;
   }

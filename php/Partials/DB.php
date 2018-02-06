@@ -7,13 +7,18 @@ $dbname = "first-build";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
+
 // Check connection
 if ($conn->connect_error) {
-    die($Status = '<div id="Connection-Status" style="color: red;">Connection failed: ' . $conn->connect_error . '</div>');
+    $Status = 'DB: Connection failed';
+    echo $Status;
+    die();
+    //For testing: $conn->connect_error
 } else {
-    $Status = '<div id="Connection-Status" style="color: green;">Connection successful<br /></div>';
+    $Status = 'DB: Connection successful';
 }
 
 // Show connection status to the db
+// '<div id="Connection-Status" style="color: green;">Connection successful<br /></div>'
 // echo $Status;
 ?>
