@@ -3,6 +3,10 @@
   (Top-Right-Bottom-Left)
 *************************************************** */
 
+body {
+  display: none;
+}
+
 #Content-Main {
   display: flex;
   width: auto;
@@ -109,6 +113,7 @@ button {
 }
 
 .Content-Fields-Label {
+  font-size: 16px;
   color: white;
 }
 

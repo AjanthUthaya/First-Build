@@ -334,7 +334,7 @@ $("#Register-Main").submit(function(event) {
       console.log(data);
       window.location.href = "Login.html";
     } else {
-      console.log(data);
+      alert("Error: Response not recognized");
     }
 
 

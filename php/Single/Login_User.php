@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 // Including db connection
 include '../Partials/DB.php';
 
@@ -39,7 +40,7 @@ if ($Empty_Field == true) {
 // ---------- END: Check if username exists ---------- //
 
   if (mysqli_num_rows($UsernameExists) !== 1) {
-  // ---------- Username no match to DB usernames ---------- //
+    // ---------- Username no match to DB usernames ---------- //
     echo "Login_Failed";
   }else {
 
@@ -86,13 +87,27 @@ if ($Empty_Field == true) {
         // ---------- END: Declaring data from DB into variables ---------- //
 
         // Pushing variables into $DB_Data
-        array_push($a, $DB_User_Id, $DB_User_Type, $DB_Username, $DB_Password, $DB_Firstname, $DB_Middlename, $DB_Lastname, $DB_Email, $DB_Phone, $DB_Birth_Date, $DB_Vgs, $DB_Img_Src);
+        array_push($DB_Data, $DB_User_Id, $DB_User_Type, $DB_Username, $DB_Password, $DB_Firstname, $DB_Middlename, $DB_Lastname, $DB_Email, $DB_Phone, $DB_Birth_Date, $DB_Vgs, $DB_Img_Src);
+
+        $DB_Array_Empty = false;
+
+        foreach((array)$DB_Data as $item) {
+          if (empty($item)) {
+            $DB_Array_Empty = true;
+          }
+        }
 
         // ---------- START: Checking if any of the values are empty ---------- //
-        if (array_search('', $DB_Data) !== true) {
+        if ($DB_Array_Empty == false) {
           // ---------- Did not find any empty values ---------- //
 
           // ---------- START: Storing DB variables into session cookies ---------- //
+
+          // Set default timezone
+          date_default_timezone_set('Norway/Oslo');
+
+          // Date now (dd-mm-yyyy)
+          $DateNow = date('d-m-Y H:i:s');
 
           $_SESSION['DB_User_Id'] = $DB_User_Id;
           $_SESSION['DB_User_Type'] = $DB_User_Type;
@@ -106,6 +121,7 @@ if ($Empty_Field == true) {
           $_SESSION['DB_Birth_Date'] = $DB_Birth_Date;
           $_SESSION['DB_Vgs'] = $DB_Vgs;
           $_SESSION['DB_Img_Src'] = $DB_Img_Src;
+          $_SESSION['Login_Date'] = $DateNow;
 
           // ---------- END: Storing DB variables into session cookies ---------- //
 
