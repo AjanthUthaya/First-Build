@@ -20,9 +20,7 @@ request = $.ajax({
 request.done(function(data) {
 
   if (data == "Auto_Login_True") {
-
     StopAndRedirect();
-
   } else if (data == "Session_Expired_Date") {
     ShowLogin();
   } else if (data == "Session_Empty_Data") {

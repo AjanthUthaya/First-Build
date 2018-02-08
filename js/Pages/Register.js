@@ -28,7 +28,7 @@ $("#Register-ImgSrc").on("change", function(e) {
   function imageIsLoaded(e) {
     $('#Register-Img').attr('src', e.target.result);
     $('#Register-ImgTxt').css('opacity', '0');
-  };
+  }
 
   var file = this.files[0];
   var fileType = file.type;
@@ -38,7 +38,7 @@ $("#Register-ImgSrc").on("change", function(e) {
 
     // ---------- File type does not match any from array ---------- //
     // Fallback image
-    $('#Register-Img').attr('src', 'img/Profile/Placeholder.png');
+    $('#Register-Img').attr('src', 'img/Profile_Placeholder.png');
 
     // Select image, display none
     $('#Register-ImgTxt').css('display', 'none');
@@ -70,7 +70,7 @@ $("#Register-ImgSrc").on("change", function(e) {
     var fileSizeFormatted = formatBytes(fileSize, 2);
 
     // Fallback image
-    $('#Register-Img').attr('src', 'img/Profile/Placeholder.png');
+    $('#Register-Img').attr('src', 'img/Profile_Placeholder.png');
 
     // Select image, display none
     $('#Register-ImgTxt').css('display', 'none');
@@ -334,7 +334,7 @@ $("#Register-Main").submit(function(event) {
       console.log(data);
       window.location.href = "Login.html";
     } else {
-      alert("Error: Response not recognized");
+      alert("Error: Responce not recognized");
     }
 
 

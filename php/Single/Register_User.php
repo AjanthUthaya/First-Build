@@ -32,7 +32,7 @@ if ($Empty_Field == true) {
 
   // ---------- START: reCAPTCHA ---------- //
 
-  if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
+/*  if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
 
     // your site secret key
     $secret = '6Ld6QkQUAAAAAAfnqi9VR5W5a3pKZCdidTNKTEAp';
@@ -42,7 +42,7 @@ if ($Empty_Field == true) {
     // get verify response data
     $verifyResponse = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$response&remoteip=$remoteip");
     $responseData = json_decode($verifyResponse);
-    if ($responseData->success) {
+    if ($responseData->success) {*/
 
       // ---------- reCAPTCHA: Success ---------- //
 
@@ -121,12 +121,13 @@ if ($Empty_Field == true) {
                 $Creation_Date = date("d-m-Y H:i:s");
 
                 // Send data to the database
-                $CreateNewUser = "INSERT INTO users (firstname, middlename, lastname, email, phone, birth_date, vgs, username, password, imgsrc, creation_date) VALUES ('$Firstname', '$Middlename', '$Lastname', '$Email', '$Phone', '$Birth_Date', '$Vgs', '$Username', '$Encrypted_Password', '$filePath', '$Creation_Date')";
+                $CreateNewUser = "INSERT INTO users (firstname, middlename, lastname, email, phone, birth_date, vgs, username, password, img_src, creation_date) VALUES ('$Firstname', '$Middlename', '$Lastname', '$Email', '$Phone', '$Birth_Date', '$Vgs', '$Username', '$Encrypted_Password', '$filePath', '$Creation_Date')";
                 if ($conn->query($CreateNewUser) === TRUE) {
                   echo "SQL_Done";
 
                 } else {
-                  echo "SQL_Error";
+                  //echo "SQL_Error";
+                  echo $conn->connect_error;
                 }
 
                 // Close connection to the database
@@ -144,7 +145,7 @@ if ($Empty_Field == true) {
 
         // ---------- END: Upload image ---------- //
       }
-    } else {
+/*    } else {
       // ---------- reCAPTCHA: Failed ---------- //
       $errMsg = 'reCAPTCHA: Failed';
       echo $errMsg;
@@ -153,7 +154,7 @@ if ($Empty_Field == true) {
     // ---------- reCAPTCHA: Not activated ---------- //
     $errMsg = 'reCAPTCHA: Not activated';
     echo $errMsg;
-  }
+  }*/
 
   // ---------- END: reCAPTCHA ---------- //
 
