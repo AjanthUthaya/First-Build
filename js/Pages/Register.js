@@ -11,7 +11,10 @@ $('#Register-Img-UploadError').click(function() {
   $('#Register-ImgTxt').css('display', 'flex');
 });
 
-// IMG preview after select
+
+
+// ---------- START: Img preview ---------- //
+
 $("#Register-ImgSrc").on("change", function(e) {
   // Save image array, and send on form submit
   RegisterFormData.append('ImgSrc', this.files[0]);
@@ -22,8 +25,6 @@ $("#Register-ImgSrc").on("change", function(e) {
       fileSize = file.size;
     //console.log(e);
   */
-
-  // ---------- START: Img preview ---------- //
 
   function imageIsLoaded(e) {
     $('#Register-Img').attr('src', e.target.result);
@@ -97,9 +98,10 @@ $("#Register-ImgSrc").on("change", function(e) {
 
   }
 
-  // ---------- END: Img preview ---------- //
-
 });
+
+// ---------- END: Img preview ---------- //
+
 
 // Variable to hold request
 var request;
@@ -281,7 +283,7 @@ $("#Register-Main").submit(function(event) {
 
   // ---------- START: Form submit to Register.php ---------- //
 
-  // Fire off the request to php/Register.php
+  // Fire off the request to php/Single/Register.php
   request = $.ajax({
     url: "php/Single/Register_User.php",
     type: "post",

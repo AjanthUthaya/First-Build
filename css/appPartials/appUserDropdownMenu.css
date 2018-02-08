@@ -5,7 +5,7 @@
 
 #User-Menu-Dropdown {
   width: 300px;
-  height: 310px;
+  height: 340px;
 }
 
 .dropdown-pane {
@@ -26,8 +26,8 @@
 
 .User-Menu-Image img {
   width: 100px;
-  border-radius: 50%;
   height: 100px;
+  border-radius: 50%;
 }
 
 .User-Menu-Name {
@@ -44,10 +44,18 @@
   text-overflow: ellipsis;
 }
 
+.User-Menu-Content {
+  display: flex;
+  height: 164px;
+  padding-top: 10px;
+}
+
 .User-Menu-Content a {
-  padding: 10.25px 0;
-  text-align: center;
+  display: flex;
+  width: 100%;
   color: white;
+  justify-content: center;
+  align-items: center;
 }
 
 .User-Menu-Content a:last-child {
@@ -58,7 +66,7 @@
   background-color: #e74c3c;
 }
 
-.User-Menu-Content :hover {
+.User-Menu-Content a:hover {
   background-color: #292c30;
 }
 
@@ -84,7 +92,7 @@
 
 .Slider>div {
   min-width: 300px;
-  height: 310px;
+  height: 340px;
   flex: 1;
 }
 
@@ -152,98 +160,117 @@
   color: white;
 }
 
-.Profile-Content-First {
+.Profile-Content-Image {
   display: flex;
   overflow: hidden;
-  width: 300px;
-  height: 130px;
-  padding: 5px 10px;
-}
-
-.Profile-Content-Img {
-  display: flex;
-  overflow: hidden;
-  width: 120px;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-}
-
-.Profile-Content-Img img {
-  display: flex;
-  width: 80px;
-  height: 80px;
-  text-align: center;
-  border-radius: 40px;
+  width: 100%;
+  height: fit-content;
   justify-content: center;
   align-items: center;
+}
+
+.Profile-Content-Image img {
+  width: 90px;
+  height: 90px;
+  margin-top: 15px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+#Content-Image-Text {
+  font-size: 10px;
+  font-weight: bold;
+  position: absolute;
+  z-index: 100;
+  display: flex;
+  width: 90px;
+  height: 90px;
+  margin-top: 15px;
+  padding: 0 5px;
+  cursor: pointer;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  transition: all .5s ease;
+  opacity: .5;
+  color: white;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, .6);
+  justify-content: center;
+  align-items: center;
+}
+
+#Content-Image-Text:hover {
+  opacity: 1 !important;
 }
 
 .Profile-Content-Name {
   display: flex;
-  overflow: hidden;
-  flex-direction: column;
-  text-align: center;
-  flex: 1;
+  width: 100%;
+  height: fit-content;
   justify-content: center;
   align-items: center;
 }
 
-.Profile-Content-Firstname, .Profile-Content-Middlename, .Profile-Content-Lastname {
-  display: flex;
-  margin: 5px 0;
-}
-
-.Profile-Content-Firstname label, .Profile-Content-Middlename label, .Profile-Content-Lastname label {
-  font-size: 12px;
-  width: 80px;
-  padding-left: 5px;
-  text-align: left;
-  background: blue;
-}
-
-.Profile-Content-Firstname input, .Profile-Content-Middlename input, .Profile-Content-Lastname input {
-  position: relative;
-  left: 5%;
-  width: 90%;
+.Profile-Content-Name * {
+  font-size: 18px;
   margin: 0;
-  margin-right: 30px;
-  padding: 5px 10px;
-  text-align: center;
-  color: black;
-  border: 0;
-  border-radius: 5px;
-  background-color: white;
+  padding: 5px 0;
 }
 
 .Profile-Content-Email, .Profile-Content-Phone {
-  display: flex;
-  margin: 10px 20px;
-  justify-content: center;
-  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  height: fit-content;
+  padding: 0 20px;
+  background-color: transparent;
 }
 
-.Profile-Content-Email span, .Profile-Content-Phone span {
+.Profile-Content-Phone {
+  padding-bottom: 10px;
+}
+
+.Profile-Content-Email {
+  padding-bottom: 10px;
+}
+
+.Profile-Content-Phone label, .Profile-Content-Email label {
+  font-size: 11px;
+  line-height: 1;
+  padding-left: 5px;
+  color: white;
+}
+
+.Profile-Content-Email-Group i {
   font-size: 16px;
+  position: absolute;
   display: flex;
-  width: 45px;
-  height: 30px;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  background: grey;
+  width: 30px;
+  height: 40px;
+  color: white;
   justify-content: center;
   align-items: center;
 }
 
-.Profile-Content-Email input, .Profile-Content-Phone input {
-  font-size: 14px;
-  height: 30px;
-  margin: 0;
-  padding: 10px 10px;
-  text-align: center;
-  border-radius: 5px;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+.Profile-Content-Email-Group input {
+  position: relative;
+  height: 40px;
+  padding-bottom: 4px;
+  padding-left: 35px;
+  text-align: left;
+}
+
+.Profile-Content-Phone input, .Profile-Content-Phone input:focus, .Profile-Content-Email input, .Profile-Content-Email input:focus {
+  font-size: 12px;
+  max-width: inherit;
+  padding-left: 40;
+  color: white;
+  border-top: transparent !important;
+  border-right: transparent !important;
+  border-bottom: 2px solid !important;
+  border-left: transparent !important;
+  background: transparent;
+  box-shadow: none;
 }
 
 .Profile-Content-Save, .Profile-Content-Save * {
@@ -251,7 +278,7 @@
   bottom: 0;
   display: flex;
   width: 100%;
-  height: 40px;
+  height: 35px;
   opacity: .6;
   background-color: #90c749;
   justify-content: center;

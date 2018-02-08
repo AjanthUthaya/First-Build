@@ -124,7 +124,7 @@
 
             <div class="Tab-Main">
               <div class="User-Menu-Image">
-                <img src="img/Profile_placeholder.png" alt="Profile-Picture">
+                <img src="img/Profile_placeholder.png" id="Profile-Img-Main" alt="Profile-Picture-Main">
               </div>
 
               <div class="User-Menu-Name">
@@ -141,45 +141,48 @@
 
             <div class="Tab-Profile">
               <div class="Tab-Profile-Content">
+
                 <div class="Profile-Content-Head">
                   <a class="Profile" data-TabValue="back"><span class="fa fa-arrow-left"></span></a>
                   <label>Profile</label>
                 </div>
+
                 <div class="Profile-Content-Content ChildScroll">
-                  <div class="Profile-Content-First">
-                    <div class="Profile-Content-Img">
-
-                      <img src="img/Profile_placeholder.png" alt="Profile-Picture">
-
+                  <div class="Profile-Content-Image">
+                    <div class="Content-Image-Main">
+                      <span id="Content-Image-Text">Select image</span>
+                      <img src="img/Profile_placeholder.png" id="Profile-Img-Edit" alt="Profile-Picture-Edit">
+                      <input type="file" id="Profile-Img-Src" accept="image/png, image/jpg, image/jpeg" name="ImgSrc" style="display: none;">
                     </div>
+                  </div>
 
-                    <div class="Profile-Content-Name">
-                      <div class="Profile-Content-Firstname">
-                        <input value="John" disabled>
-                      </div>
-
-                      <div class="Profile-Content-Middlename">
-                        <input placeholder="Middle name" disabled>
-                      </div>
-
-                      <div class="Profile-Content-Lastname">
-                        <input value="Doe" disabled>
-                      </div>
-                    </div>
+                  <div class="Profile-Content-Name">
+                    <h5 class="unselectable">Firstname Lastname</h5>
                   </div>
 
                   <div class="Profile-Content-Email">
-                    <span class="fa fa-envelope"></span><input type="text" placeholder="Email@gmail.com">
+                    <label>Email</label>
+
+                    <div class="Profile-Content-Email-Group">
+                      <i class="fa fa-envelope"></i>
+                      <input type="text" name="" value="">
+                    </div>
                   </div>
 
                   <div class="Profile-Content-Phone">
-                    <span class="fa fa-phone"></span><input type="text" placeholder="Phone: 46329124">
+                    <label>Phone</label>
+
+                    <div class="Profile-Content-Email-Group">
+                      <i class="fa fa-phone"></i>
+                      <input type="text" name="" value="">
+                    </div>
                   </div>
 
                   <div class="Profile-Content-Save">
-                    <a>Save</a>
+                    <a id="Save-Profile-Content" class="cell">Save</a>
                   </div>
                 </div>
+
               </div>
             </div>
 
