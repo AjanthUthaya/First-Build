@@ -33,16 +33,16 @@ CREATE TABLE `users` (
   `middlename` varchar(40) DEFAULT NULL,
   `lastname` varchar(40) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `phone` varchar(20) NOT NULL,
+  `phone` varchar(10) NOT NULL,
   `birth_date` varchar(10) NOT NULL,
   `vgs` int(1) NOT NULL DEFAULT '0',
-  `imgsrc` varchar(255) NOT NULL DEFAULT 'img/Profile/Placeholder.png',
+  `img_src` varchar(255) NOT NULL DEFAULT 'img/Profile_Placeholder.png',
   `creation_date` varchar(25) NOT NULL,
   `edited` varchar(5) NOT NULL DEFAULT 'false',
   `edit_date` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,4 +90,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-03 18:50:30
+-- Dump completed on 2018-02-08 12:15:05
