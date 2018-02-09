@@ -50,8 +50,6 @@ if ($LoginDate < $NowDate){
   array_push($Session_Data, $Session_User_Id, $Session_User_Type, $Session_Username, $Session_Firstname, $Session_Middlename, $Session_Lastname, $Session_Email, $Session_Phone, $Session_Birth_Date, $Session_Vgs, $Session_Img_Src);
   //print_r($Session_Username); // Print session username value
 
-  // NB: Match with data from sql if false or if any session variables is empty, unset all values and redirect to login page, also check if user is active
-
   $Session_Array_Empty = false;
 
   foreach((array)$Session_Data as $item) {
