@@ -241,7 +241,7 @@
   color: white;
 }
 
-.Profile-Content-Email-Group i {
+.Profile-Content-Group i {
   font-size: 16px;
   position: absolute;
   display: flex;
@@ -252,7 +252,7 @@
   align-items: center;
 }
 
-.Profile-Content-Email-Group input {
+.Profile-Content-Group input {
   position: relative;
   height: 40px;
   padding-bottom: 4px;

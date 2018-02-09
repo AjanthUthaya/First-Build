@@ -5,11 +5,22 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Tab title -->
   <title>Home - First Build</title>
-  <link rel="stylesheet" href="css/foundation.css">
-  <link rel="stylesheet" href="css/font-awesome.css">
-  <link rel="stylesheet" href="css/dhtmlxscheduler.css">
+  <!-- Tab icon -->
   <link rel="icon" href="http://via.placeholder.com/50x50">
+
+  <!-- ____________________ START: CSS files ____________________ -->
+
+
+  <!-- Foundation -->
+  <link rel="stylesheet" href="css/foundation.css">
+  <!-- Font awesome icons -->
+  <link rel="stylesheet" href="css/font-awesome.css">
+  <!-- Calendar -->
+  <link rel="stylesheet" href="css/dhtmlxscheduler.css">
+
+  <!-- START: Partials -->
   <link rel="stylesheet" href="css/appPartials/appGeneral.css">
   <link rel="stylesheet" href="css/appPartials/appCalendarEdit.css">
   <link rel="stylesheet" href="css/appPartials/appFooter.css">
@@ -17,17 +28,30 @@
   <link rel="stylesheet" href="css/appPartials/appUserDropdownMenu.css">
   <link rel="stylesheet" href="css/appPartials/appBreadcrumb.css">
   <link rel="stylesheet" href="css/appPartials/appOffCanvasMenu.css">
+  <!-- END: Partials -->
+
+  <!-- START: Page specific files -->
   <link rel="stylesheet" href="css/appPages/appHome.css">
+  <!-- END: Page specific files -->
+
+
+  <!-- ____________________ END: CSS files ____________________ -->
+
 </head>
 
 <body onload="init();">
 
+  <!-- START: Mobile view -->
   <div id="Mobile-View">
     <img src="http://via.placeholder.com/300x300">
     <h3>This website is not available for mobile devices</h3>
   </div>
+  <!-- END: Mobile view -->
 
+  <!-- START: Desktop view -->
   <div id="Desktop-View">
+
+    <!-- START: OffCanvas menu -->
     <div class="off-canvas position-left Menu-OffCanvas-Main ChildScroll" id="offCanvas" data-off-canvas data-transition="overlap">
 
       <div class="OffCanvas-Menu-Content">
@@ -68,9 +92,10 @@
       </div>
 
     </div>
+    <!-- END: OffCanvas menu -->
 
 
-
+    <!-- START: OffCanvas sub major menu -->
     <div class="Sub-Menu Sub-Menu-Major dropdown-pane ChildScroll" id="Sub-Major" data-dropdown data-hover="true" data-hover-pane="true">
       <div class="Sub-Menu-Head">
         <h3 class="Sub-Menu-Head-Main unselectable">Major</h3>
@@ -83,18 +108,25 @@
         <a href="NewMajor.html" class="button">Create new major</a>
       </div>-->
     </div>
+    <!-- START: OffCanvas sub major menu -->
 
 
-
+    <!-- END: Navigation -->
     <nav class="scrollhide-nav">
+      <!-- START: Top navigation -->
       <div class="top-bar Top-Bar-Main">
 
 
+        <!-- ____________________ START: Navigation sections ____________________ -->
+
+
+        <!-- START: Left section of navigation -->
         <div class="top-bar-left">
           <span class="Top-Bar-Menu"><a class="fa fa-bars" data-toggle="offCanvas"></a></span>
         </div>
+        <!-- START: Left section of navigation -->
 
-
+        <!-- START: Middle section of navigation -->
         <div class="Top-Bar-Center-Logo Top-Bar-Logo">
 
           <div class="Triangle-Left">
@@ -108,8 +140,9 @@
           </div>
 
         </div>
+        <!-- END: Middle section of navigation -->
 
-
+        <!-- START: Right section of navigation -->
         <div class="top-bar-right">
           <ul class="menu medium-horizontal">
             <li class="menu" data-toggle="User-Menu-Dropdown">
@@ -117,11 +150,18 @@
             </li>
           </ul>
         </div>
+        <!-- START: Right section of navigation -->
 
 
+        <!-- ____________________ END: Navigation sections ____________________ -->
+
+
+        <!-- START: User dropdown menu -->
         <div class="dropdown-pane" id="User-Menu-Dropdown" data-dropdown data-close-on-click="true">
+          <!-- START: Container for user menu dropdown tabs -->
           <div class="Slider">
 
+            <!-- START: Main tab -->
             <div class="Tab-Main">
               <div class="User-Menu-Image">
                 <img src="img/Profile_placeholder.png" id="Profile-Img-Main" alt="Profile-Picture-Main">
@@ -137,8 +177,9 @@
                 <a id="Logout-Main" class="cell">Logout</a>
               </div>
             </div>
+            <!-- END: Main tab -->
 
-
+            <!-- START: Profile tab -->
             <div class="Tab-Profile">
               <div class="Tab-Profile-Content">
 
@@ -163,18 +204,18 @@
                   <div class="Profile-Content-Email">
                     <label>Email</label>
 
-                    <div class="Profile-Content-Email-Group">
+                    <div class="Profile-Content-Group">
                       <i class="fa fa-envelope"></i>
-                      <input type="text" name="" value="">
+                      <input type="text" id="Profile-Content-Email-Input" name="Profile-Email-Edit">
                     </div>
                   </div>
 
                   <div class="Profile-Content-Phone">
                     <label>Phone</label>
 
-                    <div class="Profile-Content-Email-Group">
+                    <div class="Profile-Content-Group">
                       <i class="fa fa-phone"></i>
-                      <input type="text" name="" value="">
+                      <input type="text" id="Profile-Content-Phone-Input" name="Profile-Phone-Edit">
                     </div>
                   </div>
 
@@ -185,7 +226,9 @@
 
               </div>
             </div>
+            <!-- END: Profile tab -->
 
+            <!-- START: Notification tab -->
             <div class="Tab-Notifi">
               <div class="Tab-Notifi-Content">
                 <div class="Notifi-Content-Head">
@@ -253,35 +296,45 @@
                 </div>
               </div>
             </div>
+            <!-- END: Notification tab -->
 
           </div>
+          <!-- END: Container for user menu dropdown tabs -->
         </div>
-
+        <!-- END: User dropdown menu -->
 
       </div>
+      <!-- END: Top navigation -->
 
+      <!-- START: Breadcrumb -->
       <div class="Breadcrumb" aria-label="You are here:" role="navigation">
         <ul class="breadcrumbs unselectable">
           <li><span class="fa fa-home Breadcrumb-Home"></span>Home</li>
         </ul>
       </div>
+      <!-- END: Breadcrumb -->
+
     </nav>
+    <!-- END: Navigation -->
 
-
+    <!-- START: Viewport -->
     <div class="off-canvas-content OffCanvas-Main" data-off-canvas-content>
 
+      <!-- START: All content goes in here -->
       <section id="Content-Main">
 
-
+        <!-- START: Loading screen -->
         <section id="Loading-Main">
           <span id="Loading-Icon"><img src="img/Loading/Hex.gif" alt="LOADING ICON"/></span>
           <label id="Loading-Text">Loading data</label>
         </section>
+        <!-- END: Loading screen -->
 
 
+        <!-- START: Three boxes on top -->
         <div class="Display-Main">
 
-
+          <!-- START: Next lesson box -->
           <div class="Display-Item Display-Next">
             <!-- CountDownTo Format is "MM/DD/YYYY HH:MM" -->
             <div class="Display-Item-Screen" CountDownTo="01/01/2018 08:00" id="NextClassMain">
@@ -338,7 +391,9 @@
             </div>
             <label class="Display-Item-Title unselectable">Next Lesson in</label>
           </div>
+          <!-- END: Next lesson box -->
 
+          <!-- START: Upcoming test box -->
           <div class="Display-Item Display-Test">
 
             <div class="Display-Item-Screen">
@@ -353,7 +408,9 @@
             <label class="Display-Item-Title unselectable">Next available test date</label>
 
           </div>
+          <!-- END: Upcoming test box -->
 
+          <!-- START: Absence box -->
           <div class="Display-Item Display-Fravaer">
 
             <div class="Display-Item-Screen">
@@ -411,9 +468,12 @@
             <label class="Display-Item-Title unselectable">Absence in S1</label>
 
           </div>
+          <!-- END: Absence box -->
 
         </div>
+        <!-- END: Three boxes on top -->
 
+        <!-- START: DHTMLXscheduler -->
         <div class="Calendar-Main">
 
           <div id="scheduler_here" class="dhx_cal_container" style='width: calc(90vw); height: 100%;'>
@@ -432,10 +492,13 @@
           </div>
 
         </div>
+        <!-- END: DHTMLXscheduler -->
 
       </section>
+      <!-- END: All content goes in here -->
 
 
+      <!-- Start: Footer -->
       <footer class="unselectable">
 
         <div class="Footer-Logo">
@@ -476,26 +539,46 @@
 
         </div>
       </footer>
+      <!-- END: Footer -->
 
     </div>
+    <!-- END: Viewport -->
 
   </div>
+  <!-- END: Desktop view -->
 
+  <!-- ____________________ START: JS files ____________________ -->
+
+
+  <!-- START: Basic foundation and init -->
   <script src="js/Addons/Foundation/vendor/jquery.js"></script>
   <script src="js/Addons/Foundation/vendor/what-input.js"></script>
   <script src="js/Addons/Foundation/vendor/foundation.js"></script>
-  <script src="js/Partials/ScrollHideNav.js"></script>
+  <script src="js/Partials/app.js"></script>
+  <!-- End: Basic foundation files and init -->
+
+  <!-- START: Calendar and init -->
   <script src="js/Addons/Dhtmlx/dhtmlxscheduler.js"></script>
   <script src="js/Addons/Dhtmlx/dhtmlxscheduler_readonly.js"></script>
   <script src="js/Addons/Dhtmlx/dhtmlxscheduler_limit.js"></script>
   <!--<script src="js/dhtmlxscheduler_tooltip.js"></script>-->
   <script src="js/Calendar/CalendarInit.js"></script>
+  <!-- END: Calendar and init -->
+
+  <!-- START: Partial scripts -->
+  <script src="js/Partials/ScrollHideNav.js"></script>
   <script src="js/Partials/PreventParentScroll.js"></script>
+  <script src="js/Partials/SliderForProfile.js"></script>
+  <script src="js/Partials/Logout.js"></script>
+  <!-- End: Partial scripts -->
+
+  <!-- START: Single scripts -->
   <script src="js/Single/AbsenceSwitch.js"></script>
   <script src="js/Single/CountDown.js"></script>
-  <script src="js/Partials/SliderForProfile.js"></script>
-  <script src="js/Partials/app.js"></script>
-  <script src="js/Partials/Logout.js"></script>
+  <!-- End: Single scripts -->
+
+
+  <!-- ____________________ END: JS files ____________________ -->
 
 </body>
 
