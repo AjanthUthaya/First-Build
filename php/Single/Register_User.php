@@ -3,6 +3,24 @@
 // Including db connection
 include '../Partials/DB.php';
 
+function getUserIP(){
+  $client  = @$_SERVER['HTTP_CLIENT_IP'];
+  $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+  $remote  = $_SERVER['REMOTE_ADDR'];
+
+  if(filter_var($client, FILTER_VALIDATE_IP)){
+    $ip = $client;
+  }
+  elseif(filter_var($forward, FILTER_VALIDATE_IP)){
+    $ip = $forward;
+  }
+  else{
+    $ip = $remote;
+  }
+
+  return $ip;
+}
+
 // Required field from registration
 $required = array(
   'Firstname',
@@ -120,8 +138,10 @@ if ($Empty_Field == true) {
                 // Setting creation date to now
                 $Creation_Date = date("d-m-Y H:i:s");
 
+                $User_Ip = getUserIP();
+
                 // Send data to the database
-                $CreateNewUser = "INSERT INTO users (firstname, middlename, lastname, email, phone, birth_date, vgs, username, password, img_src, creation_date) VALUES ('$Firstname', '$Middlename', '$Lastname', '$Email', '$Phone', '$Birth_Date', '$Vgs', '$Username', '$Encrypted_Password', '$filePath', '$Creation_Date')";
+                $CreateNewUser = "INSERT INTO users (firstname, middlename, lastname, email, phone, birth_date, vgs, username, password, img_src, creation_date, creation_ip) VALUES ('$Firstname', '$Middlename', '$Lastname', '$Email', '$Phone', '$Birth_Date', '$Vgs', '$Username', '$Encrypted_Password', '$filePath', '$Creation_Date', '$User_Ip')";
                 if ($conn->query($CreateNewUser) === TRUE) {
                   echo "SQL_Done";
 

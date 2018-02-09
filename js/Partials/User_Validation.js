@@ -56,4 +56,4 @@ FirstLoad();
 // Run every x secounds
 window.setInterval(function() {
   ValidateUser();
-}, 120); //1000 = 1 sec
+}, 300000); //1000 = 1 sec -- 60 000 = 1 m
