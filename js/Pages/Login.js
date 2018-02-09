@@ -45,7 +45,7 @@ function ShowLogin() {
 
     // ---------- END: Disabling input during form submit ---------- //
 
-
+    $('#Login-Submit').html('<i class="Spinner"></i>');
 
     // ---------- START: Form submit to Login_User.php ---------- //
 
@@ -76,7 +76,14 @@ function ShowLogin() {
       } else if (data == Missing_Field_Data) {
         alert("Please fill out both values");
       } else if (data == Login_Failed) {
-        alert("Wrong password or username");
+        $('#Login-Submit').html('Login');
+        $('#Login-Submit').css('animation', 'shake 200ms linear infinite');
+        $('#Login-Submit').css('color', 'red');
+        setTimeout(function() {
+          $('#Login-Submit').css('animation', 'none');
+          $('#Login-Submit').css('color', 'white');
+        }, 600)
+
       } else if (data == Password_Get_Error) {
         alert("DB: Could not get password");
       } else if (data == DB_GetData_Error) {
