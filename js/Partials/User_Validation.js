@@ -16,6 +16,7 @@ function ValidateUser() {
   Validation = $.ajax({
     url: "php/Partials/Login_Validation.php",
     type: "post",
+    async: false,
     contentType: false, // The content type used when sending data to the server.
     cache: false, // To unable request pages to be cached
     processData: false, // To send DOMDocument or non processed data file it is set to false
@@ -28,6 +29,7 @@ function ValidateUser() {
     if (Data[0] == "Redirect") {
 
       $('body').css('display', 'none');
+      alert("Login credentials failed, redirecting to login page");
       window.location.href = "Login.html?Reason=" + Data[1];
 
     }

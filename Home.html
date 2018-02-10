@@ -146,7 +146,7 @@
         <div class="top-bar-right">
           <ul class="menu medium-horizontal">
             <li class="menu" data-toggle="User-Menu-Dropdown">
-              <label id="Name-Label">Firstname Lastname</label><span class="Top-Bar-Menu"><a class="fa fa-user-circle"></a></span>
+              <label id="User-Name-Main"></label><span class="Top-Bar-Menu"><a class="fa fa-user-circle"></a></span>
             </li>
           </ul>
         </div>
@@ -168,7 +168,7 @@
               </div>
 
               <div class="User-Menu-Name">
-                <h5 class="unselectable">Firstname Lastname</h5>
+                <label class="unselectable" id="User-Name-Dropdown"></label>
               </div>
 
               <div class="User-Menu-Content grid-x">
@@ -198,7 +198,7 @@
                   </div>
 
                   <div class="Profile-Content-Name">
-                    <h5 class="unselectable">Firstname Lastname</h5>
+                    <label class="unselectable" id="User-Name-Profile"></label>
                   </div>
 
                   <div class="Profile-Content-Email">
@@ -206,7 +206,7 @@
 
                     <div class="Profile-Content-Group">
                       <i class="fa fa-envelope"></i>
-                      <input type="text" id="Profile-Content-Email-Input" name="Profile-Email-Edit">
+                      <input type="text" id="User-Email-Profile" name="Profile-Email-Edit">
                     </div>
                   </div>
 
@@ -215,7 +215,7 @@
 
                     <div class="Profile-Content-Group">
                       <i class="fa fa-phone"></i>
-                      <input type="text" id="Profile-Content-Phone-Input" name="Profile-Phone-Edit">
+                      <input type="text" id="User-Phone-Profile" name="Profile-Phone-Edit">
                     </div>
                   </div>
 
@@ -566,11 +566,13 @@
   <!-- END: Calendar and init -->
 
   <!-- START: Partial scripts -->
+  <script src="js/Partials/User_Validation.js"></script>
+  <script src="js/Partials/Logout.js"></script>
+  <script src="js/Partials/User_Data.js"></script>
+  <script src="js/Partials/Profile_Update.js"></script>
   <script src="js/Partials/ScrollHideNav.js"></script>
   <script src="js/Partials/PreventParentScroll.js"></script>
   <script src="js/Partials/SliderForProfile.js"></script>
-  <script src="js/Partials/User_Validation.js"></script>
-  <script src="js/Partials/Logout.js"></script>
   <!-- End: Partial scripts -->
 
   <!-- START: Single scripts -->

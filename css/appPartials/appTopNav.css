@@ -104,24 +104,22 @@
   background-color: #6ba027;
 }
 
-#Name-Label {
-  font-size: 14px;
-  line-height: 2;
-  display: flex;
-  overflow: hidden;
-  max-width: 160px;
-  padding-left: 1rem;
+#User-Name-Main {
+  font-size: 15px;
+  font-weight: bold;
+  display: block;
+  color: white;
+  line-height: 4;
+  width: fit-content;
+  max-width: 170px;
   cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  text-align: right;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  color: white;
-  justify-content: center;
-  align-items: center;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

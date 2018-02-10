@@ -166,17 +166,17 @@ $("#Register-Main").submit(function(event) {
       Firstname: {
         required: true,
         minlength: 2,
-        maxlength: 40
+        maxlength: 25
       },
       Middlename: {
         required: false,
         minlength: 2,
-        maxlength: 40
+        maxlength: 25
       },
       Lastname: {
         required: true,
         minlength: 2,
-        maxlength: 40
+        maxlength: 25
       },
       Email: {
         required: true,
@@ -385,5 +385,16 @@ $('#Register-Firstname, #Register-Middlename, #Register-Lastname').on('keypress'
   if (!regex.test(key)) {
     event.preventDefault();
     return false;
+  }
+});
+
+// Captalize first letter of input
+$('#Register-Firstname, #Register-Middlename, #Register-Lastname, #Register-Username').on('keydown', function(event) {
+  if (this.selectionStart == 0 && event.keyCode >= 65 && event.keyCode <= 90 && !(event.shiftKey) && !(event.ctrlKey) && !(event.metaKey) && !(event.altKey)) {
+    var $t = $(this);
+    event.preventDefault();
+    var char = String.fromCharCode(event.keyCode);
+    $t.val(char + $t.val().slice(this.selectionEnd));
+    this.setSelectionRange(1, 1);
   }
 });
