@@ -203,6 +203,10 @@ body {
   background-color: #36414d;
 }
 
+.dhx_cal_event .dhx_title{
+  padding-top: 4px;
+}
+
 div.dhx_menu_head {
   display: none;
   background-image: inherit;
