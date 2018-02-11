@@ -136,12 +136,13 @@ if ($Empty_Field == true) {
                 date_default_timezone_set("Norway/Oslo");
 
                 // Setting creation date to now
-                $Creation_Date = date("d-m-Y H:i:s");
+                $Creation_Date = date("d-m-Y");
+                $Creation_Time = date("H:i:s");
 
                 $User_Ip = getUserIP();
 
                 // Send data to the database
-                $CreateNewUser = "INSERT INTO users (firstname, middlename, lastname, email, phone, birth_date, vgs, username, password, img_src, creation_date, creation_ip) VALUES ('$Firstname', '$Middlename', '$Lastname', '$Email', '$Phone', '$Birth_Date', '$Vgs', '$Username', '$Encrypted_Password', '$filePath', '$Creation_Date', '$User_Ip')";
+                $CreateNewUser = "INSERT INTO users (firstname, middlename, lastname, email, phone, birth_date, vgs, username, password, img_src, creation_date, creation_time, creation_ip) VALUES ('$Firstname', '$Middlename', '$Lastname', '$Email', '$Phone', '$Birth_Date', '$Vgs', '$Username', '$Encrypted_Password', '$filePath', '$Creation_Date', '$Creation_Time', '$User_Ip')";
                 if ($conn->query($CreateNewUser) === TRUE) {
                   echo "SQL_Done";
 

@@ -26,7 +26,6 @@ if ($("#" + IdName).length !== 0) {
   // Fired up on ajax success
   request.done(function(json) {
     UserData = json;
-    console.log("Your in!");
   })
 
   // Fired up on ajax failure
@@ -41,7 +40,7 @@ if ($("#" + IdName).length !== 0) {
   if (typeof UserData == 'object') {
 
     // ---------- START: Declaring user variables ---------- //
-    
+
     var User_Firstname = UserData.Firstname;
     var User_Middlename = UserData.Middlename;
     var User_Lastname = UserData.Lastname;

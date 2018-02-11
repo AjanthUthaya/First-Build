@@ -1,4 +1,8 @@
-// ---------- START: Image on click open files ---------- //
+var ImgVal = false;
+var EmailVal = false;
+var PhoneVal = false;
+
+// ---------- START: Tigger folders opening OnClick ---------- //
 
 // Define form data variable
 var ProfileFormData = new FormData();
@@ -13,16 +17,13 @@ if ($("#" + IdName).length !== 0) {
     $('#Profile-Img-Src').trigger('click');
   });
 
-  // ---------- END: Image on click open files ---------- //
+  // ---------- END: Tigger folders opening OnClick ---------- //
 
 
 
   // ---------- START: Img preview ---------- //
 
   $("#Profile-Img-Src").on("change", function(e) {
-
-    // Save image array, and send on form submit
-    ProfileFormData.append('ImgSrc', this.files[0]);
 
     //IMG INFO (Testing)
     //var file = this.files[0],
@@ -51,6 +52,7 @@ if ($("#" + IdName).length !== 0) {
       return false;
 
     } else if (fileSize > 10485760) {
+      
       // ---------- File size does not meet requirements ---------- //
       function formatBytes(bytes, decimalPoint) {
         if (bytes == 0) return '0 Bytes';
@@ -69,15 +71,22 @@ if ($("#" + IdName).length !== 0) {
       // Select image, display none
       $('#Content-Image-Text').css('display', 'none');
 
+      // Display error message
+
 
       return false;
 
       // ---------- File size does not meet requirements ---------- //
     } else {
 
+      // Save image array, and send on form submit
+      ProfileFormData.append('ImgSrc', this.files[0]);
+
       var reader = new FileReader();
       reader.onload = imageIsLoaded;
       reader.readAsDataURL(this.files[0]);
+
+      ImgVal = true;
 
     }
 
@@ -89,11 +98,79 @@ if ($("#" + IdName).length !== 0) {
 
 
 
+  // ---------- START: Activate save button on change from default values ---------- //
+
+  // Get old values
+  var Old_Email_Value = $('#User-Email-Profile').val();
+  var Old_Phone_Value = $('#User-Phone-Profile').val();
+  var Old_ImgSrc_Value = $('.Content-Image-Main').find('img').attr('src');
+
+  function ProfileChange() {
+
+    // If new values, change button to active
+    $('#User-Email-Profile, #User-Phone-Profile, #Profile-Img-Edit').on('input load', function() {
+
+      function isEmail(email) {
+        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        return regex.test(email);
+      }
+
+      function isPhone(phone) {
+        var regex = /^[0-9]{8}$/;
+        return regex.test(phone);
+      }
+
+      var New_Email_Value = $('#User-Email-Profile').val();
+      var New_Phone_Value = $('#User-Phone-Profile').val();
+      var New_ImgSrc_Value = $('.Content-Image-Main').find('img').attr('src');
+
+      console.log(Old_Email_Value + '  ' + New_Email_Value + Old_Phone_Value + '  ' + New_Phone_Value);
+      console.log(Old_ImgSrc_Value);
+      if (Old_Email_Value !== New_Email_Value || Old_Phone_Value !== New_Phone_Value || Old_ImgSrc_Value !== New_ImgSrc_Value) {
+
+        // Button is active
+        $('#Save-Profile-Content').css('opacity', '1');
+        $('#Save-Profile-Content').css('cursor', 'pointer');
+        $('#Save-Profile-Content').addClass('Save-Profile-Content-Active');
+
+      } else {
+        // Button is inactive
+        $('#Save-Profile-Content').css('opacity', '0.6');
+        $('#Save-Profile-Content').css('cursor', 'default');
+      }
+
+      EmailVal = isEmail(New_Email_Value);
+      PhoneVal = isPhone(New_Phone_Value);
+      console.log(PhoneVal);
+    });
+
+  }
+
+  $(document).ready(function() {
+    ProfileChange();
+  });
+
+  // ---------- END: Activate save button on change from default values ---------- //
+
+
+
+
+
+
+
+
+
   // Variable to hold request
   var request;
 
-  // Bind to the submit event of our form
-  $("#Save-Profile-Content-Active").submit(function(event) {
+  // On save send new data to DB and update SESSION
+  $('body').on('click', '.Save-Profile-Content-Active', function(event) {
+    if (ImgVal == true || EmailVal == true || PhoneVal == true) {
+
+    }
+    // Save email and phone to array, and send on form submit
+    ProfileFormData.append('Email', $('#User-Email-Profile').val());
+    ProfileFormData.append('Phone', $('#User-Phone-Profile').val());
 
     // Prevent default posting of form - put here to work in case of errors
     event.preventDefault();
@@ -102,23 +179,6 @@ if ($("#" + IdName).length !== 0) {
     if (request) {
       request.abort();
     }
-
-    // ---------- START: Declaring field values ---------- //
-
-    RegisterFormData.append('Firstname', $('#Register-Firstname').val());
-
-    // ---------- END: Declaring field values ---------- //
-
-
-
-    /*
-      // If validation failed, stop form
-      if (validationFailed) {
-        event.preventDefault();
-        return false;
-      }
-    */
-
 
 
     // ---------- START: Disabling input during form submit ---------- //
@@ -138,7 +198,7 @@ if ($("#" + IdName).length !== 0) {
     request = $.ajax({
       url: "php/Partials/Profile_Update.php",
       type: "post",
-      data: RegisterFormData,
+      data: ProfileFormData,
       contentType: false, // The content type used when sending data to the server.
       cache: false, // To unable request pages to be cached
       processData: false, // To send DOMDocument or non processed data file it is set to false

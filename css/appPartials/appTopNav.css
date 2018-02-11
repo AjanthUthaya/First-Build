@@ -120,6 +120,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  padding-left: 10px;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
