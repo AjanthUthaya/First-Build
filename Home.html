@@ -191,9 +191,15 @@
                 <div class="Profile-Content-Content ChildScroll">
                   <div class="Profile-Content-Image">
                     <div class="Content-Image-Main">
-                      <span id="Content-Image-Text">Select image</span>
+                      <span class="Profile-Img-Close">x</span>
+                      <span id="Content-Image-Text" class="unselectable">Select image</span>
+                      <div class="Profile-Img-Error">
+                        <label id="Img-Error-Limit"></label>
+                        <label id="Img-Error-Current"></label>
+                      </div>
                       <img src="img/Profile_placeholder.png" id="Profile-Img-Edit" alt="Profile-Picture-Edit">
                       <input type="file" id="Profile-Img-Src" accept="image/png, image/jpg, image/jpeg" name="ImgSrc" style="display: none;">
+
                     </div>
                   </div>
 
