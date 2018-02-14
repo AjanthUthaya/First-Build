@@ -2,10 +2,10 @@
 session_start();
 
 // Including db connection
-include '../Partials/DB.php';
+require '../Partials/DB.php';
 
 // Set default timezone
-date_default_timezone_set('Norway/Oslo');
+date_default_timezone_set('Europe/Oslo');
 
 // Date now (dd-mm-yyyy)
 $DateNow = date('d-m-Y');
@@ -132,13 +132,11 @@ if ($Session_Array_Empty == true) {
           $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
           $remote  = $_SERVER['REMOTE_ADDR'];
 
-          if(filter_var($client, FILTER_VALIDATE_IP)){
+          if (filter_var($client, FILTER_VALIDATE_IP)){
             $ip = $client;
-          }
-          elseif(filter_var($forward, FILTER_VALIDATE_IP)){
+          } elseif (filter_var($forward, FILTER_VALIDATE_IP)){
             $ip = $forward;
-          }
-          else{
+          } else {
             $ip = $remote;
           }
 
@@ -164,8 +162,6 @@ if ($Session_Array_Empty == true) {
         VALUES ('$Session_User_Id', '$Session_User_Type', '$Session_Username', '$User_Ip', '$Type', '$Page', '$DateNow', '$TimeNow')";
 
         if ($conn->query($sql) === TRUE) {}
-
-        $conn->close();
 
         // ---------- END: Send data to DB ---------- //
 

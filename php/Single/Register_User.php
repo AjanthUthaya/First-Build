@@ -1,25 +1,9 @@
 <?php
 
 // Including db connection
-include '../Partials/DB.php';
+require '../Partials/DB.php';
 
-function getUserIP(){
-  $client  = @$_SERVER['HTTP_CLIENT_IP'];
-  $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
-  $remote  = $_SERVER['REMOTE_ADDR'];
-
-  if(filter_var($client, FILTER_VALIDATE_IP)){
-    $ip = $client;
-  }
-  elseif(filter_var($forward, FILTER_VALIDATE_IP)){
-    $ip = $forward;
-  }
-  else{
-    $ip = $remote;
-  }
-
-  return $ip;
-}
+include '../Functions/GetUserIP.php';
 
 // Required field from registration
 $required = array(
@@ -133,22 +117,24 @@ if ($Empty_Field == true) {
                 $Encrypted_Password = password_hash($Password, PASSWORD_BCRYPT);
 
                 // Setting timezone
-                date_default_timezone_set("Norway/Oslo");
+                date_default_timezone_set("Europe/Oslo");
 
                 // Setting creation date to now
                 $Creation_Date = date("d-m-Y");
                 $Creation_Time = date("H:i:s");
 
-                $User_Ip = getUserIP();
+                $User_Ip = GetUserIP();
 
                 // Send data to the database
-                $CreateNewUser = "INSERT INTO users (firstname, middlename, lastname, email, phone, birth_date, vgs, username, password, img_src, creation_date, creation_time, creation_ip) VALUES ('$Firstname', '$Middlename', '$Lastname', '$Email', '$Phone', '$Birth_Date', '$Vgs', '$Username', '$Encrypted_Password', '$filePath', '$Creation_Date', '$Creation_Time', '$User_Ip')";
+                $CreateNewUser = "INSERT INTO users
+                (firstname, middlename, lastname, email, phone, birth_date, vgs, username, password, img_src, creation_date, creation_time, creation_ip)
+                VALUES
+                ('$Firstname', '$Middlename', '$Lastname', '$Email', '$Phone', '$Birth_Date', '$Vgs', '$Username', '$Encrypted_Password', '$filePath', '$Creation_Date', '$Creation_Time', '$User_Ip')";
                 if ($conn->query($CreateNewUser) === TRUE) {
                   echo "SQL_Done";
-
                 } else {
-                  //echo "SQL_Error";
-                  echo $conn->connect_error;
+                  echo "SQL_Error";
+                  //echo $conn->connect_error;
                 }
 
                 // Close connection to the database

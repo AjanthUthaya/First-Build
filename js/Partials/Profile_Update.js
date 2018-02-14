@@ -272,7 +272,22 @@ $(document).ready(function() {
 
       // Fired up on success
       Validation.done(function(data) {
-        console.log(data);
+
+
+        var SQL_Done_EmailPhone = 'SQL_Done_EmailPhone';
+
+        if (data.indexOf(SQL_Done_EmailPhone) != -1) {
+          var UpdatedEmailPhone = data.split("-");
+
+          New_Email_Val = UpdatedEmailPhone[1];
+          New_Phone_Val = UpdatedEmailPhone[2];
+          SaveButton('Disable');
+          alert('Profile updated');
+        } else {
+          alert(data);
+        }
+
+
       })
 
       // Fired up on failure

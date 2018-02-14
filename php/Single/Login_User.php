@@ -2,7 +2,7 @@
 session_start();
 
 // Including db connection
-include '../Partials/DB.php';
+require '../Partials/DB.php';
 
 // Required field from registration
 $required = array(
@@ -104,7 +104,7 @@ if ($Empty_Field == true) {
           // ---------- START: Storing DB variables into session cookies ---------- //
 
           // Set default timezone
-          date_default_timezone_set('Norway/Oslo');
+          date_default_timezone_set('Europe/Oslo');
 
           // Date now (dd-mm-yyyy)
           $DateNow = date('d-m-Y H:i:s');

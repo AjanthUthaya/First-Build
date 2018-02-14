@@ -368,7 +368,7 @@ $("#Register-Main").submit(function(event) {
 });*/
 
 // Disable space
-$("#Register-Phone").on({
+$("#Register-Phone, #Register-Email").on({
   keydown: function(e) {
     if (e.which === 32)
       return false;

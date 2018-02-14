@@ -61,6 +61,8 @@ if ($("#" + IdName).length !== 0) {
       $('#User-Name-Profile').html(User_Firstname + " " + User_Lastname);
     } else {
       $('#User-Name-Main').html(User_Firstname + " " + User_Middlename + " " + User_Lastname);
+      $('#User-Name-Dropdown').html(User_Firstname + " " + User_Middlename + " " + User_Lastname);
+      $('#User-Name-Profile').html(User_Firstname + " " + User_Middlename + " " + User_Lastname);
     }
 
     $('#Profile-Img-Main').attr('src', User_ImgSrc);

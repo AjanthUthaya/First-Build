@@ -188,6 +188,7 @@
   cursor: pointer;
   border-radius: 50%;
   background: #292c31;
+  border: 2px solid white;
 }
 
 .Profile-Img-Close {
@@ -330,14 +331,27 @@
   text-align: left;
 }
 
-.Profile-Content-Phone input, .Profile-Content-Phone input:focus, .Profile-Content-Email input, .Profile-Content-Email input:focus {
+.Profile-Content-Phone input, .Profile-Content-Email input {
   font-size: 12px;
   max-width: inherit;
   padding-left: 40;
   color: white;
   border-top: transparent !important;
   border-right: transparent !important;
-  border-bottom: 2px solid !important;
+  border-bottom: 2px solid #9a9a9a !important;
+  border-left: transparent !important;
+  background: transparent;
+  box-shadow: none;
+}
+
+.Profile-Content-Phone input:focus, .Profile-Content-Email input:focus {
+  font-size: 12px;
+  max-width: inherit;
+  padding-left: 40;
+  color: white;
+  border-top: transparent !important;
+  border-right: transparent !important;
+  border-bottom: 2px solid white !important;
   border-left: transparent !important;
   background: transparent;
   box-shadow: none;
