@@ -379,7 +379,7 @@ $("#Register-Phone, #Register-Email").on({
 });
 
 // Disable special characters
-$('#Register-Firstname, #Register-Middlename, #Register-Lastname').on('keypress', function(event) {
+$('#Register-Firstname, #Register-Middlename, #Register-Lastname, #Register-Username').on('keypress', function(event) {
   var regex = new RegExp("^[a-zA-Z]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {

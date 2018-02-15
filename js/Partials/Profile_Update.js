@@ -6,6 +6,7 @@ var ProfileUpdateData = new FormData();
 // Store old values
 var Old_Email_Val = $('#User-Email-Profile').val();
 var Old_Phone_Val = $('#User-Phone-Profile').val();
+var Old_Img_Val = $('#Profile-Img-Main').attr('src');
 
 // Declare new values
 var New_Email_Val;
@@ -52,8 +53,9 @@ $(document).ready(function() {
 
     // Remove input value
     $('#Profile-Img-Src').val('');
+
     // Change to fallback image
-    $('#Profile-Img-Edit').attr('src', 'img/Profile_Placeholder.png');
+    $('#Profile-Img-Edit').attr('src', Old_Img_Val);
 
     // Removes FormData value
     ProfileUpdateData.delete('ImgSrc');
@@ -83,7 +85,7 @@ $(document).ready(function() {
 
       // ---------- File type does not match any from array ---------- //
       // Fallback image
-      $('#Profile-Img-Edit').attr('src', 'img/Profile_Placeholder.png');
+      $('#Profile-Img-Edit').attr('src', Old_Img_Val);
 
       // Select image, display none
       //$('#Content-Image-Text').css('display', 'none');
@@ -114,7 +116,7 @@ $(document).ready(function() {
       var fileSizeFormatted = formatBytes(fileSize, 2);
 
       // Fallback image
-      $('#Profile-Img-Edit').attr('src', 'img/Profile_Placeholder.png');
+      $('#Profile-Img-Edit').attr('src', Old_Img_Val);
 
       // Select image, display none
       //$('#Content-Image-Text').css('opacity', 'none');
@@ -270,19 +272,53 @@ $(document).ready(function() {
         processData: false, // To send DOMDocument or non processed data file it is set to false
       });
 
+
+
       // Fired up on success
       Validation.done(function(data) {
 
 
         var SQL_Done_EmailPhone = 'SQL_Done_EmailPhone';
 
+        var SQL_Done_ImgEmailPhone = 'SQL_Done_ImgEmailPhone';
+
         if (data.indexOf(SQL_Done_EmailPhone) != -1) {
+
+          // Get value of new email and phone
           var UpdatedEmailPhone = data.split("-");
 
-          New_Email_Val = UpdatedEmailPhone[1];
-          New_Phone_Val = UpdatedEmailPhone[2];
-          SaveButton('Disable');
+          // Updating old email and phone variables
+          Old_Email_Val = UpdatedEmailPhone[1];
+          Old_Phone_Val = UpdatedEmailPhone[2];
+
+          $('.Profile-Img-Close').css('display', 'none');
+
+          // Show user that profile has been updated
           alert('Profile updated');
+
+
+        } else if (data.indexOf(SQL_Done_ImgEmailPhone) != -1) {
+
+          // Get value of new email and phone
+          var UpdatedEmailPhone = data.split("-");
+
+          // Updating old email and phone variables
+          Old_Img_Val = $("#Profile-Img-Edit").attr("src");
+          Old_Email_Val = UpdatedEmailPhone[2];
+          Old_Phone_Val = UpdatedEmailPhone[3];
+
+          // Update profile images
+          $("#Profile-Img-Main").attr("src", Old_Img_Val);
+          $("#Profile-Img-Edit").attr("src", Old_Img_Val);
+
+          $('.Profile-Img-Close').css('display', 'none');
+
+          // Show user that profile has been updated
+          alert('Profile updated');
+
+          // Disable save button, not working because the way function is written
+          SaveButton('Disable');
+
         } else {
           alert(data);
         }

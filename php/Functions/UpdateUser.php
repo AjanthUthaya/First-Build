@@ -105,7 +105,117 @@ function UpdateUser($conn, $NewEmail, $NewPhone, $NewImg){
 
   } else {
     // Update image aswell
-    print_r($NewImg);
+
+    // GET DB data, so i can insert the updated user info
+    $CheckUsernameSql = "SELECT * FROM users WHERE username = '" . $Session_Username . "' AND active = 'true'";
+    $UsernameExists = mysqli_query($conn, $CheckUsernameSql);
+
+
+    if (mysqli_num_rows($UsernameExists) == 0) {
+      // ---------- Username no match to DB usernames ---------- //
+      echo "DB_Username_NoMatch";
+    } else {
+      // ---------- Username match found in DB ---------- //
+      // Get values from database and put them inside a JSON object
+      while ($MatchLogin = mysqli_fetch_row($UsernameExists)){
+        $DBMatchData = json_encode($MatchLogin, JSON_FORCE_OBJECT);
+      }
+
+      if (empty($DBMatchData)) {
+        echo "DB_CouldNot_Get";
+      }
+      //Decode JSON object into an array
+      $DBMatchDataDecoded = json_decode($DBMatchData, true);
+
+      // ---------- START: Declaring data from DB into variables ---------- //
+
+      $DB_User_Id = $DBMatchDataDecoded[2];
+      $DB_User_Type = $DBMatchDataDecoded[3];
+      $DB_Username = $DBMatchDataDecoded[4];
+      $DB_Password = $DBMatchDataDecoded[5];
+      $DB_Firstname = $DBMatchDataDecoded[6];
+      $DB_Middlename = $DBMatchDataDecoded[7];
+      $DB_Lastname = $DBMatchDataDecoded[8];
+      $DB_Email = $DBMatchDataDecoded[9];
+      $DB_Phone = $DBMatchDataDecoded[10];
+      $DB_Birth_Date = $DBMatchDataDecoded[11];
+      $DB_Vgs = $DBMatchDataDecoded[12];
+      $DB_Img_Src = $DBMatchDataDecoded[13];
+
+      // ---------- END: Declaring data from DB into variables ---------- //
+
+
+      // ---------- START: Process new image ---------- //
+
+      // Get new autoincrement
+      $GetIncrementSql = mysqli_query($conn, "SELECT MAX(img_increment) AS img_increment FROM users WHERE username='$Session_Username'");
+
+      $row = mysqli_fetch_array($GetIncrementSql);
+      $AutoIncrement = $row['img_increment'];
+
+      // If autoincrement empty return error
+      if (empty($AutoIncrement)) {
+        echo 'SQL_Error';
+        exit();
+      } else {
+        $AutoIncrement = $AutoIncrement + 1;
+      }
+
+      // Get image type
+      $NewImgType = explode("/",$NewImg['type'])[1];
+
+
+      // ---------- END: Process new image ---------- //
+
+      include 'GetUserIp.php';
+
+      $Active = 'true';
+      $Creation_Ip = GetUserIP();
+      $NewImgPath = 'img/Profile/' . $DB_Username . '_' . $AutoIncrement . '.' . $NewImgType;
+
+      // ---------- END: Declaring other needed variables ---------- //
+
+      // Setting timezone
+      date_default_timezone_set('Europe/Oslo');
+      $Creation_Date = date("d-m-Y");
+      $Creation_Time = date("H:i:s");
+
+
+      $UpdateUserData = "INSERT INTO users
+      (active, user_id, user_type, username, password, firstname, middlename, lastname, email, phone, birth_date, vgs, img_src, img_increment, creation_date, creation_time, creation_ip)
+      VALUES
+      ('$Active', '$DB_User_Id', '$DB_User_Type', '$DB_Username', '$DB_Password', '$DB_Firstname', '$DB_Middlename', '$DB_Lastname', '$NewEmail', '$NewPhone', '$DB_Birth_Date', '$DB_Vgs', '$NewImgPath', '$AutoIncrement' , '$Creation_Date', '$Creation_Time', '$Creation_Ip')";
+
+
+      if ($conn->query($UpdateUserData) === TRUE) {
+        // Inserted updated user
+
+        $UpdateOld = "UPDATE users SET active='updated' WHERE user_id='$Session_User_Id' AND email='$Session_Email' AND phone='$Session_Phone' AND img_src='$Session_Img_Src'";
+
+        if ($conn->query($UpdateOld) === TRUE) {
+          // Upload img to folder NB: This failed
+
+          $_SESSION['DB_Email'] = $NewEmail;
+          $_SESSION['DB_Phone'] = $NewPhone;
+          $_SESSION['DB_Img_Src'] = $NewImgPath;
+
+          move_uploaded_file($NewImg['tmp_name'], '../../' . $NewImgPath);
+
+          // Return response
+          echo "SQL_Done_ImgEmailPhone" . "-" . $NewImgPath . "-" . $NewEmail . "-" . $NewPhone;
+
+        } else {
+          echo "SQL_Update_Error";
+        }
+
+      } else {
+        echo "SQL_Error";
+        //echo $conn->connect_error;
+      }
+
+
+    }
+
   }
 }
 

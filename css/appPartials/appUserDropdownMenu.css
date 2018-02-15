@@ -189,6 +189,7 @@
   border-radius: 50%;
   background: #292c31;
   border: 2px solid white;
+  overflow: hidden;
 }
 
 .Profile-Img-Close {

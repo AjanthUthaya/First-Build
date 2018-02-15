@@ -104,7 +104,7 @@ if ($Empty_Field == true) {
                 // Declare file name
                 $User_Username = $Username;
                 // NB: Replace with sql query
-                $User_Img_Increment = "01";
+                $User_Img_Increment = "1";
 
                 // Set filename
                 $newfilename = $User_Username . "_" . $User_Img_Increment . "." . $fileTypeExt;
