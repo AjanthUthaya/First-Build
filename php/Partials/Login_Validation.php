@@ -4,6 +4,8 @@ session_start();
 // Including db connection
 require '../Partials/DB.php';
 
+include '../Functions/GetUserIP.php';
+
 // Set default timezone
 date_default_timezone_set('Europe/Oslo');
 
@@ -42,9 +44,31 @@ foreach((array)$Session_Data as $item) {
   }
 }
 
+
+// ---------- START: Declaring variables ---------- //
+
+$Session_User_Id = $_SESSION['DB_User_Id'];
+$Session_User_Type = $_SESSION['DB_User_Type'];
+$Session_Username = $_SESSION['DB_Username'];
+$User_Ip = getUserIP();
+$Page = $_SERVER['HTTP_REFERER'];
+// $DateNow
+// $TimeNow
+
+// ---------- END: Declaring variables ---------- //
+
+
 if ($Session_Array_Empty == true) {
   // ---------- There is an empty value inside array ---------- //
   ClearSession('Session_Empty_Data');
+  // ---------- START: Send data to DB ---------- //
+
+  $sql = "INSERT INTO user_online (user_id, user_type, username, ip_address, type, page, last_update_date, last_update_time)
+  VALUES ('$Session_User_Id', '$Session_User_Type', '$Session_Username', '$User_Ip', 'Validation failed', '$Page', '$DateNow', '$TimeNow')";
+
+  if ($conn->query($sql) === TRUE) {}
+
+  // ---------- END: Send data to DB ---------- //
 } else {
 
 
@@ -57,7 +81,15 @@ if ($Session_Array_Empty == true) {
   if (mysqli_num_rows($UsernameExists) !== 1) {
     // ---------- Username no match to DB usernames ---------- //
     ClearSession('Session_Username_NoMatch');
-  }else {
+    // ---------- START: Send data to DB ---------- //
+
+    $sql = "INSERT INTO user_online (user_id, user_type, username, ip_address, type, page, last_update_date, last_update_time)
+    VALUES ('$Session_User_Id', '$Session_User_Type', '$Session_Username', '$User_Ip', 'Validation failed', '$Page', '$DateNow', '$TimeNow')";
+
+    if ($conn->query($sql) === TRUE) {}
+
+    // ---------- END: Send data to DB ---------- //
+  } else {
 
     // ---------- Got values from database ---------- //
 
@@ -99,11 +131,20 @@ if ($Session_Array_Empty == true) {
       }
     }
 
+
     // ---------- START: Checking if any of the values are empty ---------- //
     if ($DB_Array_Empty == true) {
       // ---------- Found empty value in database value ---------- //
       print_r ($DB_Data);
       ClearSession('DB_Empty_Data');
+      // ---------- START: Send data to DB ---------- //
+
+      $sql = "INSERT INTO user_online (user_id, user_type, username, ip_address, type, page, last_update_date, last_update_time)
+      VALUES ('$Session_User_Id', '$Session_User_Type', '$Session_Username', '$User_Ip', 'Validation failed', '$Page', '$DateNow', '$TimeNow')";
+
+      if ($conn->query($sql) === TRUE) {}
+
+      // ---------- END: Send data to DB ---------- //
     } else {
       // ---------- Found no empty values ---------- //
 
@@ -123,43 +164,23 @@ if ($Session_Array_Empty == true) {
       if ($Session_DB_Data_Equal == false) {
         // ---------- Session && DB data does not match ---------- //
         ClearSession('Session_DB_NotEqual');
+        // ---------- START: Send data to DB ---------- //
+
+        $sql = "INSERT INTO user_online (user_id, user_type, username, ip_address, type, page, last_update_date, last_update_time)
+        VALUES ('$Session_User_Id', '$Session_User_Type', '$Session_Username', '$User_Ip', 'Validation failed', '$Page', '$DateNow', '$TimeNow')";
+
+        if ($conn->query($sql) === TRUE) {}
+
+        // ---------- END: Send data to DB ---------- //
       } else {
         // ---------- Session && DB data is the same ---------- //
         // NOTE: Send validation data to db, user_online
 
-        function getUserIP(){
-          $client  = @$_SERVER['HTTP_CLIENT_IP'];
-          $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
-          $remote  = $_SERVER['REMOTE_ADDR'];
-
-          if (filter_var($client, FILTER_VALIDATE_IP)){
-            $ip = $client;
-          } elseif (filter_var($forward, FILTER_VALIDATE_IP)){
-            $ip = $forward;
-          } else {
-            $ip = $remote;
-          }
-
-          return $ip;
-        }
-
-        // ---------- START: Declaring variables ---------- //
-
-        $Session_User_Id = $_SESSION['DB_User_Id'];
-        $Session_User_Type = $_SESSION['DB_User_Type'];
-        $Session_Username = $_SESSION['DB_Username'];
-        $User_Ip = getUserIP();
-        $Type = 'Validation';
-        $Page = $_SERVER['HTTP_REFERER'];
-        // $DateNow
-        // $TimeNow
-
-        // ---------- END: Declaring variables ---------- //
 
         // ---------- START: Send data to DB ---------- //
 
         $sql = "INSERT INTO user_online (user_id, user_type, username, ip_address, type, page, last_update_date, last_update_time)
-        VALUES ('$Session_User_Id', '$Session_User_Type', '$Session_Username', '$User_Ip', '$Type', '$Page', '$DateNow', '$TimeNow')";
+        VALUES ('$Session_User_Id', '$Session_User_Type', '$Session_Username', '$User_Ip', 'Validation', '$Page', '$DateNow', '$TimeNow')";
 
         if ($conn->query($sql) === TRUE) {}
 
