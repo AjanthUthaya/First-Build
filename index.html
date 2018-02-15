@@ -5,112 +5,89 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Tab title -->
   <title>Homepage - First Build</title>
-  <link rel="stylesheet" href="css/font-awesome.css">
-  <link rel="stylesheet" href="css/foundation.css">
+  <!-- Tab icon -->
   <link rel="icon" href="http://via.placeholder.com/50x50">
+
+  <!-- ____________________ START: CSS files ____________________ -->
+
+  <!-- Foundation -->
+  <link rel="stylesheet" href="css/foundation.css">
+  <!-- Font awesome icons -->
+  <link rel="stylesheet" href="css/font-awesome.css">
+
+  <!-- START: Partials -->
   <link rel="stylesheet" href="css/appPartials/appGeneral.css">
   <link rel="stylesheet" href="css/appPartials/appFooter.css">
   <link rel="stylesheet" href="css/appPartials/appTopNav.css">
   <link rel="stylesheet" href="css/appPartials/appOffCanvasMenu.css">
+  <!-- END: Partials -->
+
+  <!-- START: Page specific files -->
   <link rel="stylesheet" href="css/appPages/appHomepage.css">
+  <!-- END: Page specific files -->
+
+  <!-- ____________________ END: CSS files ____________________ -->
 </head>
 
 <body>
+
+  <!-- START: Mobile view -->
   <div id="Mobile-View">
     <img src="http://via.placeholder.com/300x300">
     <h3>This website is not available for mobile devices</h3>
   </div>
+  <!-- END: Mobile view -->
 
+  <!-- START: Desktop view -->
   <div id="Desktop-View">
 
-    <!--  <div class="off-canvas position-left Menu-OffCanvas-Main" id="offCanvas" data-off-canvas data-transition="overlap">
+    <!-- ____________________ START: Navigation sections ____________________ -->
 
-    <div class="Menu-OffCanvas-Head">
+    <nav class="scrollhide-nav">
+      <div class="top-bar Top-Bar-Main">
 
+        <!-- START: Left section of navigation -->
+        <div class="top-bar-left">
+          <!--<span class="Top-Bar-Menu"><a class="fa fa-bars" data-toggle="offCanvas"></a></span>-->
+          <h4 class="unselectable">BETA-BUILD</h4>
+        </div>
+        <!-- END: Left section of navigation -->
 
-      <div class="Menu-OffCanvas-Title-Main">
+        <!-- START: Middle section of navigation -->
+        <div class="Top-Bar-Center-Logo Top-Bar-Logo">
 
-        <h2 class="Menu-OffCanvas-Title">Menu</h2>
-
-      </div>
-
-
-      <div class="OffCanvas-Close-Main">
-
-        <a class="fa fa-close OffCanvas-Close-Icon" data-toggle="offCanvas"></a>
-
-      </div>
-
-    </div>
-
-    <div class="OffCanvas-Menu-Content">
-
-      <div class="OffCanvas-Menu-List">
-
-        <ul class="vertical menu align-center">
-          <li class="OffCanvas-Menu-List-Active"><a>Home</a></li>
-          <li><a>About us</a></li>
-          <li><a>Products</a></li>
-          <li><a>Contact us</a></li>
-        </ul>
-
-      </div>
-
-      <div class="OffCanvas-Menu-Social">
-
-        <span><a class="fa fa-facebook-square"></a></span>
-        <span><a class="fa fa-youtube-play"></a></span>
-        <span><a class="fa fa-instagram"></a></span>
-        <span><a class="fa fa-linkedin"></a></span>
-        <span><a class="fa fa-twitter"></a></span>
-
-      </div>
-
-    </div>
-
-
-  </div>-->
-
-
-    <div class="off-canvas-content" data-off-canvas-content>
-
-
-      <nav class="scrollhide-nav">
-        <div class="top-bar Top-Bar-Main">
-
-
-          <div class="top-bar-left">
-            <!--<span class="Top-Bar-Menu"><a class="fa fa-bars" data-toggle="offCanvas"></a></span>-->
-            <h4 class="unselectable">BETA-BUILD</h4>
+          <div class="Triangle-Left">
           </div>
 
-
-          <div class="Top-Bar-Center-Logo Top-Bar-Logo">
-
-            <div class="Triangle-Left">
-            </div>
-
-            <div class="Rectangle">
-              <a href="index.html"><img src="http://via.placeholder.com/50x50" alt="Logo-TopNav" id="TopBar-Logo"/></a>
-            </div>
-
-            <div class="Triangle-Right">
-            </div>
-
+          <div class="Rectangle">
+            <a href="index.html"><img src="http://via.placeholder.com/50x50" alt="Logo-TopNav" id="TopBar-Logo"/></a>
           </div>
 
-
-          <div class="top-bar-right">
-            <ul class="menu medium-horizontal">
-              <li><a href="Login.html" class="button" id="Login-Button">Login</a></li>
-            </ul>
+          <div class="Triangle-Right">
           </div>
-
 
         </div>
-      </nav>
+        <!-- END: Middle section of navigation -->
 
+        <!-- START: Right section of navigation -->
+        <div class="top-bar-right">
+          <ul class="menu medium-horizontal">
+            <li><a href="Login.html" class="button" id="Login-Button">Login</a></li>
+          </ul>
+        </div>
+        <!-- END: Right section of navigation -->
+
+      </div>
+    </nav>
+
+    <!-- ____________________ END: Navigation sections ____________________ -->
+
+    <!-- START: Viewport -->
+    <div class="off-canvas-content" data-off-canvas-content>
+
+      <!-- START: Slider -->
       <section id="Hero-Section">
 
         <div class="Hero-Section-Main">
@@ -138,6 +115,7 @@
         </div>
 
       </section>
+      <!-- END: Slider -->
 
       <!-- NOTE: ID tags are there for scrolling to a section of the same page -->
       <section class="FullHeight Feature-First" id="First">
@@ -239,6 +217,7 @@
       </section>
 
 
+      <!-- Start: Footer -->
       <footer class="unselectable">
 
         <div class="Footer-Logo">
@@ -279,20 +258,41 @@
 
         </div>
       </footer>
+      <!-- END: Footer -->
+
 
     </div>
-  </div>
+    <!-- END: Viewport -->
 
+  </div>
+  <!-- END: Desktop view -->
+
+  <!-- ____________________ START: JS files ____________________ -->
+
+  <!-- START: Basic foundation and init -->
   <script src="js/Addons/Foundation/vendor/jquery.js"></script>
   <script src="js/Addons/Foundation/vendor/what-input.js"></script>
   <script src="js/Addons/Foundation/vendor/foundation.js"></script>
+  <!-- End: Basic foundation files and init -->
+
+  <!-- START: Partial scripts -->
   <script src="js/Partials/ScrollHideNav.js"></script>
+  <!-- End: Partial scripts -->
+
+  <!-- START: Single scripts -->
   <script src="js/Single/ImageSlider.js"></script>
   <script src="js/Single/SmoothScroll.js"></script>
+  <!-- END: Single scripts -->
+
+  <!-- ____________________ END: JS files ____________________ -->
+
+  <!-- START: Script to init foundation addon -->
   <script type="text/javascript">
     // INIT Foundation js
     $(document).foundation();
   </script>
+  <!-- END: Script to init foundation addon -->
+
 </body>
 
 </html>
