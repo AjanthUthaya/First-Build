@@ -1,4 +1,4 @@
-$.each(MajorList, function(index, ma) {
+/*$.each(MajorList, function(index, ma) {
 
   var MajorItem_Link = '<a class="MajorLink" href="SubLecture.html#' + ma.major + '"></a>';
 
@@ -12,3 +12,4 @@ $.each(MajorList, function(index, ma) {
 
   $(".Major-Main").append(MajorItem);
 });
+*/

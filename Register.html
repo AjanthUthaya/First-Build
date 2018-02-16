@@ -1,6 +1,5 @@
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
-<html>
 
 <head>
   <meta charset="utf-8">
@@ -13,237 +12,256 @@
 
   <!-- ____________________ START: CSS files ____________________ -->
 
-  
-  <link rel="stylesheet" href="css/font-awesome.css">
+  <!-- Foundation -->
   <link rel="stylesheet" href="css/foundation.css">
-  <link rel="stylesheet" href="css/appPages/appHomepage.css">
+  <!-- Font awesome icons -->
+  <link rel="stylesheet" href="css/font-awesome.css">
+
+  <!-- START: Partials -->
   <link rel="stylesheet" href="css/appPartials/appGeneral.css">
   <link rel="stylesheet" href="css/appPartials/appFooter.css">
   <link rel="stylesheet" href="css/appPartials/appTopNav.css">
+  <!-- END: Partials -->
+
+  <!-- START: Page specific files -->
+  <link rel="stylesheet" href="css/appPages/appHomepage.css">
   <link rel="stylesheet" href="css/appPages/appRegister.css">
+  <!-- END: Page specific files -->
+
+  <!-- ____________________ END: CSS files ____________________ -->
+
 </head>
 
 <body>
 
+  <!-- START: Mobile view -->
   <div id="Mobile-View">
     <img src="http://via.placeholder.com/300x300">
     <h3>This website is not available for mobile devices</h3>
   </div>
+  <!-- END: Mobile view -->
 
+  <!-- START: Desktop view -->
   <div id="Desktop-View">
 
-    <div>
+    <!-- ____________________ START: Navigation sections ____________________ -->
 
+    <nav class="scrollhide-nav">
+      <!-- START: Top navigation -->
+      <div class="top-bar Top-Bar-Main">
 
-      <nav class="scrollhide-nav">
-        <div class="top-bar Top-Bar-Main">
+        <!-- START: Left section of navigation -->
+        <div class="top-bar-left">
+          <span class="Top-Bar-Back"><a href="index.html" class="fa fa-arrow-left"></a></span>
+        </div>
+        <!-- END: Left section of navigation -->
 
+        <!-- START: Middle section of navigation -->
+        <div class="Top-Bar-Center-Logo Top-Bar-Logo">
 
-          <div class="top-bar-left">
-            <span class="Top-Bar-Back"><a href="index.html" class="fa fa-arrow-left"></a></span>
+          <div class="Triangle-Left">
           </div>
 
-
-          <div class="Top-Bar-Center-Logo Top-Bar-Logo">
-
-            <div class="Triangle-Left">
-            </div>
-
-            <div class="Rectangle">
-              <a href="index.html"><img src="http://via.placeholder.com/50x50" width="50px" height="50px " alt="Logo-TopNav" id="TopBar-Logo"/></a>
-            </div>
-
-            <div class="Triangle-Right">
-            </div>
-
+          <div class="Rectangle">
+            <a href="index.html"><img src="http://via.placeholder.com/50x50" width="50px" height="50px " alt="Logo-TopNav" id="TopBar-Logo"/></a>
           </div>
 
-
-          <div class="top-bar-right">
-            <ul class="menu medium-horizontal">
-              <li><a href="Login.html" class="button" id="Login-Button">Login</a></li>
-            </ul>
+          <div class="Triangle-Right">
           </div>
-
 
         </div>
-      </nav>
+        <!-- END: Middle section of navigation -->
 
-      <div id="Content-Main">
+        <!-- START: Right section of navigation -->
+        <div class="top-bar-right">
+          <ul class="menu medium-horizontal">
+            <li><a href="Login.html" class="button" id="Login-Button">Login</a></li>
+          </ul>
+        </div>
+        <!-- END: Right section of navigation -->
+
+      </div>
+      <!-- END: Top navigation -->
+
+    </nav>
+
+    <!-- ____________________ END: Navigation sections ____________________ -->
+
+    <!-- START: All content goes in here -->
+    <div id="Content-Main">
 
 
-        <form id="Register-Main" enctype="multipart/form-data">
+      <form id="Register-Main" enctype="multipart/form-data">
 
-          <div class="Register-Image">
-            <div class="Register-Image-Main">
+        <div class="Register-Image">
+          <div class="Register-Image-Main">
 
-              <div id="Register-Img-UploadError">
-                <span id="Img-UploadData-One"></span>
-                <span id="Img-UploadData-Two"></span>
-              </div>
-
-              <span id="Register-ImgTxt">Select image</span>
-              <img src="img/Profile_Placeholder.png" id="Register-Img">
-              <input type="file" id="Register-ImgSrc" accept="image/png, image/jpg, image/jpeg" name="ImgSrc" style="display: none;">
-
+            <div id="Register-Img-UploadError">
+              <span id="Img-UploadData-One"></span>
+              <span id="Img-UploadData-Two"></span>
             </div>
+
+            <span id="Register-ImgTxt">Select image</span>
+            <img src="img/Profile_Placeholder.png" id="Register-Img">
+            <input type="file" id="Register-ImgSrc" accept="image/png, image/jpg, image/jpeg" name="ImgSrc" style="display: none;">
+
+          </div>
+        </div>
+
+        <div class="Register-Content">
+
+          <div class="Register-Title">
+            <label class="Register-Title-Main">REGISTRATION FORM</label>
           </div>
 
-          <div class="Register-Content">
+          <div class="grid-x Register-Name">
 
-            <div class="Register-Title">
-              <label class="Register-Title-Main">REGISTRATION FORM</label>
+            <div class="medium-4 Register-Name-First">
+              <label>Firstname</label>
+              <input class="Name-First-Main" id="Register-Firstname" name="Firstname" type="text" placeholder="Enter your firstname" autofocus>
             </div>
 
-            <div class="grid-x Register-Name">
-
-              <div class="medium-4 Register-Name-First">
-                <label>Firstname</label>
-                <input class="Name-First-Main" id="Register-Firstname" name="Firstname" type="text" placeholder="Enter your firstname" autofocus>
-              </div>
-
-              <div class="medium-4 Register-Name-Middle">
-                <label>Middlename(optional)</label>
-                <input class="Name-Middle-Main" id="Register-Middlename" name="Middlename" type="text" placeholder="Enter your middlename">
-              </div>
-
-              <div class="medium-4 Register-Name-Last">
-                <label>Lastname</label>
-                <input class="Name-Last-Main" id="Register-Lastname" name="Lastname" type="text" placeholder="Enter your lastname">
-              </div>
-
+            <div class="medium-4 Register-Name-Middle">
+              <label>Middlename(optional)</label>
+              <input class="Name-Middle-Main" id="Register-Middlename" name="Middlename" type="text" placeholder="Enter your middlename">
             </div>
 
-            <div class="grid-x Register-Email_Phone">
+            <div class="medium-4 Register-Name-Last">
+              <label>Lastname</label>
+              <input class="Name-Last-Main" id="Register-Lastname" name="Lastname" type="text" placeholder="Enter your lastname">
+            </div>
 
-              <div class="medium-6 Register-Email">
+          </div>
 
-                <label>Email</label>
+          <div class="grid-x Register-Email_Phone">
 
-                <div class="input-group">
-                  <div class="input-group-label">
-                    <span class="fa fa-envelope"></span>
-                  </div>
+            <div class="medium-6 Register-Email">
 
-                  <input class="input-group-field Register-Email-Input" id="Register-Email" name="Email" type="email" placeholder="Enter your email" minlength="5" maxlength="50" required>
+              <label>Email</label>
+
+              <div class="input-group">
+                <div class="input-group-label">
+                  <span class="fa fa-envelope"></span>
                 </div>
 
-              </div>
-
-              <div class="medium-6 Register-Phone">
-
-                <label>Phone</label>
-
-                <div class="input-group">
-                  <div class="input-group-label">
-                    <span class="fa fa-phone"></span>
-                  </div>
-
-                  <input class="input-group-field Register-Phone-Input" id="Register-Phone" name="Phone" type="text" placeholder="Enter your phone number" minlength="8" maxlength="8" required>
-                </div>
-
+                <input class="input-group-field Register-Email-Input" id="Register-Email" name="Email" type="email" placeholder="Enter your email" minlength="5" maxlength="50" required>
               </div>
 
             </div>
 
+            <div class="medium-6 Register-Phone">
 
-            <div class="Register-Birth_VGS">
+              <label>Phone</label>
 
-              <div class="Register-Birth">
-
-                <label>Birth</label>
-
-                <div class="input-group">
-                  <div class="input-group-label">
-                    <span class="fa fa-calendar"></span>
-                  </div>
-
-                  <input class="input-group-field Register-Birth-Input" id="Register-Birth_Date" name="Birth_Date" type="date" placeholder="Enter your birth of date" required>
+              <div class="input-group">
+                <div class="input-group-label">
+                  <span class="fa fa-phone"></span>
                 </div>
 
+                <input class="input-group-field Register-Phone-Input" id="Register-Phone" name="Phone" type="text" placeholder="Enter your phone number" minlength="8" maxlength="8" required>
               </div>
 
-              <div class="Register-VGS">
+            </div>
 
-                <label>VGS</label>
+          </div>
 
-                <select class="Register-VGS-Select" id="Register-Vgs" name="Vgs">
+
+          <div class="Register-Birth_VGS">
+
+            <div class="Register-Birth">
+
+              <label>Birth</label>
+
+              <div class="input-group">
+                <div class="input-group-label">
+                  <span class="fa fa-calendar"></span>
+                </div>
+
+                <input class="input-group-field Register-Birth-Input" id="Register-Birth_Date" name="Birth_Date" type="date" placeholder="Enter your birth of date" required>
+              </div>
+
+            </div>
+
+            <div class="Register-VGS">
+
+              <label>VGS</label>
+
+              <select class="Register-VGS-Select" id="Register-Vgs" name="Vgs">
                   <option value="" selected disabled>Select VGS</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
                 </select>
 
-              </div>
-
             </div>
-
-
-            <div class="Register-Username">
-
-              <label>Username</label>
-
-              <div class="input-group Register-Username-Main">
-                <div class="input-group-label">
-                  <span class="fa fa-user"></span>
-                </div>
-
-                <input class="input-group-field Register-Username-Input" id="Register-Username" name="Username" type="text" placeholder="Enter your username" minlength="6" maxlength="50" required>
-              </div>
-
-            </div>
-
-            <div class="grid-x Register-Password_Confirm">
-
-              <div class="medium-6 Register-Password">
-
-                <label>Password</label>
-
-                <div class="input-group">
-                  <div class="input-group-label">
-                    <span class="fa fa-lock"></span>
-                  </div>
-
-                  <input class="input-group-field Register-Password-input" id="Register-Password" name="Password" type="password" placeholder="Enter your password" minlength="6" maxlength="50" required>
-                </div>
-
-              </div>
-
-              <div class="medium-6 Register-Confirm">
-
-                <label>Confirm password</label>
-
-                <div class="input-group">
-                  <div class="input-group-label">
-                    <span class="fa fa-repeat"></span>
-                  </div>
-
-                  <input class="input-group-field Register-Confirm-input" id="Register-CPassword" name="CPassword" type="password" placeholder="Confirm your password" minlength="6" maxlength="50" required>
-                </div>
-
-              </div>
-
-            </div>
-
-
-            <div class="g-recaptcha" id="ReCaptcha" data-sitekey="6Ld6QkQUAAAAAL1AfXWgBp8F3fwCZL1_-LYnvlC-"></div>
-
-
-            <div class="Register-Submit">
-              <button class="button" id="Register-Submit" type="submit">Submit</button>
-            </div>
-
 
           </div>
 
-        </form>
 
-      </div>
+          <div class="Register-Username">
 
+            <label>Username</label>
+
+            <div class="input-group Register-Username-Main">
+              <div class="input-group-label">
+                <span class="fa fa-user"></span>
+              </div>
+
+              <input class="input-group-field Register-Username-Input" id="Register-Username" name="Username" type="text" placeholder="Enter your username" minlength="6" maxlength="50" required>
+            </div>
+
+          </div>
+
+          <div class="grid-x Register-Password_Confirm">
+
+            <div class="medium-6 Register-Password">
+
+              <label>Password</label>
+
+              <div class="input-group">
+                <div class="input-group-label">
+                  <span class="fa fa-lock"></span>
+                </div>
+
+                <input class="input-group-field Register-Password-input" id="Register-Password" name="Password" type="password" placeholder="Enter your password" minlength="6" maxlength="50" required>
+              </div>
+
+            </div>
+
+            <div class="medium-6 Register-Confirm">
+
+              <label>Confirm password</label>
+
+              <div class="input-group">
+                <div class="input-group-label">
+                  <span class="fa fa-repeat"></span>
+                </div>
+
+                <input class="input-group-field Register-Confirm-input" id="Register-CPassword" name="CPassword" type="password" placeholder="Confirm your password" minlength="6" maxlength="50" required>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="g-recaptcha" id="ReCaptcha" data-sitekey="6Ld6QkQUAAAAAL1AfXWgBp8F3fwCZL1_-LYnvlC-"></div>
+
+
+          <div class="Register-Submit">
+            <button class="button" id="Register-Submit" type="submit">Submit</button>
+          </div>
+
+
+        </div>
+
+      </form>
 
     </div>
+    <!-- END: All content goes in here -->
 
 
+    <!-- Start: Footer -->
     <footer class="unselectable">
 
       <div class="Footer-Logo">
@@ -284,20 +302,37 @@
 
       </div>
     </footer>
+    <!-- END: Footer -->
 
   </div>
-  </div>
+  <!-- END: Desktop view -->
 
+
+  <!-- ____________________ START: JS files ____________________ -->
+
+
+  <!-- ReCaptcha script -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+  <!-- START: Basic foundation and init -->
   <script src="js/Addons/Foundation/vendor/jquery.js"></script>
   <script src="js/Addons/Foundation/vendor/what-input.js"></script>
   <script src="js/Addons/Foundation/vendor/foundation.js"></script>
+  <!-- End: Basic foundation files and init -->
+
+  <script src="js/Addons/jquery.validate.js"></script>
+  <script src="js/Pages/Register.js"></script>
+
+
+  <!-- ____________________ START: JS files ____________________ -->
+
+  <!-- START: Script to init foundation addon -->
   <script type="text/javascript">
     // INIT Foundation js
     $(document).foundation();
   </script>
-  <script src="js/Addons/jquery.validate.js"></script>
-  <script src="js/Pages/Register.js"></script>
+  <!-- END: Script to init foundation addon -->
+
 </body>
 
 </html>

@@ -12,14 +12,24 @@
 
   <!-- ____________________ START: CSS files ____________________ -->
 
-  
-  <link rel="stylesheet" href="css/font-awesome.css">
+  <!-- Foundation -->
   <link rel="stylesheet" href="css/foundation.css">
-  <link rel="stylesheet" href="css/appPages/appHomepage.css">
+  <!-- Font awesome icons -->
+  <link rel="stylesheet" href="css/font-awesome.css">
+
+  <!-- START: Partials -->
   <link rel="stylesheet" href="css/appPartials/appGeneral.css">
   <link rel="stylesheet" href="css/appPartials/appFooter.css">
   <link rel="stylesheet" href="css/appPartials/appTopNav.css">
+  <!-- END: Partials -->
+
+  <!-- START: Page specific files -->
+  <link rel="stylesheet" href="css/appPages/appHomepage.css">
   <link rel="stylesheet" href="css/appPages/appLogin.css">
+  <!-- END: Page specific files -->
+
+  <!-- ____________________ END: CSS files ____________________ -->
+
 </head>
 
 <body>
@@ -27,156 +37,185 @@
   <script src="js/Addons/Foundation/vendor/jquery.js"></script>
   <script src="js/Pages/Login_Auto.js"></script>
 
+  <!-- START: Mobile view -->
   <div id="Mobile-View">
     <img src="http://via.placeholder.com/300x300">
     <h3>This website is not available for mobile devices</h3>
   </div>
+  <!-- END: Mobile view -->
 
+  <!-- START: Desktop view -->
   <div id="Desktop-View">
 
-    <div>
+    <!-- ____________________ START: Navigation sections ____________________ -->
 
+    <nav class="scrollhide-nav">
+      <!-- START: Top navigation -->
+      <div class="top-bar Top-Bar-Main">
 
-      <nav class="scrollhide-nav">
-        <div class="top-bar Top-Bar-Main">
+        <!-- START: Left section of navigation -->
+        <div class="top-bar-left">
+          <span class="Top-Bar-Back"><a href="index.html" class="fa fa-arrow-left"></a></span>
+        </div>
+        <!-- END: Left section of navigation -->
 
+        <!-- START: Middle section of navigation -->
+        <div class="Top-Bar-Center-Logo Top-Bar-Logo">
 
-          <div class="top-bar-left">
-            <span class="Top-Bar-Back"><a href="index.html" class="fa fa-arrow-left"></a></span>
-
+          <div class="Triangle-Left">
           </div>
 
-
-          <div class="Top-Bar-Center-Logo Top-Bar-Logo">
-
-            <div class="Triangle-Left">
-            </div>
-
-            <div class="Rectangle">
-              <a href="index.html"><img src="http://via.placeholder.com/50x50" width="50px" height="50px " alt="Logo-TopNav" id="TopBar-Logo"/></a>
-            </div>
-
-            <div class="Triangle-Right">
-            </div>
-
+          <div class="Rectangle">
+            <a href="index.html"><img src="http://via.placeholder.com/50x50" width="50px" height="50px " alt="Logo-TopNav" id="TopBar-Logo"/></a>
           </div>
 
-
-          <div class="top-bar-right">
-            <ul class="menu medium-horizontal">
-              <li><a href="Register.html" class="button" id="Register-Button">Register</a></li>
-            </ul>
+          <div class="Triangle-Right">
           </div>
-
 
         </div>
-      </nav>
+        <!-- END: Middle section of navigation -->
 
-      <div id="Content-Main">
-
-        <form id="Login-Main">
-
-          <div id="Login-Icon">
-
-            <span class="fa fa-user"></span>
-
-          </div>
-
-          <div id="Login-Content">
-
-            <div class="Login-Content-Title">
-              <label class="Login-Content-Title-Main">Login</label>
-            </div>
-
-            <div class="Login-Content-Fields">
-              <div class="Content-Fields-Username">
-                <label class="Content-Fields-Label">Username</label>
-
-                <div class="input-group">
-                  <div class="input-group-label">
-                    <span class="fa fa-user"></span>
-                  </div>
-
-                  <input class="input-group-field Login-Username-Input" id="Login-Username" name="Username" type="text" placeholder="Enter your username" minlength="2" maxlength="50" autocomplete="off" required>
-                </div>
-              </div>
-
-              <div class="Content-Fields-Password">
-                <label class="Content-Fields-Label">Password</label>
-
-                <div class="input-group">
-                  <div class="input-group-label">
-                    <span class="fa fa-lock"></span>
-                  </div>
-
-                  <input class="input-group-field Login-Password-input" id="Login-Password" name="Password" type="password" placeholder="Enter your password" minlength="2" maxlength="50" autocomplete="off" required>
-                </div>
-              </div>
-
-            </div>
-
-            <div class="Login-Submit">
-              <button class="button" id="Login-Submit" type="submit">Login</i></button>
-            </div>
-
-          </div>
-
-        </form>
+        <!-- START: Right section of navigation -->
+        <div class="top-bar-right">
+          <ul class="menu medium-horizontal">
+            <li><a href="Register.html" class="button" id="Register-Button">Register</a></li>
+          </ul>
+        </div>
+        <!-- END: Right section of navigation -->
 
       </div>
+      <!-- END: Top navigation -->
 
+    </nav>
 
-      <footer class="unselectable">
+    <!-- ____________________ END: Navigation sections ____________________ -->
 
-        <div class="Footer-Logo">
-          <div class="Footer-Logo-Underlayer">
-            <a><img src="http://via.placeholder.com/90x90" width="90px" height="90px" alt="Logo-Footer"></a>
-          </div>
-        </div>
+    <!-- START: All content goes in here -->
+    <div id="Content-Main">
 
-        <div class="Footer-Label">
-          <label><a>First Build</a></label>
-        </div>
+      <form id="Login-Main">
 
-        <div class="Footer-HR">
-          <hr>
-        </div>
+        <div id="Login-Icon">
 
-        <div class="Footer-Social">
-
-          <div class="Footer-Icon">
-            <a><span class="fa fa-facebook-square"></span></a>
-          </div>
-
-          <div class="Footer-Icon">
-            <a><span class="fa fa-youtube-play"></span></a>
-          </div>
-
-          <div class="Footer-Icon">
-            <a><span class="fa fa-instagram"></span></a>
-          </div>
-
-          <div class="Footer-Icon">
-            <a><span class="fa fa-linkedin-square"></span></a>
-          </div>
-
-          <div class="Footer-Icon">
-            <a><span class="fa fa-twitter-square"></span></a>
-          </div>
+          <span class="fa fa-user"></span>
 
         </div>
-      </footer>
+
+        <div id="Login-Content">
+
+          <div class="Login-Content-Title">
+            <label class="Login-Content-Title-Main">Login</label>
+          </div>
+
+          <div class="Login-Content-Fields">
+            <div class="Content-Fields-Username">
+              <label class="Content-Fields-Label">Username</label>
+
+              <div class="input-group">
+                <div class="input-group-label">
+                  <span class="fa fa-user"></span>
+                </div>
+
+                <input class="input-group-field Login-Username-Input" id="Login-Username" name="Username" type="text" placeholder="Enter your username" minlength="2" maxlength="50" autocomplete="off" required>
+              </div>
+            </div>
+
+            <div class="Content-Fields-Password">
+              <label class="Content-Fields-Label">Password</label>
+
+              <div class="input-group">
+                <div class="input-group-label">
+                  <span class="fa fa-lock"></span>
+                </div>
+
+                <input class="input-group-field Login-Password-input" id="Login-Password" name="Password" type="password" placeholder="Enter your password" minlength="2" maxlength="50" autocomplete="off" required>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="Login-Submit">
+            <button class="button" id="Login-Submit" type="submit">Login</i></button>
+          </div>
+
+        </div>
+
+      </form>
 
     </div>
-  </div>
+    <!-- END: All content goes in here -->
 
+
+    <!-- Start: Footer -->
+    <footer class="unselectable">
+
+      <div class="Footer-Logo">
+        <div class="Footer-Logo-Underlayer">
+          <a><img src="http://via.placeholder.com/90x90" width="90px" height="90px" alt="Logo-Footer"></a>
+        </div>
+      </div>
+
+      <div class="Footer-Label">
+        <label><a>First Build</a></label>
+      </div>
+
+      <div class="Footer-HR">
+        <hr>
+      </div>
+
+      <div class="Footer-Social">
+
+        <div class="Footer-Icon">
+          <a><span class="fa fa-facebook-square"></span></a>
+        </div>
+
+        <div class="Footer-Icon">
+          <a><span class="fa fa-youtube-play"></span></a>
+        </div>
+
+        <div class="Footer-Icon">
+          <a><span class="fa fa-instagram"></span></a>
+        </div>
+
+        <div class="Footer-Icon">
+          <a><span class="fa fa-linkedin-square"></span></a>
+        </div>
+
+        <div class="Footer-Icon">
+          <a><span class="fa fa-twitter-square"></span></a>
+        </div>
+
+      </div>
+    </footer>
+    <!-- END: Footer -->
+
+  </div>
+  <!-- END: Desktop view -->
+
+
+  <!-- ____________________ START: JS files ____________________ -->
+
+
+  <!-- START: Basic foundation and init -->
+  <script src="js/Addons/Foundation/vendor/jquery.js"></script>
   <script src="js/Addons/Foundation/vendor/what-input.js"></script>
   <script src="js/Addons/Foundation/vendor/foundation.js"></script>
+  <!-- End: Basic foundation files and init -->
+
+  <!-- START: Page specific scripts -->
+  <script src="js/Pages/Login.js"></script>
+  <!-- END: Page specific scripts -->
+
+
+  <!-- ____________________ START: JS files ____________________ -->
+
+  <!-- START: Script to init foundation addon -->
   <script type="text/javascript">
     // INIT Foundation js
     $(document).foundation();
   </script>
-  <script src="js/Pages/Login.js"></script>
+  <!-- END: Script to init foundation addon -->
+
 </body>
 
 </html>
