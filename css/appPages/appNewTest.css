@@ -7,7 +7,7 @@
   position: fixed;
   z-index: 13;
   top: 80px;
-  padding-top: 20px;
+  padding: 14px 0;
   text-align: center;
   background-color: white;
 }

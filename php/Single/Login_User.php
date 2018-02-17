@@ -42,7 +42,7 @@ if ($Empty_Field == true) {
   if (mysqli_num_rows($UsernameExists) !== 1) {
     // ---------- Username no match to DB usernames ---------- //
     echo "Login_Failed";
-  }else {
+  } else {
 
     // ---------- START: Username match found ---------- //
 

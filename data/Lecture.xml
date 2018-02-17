@@ -4,8 +4,8 @@
   <event
     id='11'
     type='Lecture'
-    start_date='12-02-2018 11:00'
-    end_date='12-02-2018 11:45'
+    start_date='17-02-2018 11:00'
+    end_date='17-02-2018 11:45'
     teacherid='1§2'
     title='Naturfag'
     sub='Energi'

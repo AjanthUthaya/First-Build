@@ -89,8 +89,11 @@ function ShowLogin() {
       } else if (data == DB_GetData_Error) {
         alert("DB: Could not get data");
       } else if (data == Login_Success) {
+
         window.location.href = "Home.html";
+
         $('#Login-Submit').html('Logging in...');
+        
       } else {
         alert("Error: Response not recognized");
       }

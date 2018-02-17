@@ -44,6 +44,9 @@ body {
   height: 80px;
   text-align: center;
   background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .Display-Item-Title {
@@ -203,7 +206,7 @@ body {
   background-color: #36414d;
 }
 
-.dhx_cal_event .dhx_title{
+.dhx_cal_event .dhx_title {
   padding-top: 4px;
 }
 

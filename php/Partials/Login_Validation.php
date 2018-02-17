@@ -4,6 +4,8 @@ session_start();
 // Including db connection
 require '../Partials/DB.php';
 
+require '../Functions/ClearSession.php';
+
 include '../Functions/GetUserIP.php';
 
 // Set default timezone
@@ -199,31 +201,6 @@ if ($Session_Array_Empty == true) {
   // ---------- END: Check if session_data matches data from database ---------- //
 
 
-
-}
-
-
-function ClearSession($Reason){
-  // ---------- Clears session data ---------- //
-  unset($_SESSION['DB_User_Id']);
-  unset($_SESSION['DB_User_Type']);
-  unset($_SESSION['DB_Username']);
-  unset($_SESSION['DB_Password']);
-  unset($_SESSION['DB_Firstname']);
-  unset($_SESSION['DB_Middlename']);
-  unset($_SESSION['DB_Lastname']);
-  unset($_SESSION['DB_Email']);
-  unset($_SESSION['DB_Phone']);
-  unset($_SESSION['DB_Birth_Date']);
-  unset($_SESSION['DB_Vgs']);
-  unset($_SESSION['DB_Img_Src']);
-  unset($_SESSION['Login_Date']);
-
-  $Clear_Session_Data_Reason = $Reason;
-  // echo "Clear data " . $Clear_Session_Data_Reason; // NB: For testing
-
-  // Redirect to login
-  echo "Redirect-" . $Clear_Session_Data_Reason;
 
 }
 

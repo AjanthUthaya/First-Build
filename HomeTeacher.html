@@ -6,7 +6,7 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Tab title -->
-  <title>Sub Lecture - First Build</title>
+  <title>Home (Teacher) - First Build</title>
   <!-- Tab icon -->
   <link rel="icon" href="http://via.placeholder.com/50x50">
 
@@ -16,9 +16,12 @@
   <link rel="stylesheet" href="css/foundation.css">
   <!-- Font awesome icons -->
   <link rel="stylesheet" href="css/font-awesome.css">
+  <!-- Calendar -->
+  <link rel="stylesheet" href="css/dhtmlxscheduler.css">
 
   <!-- START: Partials -->
   <link rel="stylesheet" href="css/appPartials/appGeneral.css">
+  <link rel="stylesheet" href="css/appPartials/appCalendarEdit.css">
   <link rel="stylesheet" href="css/appPartials/appFooter.css">
   <link rel="stylesheet" href="css/appPartials/appTopNav.css">
   <link rel="stylesheet" href="css/appPartials/appUserDropdownMenu.css">
@@ -27,14 +30,14 @@
   <!-- END: Partials -->
 
   <!-- START: Page specific files -->
-  <link rel="stylesheet" href="css/appPages/appSubLecture.css">
+  <link rel="stylesheet" href="css/appPages/appHome.css">
   <!-- END: Page specific files -->
 
   <!-- ____________________ END: CSS files ____________________ -->
 
 </head>
 
-<body>
+<body onload="init();">
 
   <!-- START: Mobile view -->
   <div id="Mobile-View">
@@ -65,9 +68,9 @@
           </div>
 
           <ul class="vertical menu align-center">
-            <li><a href="Home.html">Home</a></li>
+            <li><a href="Home.html" class="OffCanvas-Menu-List-Active">Home</a></li>
             <li><a href="Lesson.html">Lesson</a></li>
-            <li><a href="Majors.html" class="OffCanvas-Menu-List-Active" data-toggle="Sub-Major">Major</a></li>
+            <li><a href="Major.html" data-toggle="Sub-Major">Major</a></li>
             <li><a href="Test.html">Test</a></li>
           </ul>
 
@@ -260,9 +263,7 @@
       <!-- START: Breadcrumb -->
       <div class="Breadcrumb" aria-label="You are here:" role="navigation">
         <ul class="breadcrumbs unselectable">
-          <li><a href="Home.html"><span class="fa fa-home Breadcrumb-Home"></span>Home</a></li>
-          <li><a href="Majors.html">Major</a></li>
-          <li>Sub</li>
+          <li><span class="fa fa-home Breadcrumb-Home"></span>Home</li>
         </ul>
       </div>
       <!-- END: Breadcrumb -->
@@ -276,49 +277,66 @@
       <!-- START: All content goes in here -->
       <section id="Content-Main">
 
-        <!--        <data id="Major-Engelsk">
-            <div class="Sub-Major-Title Major-Engelsk Major-Title-Main">Engelsk</div>
+        <!-- START: Three boxes on top -->
+        <div class="Display-Main">
 
-            <div class="grid-x Sub-Major-Content">
-              <div class="medium-3 Sub-Major-Menu-Main">
-                <ul class="accordion" data-accordion data-allow-all-closed="true">
-
-
-                  <li class="accordion-item" data-accordion-item>
-                    <a class="accordion-title">Energi</a>
-                    <div class="accordion-content" data-tab-content>
-                      <ul class="vertical menu align-center Chapter-List">
-                        <li><a data-id-name="Intro">Intro</a></li>
-                        <li><a>Placeholder 1</a></li>
-                        <li><a>Placeholder 2</a></li>
-                      </ul>
-                    </div>
-                  </li>
-
-
-                  <li class="accordion-item is-active" data-accordion-item>
-                    <a class="accordion-title">Radioaktivitet</a>
-                    <div class="accordion-content" data-tab-content>
-                      <ul class="vertical menu align-center Chapter-List">
-                        <li><a>Intro</a></li>
-                        <li><a>Placeholder 1</a></li>
-                        <li><a>Placeholder 2</a></li>
-                      </ul>
-                    </div>
-                  </li>
-
-
-                </ul>
-              </div>
-
-              <div class="medium-9 Sub-Major-Content-Main" id="Intro">
-                <div class="Content-Main-Title">Radioaktivitet</div>
-
-                <div class="Content-Main-Content">Lorem text goes here</div>
-              </div>
-
+          <!-- START: Next lesson box -->
+          <div class="Display-Item Display-Next">
+            <!-- CountDownTo Format is "MM/DD/YYYY HH:MM" -->
+            <div class="Display-Item-Screen">
+              <label>Not implemented yet</label>
             </div>
-        </data>-->
+            <label class="Display-Item-Title unselectable">Next Lesson in</label>
+          </div>
+          <!-- END: Next lesson box -->
+
+          <!-- START: Upcoming test box -->
+          <div class="Display-Item Display-Test">
+
+            <div class="Display-Item-Screen">
+              <label>Not implemented yet</label>
+            </div>
+
+            <label class="Display-Item-Title unselectable">Next available test date</label>
+
+          </div>
+          <!-- END: Upcoming test box -->
+
+          <!-- START: Absence box -->
+          <div class="Display-Item Display-Fravaer">
+
+            <div class="Display-Item-Screen">
+              <label>Not implemented yet</label>
+            </div>
+
+            <label class="Display-Item-Title unselectable">Absence in S1</label>
+
+          </div>
+          <!-- END: Absence box -->
+
+        </div>
+        <!-- END: Three boxes on top -->
+
+        <!-- START: DHTMLXscheduler -->
+        <div class="Calendar-Main">
+
+          <div id="scheduler_here" class="dhx_cal_container" style='width: calc(90vw); height: 100%;'>
+            <div class="dhx_cal_navline unselectable">
+              <div class="dhx_cal_prev_button">&nbsp;</div>
+              <div class="dhx_cal_next_button">&nbsp;</div>
+              <div class="dhx_cal_today_button"></div>
+              <div class="dhx_cal_date"></div>
+              <div class="dhx_cal_tab" name="day_tab" style="right:204px;"></div>
+              <div class="dhx_cal_tab" name="week_tab" style="right:140px;"></div>
+            </div>
+            <div class="dhx_cal_header unselectable">
+            </div>
+            <div class="dhx_cal_data">
+            </div>
+          </div>
+
+        </div>
+        <!-- END: DHTMLXscheduler -->
 
       </section>
       <!-- END: All content goes in here -->
@@ -383,6 +401,14 @@
   <script src="js/Partials/app.js"></script>
   <!-- End: Basic foundation files and init -->
 
+  <!-- START: Calendar and init -->
+  <script src="js/Addons/Dhtmlx/dhtmlxscheduler.js"></script>
+  <script src="js/Addons/Dhtmlx/dhtmlxscheduler_readonly.js"></script>
+  <script src="js/Addons/Dhtmlx/dhtmlxscheduler_limit.js"></script>
+  <!--<script src="js/dhtmlxscheduler_tooltip.js"></script>-->
+  <script src="js/Calendar/CalendarInit.js"></script>
+  <!-- END: Calendar and init -->
+
   <!-- START: Partial scripts -->
   <script src="js/Partials/ScrollHideNav.js"></script>
   <script src="js/Partials/SliderForProfile.js"></script>
@@ -393,9 +419,8 @@
   <script src="js/Partials/PreventParentScroll.js"></script>
   <!-- End: Partial scripts -->
 
-  <!-- START: Page specific scripts -->
-  <script src="js/Pages/SubLecture.js"></script>
-  <!-- END: Page specific scripts -->
+  <!-- START: Single scripts -->
+  <!-- End: Single scripts -->
 
 
   <!-- ____________________ END: JS files ____________________ -->

@@ -3,7 +3,7 @@
 // ---------- START: Clears SESSION data ---------- //
 function ClearSession($Reason){
 
-/*    unset($_SESSION['DB_User_Id']);
+  unset($_SESSION['DB_User_Id']);
   unset($_SESSION['DB_User_Type']);
   unset($_SESSION['DB_Username']);
   unset($_SESSION['DB_Password']);
@@ -15,7 +15,7 @@ function ClearSession($Reason){
   unset($_SESSION['DB_Birth_Date']);
   unset($_SESSION['DB_Vgs']);
   unset($_SESSION['DB_Img_Src']);
-  unset($_SESSION['Login_Date']);*/
+  unset($_SESSION['Login_Date']);
 
   $Clear_Session_Data_Reason = $Reason;
 
