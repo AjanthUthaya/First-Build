@@ -56,6 +56,7 @@ function UpdateUser($conn, $NewEmail, $NewPhone, $NewImg){
       $DB_Birth_Date = $DBMatchDataDecoded[11];
       $DB_Vgs = $DBMatchDataDecoded[12];
       $DB_Img_Src = $DBMatchDataDecoded[13];
+      $DB_Img_Increment = $DBMatchDataDecoded[14];
 
       // ---------- END: Declaring data from DB into variables ---------- //
 
@@ -77,15 +78,15 @@ function UpdateUser($conn, $NewEmail, $NewPhone, $NewImg){
 
 
       $UpdateUserData = "INSERT INTO users
-      (active, user_id, user_type, username, password, firstname, middlename, lastname, email, phone, birth_date, vgs, img_src, creation_date, creation_time, creation_ip)
+      (active, user_id, user_type, username, password, firstname, middlename, lastname, email, phone, birth_date, vgs, img_src, img_increment, creation_date, creation_time, creation_ip)
       VALUES
-      ('$Active', '$DB_User_Id', '$DB_User_Type', '$DB_Username', '$DB_Password', '$DB_Firstname', '$DB_Middlename', '$DB_Lastname', '$NewEmail', '$NewPhone', '$DB_Birth_Date', '$DB_Vgs', '$DB_Img_Src', '$Creation_Date', '$Creation_Time', '$Creation_Ip')";
+      ('$Active', '$DB_User_Id', '$DB_User_Type', '$DB_Username', '$DB_Password', '$DB_Firstname', '$DB_Middlename', '$DB_Lastname', '$NewEmail', '$NewPhone', '$DB_Birth_Date', '$DB_Vgs', '$DB_Img_Src', '$DB_Img_Increment', '$Creation_Date', '$Creation_Time', '$Creation_Ip')";
 
 
       if ($conn->query($UpdateUserData) === TRUE) {
         // Inserted updated user
 
-        $UpdateOld = "UPDATE users SET active='updated' WHERE user_id='$DB_User_Id' AND email='$DB_Email' AND phone='$DB_Phone'";
+        $UpdateOld = "UPDATE users SET active='updated', edited='true', edit_date='$Creation_Date', edit_time='$Creation_Time', edit_username='$Session_Username', edit_ip='$Creation_Ip' WHERE user_id='$DB_User_Id' AND email='$DB_Email' AND phone='$DB_Phone'";
 
         if ($conn->query($UpdateOld) === TRUE) {
           $_SESSION['DB_Email'] = $NewEmail;
@@ -190,7 +191,7 @@ function UpdateUser($conn, $NewEmail, $NewPhone, $NewImg){
       if ($conn->query($UpdateUserData) === TRUE) {
         // Inserted updated user
 
-        $UpdateOld = "UPDATE users SET active='updated' WHERE user_id='$Session_User_Id' AND email='$Session_Email' AND phone='$Session_Phone' AND img_src='$Session_Img_Src'";
+        $UpdateOld = "UPDATE users SET active='updated', edited='true', edit_date='$Creation_Date', edit_time='$Creation_Time', edit_username='$Session_Username', edit_ip='$Creation_Ip' WHERE user_id='$DB_User_Id' AND email='$DB_Email' AND phone='$DB_Phone' AND img_src='$Session_Img_Src'";
 
         if ($conn->query($UpdateOld) === TRUE) {
           // Upload img to folder NB: This failed

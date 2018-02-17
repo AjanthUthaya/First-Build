@@ -6,7 +6,7 @@ var ProfileUpdateData = new FormData();
 // Store old values
 var Old_Email_Val = $('#User-Email-Profile').val();
 var Old_Phone_Val = $('#User-Phone-Profile').val();
-var Old_Img_Val = $('#Profile-Img-Main').attr('src');
+var Old_Img_Val = $('#Profile-Img-Edit').attr('src');
 
 // Declare new values
 var New_Email_Val;
@@ -211,9 +211,10 @@ $(document).ready(function() {
     // Store new values
     New_Email_Val = $('#User-Email-Profile').val();
     New_Phone_Val = $('#User-Phone-Profile').val();
+    New_Img_Val = $('#Profile-Img-Edit').attr('src');
 
     // Check if the new phone or email is the same
-    if (Old_Email_Val !== New_Email_Val || Old_Phone_Val !== New_Phone_Val) {
+    if (Old_Email_Val !== New_Email_Val || Old_Img_Val !== New_Img_Val || Old_Phone_Val !== New_Phone_Val) {
       // Check if validation is true on all three
       if (ImgVal == true && EmailVal == true && PhoneVal == true) {
         //Validation done
@@ -227,12 +228,10 @@ $(document).ready(function() {
       SaveButton('Disable');
 
       // Check if validation, and if image changed
-      if (ImgVal == true && EmailVal == true && PhoneVal == true) {
+      if (ImgVal == true && EmailVal == true && PhoneVal == true && Old_Img_Val !== New_Img_Val) {
 
         //Validation done
-        if (document.getElementById("Profile-Img-Src").files.length !== 0) {
-          SaveButton('Activate');
-        }
+        SaveButton('Activate');
 
       }
 
@@ -296,6 +295,7 @@ $(document).ready(function() {
           // Show user that profile has been updated
           alert('Profile updated');
 
+          SaveButton('Disable');
 
         } else if (data.indexOf(SQL_Done_ImgEmailPhone) != -1) {
 
@@ -316,7 +316,6 @@ $(document).ready(function() {
           // Show user that profile has been updated
           alert('Profile updated');
 
-          // Disable save button, not working because the way function is written
           SaveButton('Disable');
 
         } else {

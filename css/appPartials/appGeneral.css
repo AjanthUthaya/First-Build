@@ -3,6 +3,10 @@
   (Top-Right-Bottom-Left)
 *************************************************** */
 
+body * {
+  margin: 0;
+}
+
 #Mobile-View {
   display: none;
 }
