@@ -5,9 +5,10 @@ var RegisterFormData = new FormData();
 $('#Register-ImgTxt').click(function() {
   $('#Register-ImgSrc').trigger('click');
 });
-$('#Register-Img-UploadError').click(function() {
+
+$('#Register-Img-Error').click(function() {
   $('#Register-ImgSrc').trigger('click');
-  $('#Register-Img-UploadError').css('display', 'none');
+  $('#Register-Img-Error').css('display', 'none');
   $('#Register-ImgTxt').css('display', 'flex');
 });
 
@@ -45,15 +46,16 @@ $("#Register-ImgSrc").on("change", function(e) {
     $('#Register-ImgTxt').css('display', 'none');
 
     // To remove the previous error message
-    $("#Img-UploadData-One").empty();
-    $("#Img-UploadData-Two").empty();
+    $("#Img-Error-Current").empty();
+    $("#Img-Error-Max").empty();
 
     // Append error message to div
-    $('#Img-UploadData-Two').append('Allowed:<br>.jpeg - .jpg - .png');
-    $('#Img-UploadData-One').append('Current: <span>.' + fileType.split('/')[1] + '</span>');
+    $('#Img-Error-Max').append('Allowed:<br>.jpeg - .jpg - .png');
+    $('#Img-Error-Current').append('Incompatiable format');
+    //$('#Img-Error-Current').append('Current: <span>.' + fileType.split('/')[1] + '</span>');
 
     // Display error: fileType not a match
-    $('#Register-Img-UploadError').css('display', 'flex');
+    $('#Register-Img-Error').css('display', 'flex');
 
     return false;
 
@@ -77,15 +79,16 @@ $("#Register-ImgSrc").on("change", function(e) {
     $('#Register-ImgTxt').css('display', 'none');
 
     // To remove the previous error message
-    $("#Img-UploadData-One").empty();
-    $("#Img-UploadData-Two").empty();
+    $("#Img-Error-Current").empty();
+    $("#Img-Error-Max").empty();
 
     // Append error message to div
-    $('#Img-UploadData-Two').append('Max: 10MB');
-    $('#Img-UploadData-One').append('Current: ' + fileSizeFormatted);
+    $('#Img-Error-Max').append('Max: 10MB');
+    $('#Img-Error-Current').append('Image file is too big');
+    //$('#Img-Error-Current').append('Current: ' + fileSizeFormatted);
 
     // Display error: fileType not a match
-    $('#Register-Img-UploadError').css('display', 'flex');
+    $('#Register-Img-Error').css('display', 'flex');
 
     return false;
 

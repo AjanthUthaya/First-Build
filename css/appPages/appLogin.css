@@ -19,6 +19,51 @@ button {
   margin: 0;
 }
 
+.Placeholder-Active::placeholder {
+  color: white;
+  transition: color 0.5s ease;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  LOGO
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+.Login-Content-Logo {
+  width: 100%;
+  padding: 10px 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Content-Logo-Img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Content-Logo-Img img {
+  width: 200px;
+  height: 200px;
+}
+
+.Content-Logo-Title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Content-Logo-Title label {
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+}
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -41,7 +86,7 @@ button {
   min-width: 350px;
   max-width: 500px;
   height: 100%;
-  margin-top: 50px;
+  margin-top: 120px;
 }
 
 #Login-Icon {
@@ -74,7 +119,7 @@ button {
   top: -60px;
   width: 100%;
   height: 100%;
-  padding-top: 60px;
+  padding-top: 20px;
   border-radius: 10px;
   background-color: #292c30;
   padding-bottom: 20px;
@@ -98,33 +143,63 @@ button {
 
 .Login-Content-Fields {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  margin-top: 40px;
+  align-items: center;
 }
 
-.Login-Content-Fields {
+.Content-Fields-Field {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 5px 25px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-top: 1px;
+  width: 70%;
+  border-radius: 5px;
+}
+
+.Content-Fields-Field span {
+  color: #9a9a9a;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  margin-top: 20px;
-}
-
-.Content-Fields-Label {
-  font-size: 16px;
-  color: white;
-}
-
-.Content-Fields-Username, .Content-Fields-Password {
-  max-width: 350px;
-  width: 100%;
-  padding: 0 5px;
-}
-
-.Content-Fields-Password {
+  font-size: 30px;
+  padding-right: 15px;
+  padding-left: 5px;
   padding-top: 10px;
+  transition: color 0.5s ease;
+}
+
+.Content-Fields-Field input {
+  min-width: 200px;
+  max-width: 320px;
+  font-size: 16px;
+  color: #9a9a9a;
+  border-top: transparent !important;
+  border-right: transparent !important;
+  border-bottom: 2px solid #9a9a9a !important;
+  border-left: transparent !important;
+  background: transparent;
+  box-shadow: none;
+  padding: 5px 5px;
+  padding-bottom: 0;
+  line-height: 1;
+  transition: color 0.5s ease;
+}
+
+.Content-Fields-Field input:focus {
+  outline: none;
+  border: 0;
+  background-color: transparent;
+  box-shadow: none;
+  border-bottom: 2px solid white !important;
+}
+
+.Content-Fields-Field * {
+  height: 40px;
 }
 
 .Login-Submit {
@@ -134,7 +209,7 @@ button {
   border-radius: 5px;
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 20px;
   margin-bottom: 40px;
 }
 
@@ -146,6 +221,8 @@ button {
   justify-content: center;
   align-items: center;
   margin: 0;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

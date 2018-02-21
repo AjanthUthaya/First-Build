@@ -12,7 +12,6 @@
 /* Removes shadow */
 
 .off-canvas.is-transition-overlap.is-open {
-  border-right: 1px solid white;
   box-shadow: none;
 }
 

@@ -33,9 +33,6 @@
 </head>
 
 <body>
-  <!-- NOTE: Auto login script -->
-  <script src="js/Addons/Foundation/vendor/jquery.js"></script>
-  <script src="js/Pages/Login_Auto.js"></script>
 
   <!-- START: Mobile view -->
   <div id="Mobile-View">
@@ -95,47 +92,51 @@
 
       <form id="Login-Main">
 
+        <!--
         <div id="Login-Icon">
-
           <span class="fa fa-user"></span>
-
         </div>
+        -->
 
         <div id="Login-Content">
 
+          <!--
           <div class="Login-Content-Title">
             <label class="Login-Content-Title-Main">Login</label>
           </div>
+          -->
 
-          <div class="Login-Content-Fields">
-            <div class="Content-Fields-Username">
-              <label class="Content-Fields-Label">Username</label>
 
-              <div class="input-group">
-                <div class="input-group-label">
-                  <span class="fa fa-user"></span>
-                </div>
+          <div class="Login-Content-Logo">
 
-                <input class="input-group-field Login-Username-Input" id="Login-Username" name="Username" type="text" placeholder="Enter your username" minlength="2" maxlength="50" autocomplete="off" required>
-              </div>
+            <div class="Content-Logo-Img">
+              <img src="img/Placeholder-Logo-1.png" alt="LOGO">
             </div>
 
-            <div class="Content-Fields-Password">
-              <label class="Content-Fields-Label">Password</label>
-
-              <div class="input-group">
-                <div class="input-group-label">
-                  <span class="fa fa-lock"></span>
-                </div>
-
-                <input class="input-group-field Login-Password-input" id="Login-Password" name="Password" type="password" placeholder="Enter your password" minlength="2" maxlength="50" autocomplete="off" required>
-              </div>
+            <div class="Content-Logo-Title">
+              <label>First Build</label>
             </div>
 
           </div>
 
+
+          <div class="Login-Content-Fields">
+
+            <div class="Content-Fields-Field Content-Fields-Username">
+              <span class="fa fa-user"></span>
+              <input class="Login-Username-Input" id="Login-Username" name="Username" type="text" placeholder="Enter your username" minlength="2" maxlength="50" autocomplete="off" required>
+            </div>
+
+            <div class="Content-Fields-Field Content-Fields-Password">
+              <span class="fa fa-lock"></span>
+              <input class="Login-Password-Input" id="Login-Password" name="Password" type="password" placeholder="Enter your password" minlength="2" maxlength="50" autocomplete="off" required>
+            </div>
+
+          </div>
+
+
           <div class="Login-Submit">
-            <button class="button" id="Login-Submit" type="submit">Login</i></button>
+            <button class="button" id="Login-Submit" type="submit">Login</button>
           </div>
 
         </div>
@@ -205,6 +206,9 @@
   <!-- START: Page specific scripts -->
   <script src="js/Pages/Login.js"></script>
   <!-- END: Page specific scripts -->
+
+  <!-- NOTE: Auto login script -->
+  <script src="js/Pages/Login_Auto.js"></script>
 
 
   <!-- ____________________ START: JS files ____________________ -->

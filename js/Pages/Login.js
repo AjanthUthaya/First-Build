@@ -76,13 +76,18 @@ function ShowLogin() {
       } else if (data == Missing_Field_Data) {
         alert("Please fill out both values");
       } else if (data == Login_Failed) {
+        // Login failed
+
+        //Start button shake and color change
         $('#Login-Submit').html('Login');
-        $('#Login-Submit').css('animation', 'shake 200ms linear infinite');
-        $('#Login-Submit').css('color', 'red');
+        $('#Login-Submit').css('animation', 'shake 300ms linear infinite');
+        $('#Login-Submit').css('background', '#900000');
+
+        // Go back to set color, and stop shake animation
         setTimeout(function() {
           $('#Login-Submit').css('animation', 'none');
-          $('#Login-Submit').css('color', 'white');
-        }, 600)
+          $('#Login-Submit').css('background', '#1779ba');
+        }, 600);
 
       } else if (data == Password_Get_Error) {
         alert("DB: Could not get password");
@@ -93,7 +98,7 @@ function ShowLogin() {
         window.location.href = "Home.html";
 
         $('#Login-Submit').html('Logging in...');
-        
+
       } else {
         alert("Error: Response not recognized");
       }
@@ -117,3 +122,48 @@ function ShowLogin() {
   });
 
 }
+
+
+// ---------- Change icon and input text color of username ---------- //
+
+// Change icon color to white on focusIn
+$('.Login-Username-Input').focusin(function() {
+  $('.Content-Fields-Username span').css('color', 'white');
+  $(this).css('color', 'white');
+  $(this).addClass('Placeholder-Active');
+});
+
+// Change icon color to grey on focusOut
+$(".Login-Username-Input").focusout(function() {
+  $('.Content-Fields-Username span').css('color', '#9a9a9a');
+  $(this).css('color', '#9a9a9a');
+  $(this).removeClass('Placeholder-Active');
+});
+
+
+// ---------- Change icon and input text color of password ---------- //
+
+// Change icon color to white on focusIn
+$('.Login-Password-Input').focusin(function() {
+  $('.Content-Fields-Password span').css('color', 'white');
+  $('.Login-Password-Input').css('color', 'white');
+  $(this).addClass('Placeholder-Active');
+});
+
+// Change icon color to grey on focusOut
+$(".Login-Password-Input").focusout(function() {
+  $('.Content-Fields-Password span').css('color', '#9a9a9a');
+  $('.Login-Password-Input').css('color', '#9a9a9a');
+  $(this).removeClass('Placeholder-Active');
+});
+
+// Captalize first letter of input (username is not case sensitive, but password is)
+$('#Login-Username').on('keydown', function(event) {
+  if (this.selectionStart == 0 && event.keyCode >= 65 && event.keyCode <= 90 && !(event.shiftKey) && !(event.ctrlKey) && !(event.metaKey) && !(event.altKey)) {
+    var $t = $(this);
+    event.preventDefault();
+    var char = String.fromCharCode(event.keyCode);
+    $t.val(char + $t.val().slice(this.selectionEnd));
+    this.setSelectionRange(1, 1);
+  }
+});
