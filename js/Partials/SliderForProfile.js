@@ -21,7 +21,7 @@ $($ProfileButton).click(function() {
   //console.log("." + $Notifi);
 
   //console.log("Profile button clicked");
-  TabValue = $(this).attr("data-TabValue");
+  TabValue = $(this).attr("data-tabvalue");
 
   if (TabValue == "view") {
 
@@ -76,8 +76,8 @@ $($NotifiButton).click(function() {
   $NotifiDot = "." + $MainDiv.slice(2, 3).attr("class");
 
 
-  TabValue = $(this).attr("data-TabValue");
-  TabValue = $(this).attr("data-TabValue");
+  TabValue = $(this).attr("data-tabvalue");
+  TabValue = $(this).attr("data-tabvalue");
 
 
   if (TabValue == "view") {
