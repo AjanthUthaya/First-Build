@@ -30,6 +30,55 @@ button {
 - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 /* ***************************************************
+  Notifications
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+#Notify {}
+
+.iziToast-cover {}
+
+.iziToast-body {}
+
+.iziToast-texts {}
+
+.iziToast-title {}
+
+.iziToast-message {}
+
+.iziToast>.iziToast-body {
+  margin: 0 0 0 20px;
+}
+
+.iziToast>.iziToast-body .iziToast-icon {
+  left: -3.5px;
+}
+
+.iziToast {
+  padding: 5px 45px 4px 0;
+}
+
+.iziToast-close {
+  background-color: red !important;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.iziToast-close:hover {
+  background-color: #d40707 !important;
+}
+
+.iziToast-close {
+  background-size: 10px;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
   LOGO
   (Top-Right-Bottom-Left)
 *************************************************** */

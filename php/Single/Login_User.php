@@ -19,10 +19,27 @@ foreach($required as $field) {
   }
 }
 
+// Declaring response array/json
+$LoginResponse = array();
+
+function ReportError($Status, $Message) {
+
+  // Declare variables
+  $LoginResponse['Status'] = $Status;
+  $LoginResponse['Message'] = $Message;
+
+  // Encode array into JSON
+  $LoginResponseJSON = json_encode($LoginResponse);
+
+  // Send JSON array
+  echo $LoginResponseJSON;
+
+}
+
 // If any empty fields return Empty field
 if ($Empty_Field == true) {
-  echo "Missing_Field_Data";
-}else {
+  ReportError("Error", "Missing_Field_Data");
+} else {
 
   // ---------- START: Declaring POST values from Login.html ---------- //
 
@@ -41,7 +58,7 @@ if ($Empty_Field == true) {
 
   if (mysqli_num_rows($UsernameExists) !== 1) {
     // ---------- Username no match to DB usernames ---------- //
-    echo "Login_Failed";
+    ReportError("Failed", "Login failed, try again");
   } else {
 
     // ---------- START: Username match found ---------- //
@@ -54,7 +71,7 @@ if ($Empty_Field == true) {
 
     if (empty($DBMatchData)) {
       // ---------- Could not get password from database ---------- //
-      echo "Password_Get_Error";
+      ReportError("Error", "DB_GetData_Error: Error with database connection");
     } else {
 
       // ---------- Got password from database ---------- //
@@ -175,17 +192,17 @@ if ($Empty_Field == true) {
 
           // ---------- END: Send data to DB ---------- //
 
-          echo "Login_Success";
+          ReportError("Done", $DB_User_Type);
 
         } else {
           // ---------- Found empty value, NB: There should not be any empty values ---------- //
-          echo "DB_GetData_Error";
+          ReportError("Error", "DB_GetData_EmptyValue: Error with database connection");
         }
         // ---------- END: Checking if any of the values are empty ---------- //
 
       } else {
         // ---------- Password did not match DBPassword ---------- //
-        echo "Login_Failed";
+        ReportError("Failed", "Login failed, try again");
       }
 
       // Print all values from array for TESTING

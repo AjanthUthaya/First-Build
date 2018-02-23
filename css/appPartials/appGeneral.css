@@ -102,7 +102,7 @@ table {
 }
 
 [type='text'], [type='password'], [type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], [type='email'], [type='number'], [type='search'], [type='tel'], [type='time'], [type='url'], [type='color'], textarea {
-    margin: 0 !important;
+  margin: 0 !important;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -214,6 +214,31 @@ table {
   font-size: 20px;
   color: white;
 }
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  Notifications
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+#Notify {
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.iziToast-cover {}
+
+.iziToast-body {}
+
+.iziToast-texts {}
+
+.iziToast-title {}
+
+.iziToast-message {}
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 

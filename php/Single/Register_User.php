@@ -59,6 +59,7 @@ if ($Empty_Field == true) {
       $Vgs = $_POST["Vgs"];
       $Username = $_POST["Username"];
       $Password = $_POST["Password"];
+      // NOTE: Forgot to check if $Password and $CPassword matches
       $CPassword = $_POST["CPassword"];
 
       // ---------- END: Declaring variable from registration page ---------- //

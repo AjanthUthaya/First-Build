@@ -7,7 +7,7 @@ require '../Partials/DB.php';
 // Set default timezone
 date_default_timezone_set('Europe/Oslo');
 
-// Date now (dd-mm-yyyy)
+// Date now (dd-mm-yyyy HH:MM:SS)
 $DateNow = date('d-m-Y H:i:s');
 
 
@@ -203,7 +203,7 @@ if ($LoginDate < $NowDate){
 
             $conn->close();
 
-            $Auto_Login = "Auto_Login_True";
+            $Auto_Login = "Auto_Login_True-" . $DB_User_Type;
 
             // ---------- END: Send data to DB ---------- //
 

@@ -1,3 +1,5 @@
+require("js/Functions/Notify.js");
+
 function ShowLogin() {
 
   // Show html, opacity: 0; from Login_Auto.js
@@ -7,7 +9,7 @@ function ShowLogin() {
   var LoginFormData = new FormData();
 
   // Variable to hold request
-  var request;
+  var LoginRequest;
 
   // Bind to the submit event of our form
   $("#Login-Main").submit(function(event) {
@@ -16,8 +18,8 @@ function ShowLogin() {
     event.preventDefault();
 
     // Abort any pending request
-    if (request) {
-      request.abort();
+    if (LoginRequest) {
+      LoginRequest.abort();
     }
 
 
@@ -50,33 +52,34 @@ function ShowLogin() {
     // ---------- START: Form submit to Login_User.php ---------- //
 
     // Fire off the request to php/Single/Login_User.php
-    request = $.ajax({
+    LoginRequest = $.ajax({
       url: "php/Single/Login_User.php",
       type: "post",
       data: LoginFormData,
+      dataType: "json",
+      async: false,
       contentType: false, // The content type used when sending data to the server.
       cache: false, // To unable request pages to be cached
       processData: false, // To send DOMDocument or non processed data file it is set to false
-      success: function(data) {}
     });
 
     // Fired up on success
-    request.done(function(data) {
+    LoginRequest.done(function(data) {
 
-      //Declaring response variables
-      var DB_Failed = "DB: Connection failed";
-      var Missing_Field_Data = "Missing_Field_Data";
-      var Login_Failed = "Login_Failed";
-      var Password_Get_Error = "Password_Get_Error";
-      var DB_GetData_Error = "DB_GetData_Error";
-      var Login_Success = "Login_Success";
+      if (data.Status == 'Error') {
 
-      if (data == DB_Failed) {
-        alert("DB: Connection failed");
-      } else if (data == Missing_Field_Data) {
-        alert("Please fill out both values");
-      } else if (data == Login_Failed) {
-        // Login failed
+        // ---------- START: Error ---------- //
+
+        // Title, TitleColor, Message, Icon, IconColor, Timeout
+        Notify('ERROR', 'red', data.Message, 'fa fa-close', 'red', false);
+        // Make button text back to 'Login' from spinner
+        $('#Login-Submit').html('Login');
+
+        // ---------- END: Error ---------- //
+
+      } else if (data.Status == 'Failed') {
+
+        // ---------- START: Login failed ---------- //
 
         //Start button shake and color change
         $('#Login-Submit').html('Login');
@@ -89,33 +92,62 @@ function ShowLogin() {
           $('#Login-Submit').css('background', '#1779ba');
         }, 600);
 
-      } else if (data == Password_Get_Error) {
-        alert("DB: Could not get password");
-      } else if (data == DB_GetData_Error) {
-        alert("DB: Could not get data");
-      } else if (data == Login_Success) {
+        // Title, TitleColor, Message, Icon, IconColor, Timeout
+        Notify('Login failed', 'yellow', data.Message, 'fa fa-warning', 'yellow', 3000);
+        // Make button text back to 'Login' from spinner
+        $('#Login-Submit').html('Login');
 
-        window.location.href = "Home.html";
+        // ---------- END: Login failed ---------- //
 
+      } else if (data.Status == 'Done') {
+
+        // ---------- START: Login done ---------- //
+
+        // Change login button text
         $('#Login-Submit').html('Logging in...');
 
+        // Redirect to home, based on user type
+        if (data.Message == 'Admin') {
+          window.location.href = "HomeAdmin.html";
+        } else if (data.Message == 'Teacher') {
+          window.location.href = "HomeTeacher.html";
+        } else if (data.Message == 'Student') {
+          window.location.href = "Home.html";
+        } else {
+          // Title, TitleColor, Message, Icon, IconColor, Timeout
+          Notify('ERROR', 'red', 'DB_Error: User type not recognized', 'fa fa-close', 'red', false);
+          // Make button text back to 'Login' from spinner
+          $('#Login-Submit').html('Login');
+        }
+
+        // ---------- END: Login done ---------- //
+
       } else {
-        alert("Error: Response not recognized");
+        // ---------- START: Response not recognized ---------- //
+        // Title, TitleColor, Message, Icon, IconColor, Timeout
+        Notify('ERROR', 'red', 'Error: Response not recognized', 'fa fa-close', 'red', false);
+        // ---------- END: Response not recognized ---------- //
+        // Make button text back to 'Login' from spinner
+        $('#Login-Submit').html('Login');
       }
 
+      console.log(data);
 
     })
 
     // Fired up on failure
-    request.fail(function(xhr, textStatus, errorThrown) {
-      alert("Error: " + errorThrown);
+    LoginRequest.fail(function(xhr, textStatus, errorThrown) {
+      // Display error for user
+      Notify('ERROR', 'red', 'Error: ' + errorThrown, 'fa fa-close', 'red', false);
+      // Make button text back to 'Login' from spinner
+      $('#Login-Submit').html('Login');
     })
 
     // Fired up no matter if the result is a success or failure
-    request.always(function() {
+    LoginRequest.always(function() {
       // Reenable the inputs
       $inputs.prop("disabled", false);
-    });
+    })
 
     // ---------- END: Form submit to Login_User.php ---------- //
 

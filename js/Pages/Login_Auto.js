@@ -2,9 +2,21 @@
 
 var request;
 
-function StopAndRedirect() {
+function StopAndRedirect(Type) {
   window.stop();
-  window.location.href = "Home.html";
+  // Redirect to home, based on user type
+  if (Type == 'Admin') {
+    window.location.href = "HomeAdmin.html";
+  } else if (Type == 'Teacher') {
+    window.location.href = "HomeTeacher.html";
+  } else if (Type == 'Student') {
+    window.location.href = "Home.html";
+  } else {
+    // Title, TitleColor, Message, Icon, IconColor, Timeout
+    Notify('ERROR', 'red', 'DB_Error: User type not recognized', 'fa fa-close', 'red', false);
+    // Show login
+    ShowLogin();
+  }
 }
 
 // Fire off the request to php/Single/Login_Auto.php
@@ -19,8 +31,10 @@ request = $.ajax({
 // Fired up on success
 request.done(function(data) {
 
-  if (data == "Auto_Login_True") {
-    StopAndRedirect();
+  var dataSplit = data.split("-");
+
+  if (dataSplit[0] == "Auto_Login_True") {
+    StopAndRedirect(dataSplit[1]);
   } else if (data == "Session_Expired_Date") {
     ShowLogin();
   } else if (data == "Session_Empty_Data") {

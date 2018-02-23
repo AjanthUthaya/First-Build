@@ -107,7 +107,7 @@ $("#Register-ImgSrc").on("change", function(e) {
 
 
 // Variable to hold request
-var request;
+var RegisterRequest;
 
 // Bind to the submit event of our form
 $("#Register-Main").submit(function(event) {
@@ -116,8 +116,8 @@ $("#Register-Main").submit(function(event) {
   event.preventDefault();
 
   // Abort any pending request
-  if (request) {
-    request.abort();
+  if (RegisterRequest) {
+    RegisterRequest.abort();
   }
 
 
@@ -287,7 +287,7 @@ $("#Register-Main").submit(function(event) {
   // ---------- START: Form submit to Register.php ---------- //
 
   // Fire off the request to php/Single/Register.php
-  request = $.ajax({
+  RegisterRequest = $.ajax({
     url: "php/Single/Register_User.php",
     type: "post",
     data: RegisterFormData,
@@ -298,7 +298,7 @@ $("#Register-Main").submit(function(event) {
   });
 
   // Fired up on success
-  request.done(function(data) {
+  RegisterRequest.done(function(data) {
 
     // Declaring responce variable
     var DB_Failed = "DB: Connection failed";
@@ -346,12 +346,12 @@ $("#Register-Main").submit(function(event) {
   })
 
   // Fired up on failure
-  request.fail(function(xhr, textStatus, errorThrown) {
+  RegisterRequest.fail(function(xhr, textStatus, errorThrown) {
     alert("Error: " + errorThrown);
   })
 
   // Fired up no matter if the result is a success or failure
-  request.always(function() {
+  RegisterRequest.always(function() {
     // Reenable the inputs
     $inputs.prop("disabled", false);
     // Reset reCAPTCHA after form submit

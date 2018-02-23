@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-ini_set('display_errors', 1);
 // Including db connection
 require 'DB.php';
 
