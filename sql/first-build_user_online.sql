@@ -25,24 +25,17 @@ DROP TABLE IF EXISTS `user_online`;
 CREATE TABLE `user_online` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `user_type` varchar(7) NOT NULL,
+  `user_type` varchar(20) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `type` varchar(7) NOT NULL,
+  `ip_address` varchar(50) DEFAULT NULL,
+  `type` varchar(20) NOT NULL,
   `page` varchar(255) NOT NULL,
-  `last_update_date` varchar(10) NOT NULL,
-  `last_update_time` varchar(8) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `last_update_date` varchar(20) NOT NULL,
+  `last_update_time` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1216 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user_online`
---
-
-LOCK TABLES `user_online` WRITE;
-/*!40000 ALTER TABLE `user_online` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user_online` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -53,4 +46,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-08 12:14:04
+-- Dump completed on 2018-02-24 17:46:47

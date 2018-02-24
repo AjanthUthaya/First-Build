@@ -103,10 +103,13 @@ function ShowLogin() {
 
         // ---------- START: Login done ---------- //
 
-        // Change login button text
+        // Change login button text and color
+        $('#Login-Submit').css('transition', 'none');
+        $('#Login-Submit').css('background', '#7fb836');
         $('#Login-Submit').html('Logging in...');
 
         // Redirect to home, based on user type
+        /*
         if (data.Message == 'Admin') {
           window.location.href = "HomeAdmin.html";
         } else if (data.Message == 'Teacher') {
@@ -119,6 +122,9 @@ function ShowLogin() {
           // Make button text back to 'Login' from spinner
           $('#Login-Submit').html('Login');
         }
+        */
+
+        window.location.href = "Home.html";
 
         // ---------- END: Login done ---------- //
 
@@ -138,7 +144,7 @@ function ShowLogin() {
     // Fired up on failure
     LoginRequest.fail(function(xhr, textStatus, errorThrown) {
       // Display error for user
-      Notify('ERROR', 'red', 'Error: ' + errorThrown, 'fa fa-close', 'red', false);
+      Notify('ERROR', 'red', 'Connection failed: ' + errorThrown, 'fa fa-close', 'red', false);
       // Make button text back to 'Login' from spinner
       $('#Login-Submit').html('Login');
     })

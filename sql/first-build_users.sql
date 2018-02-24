@@ -24,35 +24,32 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `active` varchar(5) NOT NULL DEFAULT 'true',
-  `user_id` int(11) DEFAULT '1',
-  `user_type` varchar(7) NOT NULL DEFAULT 'Student',
+  `active` varchar(50) NOT NULL DEFAULT 'true',
+  `user_id` int(11) DEFAULT '0',
+  `user_type` varchar(20) NOT NULL DEFAULT 'Student',
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `firstname` varchar(40) NOT NULL,
   `middlename` varchar(40) DEFAULT NULL,
   `lastname` varchar(40) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `phone` varchar(10) NOT NULL,
-  `birth_date` varchar(10) NOT NULL,
-  `vgs` int(1) NOT NULL DEFAULT '0',
+  `phone` varchar(20) NOT NULL,
+  `birth_date` varchar(20) NOT NULL,
+  `vgs` int(5) NOT NULL DEFAULT '0',
   `img_src` varchar(255) NOT NULL DEFAULT 'img/Profile_Placeholder.png',
-  `creation_date` varchar(25) NOT NULL,
-  `edited` varchar(5) NOT NULL DEFAULT 'false',
+  `img_increment` int(10) DEFAULT '1',
+  `creation_date` varchar(30) NOT NULL,
+  `creation_time` varchar(20) NOT NULL,
+  `creation_ip` varchar(255) DEFAULT NULL,
+  `edited` varchar(20) NOT NULL DEFAULT 'false',
   `edit_date` varchar(25) DEFAULT NULL,
+  `edit_time` varchar(45) DEFAULT NULL,
+  `edit_username` varchar(255) DEFAULT NULL,
+  `edit_ip` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `users`
---
-
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -66,13 +63,21 @@ DELIMITER ;;
 FOR EACH ROW
 BEGIN
 
-	SET @user_id = (SELECT MAX(user_id) FROM users);
 
-	SET NEW.user_id = @user_id + 1;
+         IF NEW.user_id < 0 THEN
+         
 
-	IF NEW.user_id IS NULL THEN
-		SET NEW.user_id = 1;
-	END IF;
+			SET @user_id = (SELECT MAX(user_id) FROM users);
+
+			SET NEW.user_id = @user_id + 1;
+
+			IF NEW.user_id = 0 THEN
+				SET NEW.user_id = 1;
+			END IF;
+            
+
+         END IF;
+         
 
 END */;;
 DELIMITER ;
@@ -90,4 +95,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-08 12:15:05
+-- Dump completed on 2018-02-24 17:46:47

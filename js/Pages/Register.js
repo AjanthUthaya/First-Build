@@ -391,6 +391,13 @@ $('#Register-Firstname, #Register-Middlename, #Register-Lastname, #Register-User
   }
 });
 
+// Disable paste
+$(document).ready(function(){
+   $('#Register-Firstname, #Register-Middlename, #Register-Lastname, #Register-Username').bind("paste",function(e) {
+      e.preventDefault();
+   });
+});
+
 // Captalize first letter of input
 $('#Register-Firstname, #Register-Middlename, #Register-Lastname, #Register-Username').on('keydown', function(event) {
   if (this.selectionStart == 0 && event.keyCode >= 65 && event.keyCode <= 90 && !(event.shiftKey) && !(event.ctrlKey) && !(event.metaKey) && !(event.altKey)) {

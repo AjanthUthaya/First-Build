@@ -5,18 +5,23 @@ var request;
 function StopAndRedirect(Type) {
   window.stop();
   // Redirect to home, based on user type
-  if (Type == 'Admin') {
-    window.location.href = "HomeAdmin.html";
-  } else if (Type == 'Teacher') {
-    window.location.href = "HomeTeacher.html";
-  } else if (Type == 'Student') {
-    window.location.href = "Home.html";
-  } else {
-    // Title, TitleColor, Message, Icon, IconColor, Timeout
-    Notify('ERROR', 'red', 'DB_Error: User type not recognized', 'fa fa-close', 'red', false);
-    // Show login
-    ShowLogin();
-  }
+  /*
+    if (Type == 'Admin') {
+      window.location.href = "HomeAdmin.html";
+    } else if (Type == 'Teacher') {
+      window.location.href = "HomeTeacher.html";
+    } else if (Type == 'Student') {
+      window.location.href = "Home.html";
+    } else {
+      // Title, TitleColor, Message, Icon, IconColor, Timeout
+      Notify('ERROR', 'red', 'DB_Error: User type not recognized', 'fa fa-close', 'red', false);
+      // Show login
+      ShowLogin();
+    }
+  */
+
+  window.location.href = "Home.html";
+
 }
 
 // Fire off the request to php/Single/Login_Auto.php
