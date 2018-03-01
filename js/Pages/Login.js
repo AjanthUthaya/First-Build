@@ -90,12 +90,14 @@ function ShowLogin() {
         setTimeout(function() {
           $('#Login-Submit').css('animation', 'none');
           $('#Login-Submit').css('background', '#1779ba');
+          $('#Login-Password').focus();
         }, 600);
 
         // Title, TitleColor, Message, Icon, IconColor, Timeout
         Notify('Login failed', 'yellow', data.Message, 'fa fa-warning', 'yellow', 3000);
         // Make button text back to 'Login' from spinner
         $('#Login-Submit').html('Login');
+
 
         // ---------- END: Login failed ---------- //
 
@@ -136,8 +138,6 @@ function ShowLogin() {
         // Make button text back to 'Login' from spinner
         $('#Login-Submit').html('Login');
       }
-
-      console.log(data);
 
     })
 

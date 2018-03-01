@@ -43,6 +43,7 @@ input {
   height: 100px;
   border-radius: 50%;
   background: #292c31;
+  object-fit: cover;
 }
 
 .User-Menu-Name {
@@ -204,6 +205,7 @@ input {
   background: #292c31;
   border: 2px solid white;
   overflow: hidden;
+  object-fit: cover;
 }
 
 .Profile-Img-Close {

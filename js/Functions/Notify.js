@@ -19,7 +19,7 @@ function Notify(Title, TitleColor, Message, Icon, IconColor, Timeout) {
     layout: 2,
     close: true,
     position: 'bottomRight', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
-    timeout: Timeout,
+    timeout: Timeout || false,
     animateInside: false,
     progressBar: true,
     progressBarColor: 'white',

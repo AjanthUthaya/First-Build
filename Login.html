@@ -115,7 +115,7 @@
               <img src="img/Placeholder-Logo-1.png" alt="LOGO">
             </div>
 
-            <div class="Content-Logo-Title">
+            <div class="Content-Logo-Title unselectable">
               <label>First Build</label>
             </div>
 
@@ -126,7 +126,7 @@
 
             <div class="Content-Fields-Field Content-Fields-Username">
               <span class="fa fa-user"></span>
-              <input class="Login-Username-Input" id="Login-Username" name="Username" type="text" placeholder="Enter your username" minlength="2" maxlength="50" autocomplete="off" required>
+              <input class="Login-Username-Input" id="Login-Username" name="Username" type="text" placeholder="Enter your username" minlength="2" maxlength="50" autocomplete="off" autofocus required>
             </div>
 
             <div class="Content-Fields-Field Content-Fields-Password">
@@ -205,18 +205,17 @@
   <script src="js/Addons/Foundation/vendor/foundation.js"></script>
   <!-- End: Basic foundation files and init -->
 
-  <!-- NOTE: General scripts for all pages -->
-  <script src="js/Partials/app.js"></script>
-
-  <!-- NOTE: Notifications script -->
+  <!-- START: Addons -->
   <script src="js/Addons/iziToast/iziToast.js"></script>
+  <!-- END: Addons -->
+
+  <!-- General scripts for all pages -->
+  <script src="js/Partials/app.js"></script>
 
   <!-- START: Page specific scripts -->
   <script src="js/Pages/Login.js"></script>
-  <!-- END: Page specific scripts -->
-
-  <!-- NOTE: Auto login script -->
   <script src="js/Pages/Login_Auto.js"></script>
+  <!-- END: Page specific scripts -->
 
 
   <!-- ____________________ START: JS files ____________________ -->

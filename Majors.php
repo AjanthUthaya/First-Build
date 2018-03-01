@@ -1,0 +1,379 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Tab title -->
+  <title>Major - First Build</title>
+  <!-- Tab icon -->
+  <link rel="icon" href="http://via.placeholder.com/50x50">
+
+  <!-- ____________________ START: CSS files ____________________ -->
+
+  <!-- Foundation -->
+  <link rel="stylesheet" href="css/foundation.css">
+  <!-- Font awesome icons -->
+  <link rel="stylesheet" href="css/font-awesome.css">
+
+  <!-- START: Partials -->
+  <link rel="stylesheet" href="css/appPartials/appGeneral.css">
+  <link rel="stylesheet" href="css/appPartials/appFooter.css">
+  <link rel="stylesheet" href="css/appPartials/appTopNav.css">
+  <link rel="stylesheet" href="css/appPartials/appUserDropdownMenu.css">
+  <link rel="stylesheet" href="css/appPartials/appBreadcrumb.css">
+  <link rel="stylesheet" href="css/appPartials/appOffCanvasMenu.css">
+  <!-- END: Partials -->
+
+  <!-- START: Page specific files -->
+  <link rel="stylesheet" href="css/appPages/appMajor.css">
+  <!-- END: Page specific files -->
+
+  <!-- ____________________ END: CSS files ____________________ -->
+
+</head>
+
+<body>
+
+  <!-- START: Mobile view -->
+  <div id="Mobile-View">
+    <img src="http://via.placeholder.com/300x300">
+    <h3>This website is not available for mobile devices</h3>
+  </div>
+  <!-- END: Mobile view -->
+
+  <!-- START: Desktop view -->
+  <div id="Desktop-View">
+
+    <!-- START: OffCanvas menu -->
+    <div class="off-canvas position-left Menu-OffCanvas-Main ChildScroll" id="offCanvas" data-off-canvas data-transition="overlap">
+
+      <div class="OffCanvas-Menu-Content">
+
+
+        <div class="OffCanvas-Menu-List">
+          <div class="Menu-OffCanvas-Head">
+
+
+            <div class="Menu-OffCanvas-Title-Main">
+
+              <h3 class="Menu-OffCanvas-Title unselectable">Menu</h3>
+
+            </div>
+
+          </div>
+
+          <ul class="vertical menu align-center">
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="Lesson.html">Lesson</a></li>
+            <li><a href="Major.html" class="OffCanvas-Menu-List-Active" data-toggle="Sub-Major">Major</a></li>
+            <li><a href="Test.html">Test</a></li>
+          </ul>
+
+        </div>
+
+        <div class="OffCanvas-Menu-Social unselectable">
+
+          <span><a class="fa fa-facebook-square"></a></span>
+          <span><a class="fa fa-youtube-play"></a></span>
+          <span><a class="fa fa-instagram"></a></span>
+          <span><a class="fa fa-linkedin"></a></span>
+          <span><a class="fa fa-twitter"></a></span>
+
+        </div>
+
+      </div>
+
+    </div>
+    <!-- END: OffCanvas menu -->
+
+
+    <!-- START: OffCanvas sub major menu -->
+    <div class="Sub-Menu Sub-Menu-Major dropdown-pane ChildScroll" id="Sub-Major" data-dropdown data-hover="true" data-hover-pane="true">
+      <div class="Sub-Menu-Head">
+        <h3 class="Sub-Menu-Head-Main unselectable">Major</h3>
+      </div>
+
+      <ul class="Sub-Menu-List vertical menu align-center">
+        <!--<li><a href="SubLecture.html#Engelsk" onClick="history.go(0)">Engelsk</a></li>-->
+      </ul>
+      <!--      <div class="Create-New-Major">
+        <a href="NewMajor.html" class="button">Create new major</a>
+      </div>-->
+    </div>
+    <!-- END: OffCanvas sub major menu -->
+
+
+    <!-- ____________________ START: Navigation sections ____________________ -->
+
+    <!-- START: Navigation -->
+    <nav class="scrollhide-nav">
+      <!-- START: Top navigation -->
+      <div class="top-bar Top-Bar-Main">
+
+        <!-- START: Left section of navigation -->
+        <div class="top-bar-left">
+          <span class="Top-Bar-Menu"><a class="fa fa-bars" data-toggle="offCanvas"></a></span>
+        </div>
+        <!-- END: Left section of navigation -->
+
+        <!-- START: Middle section of navigation -->
+        <div class="Top-Bar-Center-Logo Top-Bar-Logo">
+
+          <div class="Triangle-Left">
+          </div>
+
+          <div class="Rectangle">
+            <a href="index.html"><img src="http://via.placeholder.com/50x50" alt="Logo-TopNav" id="TopBar-Logo" class="unselectable"/></a>
+          </div>
+
+          <div class="Triangle-Right">
+          </div>
+
+        </div>
+        <!-- END: Middle section of navigation -->
+
+        <!-- START: Right section of navigation -->
+        <div class="top-bar-right">
+          <ul class="menu medium-horizontal">
+            <li class="menu" data-toggle="User-Menu-Dropdown">
+              <label id="User-Name-Main"></label><span class="Top-Bar-Menu"><a class="fa fa-user-circle"></a></span>
+            </li>
+          </ul>
+        </div>
+        <!-- START: Right section of navigation -->
+
+
+        <!-- ____________________ END: Navigation sections ____________________ -->
+
+
+        <!-- START: User dropdown menu -->
+        <div class="dropdown-pane" id="User-Menu-Dropdown" data-dropdown data-close-on-click="true">
+          <!-- START: Container for user menu dropdown tabs -->
+          <div class="Slider">
+
+            <!-- START: Main tab -->
+            <div class="Tab-Main">
+              <div class="User-Menu-Image">
+                <img src="img/Profile_placeholder.png" id="Profile-Img-Main" alt="Profile-Picture-Main">
+              </div>
+
+              <div class="User-Menu-Name">
+                <label class="unselectable" id="User-Name-Dropdown"></label>
+              </div>
+
+              <div class="User-Menu-Content grid-x">
+                <a class="cell Profile" data-tabvalue="view">Profile</a>
+                <a class="cell Notifi" data-tabvalue="view">Notification</a>
+                <a id="Logout-Main" class="cell">Logout</a>
+              </div>
+            </div>
+            <!-- END: Main tab -->
+
+            <!-- START: Profile tab -->
+            <div class="Tab-Profile">
+              <div class="Tab-Profile-Content">
+
+                <div class="Profile-Content-Head">
+                  <a class="Profile" data-tabvalue="back"><span class="fa fa-arrow-left"></span></a>
+                  <label>Profile</label>
+                </div>
+
+                <div class="Profile-Content-Content ChildScroll">
+                  <div class="Profile-Content-Image">
+                    <div class="Content-Image-Main">
+                      <span class="Profile-Img-Close">x</span>
+                      <span id="Content-Image-Text" class="unselectable">Select image</span>
+                      <div class="Profile-Img-Error">
+                        <label id="Img-Error-Limit"></label>
+                        <label id="Img-Error-Current"></label>
+                      </div>
+                      <img src="img/Profile_placeholder.png" id="Profile-Img-Edit" alt="Profile-Picture-Edit">
+                      <input type="file" id="Profile-Img-Src" accept="image/png, image/jpg, image/jpeg" name="ImgSrc" style="display: none;">
+
+                    </div>
+                  </div>
+
+                  <div class="Profile-Content-Name">
+                    <label class="unselectable" id="User-Name-Profile"></label>
+                  </div>
+
+                  <div class="Profile-Content-Email">
+                    <label>Email</label>
+
+                    <div class="Profile-Content-Group">
+                      <i class="fa fa-envelope"></i>
+                      <input type="text" id="User-Email-Profile" name="Profile-Email-Edit">
+                    </div>
+                  </div>
+
+                  <div class="Profile-Content-Phone">
+                    <label>Phone</label>
+
+                    <div class="Profile-Content-Group">
+                      <i class="fa fa-phone"></i>
+                      <input type="text" id="User-Phone-Profile" name="Profile-Phone-Edit">
+                    </div>
+                  </div>
+
+                  <div class="Profile-Content-Save">
+                    <a id="Save-Profile-Content" class="cell">Save</a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <!-- END: Profile tab -->
+
+            <!-- START: Notification tab -->
+            <div class="Tab-Notifi">
+              <div class="Tab-Notifi-Content">
+                <div class="Notifi-Content-Head">
+                  <a class="Notifi" data-tabvalue="back"><span class="fa fa-arrow-left"></span></a>
+                  <label>Notification</label>
+                </div>
+                <div class="Notifi-Content-Content">
+
+                  <!-- <div class="Notifi-Content-Item">
+                    <span class="fa fa-user"></span>
+                    <div class="Notifi-Content-Item-Content">
+                      <label>Norsk</label>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                  </div> -->
+
+                </div>
+              </div>
+            </div>
+            <!-- END: Notification tab -->
+
+          </div>
+          <!-- END: Container for user menu dropdown tabs -->
+        </div>
+        <!-- END: User dropdown menu -->
+
+      </div>
+      <!-- END: Top navigation -->
+
+      <!-- START: Breadcrumb -->
+      <div class="Breadcrumb" aria-label="You are here:" role="navigation">
+        <ul class="breadcrumbs unselectable">
+          <li><a href="Home.html"><span class="fa fa-home Breadcrumb-Home"></span>Home</a></li>
+          <li>Major</li>
+        </ul>
+      </div>
+      <!-- END: Breadcrumb -->
+
+    </nav>
+    <!-- END: Navigation -->
+
+    <!-- START: Viewport -->
+    <div class="off-canvas-content OffCanvas-Main" data-off-canvas-content>
+
+      <!-- START: All content goes in here -->
+      <section id="Content-Main">
+
+        <div class="grid-x Major-Main">
+
+
+          <!--          <div class="medium-12 large-6">
+            <a href="SubLecture.html#Norsk">
+              <div class="grid-x Major Major-Norsk Major-Norsk-Button">
+                <div class="medium-2 image">
+                  <img src="http://via.placeholder.com/50x50" height="50px" width="50px" alt="Major-Icon">
+                </div>
+                <label class="medium-8">Norsk</label>
+                <span class="fa fa-arrow-right medium-2"></span>
+              </div>
+            </a>
+          </div>-->
+
+
+        </div>
+
+      </section>
+      <!-- END: All content goes in here -->
+
+      <!-- Start: Footer -->
+      <footer class="unselectable">
+
+        <div class="Footer-Logo">
+          <div class="Footer-Logo-Underlayer">
+            <a><img src="http://via.placeholder.com/90x90" width="90px" height="90px" alt="Logo-Footer"></a>
+          </div>
+        </div>
+
+        <div class="Footer-Label">
+          <label><a>First Build</a></label>
+        </div>
+
+        <div class="Footer-HR">
+          <hr>
+        </div>
+
+        <div class="Footer-Social">
+
+          <div class="Footer-Icon">
+            <a><span class="fa fa-facebook-square"></span></a>
+          </div>
+
+          <div class="Footer-Icon">
+            <a><span class="fa fa-youtube-play"></span></a>
+          </div>
+
+          <div class="Footer-Icon">
+            <a><span class="fa fa-instagram"></span></a>
+          </div>
+
+          <div class="Footer-Icon">
+            <a><span class="fa fa-linkedin-square"></span></a>
+          </div>
+
+          <div class="Footer-Icon">
+            <a><span class="fa fa-twitter-square"></span></a>
+          </div>
+
+        </div>
+      </footer>
+      <!-- END: Footer -->
+
+    </div>
+    <!-- END: Viewport -->
+
+  </div>
+  <!-- END: Desktop view -->
+
+  <!-- ____________________ START: JS files ____________________ -->
+
+
+  <!-- START: Basic foundation and init -->
+  <script src="js/Addons/Foundation/vendor/jquery.js"></script>
+  <script src="js/Addons/Foundation/vendor/what-input.js"></script>
+  <script src="js/Addons/Foundation/vendor/foundation.js"></script>
+  <!-- End: Basic foundation files and init -->
+
+  <!-- NOTE: General scripts for all pages -->
+  <script src="js/Partials/app.js"></script>
+
+  <!-- START: Partial scripts -->
+  <script src="js/Partials/ScrollHideNav.js"></script>
+  <script src="js/Partials/SliderForProfile.js"></script>
+  <script src="js/Partials/User_Validation.js"></script>
+  <script src="js/Partials/User_Data.js"></script>
+  <script src="js/Partials/Profile_Update.js"></script>
+  <script src="js/Partials/Logout.js"></script>
+  <script src="js/Partials/PreventParentScroll.js"></script>
+  <!-- End: Partial scripts -->
+
+  <!-- START: Page specific scripts -->
+  <script src="js/Pages/Major.js"></script>
+  <!-- END: Page specific scripts -->
+
+
+  <!-- ____________________ END: JS files ____________________ -->
+
+</body>
+
+</html>

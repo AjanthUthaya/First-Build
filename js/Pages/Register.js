@@ -12,7 +12,7 @@ $('#Register-Img-Error').click(function() {
   $('#Register-ImgTxt').css('display', 'flex');
 });
 
-
+require("js/Functions/Notify.js");
 
 // ---------- START: Img preview ---------- //
 
@@ -57,6 +57,9 @@ $("#Register-ImgSrc").on("change", function(e) {
     // Display error: fileType not a match
     $('#Register-Img-Error').css('display', 'flex');
 
+    // Wrong format
+    Notify('Incompatiable format', 'yellow', 'Accepted formats: .jpeg - .jpg - .png', 'fa fa-warning', 'yellow', 5000);
+
     return false;
 
   } else if (fileSize > 10485760) {
@@ -89,6 +92,9 @@ $("#Register-ImgSrc").on("change", function(e) {
 
     // Display error: fileType not a match
     $('#Register-Img-Error').css('display', 'flex');
+
+    // File size is too big
+    Notify('Image size', 'yellow', 'Image size is too big, max 10MB', 'fa fa-warning', 'yellow', 5000);
 
     return false;
 
@@ -127,21 +133,6 @@ $("#Register-Main").submit(function(event) {
   var Old_Birth_Date = $('#Register-Birth_Date').val();
   var dateAr = Old_Birth_Date.split('-');
   var Birth_Date = dateAr[2] + '-' + dateAr[1] + '-' + dateAr[0];
-
-  /*//Find fields and set(JSON Format)
-  var RegisterFormData = {
-    Firstname: $('#Register-Firstname').val(),
-    Middlename: $('#Register-Middlename').val(),
-    Lastname: $('#Register-Lastname').val(),
-    Email: $('#Register-Email').val(),
-    Phone: $('#Register-Phone').val(),
-    Birth_Date: Birth_Date,
-    Vgs: $('#Register-Vgs').val(),
-    Username: $('#Register-Username').val(),
-    Password: encodeURIComponent($('#Register-Password').val()),
-    CPassword: encodeURIComponent($('#Register-CPassword').val()),
-    'g-recaptcha-response': grecaptcha.getResponse()
-  };*/
 
   RegisterFormData.append('Firstname', $('#Register-Firstname').val());
   RegisterFormData.append('Middlename', $('#Register-Middlename').val());
@@ -203,7 +194,7 @@ $("#Register-Main").submit(function(event) {
       },
       Username: {
         required: true,
-        minlength: 6,
+        minlength: 5,
         maxlength: 50
       },
       Password: {
@@ -220,50 +211,29 @@ $("#Register-Main").submit(function(event) {
   });
 
   // Check to see if Password and CPassword match
-  if (RegisterFormData.Password == RegisterFormData.CPassword) {} else {
-    alert("Your password and confirmation password do not match");
+  if ($('#Register-Password').val() == $('#Register-CPassword').val()) {
+    // BUG: Keep this space or the script dosent work for some reason
+  } else {
+    // Password confirmation failed
+    Notify('Password confirmation', 'yellow', 'Your password and confirmation password do not match', 'fa fa-warning', 'yellow', 5000);
+
+    // Prevents form from submiting data
     validationFailed = true;
   }
 
-  // Custom message on all fields
-  /*  jQuery.extend(jQuery.validator.messages, {
-      required: "This field is required.",
-      remote: "Please fix this field.",
-      email: "Please enter a valid email address.",
-      url: "Please enter a valid URL.",
-      date: "Please enter a valid date.",
-      dateISO: "Please enter a valid date (ISO).",
-      number: "Please enter a valid number.",
-      digits: "Please enter only digits.",
-      creditcard: "Please enter a valid credit card number.",
-      equalTo: "Please enter the same value again.",
-      accept: "Please enter a value with a valid extension.",
-      maxlength: jQuery.validator.format("Please enter no more than {0} characters."),
-      minlength: jQuery.validator.format("Please enter at least {0} characters."),
-      rangelength: jQuery.validator.format("Please enter a value between {0} and {1} characters long."),
-      range: jQuery.validator.format("Please enter a value between {0} and {1}."),
-      max: jQuery.validator.format("Please enter a value less than or equal to {0}."),
-      min: jQuery.validator.format("Please enter a value greater than or equal to {0}.")
-  });*/
-
-  // Custom for specific field
-  /*  $("#myinput").rules("add", {
-      required: true,
-      minlength: 2,
-      messages: {
-        required: "Required input",
-        minlength: jQuery.validator.format("Please, at least {0} characters are necessary")
-      }
-    });*/
-
   // Check if validation failed, and set new variable
-  if ($ValidateForm.form()) {} else {
+  if ($ValidateForm.form()) {
+    // Just in case this has the same BUG as the one above
+  } else {
+    // Form validation failed
+    Notify('Form validation failed', 'red', '', 'fa fa-close', 'red', '');
+
+    // Prevents form from submiting data
     validationFailed = true;
   }
 
   // If validation failed, stop form
-  if (validationFailed) {
-    event.preventDefault();
+  if (validationFailed == true) {
     return false;
   }
 
@@ -300,54 +270,14 @@ $("#Register-Main").submit(function(event) {
   // Fired up on success
   RegisterRequest.done(function(data) {
 
-    // Declaring responce variable
-    var DB_Failed = "DB: Connection failed";
-    var Missing_Field = "Missing_Field_Data";
-    var Username_Taken = "Username_Taken";
-    var SQL_Done = "SQL_Done";
-    var SQL_Error = "SQL_Error";
-    var Image_Non_Selected = "Image_Non_Selected";
-    var Image_Validation_Failed = "Image_Validation_Failed";
-    var Image_Error = "Image_Error";
-    var reCAPTCHA_Failed = "reCAPTCHA: Failed";
-    var reCAPTCHA_Not_Activated = "reCAPTCHA: Not activated";
-
-    // Responce from Register.php
-    if (data == DB_Failed) {
-      alert("DB: Connection failed");
-    } else if (data == Missing_Field) {
-      alert("Please fill out all fields");
-    } else if (data == Image_Non_Selected) {
-      $("#Register-ImgTxt").css("color", "red");
-      window.scrollTo(0, 0);
-    } else if (data == Image_Validation_Failed) {
-      alert("Image validation failed, try again");
-      window.scrollTo(0, 0);
-    } else if (data == Image_Error) {
-      alert("Error uploading image, try again");
-      window.scrollTo(0, 0);
-    } else if (data == Username_Taken) {
-      alert("Username is taken");
-    } else if (data == SQL_Error) {
-      alert("DB: Failed to create new user");
-    } else if (data == reCAPTCHA_Failed) {
-      alert("reCAPTCHA: Failed");
-    } else if (data == reCAPTCHA_Not_Activated) {
-      alert("Click to verify your human");
-    } else if (data == SQL_Done) {
-      alert("New user added successfully");
-      console.log(data);
-      window.location.href = "Login.html";
-    } else {
-      alert("Error: Responce not recognized");
-    }
-
+    console.log(data);
 
   })
 
   // Fired up on failure
   RegisterRequest.fail(function(xhr, textStatus, errorThrown) {
-    alert("Error: " + errorThrown);
+    // Display error for user
+    Notify('ERROR', 'red', 'Connection failed: ' + errorThrown, 'fa fa-close', 'red', false);
   })
 
   // Fired up no matter if the result is a success or failure
@@ -392,10 +322,10 @@ $('#Register-Firstname, #Register-Middlename, #Register-Lastname, #Register-User
 });
 
 // Disable paste
-$(document).ready(function(){
-   $('#Register-Firstname, #Register-Middlename, #Register-Lastname, #Register-Username').bind("paste",function(e) {
-      e.preventDefault();
-   });
+$(document).ready(function() {
+  $('#Register-Firstname, #Register-Middlename, #Register-Lastname, #Register-Username').bind("paste", function(e) {
+    e.preventDefault();
+  });
 });
 
 // Captalize first letter of input

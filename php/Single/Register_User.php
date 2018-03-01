@@ -32,6 +32,13 @@ if ($Empty_Field == true) {
   echo "Missing_Field_Data";
 } else {
 
+  if ($_POST["Vgs"] == 1 || $_POST["Vgs"] == 2 || $_POST["Vgs"] == 3) {
+    // Do nothing
+  } else {
+    echo "Vgs error";
+    exit;
+  }
+
   // ---------- START: reCAPTCHA ---------- //
 
   if (isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
@@ -124,6 +131,7 @@ if ($Empty_Field == true) {
                 $Creation_Date = date("d-m-Y");
                 $Creation_Time = date("H:i:s");
 
+                // Gets user ip
                 $User_Ip = GetUserIP();
 
                 // Send data to the database

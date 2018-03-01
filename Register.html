@@ -16,6 +16,8 @@
   <link rel="stylesheet" href="css/foundation.css">
   <!-- Font awesome icons -->
   <link rel="stylesheet" href="css/font-awesome.css">
+  <!-- Notifications -->
+  <link rel="stylesheet" href="css/iziToast.css">
 
   <!-- START: Partials -->
   <link rel="stylesheet" href="css/appPartials/appGeneral.css">
@@ -187,7 +189,7 @@
 
               <label>VGS</label>
 
-              <select class="Register-VGS-Select" id="Register-Vgs" name="Vgs">
+              <select class="Register-VGS-Select" id="Register-Vgs" name="Vgs" required>
                   <option value="" selected disabled>Select VGS</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -208,7 +210,7 @@
                 <span class="fa fa-user"></span>
               </div>
 
-              <input class="input-group-field Register-Username-Input" id="Register-Username" name="Username" type="text" placeholder="Enter your username" minlength="6" maxlength="50" required>
+              <input class="input-group-field Register-Username-Input" id="Register-Username" name="Username" type="text" placeholder="Enter your username" minlength="5" maxlength="50" required>
             </div>
 
           </div>
@@ -321,11 +323,17 @@
   <script src="js/Addons/Foundation/vendor/foundation.js"></script>
   <!-- End: Basic foundation files and init -->
 
-  <!-- NOTE: General scripts for all pages -->
+  <!-- START: Addons -->
+  <script src="js/Addons/jquery.validate.js"></script>
+  <script src="js/Addons/iziToast/iziToast.js"></script>
+  <!-- END: Addons -->
+
+  <!-- General scripts for all pages -->
   <script src="js/Partials/app.js"></script>
 
-  <script src="js/Addons/jquery.validate.js"></script>
+  <!-- START: Page specific scripts -->
   <script src="js/Pages/Register.js"></script>
+  <!-- END: Page specific scripts -->
 
 
   <!-- ____________________ START: JS files ____________________ -->
