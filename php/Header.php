@@ -1,4 +1,7 @@
 <?php
+// Start the session
+session_start();
+
 // Links to all main files
 include 'php/Pages/Links.php';
  ?>

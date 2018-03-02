@@ -110,23 +110,8 @@ function ShowLogin() {
         $('#Login-Submit').css('background', '#7fb836');
         $('#Login-Submit').html('Logging in...');
 
-        // Redirect to home, based on user type
-        /*
-        if (data.Message == 'Admin') {
-          window.location.href = "HomeAdmin.html";
-        } else if (data.Message == 'Teacher') {
-          window.location.href = "HomeTeacher.html";
-        } else if (data.Message == 'Student') {
-          window.location.href = "Home.html";
-        } else {
-          // Title, TitleColor, Message, Icon, IconColor, Timeout
-          Notify('ERROR', 'red', 'DB_Error: User type not recognized', 'fa fa-close', 'red', false);
-          // Make button text back to 'Login' from spinner
-          $('#Login-Submit').html('Login');
-        }
-        */
+        window.location.href = 'Home.php';
 
-        window.location.href = "Home.html";
 
         // ---------- END: Login done ---------- //
 
