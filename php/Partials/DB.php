@@ -1,4 +1,6 @@
 <?php
+include '../Functions/ReportError.php';
+
 // Declaring variables
 $servername = "localhost";
 $username = "root";
@@ -10,15 +12,14 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
-    $Status = 'DB: Connection failed';
-    echo $Status;
+    ReportError("Error", "DB: Connection failed");
     die();
-    //For testing: $conn->connect_error
+    // For testing: $conn->connect_error
 } else {
     $Status = 'DB: Connection successful';
 }
 
 // Show connection status to the db
-// '<div id="Connection-Status" style="color: green;">Connection successful<br /></div>'
+// '<div id="Connection-Status" style="color: green;">DB: Connection successful</div>'
 // echo $Status;
 ?>

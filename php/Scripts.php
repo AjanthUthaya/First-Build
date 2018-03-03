@@ -128,7 +128,6 @@
   <!-- END: Calendar and init -->
 
   <!-- START: Addons -->
-  <script src="js/Addons/Notify/jquery.notify.min.js"></script>
   <script src="js/Addons/PowerTip/Powertip.js"></script>
   <script src="js/Addons/DropDownSlick/DDSlick.js"></script>
   <!-- END: Addons -->
@@ -184,7 +183,6 @@
   <!-- END: Calendar and init -->
 
   <!-- START: Addons -->
-  <script src="js/Addons/Notify/jquery.notify.min.js"></script>
   <script src="js/Addons/PowerTip/Powertip.js"></script>
   <script src="js/Addons/DropDownSlick/DDSlick.js"></script>
   <!-- END: Addons -->

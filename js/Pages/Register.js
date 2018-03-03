@@ -1,3 +1,27 @@
+// ---------- START: Place variable, for testing ---------- //
+
+// Firstname, Middlename, Lastname
+$('#Register-Firstname').val('Test');
+$('#Register-Middlename').val('Ajax');
+$('#Register-Lastname').val('Response');
+
+// Email, Phone
+$('#Register-Email').val('Test@Email.com');
+$('#Register-Phone').val('46472826');
+
+// Birth date, Vgs
+$('#Register-Birth_Date').val('1999-05-13');
+$('#Register-Vgs').val('2');
+
+// Username
+$('#Register-Username').val('TestUser');
+
+// Password, CPassword
+$('#Register-Password').val('TestPassword');
+$('#Register-CPassword').val('TestPassword');
+
+// ---------- END: Place variable, for testing ---------- //
+
 // Define form data variable
 var RegisterFormData = new FormData();
 
@@ -12,6 +36,7 @@ $('#Register-Img-Error').click(function() {
   $('#Register-ImgTxt').css('display', 'flex');
 });
 
+// Notification function (Title, TitleColor, Message, Icon, IconColor, Timeout)
 require("js/Functions/Notify.js");
 
 // ---------- START: Img preview ---------- //
@@ -242,7 +267,6 @@ $("#Register-Main").submit(function(event) {
   // ---------- END: Validation ---------- //
 
 
-
   // ---------- START: Disabling input during form submit ---------- //
 
   var $inputs = $(this).find("input, select, button, textarea");
@@ -270,7 +294,27 @@ $("#Register-Main").submit(function(event) {
   // Fired up on success
   RegisterRequest.done(function(data) {
 
-    console.log(data);
+    var data = JSON.parse(data);
+
+    if (data.Status == 'Error') {
+      // ---------- START: Registration failed ---------- //
+
+      Notify('ERROR', 'red', data.Message, 'fa fa-close', 'red', 5000);
+
+      // ---------- END: Registration failed ---------- //
+    } else if (data.Status == 'Done') {
+      // ---------- START: Registration done ---------- //
+
+      Notify('Done', 'white', 'Message: ' + data.Message, 'fa fa-check', 'white', false);
+      //window.location.href = 'Login.php';
+
+      // ---------- END: Registration done ---------- //
+    } else {
+      // ---------- START: Response not recognized ---------- //
+      Notify('ERROR', 'red', 'Error: Response not recognized', 'fa fa-close', 'red', 5000);
+      //console.log(test); // NOTE: For testing
+      // ---------- END: Response not recognized ---------- //
+    }
 
   })
 

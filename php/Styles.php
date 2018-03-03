@@ -92,8 +92,6 @@
   <link rel="stylesheet" href="css/dhtmlxscheduler.css">
   <!-- Tooltip -->
   <link rel="stylesheet" href="css/Powertip.css">
-  <!-- Notification popup -->
-  <link rel="stylesheet" href="css/jquery.notify.css">
 
   <!-- START: Partials -->
   <link rel="stylesheet" href="css/appPartials/appGeneral.css">
@@ -124,8 +122,6 @@
   <link rel="stylesheet" href="css/dhtmlxscheduler.css">
   <!-- Tooltip -->
   <link rel="stylesheet" href="css/Powertip.css">
-  <!-- Notification popup -->
-  <link rel="stylesheet" href="css/jquery.notify.css">
 
   <!-- START: Partials -->
   <link rel="stylesheet" href="css/appPartials/appGeneral.css">

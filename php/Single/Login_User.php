@@ -19,23 +19,6 @@ foreach($required as $field) {
   }
 }
 
-// Declaring response array/json
-$LoginResponse = array();
-
-function ReportError($Status, $Message) {
-
-  // Declare variables
-  $LoginResponse['Status'] = $Status;
-  $LoginResponse['Message'] = $Message;
-
-  // Encode array into JSON
-  $LoginResponseJSON = json_encode($LoginResponse);
-
-  // Send JSON array
-  echo $LoginResponseJSON;
-
-}
-
 // If any empty fields return Empty field
 if ($Empty_Field == true) {
   ReportError("Error", "Missing_Field_Data");

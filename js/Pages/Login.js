@@ -119,6 +119,7 @@ function ShowLogin() {
         // ---------- START: Response not recognized ---------- //
         // Title, TitleColor, Message, Icon, IconColor, Timeout
         Notify('ERROR', 'red', 'Error: Response not recognized', 'fa fa-close', 'red', false);
+        // console.log(data); // NOTE: For testing
         // ---------- END: Response not recognized ---------- //
         // Make button text back to 'Login' from spinner
         $('#Login-Submit').html('Login');
