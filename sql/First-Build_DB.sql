@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `first-build` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `first-build`;
 -- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
 -- Host: localhost    Database: first-build
@@ -14,6 +16,62 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `room`
+--
+
+DROP TABLE IF EXISTS `room`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `room` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `room_group` int(11) NOT NULL,
+  `room` varchar(45) NOT NULL,
+  `capacity` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `room_group_idx` (`room_group`),
+  CONSTRAINT `room_group` FOREIGN KEY (`room_group`) REFERENCES `room_group` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `room_group`
+--
+
+DROP TABLE IF EXISTS `room_group`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `room_group` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `key` varchar(50) NOT NULL,
+  `label` varchar(50) NOT NULL,
+  `open` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `user_online`
+--
+
+DROP TABLE IF EXISTS `user_online`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_online` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `user_type` varchar(20) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `ip_address` varchar(50) DEFAULT NULL,
+  `type` varchar(20) NOT NULL,
+  `page` varchar(255) NOT NULL,
+  `last_update_date` varchar(20) NOT NULL,
+  `last_update_time` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1522 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `users`
@@ -48,7 +106,7 @@ CREATE TABLE `users` (
   `edit_ip` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -64,7 +122,7 @@ FOR EACH ROW
 BEGIN
 
 
-         IF NEW.user_id < 0 THEN
+         IF NEW.user_id < 1 THEN
          
 
 			SET @user_id = (SELECT MAX(user_id) FROM users);
@@ -85,6 +143,10 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Dumping routines for database 'first-build'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -95,4 +157,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-24 17:46:47
+-- Dump completed on 2018-03-05  8:51:27
