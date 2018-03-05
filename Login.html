@@ -94,6 +94,10 @@
 
       <form id="Login-Main">
 
+        <!-- NOTE: Chrome ignores autofocus="off", but it only targets the first two inputs -->
+        <input style="display:none">
+        <input type="password" style="display:none">
+
         <!--
         <div id="Login-Icon">
           <span class="fa fa-user"></span>
@@ -131,7 +135,7 @@
 
             <div class="Content-Fields-Field Content-Fields-Password">
               <span class="fa fa-lock"></span>
-              <input class="Login-Password-Input" id="Login-Password" name="Password" type="password" placeholder="Enter your password" minlength="2" maxlength="50" autocomplete="off" required>
+              <input class="Login-Password-Input" id="Login-Password" name="Password" type="password" placeholder="Enter your password" minlength="2" maxlength="50" autocomplete="false" required>
             </div>
 
           </div>

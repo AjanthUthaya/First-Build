@@ -305,8 +305,8 @@ $("#Register-Main").submit(function(event) {
     } else if (data.Status == 'Done') {
       // ---------- START: Registration done ---------- //
 
-      Notify('Done', 'white', 'Message: ' + data.Message, 'fa fa-check', 'white', false);
-      //window.location.href = 'Login.php';
+      Notify('Done', 'white', 'Redirecting to login page', 'fa fa-check', 'white', false);
+      window.location.href = 'Login.php';
 
       // ---------- END: Registration done ---------- //
     } else {

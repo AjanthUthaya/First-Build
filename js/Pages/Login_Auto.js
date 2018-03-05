@@ -20,7 +20,7 @@ function StopAndRedirect(Type) {
     }
   */
 
-  window.location.href = "Home.html";
+  window.location.href = "Home.php";
 
 }
 
