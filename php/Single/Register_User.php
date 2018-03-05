@@ -32,8 +32,7 @@ foreach ($required as $field) {
 if ($Empty_Field == true) {
     ReportError("Error", "Missing input value");
 } else {
-
-   if ($_POST["Vgs"] == 1 || $_POST["Vgs"] == 2 || $_POST["Vgs"] == 3) {
+    if ($_POST["Vgs"] == 1 || $_POST["Vgs"] == 2 || $_POST["Vgs"] == 3) {
         // Continue running the script
     } else {
         ReportError("Error", "Vgs: invalid value");
@@ -162,16 +161,22 @@ if ($Empty_Field == true) {
                   (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
                   if ($NewUserQurry = $conn -> prepare($CreateUserSql)) {
+
+                      // Upload img to server folder folder
+                      move_uploaded_file($_FILES["ImgSrc"]["tmp_name"], "../../img/Profile/" . $newfilename);
+
                       // 13 values
                       $NewUserQurry ->  bind_param('ssssssissssss', $Firstname, $Middlename, $Lastname, $Email, $Phone, $Birth_Date, $Vgs, $Username, $Encrypted_Password, $filePath, $Creation_Date, $Creation_Time, $User_Ip);
 
                       $NewUserQurry -> execute();
 
                       $NewUserQurry -> close();
+
+                      ReportError("Done", "Success");
+                      
+                  } else {
+                      ReportError("Error", "Database connection");
                   }
-
-                  ReportError("Done", "Success");
-
 
                   /*} // Check if file already exits */
               }

@@ -1,9 +1,9 @@
 // ---------- START: Place variable, for testing ---------- //
 
-// Firstname, Middlename, Lastname
+/*// Firstname, Middlename, Lastname
 $('#Register-Firstname').val('Test');
-$('#Register-Middlename').val('Ajax');
-$('#Register-Lastname').val('Response');
+$('#Register-Middlename').val('User');
+$('#Register-Lastname').val('Id');
 
 // Email, Phone
 $('#Register-Email').val('Test@Email.com');
@@ -18,7 +18,7 @@ $('#Register-Username').val('TestUser');
 
 // Password, CPassword
 $('#Register-Password').val('TestPassword');
-$('#Register-CPassword').val('TestPassword');
+$('#Register-CPassword').val('TestPassword');*/
 
 // ---------- END: Place variable, for testing ---------- //
 
@@ -306,7 +306,7 @@ $("#Register-Main").submit(function(event) {
       // ---------- START: Registration done ---------- //
 
       Notify('Done', 'white', 'Redirecting to login page', 'fa fa-check', 'white', false);
-      window.location.href = 'Login.php';
+      window.location.href = 'Login.html';
 
       // ---------- END: Registration done ---------- //
     } else {
