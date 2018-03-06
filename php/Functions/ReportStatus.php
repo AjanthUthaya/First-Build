@@ -3,7 +3,7 @@
 // Declaring response array/json
 $RegisterResponse = array();
 
-function ReportError($Status, $Message) {
+function ReportStatus($Status, $Message) {
   // Declare variables
   $RegisterResponse['Status'] = $Status;
   $RegisterResponse['Message'] = $Message;

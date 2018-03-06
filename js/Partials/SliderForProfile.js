@@ -2,8 +2,6 @@ $ProfileButton = ".Profile";
 $NotifiButton = ".Notifi";
 
 
-
-
 $($ProfileButton).click(function() {
   $MainDiv = $(".Slider > div");
   $MainDivLenght = $MainDiv.length;
@@ -40,7 +38,7 @@ $($ProfileButton).click(function() {
         transition: "transform 0.4s ease-in-out",
         transform: "translateX(-300px)"
       });
-    }, 450);
+    }, 500);
 
 
   } else if (TabValue == "back") {
@@ -56,7 +54,7 @@ $($ProfileButton).click(function() {
 
     setTimeout(function() {
       $($ProfileDot).css("display", "none");
-    }, 450);
+    }, 500);
   }
 
 });
@@ -96,7 +94,7 @@ $($NotifiButton).click(function() {
         transition: "transform 0.4s ease-in-out",
         transform: "translateX(-300px)"
       });
-    }, 450);
+    }, 500);
 
 
   } else if (TabValue == "back") {
@@ -112,7 +110,7 @@ $($NotifiButton).click(function() {
 
     setTimeout(function() {
       $($NotifiDot).css("display", "none");
-    }, 450);
+    }, 500);
 
   }
 

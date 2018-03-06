@@ -4,6 +4,8 @@ session_start();
 // Including db connection
 require '../Partials/DB.php';
 
+require '../Functions/ReportStatus.php';
+
 // Required field from registration
 $required = array(
   'Username',
@@ -21,7 +23,7 @@ foreach($required as $field) {
 
 // If any empty fields return Empty field
 if ($Empty_Field == true) {
-  ReportError("Error", "Missing_Field_Data");
+  ReportStatus("Error", "Missing_Field_Data");
 } else {
 
   // ---------- START: Declaring POST values from Login.html ---------- //
@@ -41,7 +43,7 @@ if ($Empty_Field == true) {
 
   if (mysqli_num_rows($UsernameExists) !== 1) {
     // ---------- Username no match to DB usernames ---------- //
-    ReportError("Failed", "Login failed, try again");
+    ReportStatus("Failed", "Login failed, try again");
   } else {
 
     // ---------- START: Username match found ---------- //
@@ -54,7 +56,7 @@ if ($Empty_Field == true) {
 
     if (empty($DBMatchData)) {
       // ---------- Could not get password from database ---------- //
-      ReportError("Error", "DB_GetData_Error: Error with database connection");
+      ReportStatus("Error", "DB_GetData_Error: Error with database connection");
     } else {
 
       // ---------- Got password from database ---------- //
@@ -175,17 +177,17 @@ if ($Empty_Field == true) {
 
           // ---------- END: Send data to DB ---------- //
 
-          ReportError("Done", $DB_User_Type);
+          ReportStatus("Done", $DB_User_Type);
 
         } else {
           // ---------- Found empty value, NB: There should not be any empty values ---------- //
-          ReportError("Error", "DB_GetData_EmptyValue: Error with database connection");
+          ReportStatus("Error", "DB_GetData_EmptyValue: Error with database connection");
         }
         // ---------- END: Checking if any of the values are empty ---------- //
 
       } else {
         // ---------- Password did not match DBPassword ---------- //
-        ReportError("Failed", "Login failed, try again");
+        ReportStatus("Failed", "Login failed, try again");
       }
 
       // Print all values from array for TESTING

@@ -24,7 +24,6 @@
   <!-- START: Partial scripts -->
   <script src="js/Partials/ScrollHideNav.js"></script>
   <script src="js/Partials/SliderForProfile.js"></script>
-  <script src="js/Partials/User_Validation.js"></script>
   <script src="js/Partials/User_Data.js"></script>
   <script src="js/Partials/Profile_Update.js"></script>
   <script src="js/Partials/Logout.js"></script>
@@ -57,7 +56,6 @@
   <!-- START: Partial scripts -->
   <script src="js/Partials/ScrollHideNav.js"></script>
   <script src="js/Partials/SliderForProfile.js"></script>
-  <script src="js/Partials/User_Validation.js"></script>
   <script src="js/Partials/User_Data.js"></script>
   <script src="js/Partials/Profile_Update.js"></script>
   <script src="js/Partials/Logout.js"></script>
@@ -86,7 +84,6 @@
   <!-- START: Partial scripts -->
   <script src="js/Partials/ScrollHideNav.js"></script>
   <script src="js/Partials/SliderForProfile.js"></script>
-  <script src="js/Partials/User_Validation.js"></script>
   <script src="js/Partials/User_Data.js"></script>
   <script src="js/Partials/Profile_Update.js"></script>
   <script src="js/Partials/Logout.js"></script>
@@ -134,7 +131,6 @@
 
   <!-- START: Partial scripts -->
   <script src="js/Partials/SliderForProfile.js"></script>
-  <script src="js/Partials/User_Validation.js"></script>
   <script src="js/Partials/User_Data.js"></script>
   <script src="js/Partials/Profile_Update.js"></script>
   <script src="js/Partials/Logout.js"></script>
@@ -189,7 +185,6 @@
 
   <!-- START: Partial scripts -->
   <script src="js/Partials/SliderForProfile.js"></script>
-  <script src="js/Partials/User_Validation.js"></script>
   <script src="js/Partials/User_Data.js"></script>
   <script src="js/Partials/Profile_Update.js"></script>
   <script src="js/Partials/Logout.js"></script>
@@ -233,7 +228,6 @@
   <!-- START: Partial scripts -->
   <script src="js/Partials/ScrollHideNav.js"></script>
   <script src="js/Partials/SliderForProfile.js"></script>
-  <script src="js/Partials/User_Validation.js"></script>
   <script src="js/Partials/User_Data.js"></script>
   <script src="js/Partials/Profile_Update.js"></script>
   <script src="js/Partials/Logout.js"></script>

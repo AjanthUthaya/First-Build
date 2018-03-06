@@ -30,12 +30,12 @@ foreach ($required as $field) {
 
 // If any empty fields return Empty field
 if ($Empty_Field == true) {
-    ReportError("Error", "Missing input value");
+    ReportStatus("Error", "Missing input value");
 } else {
     if ($_POST["Vgs"] == 1 || $_POST["Vgs"] == 2 || $_POST["Vgs"] == 3) {
         // Continue running the script
     } else {
-        ReportError("Error", "Vgs: invalid value");
+        ReportStatus("Error", "Vgs: invalid value");
         exit;
     }
 
@@ -77,7 +77,7 @@ if ($Empty_Field == true) {
 
             // Username is taken
             if ($Username_Taken->num_rows > 0) {
-                ReportError("Error", "Username is taken");
+                ReportStatus("Error", "Username is taken");
             } else {
 
         // ---------- START: Upload image ---------- //
@@ -97,7 +97,7 @@ if ($Empty_Field == true) {
            && in_array($file_extension, $validextensions)) {
               if ($_FILES["ImgSrc"]["error"] > 0) {
                   // ---------- Image error ---------- //
-                  ReportError("Error", "Image file error");
+                  ReportStatus("Error", "Image file error");
               } else {
                   /*              if (file_exists("img/Profile/" . $_FILES["ImgSrc"]["name"])) {
                                   // ---------- Image already exits ---------- //
@@ -144,10 +144,10 @@ if ($Empty_Field == true) {
                                     // Upload img to folder
                                     move_uploaded_file($_FILES["ImgSrc"]["tmp_name"], "../../img/Profile/" . $newfilename);
 
-                                    ReportError("Done", "Success");
+                                    ReportStatus("Done", "Success");
 
                                   } else {
-                                    ReportError("Error", "Database connection");
+                                    ReportStatus("Error", "Database connection");
                                     //echo $conn->connect_error;
                                   }
 
@@ -172,21 +172,21 @@ if ($Empty_Field == true) {
 
                       $NewUserQurry -> close();
 
-                      ReportError("Done", "Success");
-                      
+                      ReportStatus("Done", "Success");
+
                   } else {
-                      ReportError("Error", "Database connection");
+                      ReportStatus("Error", "Database connection");
                   }
 
                   /*} // Check if file already exits */
               }
           } else {
               // ---------- Validation failed ---------- //
-              ReportError("Error", "Image validation failed");
+              ReportStatus("Error", "Image validation failed");
           }
                 } else {
                     // ---------- No file was selected ---------- //
-                    ReportError("Error", "Image not selected");
+                    ReportStatus("Error", "Image not selected");
                 }
 
                 // ---------- END: Username is not taken ---------- //
@@ -195,11 +195,11 @@ if ($Empty_Field == true) {
             }
         } else {
             // ---------- reCAPTCHA: Failed ---------- //
-            ReportError("Error", "reCAPTCHA validation failed");
+            ReportStatus("Error", "reCAPTCHA validation failed");
         }
     } else {
         // ---------- reCAPTCHA: Not activated ---------- //
-        ReportError("Error", "Click reCAPTCHA box to verify that you are human");
+        ReportStatus("Error", "Click reCAPTCHA box to verify that you are human");
     }
 
     // ---------- END: reCAPTCHA ---------- //

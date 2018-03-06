@@ -18,7 +18,7 @@ $TimeNow = date('H:i:s');
 $NewEmail = $_POST['Email'];
 $NewPhone = $_POST['Phone'];
 if (isset($_FILES['ImgSrc'])) {
-  $NewImg = $_FILES['ImgSrc'];
+    $NewImg = $_FILES['ImgSrc'];
 }
 
 
@@ -33,15 +33,15 @@ $NewEmailEmpty = 'NotEmpty';
 $NewPhoneEmpty = 'NotEmpty';
 
 if (empty($NewImg)) {
-  $NewImgEmpty = 'Empty';
+    $NewImgEmpty = 'Empty';
 }
 
 if (empty($NewEmail)) {
-  $NewEmailEmpty = 'Empty';
+    $NewEmailEmpty = 'Empty';
 }
 
 if (empty($NewPhone)) {
-  $NewPhoneEmpty = 'Empty';
+    $NewPhoneEmpty = 'Empty';
 }
 
 // ---------- END: Check if any of the are empty ---------- //
@@ -49,37 +49,32 @@ if (empty($NewPhone)) {
 
 // If phone or email is empty, return error
 if ($NewEmailEmpty == 'Empty' || $NewPhoneEmpty == 'Empty') {
-  echo 'Empty_Email_Phone';
+    echo 'Empty_Email_Phone';
 } else {
+    require '../Functions/CheckUserVal.php';
+    $CheckUserValResult = CheckUserVal($conn);
 
-    require '../Functions/GetUserData.php';
-    $GetUserDataResult = GetUserData($conn);
-
-  if ($GetUserDataResult !== 'Session_DB_Equal') {
-    // GetUserData() function returns error to ajax request
+    if ($CheckUserValResult !== 'Session_DB_Equal') {
+        // CheckUserVal() function returns 'Redirect-$Reason' or 'Session_DB_Equal'
     // ---------- START: List of all error responses ---------- //
     /*
 
-    - Session_Empty_Data
+    - Session_Data_NotSet
+    - Session_Data_Empty
     - DB_Username_NoMatch
-    - DB_Empty_Data
+    - DB_Data_Empty
     - Session_DB_NotEqual
 
     */
     // ---------- END: List of all error responses ---------- //
-  } else {
-
-    require '../Functions/UpdateUser.php';
-
-    if ($NewImgEmpty == 'Empty') {
-      UpdateUser($conn, $NewEmail, $NewPhone, 'Empty');
     } else {
-      UpdateUser($conn, $NewEmail, $NewPhone, $NewImg);
+
+        require '../Functions/ProfileUpdateFunction.php';
+
+        if ($NewImgEmpty == 'Empty') {
+            UpdateUser($conn, $NewEmail, $NewPhone, 'Empty');
+        } else {
+            UpdateUser($conn, $NewEmail, $NewPhone, $NewImg);
+        }
     }
-
-  }
-
-
 }
-
- ?>

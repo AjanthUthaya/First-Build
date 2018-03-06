@@ -20,7 +20,7 @@ function ClearSession($Reason){
   $Clear_Session_Data_Reason = $Reason;
 
   // Redirect to login
-  echo "Redirect-" . $Clear_Session_Data_Reason;
+  return "Redirect-" . $Clear_Session_Data_Reason;
 
 }
 // ---------- END: Clears SESSION data ---------- //

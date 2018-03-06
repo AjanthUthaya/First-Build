@@ -355,9 +355,19 @@ $("#Register-Phone, #Register-Email").on({
   }
 });
 
-// Disable special characters
-$('#Register-Firstname, #Register-Middlename, #Register-Lastname, #Register-Username').on('keypress', function(event) {
+// Disable special characters and numbers
+$('#Register-Firstname, #Register-Middlename, #Register-Lastname').on('keypress', function(event) {
   var regex = new RegExp("^[a-zA-Z]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Disable special characters
+$('#Register-Username').on('keypress', function(event) {
+  var regex = new RegExp("^[a-zA-Z 0-9]+$");
   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
   if (!regex.test(key)) {
     event.preventDefault();
