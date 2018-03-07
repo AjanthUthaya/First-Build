@@ -33,7 +33,7 @@ function init() {
       type: $(e).attr("type"),
       start_date: $(e).attr("start_date"),
       end_date: $(e).attr("end_date"),
-      teacherid: $(e).attr("teacherid"),
+      teacher_id: $(e).attr("teacher_id"),
       title: $(e).attr("title"),
       sub: $(e).attr("sub"),
       room: $(e).attr("room"),
@@ -41,7 +41,7 @@ function init() {
       joined: $(e).attr("joined"),
       vgs: $(e).attr("vgs"),
       ava: $(e).attr("ava"),
-      maxava: $(e).attr("maxava"),
+      ava_max: $(e).attr("ava_max"),
       details: $(e).attr("details")
     };
 
@@ -125,7 +125,7 @@ function init() {
     var Item_Content_Line = "<hr>";
     var Item_Content_Time = "<li><span class=\"fa fa-clock-o\"></span><label>" + EventTimeStart + " - " + EventTimeEnd + "</label></li>";
     var Item_Content_Room = "<li><span class=\"fa fa-home\"></span><label>Room " + LecEv.room + "</label></li>";
-    var Item_Content_Ava = "<li><span class=\"fa fa-users\"></span><label>" + LecEv.ava + " / " + LecEv.maxava + "</label></li>";
+    var Item_Content_Ava = "<li><span class=\"fa fa-users\"></span><label>" + LecEv.ava + " / " + LecEv.ava_max + "</label></li>";
 
     var Item_Content_Main = "<div class=\"Item-Content\"><ul class=\"vertical menu align-center\">" + Item_Content_Time + Item_Content_Room + Item_Content_Ava + "</ul></div>";
 

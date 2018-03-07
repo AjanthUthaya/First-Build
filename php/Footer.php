@@ -1,3 +1,18 @@
+<?php if ($Filename == 'NewLesson' or $Filename == 'NewTest') { ?>
+
+</div>
+<!-- END: Viewport -->
+
+</div>
+<!-- END: Desktop view -->
+
+<?php include 'Scripts.php'; ?>
+
+</body>
+
+</html>
+
+<?php } else { ?>
 <!-- Start: Footer -->
 <footer class="unselectable">
 
@@ -52,3 +67,5 @@
 </body>
 
 </html>
+
+<?php } ?>

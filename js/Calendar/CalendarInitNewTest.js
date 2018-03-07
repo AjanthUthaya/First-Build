@@ -229,9 +229,9 @@ function init() {
     ev.vgs = "All";
     ev.color = "#36414d";
     ev.type = "Test";
-    ev.maxava = "30";
+    ev.ava_max = "30";
     ev.details = "";
-    ev.teacherid = "";
+    ev.teacher_id = "";
   });
 
 
@@ -336,7 +336,7 @@ function init() {
 
       var Input_VGS = "<div class=\"Input-VGS\"><label>VGS</label><select autofocus></select></div>";
       var Input_Color = "<div class=\"Input-Color\"><label>Color</label><input type=\"color\" id=\"ColorSelector\" class=\"jscolor\" value=\"" + ev.color + "\"></input></div>";
-      var Input_AVA = "<div class=\"Input-AVA\"><label>AVA</label><input type=\"number\" value=\"" + ev.maxava + "\"></input></div>";
+      var Input_AVA = "<div class=\"Input-AVA\"><label>AVA</label><input type=\"number\" value=\"" + ev.ava_max + "\"></input></div>";
       var Lightbox_Content_Input = "<div class=\"Lightbox-Content-Input\">" + Input_VGS + Input_Color + Input_AVA + "</div>";
 
 
@@ -370,7 +370,7 @@ function init() {
       var Lightbox_Footer_Main_DateTime = "<div class=\"Lightbox-Footer-Main-DateTime\">" + Footer_DateTime_Date + Footer_DateTime_Time + "</div>";
 
       var Footer_Main_Room = "<div class=\"Footer-Main-Room\"><span class=\"fa fa-home\"></span><label>" + ev.room + "</label></div>";
-      var Footer_Main_Ava = "<div class=\"Footer-Main-Ava\"><span class=\"fa fa-users\"></span><label>" + ev.ava + " / " + ev.maxava + "</label></div>";
+      var Footer_Main_Ava = "<div class=\"Footer-Main-Ava\"><span class=\"fa fa-users\"></span><label>" + ev.ava + " / " + ev.ava_max + "</label></div>";
       var Lightbox_Footer_Main_RoomAva = "<div class=\"Lightbox-Footer-Main-RoomAva\">" + Footer_Main_Room + Footer_Main_Ava + "</div>";
 
       var Lightbox_Footer_Main = "<div class=\"Lightbox-Footer-Main\">" + Lightbox_Footer_Main_DateTime + Lightbox_Footer_Main_RoomAva + "</div>";
@@ -541,9 +541,9 @@ function init() {
 
     //Getting teacher/s id and showing them in Teacher-List-Main
     var ev = scheduler.getEvent(id);
-    if (ev.teacherid != "") {
+    if (ev.teacher_id != "") {
 
-      var TeacherIdArr = ev.teacherid.split("§");
+      var TeacherIdArr = ev.teacher_id.split("§");
       // Display array values on page
       for (var i = 0; i < TeacherIdArr.length; i++) {
         //console.log(TeacherIdArr[i]);
@@ -868,14 +868,14 @@ function init() {
           if (ev.type == "Test") {
             ev.vgs = NewVgs;
             ev.color = NewColor;
-            ev.maxava = NewMaxAva;
+            ev.ava_max = NewMaxAva;
             ev.details = NewDetails;
             ev.sub = NewType;
             ev.title = NewTitle;
             if (TeacherLength == true) {
-              ev.teacherid = TeacherIdVar;
+              ev.teacher_id = TeacherIdVar;
             } else {
-              ev.teacherid = "";
+              ev.teacher_id = "";
             }
           }
 

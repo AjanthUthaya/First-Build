@@ -4,13 +4,13 @@ var dd = today.getDate();
 var mm = today.getMonth(); //January is 0!
 var yyyy = today.getFullYear();
 if (dd < 10) {
-  dd = '0' + dd;
+  dd = "0" + dd;
 }
 if (mm < 10) {
-  mm = '0' + mm;
+  mm = "0" + mm;
 }
 
-$('#Loading-Main').hide();
+$("#Loading-Main").hide();
 
 function init() {
   scheduler.config.details_on_dblclick = true;
@@ -62,18 +62,38 @@ function init() {
   //Custom hour scale
   scheduler.templates.hour_scale = function(date) {
     var hour = date.getHours();
-    var top = '00';
-    var bottom = '30';
-    if (hour == 0)
-      top = 'AM';
-    if (hour == 12)
-      top = 'PM';
-    hour = ((date.getHours() + 11) % 12) + 1;
-    var html = '';
+    var top = "00";
+    var bottom = "30";
+    if (hour == 0) top = "AM";
+    if (hour == 12) top = "PM";
+    hour = (date.getHours() + 11) % 12 + 1;
+    var html = "";
     var section_width = Math.floor(scheduler.xy.scale_width / 2);
     var minute_height = Math.floor(scheduler.config.hour_size_px / 2);
-    html += "<div class='dhx_scale_hour_main' style='width: " + section_width + "px; height:" + (minute_height * 2) + "px;'>" + hour + "</div><div class='dhx_scale_hour_minute_cont' style='width: " + section_width + "px;'>";
-    html += "<div class='dhx_scale_hour_minute_top' style='height:" + minute_height + "px; line-height:" + minute_height + "px;'>" + top + "</div><div class='dhx_scale_hour_minute_bottom' style='height:" + minute_height + "px; line-height:" + minute_height + "px;'>" + bottom + "</div>";
+    html +=
+      "<div class='dhx_scale_hour_main' style='width: " +
+      section_width +
+      "px; height:" +
+      minute_height * 2 +
+      "px;'>" +
+      hour +
+      "</div><div class='dhx_scale_hour_minute_cont' style='width: " +
+      section_width +
+      "px;'>";
+    html +=
+      "<div class='dhx_scale_hour_minute_top' style='height:" +
+      minute_height +
+      "px; line-height:" +
+      minute_height +
+      "px;'>" +
+      top +
+      "</div><div class='dhx_scale_hour_minute_bottom' style='height:" +
+      minute_height +
+      "px; line-height:" +
+      minute_height +
+      "px;'>" +
+      bottom +
+      "</div>";
     html += "<div class='dhx_scale_hour_sep'></div></div>";
     return html;
   };
@@ -88,8 +108,16 @@ function init() {
 
   scheduler.attachEvent("onTemplatesReady", function() {
     scheduler.templates.event_text = function(start, end, event) {
-      return "<div class=\"Content\"><div class=\"Major\"><b>" + event.title + "</b></div> <div class=\"Sub\"><i>" + event.sub + "</i></div></div> <div class=\"Room\"><i>" + event.room + "</i></div>";
-    }
+      return (
+        '<div class="Content"><div class="Major"><b>' +
+        event.title +
+        '</b></div> <div class="Sub"><i>' +
+        event.sub +
+        '</i></div></div> <div class="Room"><i>' +
+        event.room +
+        "</i></div>"
+      );
+    };
   });
 
   scheduler.attachEvent("onBeforeDrag", function() {
@@ -99,7 +127,6 @@ function init() {
   scheduler.attachEvent("onclick", function() {
     //Leave this in if you want to disable options from popping up when user clicks on a event
   });
-
 
   //On double click show lightbox
   scheduler.config.details_on_dblclick = true;
@@ -130,7 +157,6 @@ function init() {
   scheduler.config.buttons_left = "";
   scheduler.config.buttons_right = "";
 
-
   // NOTE: Working but requires refresh if you resize the screen
   if ($(document).width() < 800) {
     //Makes the lightbox wide if = true;
@@ -140,51 +166,83 @@ function init() {
     scheduler.config.wide_form = true;
   }
 
-/*  scheduler.attachEvent("onDataRender", function(i) {
-    $("#Loading-Main").toggle();
-  });*/
 
   //init and sets date to current
-  scheduler.init('scheduler_here', new Date(yyyy, mm, dd), "week");
+  scheduler.init("scheduler_here", new Date(yyyy, mm, dd), "week");
 
   //Gets all events from xml and loads it in the calendar
-  scheduler.load("../data/Lecture.xml", "xml");
-  scheduler.load("../data/Test.xml", "xml");
+  /* // Static information
+  scheduler.load("data/Lecture.xml", "xml");
+  scheduler.load("data/Test.xml", "xml");
+  */
+
+  scheduler.load("php/Calendar/HomeInit.php");
+
+  var dp = new dataProcessor("php/Calendar/HomeInit.php");
+  dp.init(scheduler);
 
 
   //Custom header for lightbox
   scheduler.templates.lightbox_header = function(start, end, event) {
     //event.title to get major from xml
-    return "<div class='Lightbox-Header-Main' style='background: " + event.color + ";'><span>" + event.title + "</span><a class=\"dhx_cancel_btn\">x</a></div>";
+    return (
+      "<div class='Lightbox-Header-Main' style='background: " +
+      event.color +
+      ";'><span>" +
+      event.title +
+      '</span><a class="dhx_cancel_btn">x</a></div>'
+    );
   };
-
 
   //Custom lightbox for events detail pop-up on double click
   scheduler.form_blocks["my_editor"] = {
-    render: function(sns) { // sns - section configuration object
+    render: function(sns) {
+      // sns - section configuration object
 
+      var Lightbox_Content_Main_Title =
+        '<label class="Lightbox-Content-Main-Title">Sub major</label>';
+      var Lightbox_Content_Main_Content =
+        '<p class="Lightbox-Content-Main-Content">Main content</p>';
+      var Lightbox_Content_Main =
+        '<div class="Lightbox-Content-Main">' +
+        Lightbox_Content_Main_Title +
+        Lightbox_Content_Main_Content +
+        "</div>";
 
-      var Lightbox_Content_Main_Title = "<label class=\"Lightbox-Content-Main-Title\">Sub major</label>";
-      var Lightbox_Content_Main_Content = "<p class=\"Lightbox-Content-Main-Content\">Main content</p>";
-      var Lightbox_Content_Main = "<div class=\"Lightbox-Content-Main\">" + Lightbox_Content_Main_Title + Lightbox_Content_Main_Content + "</div>";
+      var Footer_DateTime_Date =
+        '<div class="Footer-DateTime-Date"><span class="fa fa-calendar-o"></span><label>Date(dd-mm-yyyy)</label></div>';
+      var Footer_DateTime_Time =
+        '<div class="Footer-DateTime-Time"><span class="fa fa-clock-o"></span><label>Time(hh:mm - hh:mm)</label></div>';
+      var Lightbox_Footer_Main_DateTime =
+        '<div class="Lightbox-Footer-Main-DateTime">' +
+        Footer_DateTime_Date +
+        Footer_DateTime_Time +
+        "</div>";
 
+      var Footer_Main_Room =
+        '<div class="Footer-Main-Room"><span class="fa fa-home"></span><label>Room(roomNR (block X))</label></div>';
+      var Footer_Main_Ava =
+        '<div class="Footer-Main-Ava"><span class="fa fa-users"></span><label>Ava(current / max)</label></div>';
+      var Lightbox_Footer_Main_RoomAva =
+        '<div class="Lightbox-Footer-Main-RoomAva">' +
+        Footer_Main_Room +
+        Footer_Main_Ava +
+        "</div>";
 
-      var Footer_DateTime_Date = "<div class=\"Footer-DateTime-Date\"><span class=\"fa fa-calendar-o\"></span><label>Date(dd-mm-yyyy)</label></div>";
-      var Footer_DateTime_Time = "<div class=\"Footer-DateTime-Time\"><span class=\"fa fa-clock-o\"></span><label>Time(hh:mm - hh:mm)</label></div>";
-      var Lightbox_Footer_Main_DateTime = "<div class=\"Lightbox-Footer-Main-DateTime\">" + Footer_DateTime_Date + Footer_DateTime_Time + "</div>";
-
-      var Footer_Main_Room = "<div class=\"Footer-Main-Room\"><span class=\"fa fa-home\"></span><label>Room(roomNR (block X))</label></div>";
-      var Footer_Main_Ava = "<div class=\"Footer-Main-Ava\"><span class=\"fa fa-users\"></span><label>Ava(current / max)</label></div>";
-      var Lightbox_Footer_Main_RoomAva = "<div class=\"Lightbox-Footer-Main-RoomAva\">" + Footer_Main_Room + Footer_Main_Ava + "</div>";
-
-      var Lightbox_Footer_Main = "<div class=\"Lightbox-Footer-Main\">" + Lightbox_Footer_Main_DateTime + Lightbox_Footer_Main_RoomAva + "</div>";
+      var Lightbox_Footer_Main =
+        '<div class="Lightbox-Footer-Main">' +
+        Lightbox_Footer_Main_DateTime +
+        Lightbox_Footer_Main_RoomAva +
+        "</div>";
 
       var space = " ";
 
-
-      return "<div class=\"Lightbox-Content\">" + Lightbox_Content_Main + Lightbox_Footer_Main + "</div>";
-
-
+      return (
+        '<div class="Lightbox-Content">' +
+        Lightbox_Content_Main +
+        Lightbox_Footer_Main +
+        "</div>"
+      );
     },
     set_value: function(node, value, ev) {
       // node - HTML object related to HTML defined above
@@ -205,7 +263,6 @@ function init() {
       //Content
       $(".Lightbox-Content-Main-Content").text(ev.details);
 
-
       var EventStart = String(ev.start_date);
       var EventEnd = String(ev.end_date);
       var EventDay = EventStart.slice(8, 11);
@@ -215,15 +272,18 @@ function init() {
       var EventTimeEnd = EventEnd.slice(16, 21);
 
       //Date
-      $(".Footer-DateTime-Date label").text(EventDay + " " + EventMonth + " " + EventYear);
+      $(".Footer-DateTime-Date label").text(
+        EventDay + " " + EventMonth + " " + EventYear
+      );
       //Time
-      $(".Footer-DateTime-Time label").text(EventTimeStart + " - " + EventTimeEnd);
+      $(".Footer-DateTime-Time label").text(
+        EventTimeStart + " - " + EventTimeEnd
+      );
 
       //Room
       $(".Footer-Main-Room label").text(ev.room);
       //Ava
-      $(".Footer-Main-Ava label").text(ev.ava + " / " + ev.maxava);
-
+      $(".Footer-Main-Ava label").text(ev.ava + " / " + ev.ava_max);
     }
     /*,
         get_value: function(node, ev) {
@@ -231,36 +291,48 @@ function init() {
           // event object
 
         }*/
-  }
-
+  };
 
   //This part has display: none; as value
-  scheduler.config.lightbox.sections = [{
-    name: "SubMajor",
-    height: 200,
-    map_to: "text",
-    type: "my_editor",
-    focus: false
-  }]
+  scheduler.config.lightbox.sections = [
+    {
+      name: "SubMajor",
+      height: 200,
+      map_to: "text",
+      type: "my_editor",
+      focus: false
+    }
+  ];
 
   scheduler.attachEvent("onLightbox", function(id) {
     var ev = scheduler.getEvent(id);
 
     //Set the ev.id value to element as id
-    $('.dhx_cal_light').attr('id', ev.id);
+    $(".dhx_cal_light").attr("id", ev.id);
 
     jQuery.fn.center = function() {
       this.css("position", "absolute");
-      this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) +
-        $(window).scrollTop()) + "px");
-      this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) +
-        $(window).scrollLeft()) + "px");
+      this.css(
+        "top",
+        Math.max(
+          0,
+          ($(window).height() - $(this).outerHeight()) / 2 +
+            $(window).scrollTop()
+        ) + "px"
+      );
+      this.css(
+        "left",
+        Math.max(
+          0,
+          ($(window).width() - $(this).outerWidth()) / 2 +
+            $(window).scrollLeft()
+        ) + "px"
+      );
       return this;
-    }
+    };
 
-    $('#' + ev.id).center();
+    $("#" + ev.id).center();
   });
-
 
   //Close lightbox on click outside of the lightbox
   dhtmlxEvent(document.body, "click", function(e) {
@@ -275,6 +347,4 @@ function init() {
       }
     }
   });
-
-
 }

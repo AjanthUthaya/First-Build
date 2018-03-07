@@ -6,7 +6,7 @@
     type='Lecture'
     start_date='17-02-2018 11:00'
     end_date='17-02-2018 11:45'
-    teacherid='1§2'
+    teacher_id='1§2'
     title='Naturfag'
     sub='Energi'
     room='205'
@@ -14,7 +14,7 @@
     joined='1'
     vgs='All'
     ava='15'
-    maxava='30'
+    ava_max='30'
     details='Lorem ipsum dolor sit amet, et lorem quaestio has, nam dicta petentium at.
     At etiam praesent maiestatis vim, eum dicam legendos ea. Sea option invidunt gloriatur
     ne. Ut eos tempor scripta, eu pro enim causae ocurreret. Mel cu quem error, an propriae

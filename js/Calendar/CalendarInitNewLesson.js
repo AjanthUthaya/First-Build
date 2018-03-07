@@ -230,9 +230,9 @@ function init() {
     ev.color = "#36414d";
     ev.type = "Lecture";
     ev.ava = "0";
-    ev.maxava = "30";
+    ev.ava_max = "30";
     ev.details = "";
-    ev.teacherid = "";
+    ev.teacher_id = "";
   });
 
 
@@ -338,7 +338,7 @@ function init() {
       //DATA SECTION
       var Data_ListItem_Time = "<li class=\"Data-ListItem-Time\"><span class=\"fa fa-clock-o\"></span><label>" + EventTimeStart + " - " + EventTimeEnd + "</label></li>";
       var Data_ListItem_Room = "<li class=\"Data-ListItem-Room\"><span class=\"fa fa-home\"></span><label>206</label></li>";
-      var Data_ListItem_Ava = "<li class=\"Data-ListItem-Ava\"><span class=\"fa fa-users\"></span><label>" + ev.ava + " / " + ev.maxava + "</label></li>";
+      var Data_ListItem_Ava = "<li class=\"Data-ListItem-Ava\"><span class=\"fa fa-users\"></span><label>" + ev.ava + " / " + ev.ava_max + "</label></li>";
       var Block_Data_List = "<ul class=\"Block-Data-List\">" + Data_ListItem_Time + Data_ListItem_Room + Data_ListItem_Ava + "</ul>";
       var Lecture_Block_Data = "<div class=\"Lecture-Block-Data\">" + Block_Data_List + "</div>";
 
@@ -347,7 +347,7 @@ function init() {
       //INPUT AREA
       var Input_VGS = "<div class=\"Input-VGS\"><label>VGS</label><select autofocus></select></div>";
       var Input_Color = "<div class=\"Input-Color\"><label>Color</label><input type=\"color\" id=\"ColorSelector\" class=\"jscolor\" value=\"" + ev.color + "\" disabled></input></div>";
-      var Input_AVA = "<div class=\"Input-AVA\"><label>AVA</label><input type=\"number\" value=\"" + ev.maxava + "\"></input></div>";
+      var Input_AVA = "<div class=\"Input-AVA\"><label>AVA</label><input type=\"number\" value=\"" + ev.ava_max + "\"></input></div>";
       var Lightbox_Content_Input = "<div class=\"Lightbox-Content-Input\">" + Input_VGS + Input_Color + Input_AVA + "</div>";
 
 
@@ -388,7 +388,7 @@ function init() {
       var Lightbox_Footer_Main_DateTime = "<div class=\"Lightbox-Footer-Main-DateTime\">" + Footer_DateTime_Date + Footer_DateTime_Time + "</div>";
 
       var Footer_Main_Room = "<div class=\"Footer-Main-Room\"><span class=\"fa fa-home\"></span><label>" + ev.room + "</label></div>";
-      var Footer_Main_Ava = "<div class=\"Footer-Main-Ava\"><span class=\"fa fa-users\"></span><label>" + ev.ava + " / " + ev.maxava + "</label></div>";
+      var Footer_Main_Ava = "<div class=\"Footer-Main-Ava\"><span class=\"fa fa-users\"></span><label>" + ev.ava + " / " + ev.ava_max + "</label></div>";
       var Lightbox_Footer_Main_RoomAva = "<div class=\"Lightbox-Footer-Main-RoomAva\">" + Footer_Main_Room + Footer_Main_Ava + "</div>";
 
       var Lightbox_Footer_Main = "<div class=\"Lightbox-Footer-Main\">" + Lightbox_Footer_Main_DateTime + Lightbox_Footer_Main_RoomAva + "</div>";
@@ -605,8 +605,8 @@ function init() {
 
     //Getting teacher/s id and showing them in Teacher-List-Main
     var ev = scheduler.getEvent(id);
-    if (ev.teacherid != "") {
-      var TeacherIdArr = ev.teacherid.split("§");
+    if (ev.teacher_id != "") {
+      var TeacherIdArr = ev.teacher_id.split("§");
       // Display array values on page
       for (var i = 0; i < TeacherIdArr.length; i++) {
         //console.log(TeacherIdArr[i]);
@@ -950,14 +950,14 @@ function init() {
           if (ev.type == "Lecture") {
             ev.vgs = NewVgs;
             //ev.color = NewColor;
-            ev.maxava = NewMaxAva;
+            ev.ava_max = NewMaxAva;
             ev.details = NewDetails;
             ev.sub = NewType;
             ev.title = NewTitle;
             if (TeacherLength == true) {
-              ev.teacherid = TeacherIdVar;
+              ev.teacher_id = TeacherIdVar;
             } else {
-              ev.teacherid = "";
+              ev.teacher_id = "";
             }
           }
 
@@ -1073,7 +1073,7 @@ scheduler.templates.tooltip_text = function(start, end, event) {
     var DateTest = "Date: " + EventDay + " " + EventMonth + " " + EventYear;
     var TimeTest = "Time: " + EventTimeStart + " - " + EventTimeEnd;
     var VgsTest = "VGS: " + event.vgs;
-    var AvaTest = "Ava: " + event.ava + " / " + event.maxava;
+    var AvaTest = "Ava: " + event.ava + " / " + event.ava_max;
 
     return TitleTest + "<br>" + SubTest + "<br>" + TimeTest + "<br>" + VgsTest + "<br>" + AvaTest;
 
@@ -1084,7 +1084,7 @@ scheduler.templates.tooltip_text = function(start, end, event) {
     var DateLec = "Date: " + EventDay + " " + EventMonth + " " + EventYear;
     var TimeLec = "Time: " + EventTimeStart + " - " + EventTimeEnd;
     var VgsLec = "VGS: " + event.vgs;
-    var AvaLec = "Ava: " + event.ava + " / " + event.maxava;
+    var AvaLec = "Ava: " + event.ava + " / " + event.ava_max;
 
     return TitleLec + "<br>" + SubLec + "<br>" + TimeLec + "<br>" + VgsLec + "<br>" + AvaLec;
 

@@ -33,7 +33,7 @@ function init() {
       type: $(e).attr("type"),
       start_date: $(e).attr("start_date"),
       end_date: $(e).attr("end_date"),
-      teacherid: $(e).attr("teacherid"),
+      teacher_id: $(e).attr("teacher_id"),
       title: $(e).attr("title"),
       sub: $(e).attr("sub"),
       room: $(e).attr("room"),
@@ -41,7 +41,7 @@ function init() {
       joined: $(e).attr("joined"),
       vgs: $(e).attr("vgs"),
       ava: $(e).attr("ava"),
-      maxava: $(e).attr("maxava"),
+      ava_max: $(e).attr("ava_max"),
       details: $(e).attr("details")
     };
 
