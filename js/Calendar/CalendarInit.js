@@ -10,8 +10,6 @@ if (mm < 10) {
   mm = "0" + mm;
 }
 
-$("#Loading-Main").hide();
-
 function init() {
   scheduler.config.details_on_dblclick = true;
   //Set date format for xml data

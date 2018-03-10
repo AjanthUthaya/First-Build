@@ -37,14 +37,14 @@ class OutputWriter{
 	}
 	public function output($name="", $inline=true, $encoding=""){
 		ob_clean();
-		
+
 		if ($this->type == "xml"){
 			$header = "Content-type: text/xml";
 			if ("" != $encoding)
 				$header.="; charset=".$encoding;
 			header($header);
 		}
-			
+
 		echo $this->__toString();
 	}
 	public function __toString(){
@@ -55,13 +55,13 @@ class OutputWriter{
 /*! EventInterface
 	Base class , for iterable collections, which are used in event
 **/
-class EventInterface{ 
+class EventInterface{
 	protected $request; ////!< DataRequestConfig instance
 	public $rules=array(); //!< array of sorting rules
-	
+
 	/*! constructor
 		creates a new interface based on existing request
-		@param request 
+		@param request
 			DataRequestConfig object
 	*/
 	public function __construct($request){
@@ -69,20 +69,20 @@ class EventInterface{
 	}
 
 	/*! remove all elements from collection
-		*/	
+		*/
 	public function clear(){
 		array_splice($rules,0);
 	}
 	/*! get index by name
-		
-		@param name 
+
+		@param name
 			name of field
-		@return 
+		@return
 			index of named field
 	*/
 	public function index($name){
 		$len = sizeof($this->rules);
-		for ($i=0; $i < $len; $i++) { 
+		for ($i=0; $i < $len; $i++) {
 			if ($this->rules[$i]["name"]==$name)
 				return $i;
 		}
@@ -94,7 +94,7 @@ class EventInterface{
 class SortInterface extends EventInterface{
 	/*! constructor
 		creates a new interface based on existing request
-		@param request 
+		@param request
 			DataRequestConfig object
 	*/
 	public function __construct($request){
@@ -102,8 +102,8 @@ class SortInterface extends EventInterface{
 		$this->rules = &$request->get_sort_by_ref();
 	}
 	/*! add new sorting rule
-		
-		@param name 
+
+		@param name
 			name of field
 		@param dir
 			direction of sorting
@@ -123,16 +123,16 @@ class SortInterface extends EventInterface{
 class FilterInterface extends EventInterface{
 	/*! constructor
 		creates a new interface based on existing request
-		@param request 
+		@param request
 			DataRequestConfig object
-	*/	
+	*/
 	public function __construct($request){
 		$this->request = $request;
 		$this->rules = &$request->get_filters_ref();
 	}
 	/*! add new filatering rule
-		
-		@param name 
+
+		@param name
 			name of field
 		@param value
 			value to filter by
@@ -147,7 +147,7 @@ class FilterInterface extends EventInterface{
 	}
 }
 
-/*! base class for component item representation	
+/*! base class for component item representation
 **/
 class DataItem{
 	protected $data; //!< hash of data
@@ -157,7 +157,7 @@ class DataItem{
 	protected $userdata;
 
 	/*! constructor
-		
+
 		@param data
 			hash of data
 		@param config
@@ -181,18 +181,18 @@ class DataItem{
 		$this->userdata[$name]=$value;
 	}
 	/*! get named value
-		
-		@param name 
+
+		@param name
 			name or alias of field
-		@return 
+		@return
 			value from field with provided name or alias
 	*/
 	public function get_value($name){
 		return $this->data[$name];
 	}
 	/*! set named value
-		
-		@param name 
+
+		@param name
 			name or alias of field
 		@param value
 			value for field with provided name or alias
@@ -201,7 +201,7 @@ class DataItem{
 		return $this->data[$name]=$value;
 	}
 	/*! get id of element
-		@return 
+		@return
 			id of element
 	*/
 	public function get_id(){
@@ -211,16 +211,16 @@ class DataItem{
 		return false;
 	}
 	/*! change id of element
-		
-		@param value 
+
+		@param value
 			new id value
 	*/
 	public function set_id($value){
 		$this->data[$this->config->id["name"]]=$value;
 	}
 	/*! get index of element
-		
-		@return 
+
+		@return
 			index of element
 	*/
 	public function get_index(){
@@ -231,29 +231,29 @@ class DataItem{
 	public function skip(){
 		$this->skip=true;
 	}
-	
+
 	/*! return self as XML string
 	*/
 	public function to_xml(){
 		return $this->to_xml_start().$this->to_xml_end();
 	}
-	
+
 	/*! replace xml unsafe characters
-		
-		@param string 
+
+		@param string
 			string to be escaped
-		@return 
+		@return
 			escaped string
 	*/
-	public function xmlentities($string) { 
+	public function xmlentities($string) {
    		return str_replace( array( '&', '"', "'", '<', '>', '’' ), array( '&amp;' , '&quot;', '&apos;' , '&lt;' , '&gt;', '&apos;' ), $string);
 	}
-	
-	/*! return starting tag for self as XML string 
+
+	/*! return starting tag for self as XML string
 	*/
 	public function to_xml_start(){
 		$str="<item";
-		for ($i=0; $i < sizeof($this->config->data); $i++){ 
+		for ($i=0; $i < sizeof($this->config->data); $i++){
 			$name=$this->config->data[$i]["name"];
 			$db_name=$this->config->data[$i]["db_name"];
 			$str.=" ".$name."='".$this->xmlentities($this->data[$name])."'";
@@ -278,8 +278,8 @@ class DataItem{
 
 
 /*! Base connector class
-	This class used as a base for all component specific connectors. 
-	Can be used on its own to provide raw data.	
+	This class used as a base for all component specific connectors.
+	Can be used on its own to provide raw data.
 **/
 class Connector {
 
@@ -289,7 +289,7 @@ class Connector {
 	protected $config;//DataConfig instance
 	protected $request;//DataRequestConfig instance
 	protected $names;//!< hash of names for used classes
-	protected $encoding="utf-8";//!< assigned encoding (UTF-8 by default) 
+	protected $encoding="utf-8";//!< assigned encoding (UTF-8 by default)
 	protected $editing=false;//!< flag of edit mode ( response for dataprocessor )
     protected $updating=false;//!< flag of update mode ( response for data-update )
     protected $dload;//!< flag of dyn. loading mode
@@ -316,17 +316,17 @@ class Connector {
     public $limit=false;
 
 	/*! constructor
-		
+
 		Here initilization of all Masters occurs, execution timer initialized
-		@param db 
+		@param db
 			db connection resource
 		@param type
 			string , which hold type of database ( MySQL or Postgre ), optional, instead of short DB name, full name of DataWrapper-based class can be provided
 		@param item_type
 			name of class, which will be used for item rendering, optional, DataItem will be used by default
 		@param data_type
-			name of class which will be used for dataprocessor calls handling, optional, DataProcessor class will be used by default. 
-	*/	
+			name of class which will be used for dataprocessor calls handling, optional, DataProcessor class will be used by default.
+	*/
 	public function __construct($db,$type=false, $item_type=false, $data_type=false, $render_type = false){
 		$this->exec_time=microtime(true);
 
@@ -335,7 +335,7 @@ class Connector {
 		if (!$item_type) $item_type="DataItem";
 		if (!$data_type) $data_type="DataProcessor";
 		if (!$render_type) $render_type="RenderStrategy";
-		
+
 		$this->names=array(
 			"db_class"=>$type,
 			"item_class"=>$item_type,
@@ -346,7 +346,7 @@ class Connector {
 		$this->filters = array();
 		$this->sorts = array();
 		$this->mix = array();
-		
+
 		$this->config = new DataConfig();
 		$this->request = new DataRequestConfig();
 		$this->event = new EventMaster();
@@ -356,15 +356,15 @@ class Connector {
 			throw new Exception("DB class not found: ".$this->names["db_class"]);
 		$this->sql = new $this->names["db_class"]($db,$this->config);
 		$this->render = new $this->names["render_class"]($this);
-		
+
 		$this->db=$db;//saved for options connectors, if any
-		
+
 		EventMaster::trigger_static("connectorCreate",$this);
 	}
 
 	/*! return db connection resource
 		nested class may neeed to access live connection object
-		@return 
+		@return
 			DB connection resource
 	*/
 	protected function get_connection(){
@@ -374,7 +374,7 @@ class Connector {
 	public function get_config(){
 		return new DataConfig($this->config);
 	}
-	
+
 	public function get_request(){
 		return new DataRequestConfig($this->request);
 	}
@@ -394,10 +394,10 @@ class Connector {
 
 
 	/*! config connector based on table
-		
-		@param table 
+
+		@param table
 			name of table in DB
-		@param id 
+		@param id
 			name of id field
 		@param fields
 			list of fields names
@@ -424,16 +424,16 @@ class Connector {
 		else
 			$this->request->set_source($table);
 	}
-	
+
 	public function uuid(){
 		return time()."x".$this->id_seed++;
 	}
-	
+
 	/*! config connector based on sql
-		
-		@param sql 
+
+		@param sql
 			sql query used as base of configuration
-		@param id 
+		@param id
 			name of id field
 		@param fields
 			list of fields names
@@ -458,10 +458,10 @@ class Connector {
 		$this->config->init($id,$fields,$extra,$relation_id);
 		$this->request->parse_sql($sql, true);
 		return $this->render();
-	}	
-	
+	}
+
 	/*! render already configured connector
-		
+
 		@param config
 			configuration of data
 		@param request
@@ -471,19 +471,19 @@ class Connector {
 		$this->config->copy($config);
 		$this->request->copy($request);
 		return $this->render();
-	}	
-	
+	}
+
 	/*! render self
 		process commands, output requested data as XML
-	*/	
+	*/
 	public function render(){
         $this->event->trigger("onInit", $this);
 		EventMaster::trigger_static("connectorInit",$this);
-		
+
 		if (!$this->as_string)
 			$this->parse_request();
 		$this->set_relation();
-		
+
 		if ($this->live_update !== false && $this->updating!==false) {
 			$this->live_update->get_updates();
 		} else {
@@ -500,7 +500,7 @@ class Connector {
 				$this->apply_sorts($wrap);
 				$this->event->trigger("beforeSort",$wrap);
 				$wrap->store();
-				
+
 				$wrap = new FilterInterface($this->request);
 				$this->apply_filters($wrap);
 				$this->event->trigger("beforeFilter",$wrap);
@@ -512,7 +512,7 @@ class Connector {
 					$out = $this->output_as_xml($result);
 				} else {
 					$out = $this->output_as_xml($this->get_resource());
-				
+
 				if ($out !== null) return $out;
 			}
 
@@ -536,33 +536,33 @@ class Connector {
 
 	/*! prevent SQL injection through column names
 		replace dangerous chars in field names
-		@param str 
+		@param str
 			incoming field name
-		@return 
+		@return
 			safe field name
 	*/
 	protected function safe_field_name($str){
 		return strtok($str, " \n\t;',");
 	}
-	
+
 	/*! limit max count of records
 		connector will ignore any records after outputing max count
-		@param limit 
+		@param limit
 			max count of records
-		@return 
+		@return
 			none
 	*/
 	public function set_limit($limit){
 		$this->limit = $limit;
 	}
-	
+
 
 	public function limit($start, $count, $sort_field=false, $sort_dir=false){
 		$this->request->set_limit($start, $count);
 		if ($sort_field)
 			$this->request->set_sort($sort_field, $sort_dir);
 	}
-	
+
 	protected function parse_request_mode(){
 		//detect edit mode
         if (isset($_GET["editing"])){
@@ -574,7 +574,7 @@ class Connector {
 			$this->updating = true;
         }
 	}
-	
+
 	/*! parse incoming request, detects commands and modes
 	*/
 	protected function parse_request(){
@@ -594,20 +594,20 @@ class Connector {
             $this->request->set_version($_GET["dhx_version"]);
             $this->request->set_user($_GET["dhx_user"]);
         }
-		
+
 		if (isset($_GET[Connector::$sort_var]))
 			foreach($_GET[Connector::$sort_var] as $k => $v){
 				$k = $this->safe_field_name($k);
 				$this->request->set_sort($this->resolve_parameter($k),$v);
 			}
-				
+
 		if (isset($_GET[Connector::$filter_var]))
 			foreach($_GET[Connector::$filter_var] as $k => $v){
 				$k = $this->safe_field_name($k);
 				if ($v !== "")
 					$this->request->set_filter($this->resolve_parameter($k),$v);
 			}
-			
+
 		$this->check_csrf();
 	}
 
@@ -618,9 +618,9 @@ class Connector {
 	}
 
 	/*! convert incoming request name to the actual DB name
-		@param name 
+		@param name
 			incoming parameter name
-		@return 
+		@return
 			name of related DB field
 	*/
 	protected function resolve_parameter($name){
@@ -638,34 +638,34 @@ class Connector {
 	protected function xmlentities($string) {
    		return str_replace( array( '&', '"', "'", '<', '>', '’' ), array( '&amp;' , '&quot;', '&apos;' , '&lt;' , '&gt;', '&apos;' ), $string);
 	}
-    
+
 	public function getRecord($id){
 		LogMaster::log("Retreiving data for record: ".$id);
 		$source = new DataRequestConfig($this->request);
 		$source->set_filter($this->config->id["name"],$id, "=");
-		
+
 		$res = $this->sql->select($source);
-		
+
 		$temp = $this->data_separator;
 		$this->data_separator="";
 		$output = $this->render_set($res);
 		$this->data_separato=$temp;
-		
+
 		return $output;
 	}
-	
+
 	/*! render from DB resultset
 		@param res
-			DB resultset 
+			DB resultset
 		process commands, output requested data as XML
 	*/
 	protected function render_set($res){
 		return $this->render->render_set($res, $this->names["item_class"], $this->dload, $this->data_separator, $this->config, $this->mix);
 	}
-	
+
 	/*! output fetched data as XML
 		@param res
-			DB resultset 
+			DB resultset
 	*/
 	protected function output_as_xml($res){
 		$result = $this->render_set($res);
@@ -691,11 +691,11 @@ class Connector {
 		flush();
 		die();
 	}
-	
+
 	/*! set xml encoding
-		
-		methods sets only attribute in XML, no real encoding conversion occurs	
-		@param encoding 
+
+		methods sets only attribute in XML, no real encoding conversion occurs
+		@param encoding
 			value which will be used as XML encoding
 	*/
 	public function set_encoding($encoding){
@@ -706,9 +706,9 @@ class Connector {
 	}
 
 	/*! enable or disable dynamic loading mode
-		
-		@param count 
-			count of rows loaded from server, actual only for grid-connector, can be skiped in other cases. 
+
+		@param count
+			count of rows loaded from server, actual only for grid-connector, can be skiped in other cases.
 			If value is a false or 0 - dyn. loading will be disabled
 	*/
 	public function dynamic_loading($count){
@@ -716,8 +716,8 @@ class Connector {
 	}
 
 	/*! enable or disable data reordering
-		
-		@param name 
+
+		@param name
 			name of field, which will be used for order storing, optional
 			by default 'sortorder' field will be used
 	*/
@@ -730,10 +730,10 @@ class Connector {
 		$this->request->set_order($name);
 		$this->order = $name;
 	}
-		
+
 	/*! enable logging
-		
-		@param path 
+
+		@param path
 			path to the log file. If set as false or empty strig - logging will be disabled
 		@param client_log
 			enable output of log data to the client side
@@ -741,22 +741,22 @@ class Connector {
 	public function enable_log($path=true,$client_log=false){
 		LogMaster::enable_log($path,$client_log);
 	}
-	
+
 	/*! provides infor about current processing mode
-		@return 
+		@return
 			true if processing dataprocessor command, false otherwise
 	*/
 	public function is_select_mode(){
 		$this->parse_request_mode();
 		return !$this->editing;
 	}
-	
+
 	public function is_first_call(){
 		$this->parse_request_mode();
 		return !($this->editing || $this->updating || $this->request->get_start() || isset($_GET['dhx_no_header']));
-		
+
 	}
-	
+
 	/*! renders self as  xml, starting part
 	*/
 	protected function xml_start(){
@@ -785,7 +785,7 @@ class Connector {
 	}
 
 	protected function fill_collections($list=""){
-		foreach ($this->options as $k=>$v) { 
+		foreach ($this->options as $k=>$v) {
 			$name = $k;
 			$this->extra_output.="<coll_options for='{$name}'>";
 			if (!is_string($this->options[$name]))
@@ -797,8 +797,8 @@ class Connector {
 	}
 
 	/*! assign options collection to the column
-		
-		@param name 
+
+		@param name
 			name of the column
 		@param options
 			array or connector object
@@ -822,19 +822,19 @@ class Connector {
 		$action = new DataAction('inserted', false, $data);
 		$request = new DataRequestConfig();
 		$request->set_source($this->request->get_source());
-		
+
 		$this->config->limit_fields($data);
 		$this->sql->insert($action,$request);
 		$this->config->restore_fields($data);
-		
+
 		return $action->get_new_id();
 	}
-	
+
 	public function delete($id) {
 		$action = new DataAction('deleted', $id, array());
 		$request = new DataRequestConfig();
 		$request->set_source($this->request->get_source());
-		
+
 		$this->sql->delete($action,$request);
 		return $action->get_status();
 }
@@ -847,7 +847,7 @@ class Connector {
 		$this->config->limit_fields($data);
 		$this->sql->update($action,$request);
 		$this->config->restore_fields($data);
-		
+
 		return $action->get_status();
 	}
 
@@ -856,7 +856,7 @@ class Connector {
 			name of database table which will used for saving actions
 		@param url
 			url used for update notifications
-	*/	
+	*/
 	public function enable_live_update($table, $url=false, $origin_table = false){
         $this->live_update = new $this->live_update_data_type($this->sql, $this->config, $this->request, $table,$url, array("connector" => $this, "table" => $origin_table));
         $this->live_update->set_event($this->event,$this->names["item_class"]);
@@ -924,7 +924,7 @@ class OptionsConnector extends Connector{
 		process commands, return data as XML, not output data to stdout, ignore parameters in incoming request
 		@return
 			data as XML string
-	*/	
+	*/
 	public function render(){
 		if (!$this->init_flag){
 			$this->init_flag=true;
@@ -942,7 +942,7 @@ class DistinctOptionsConnector extends OptionsConnector{
 		process commands, return data as XML, not output data to stdout, ignore parameters in incoming request
 		@return
 			data as XML string
-	*/	
+	*/
 	public function render(){
 		if (!$this->init_flag){
 			$this->init_flag=true;

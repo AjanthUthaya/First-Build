@@ -6,13 +6,8 @@ function init() {
       'async': false,
       'global': false,
       'cache': false,
-      'dataType': "xml",
-      'url': "data/Lecture.xml",
-      beforeSend: function() {
-        //$('#Loading-Main').show();
-      },
+      'url': "php/Calendar/HomeInit.php",
       success: function(data) {
-        //$('#Loading-Main').hide();
         LessonData = data;
         //alert("Done loading list of teachers");
       },
@@ -27,22 +22,22 @@ function init() {
   var ev = $(LessonData).find("event");
 
   ev.each(function(i, e) {
+
     //Declaring values
     var LecEv = {
-      id: $(e).attr("id"),
+      id: $(this).find('id').text(),
       type: $(e).attr("type"),
-      start_date: $(e).attr("start_date"),
-      end_date: $(e).attr("end_date"),
-      teacher_id: $(e).attr("teacher_id"),
-      title: $(e).attr("title"),
-      sub: $(e).attr("sub"),
-      room: $(e).attr("room"),
-      color: $(e).attr("color"),
-      joined: $(e).attr("joined"),
-      vgs: $(e).attr("vgs"),
-      ava: $(e).attr("ava"),
-      ava_max: $(e).attr("ava_max"),
-      details: $(e).attr("details")
+      start_date: $(this).find('start_date').text(),
+      end_date: $(this).find('end_date').text(),
+      teacher_id: $(this).find('teacher_id').text(),
+      title: $(this).find('title').text(),
+      sub: $(this).find('sub').text(),
+      room: $(this).find('room').text(),
+      color: $(this).find('color').text(),
+      vgs: $(this).find('vgs').text(),
+      ava: $(this).find('ava').text(),
+      ava_max: $(this).find('ava_max').text(),
+      details: $(this).find('details').text()
     };
 
     var EventStart = String(LecEv.start_date);

@@ -58,71 +58,6 @@ function init() {
     return RoomArr;
   })();
 
-  /*  var RoomArr = [ // original hierarhical array to display
-      {
-        key: "Room",
-        label: "Room",
-        open: true,
-        children: [{
-            key: "204",
-            label: "Room 204 (30)"
-          },
-          {
-            key: "205",
-            label: "Room 205 (30)"
-          },
-          {
-            key: "206",
-            label: "Room 206 (30)"
-          }
-        ]
-      },
-      {
-        key: "Group",
-        label: "Group",
-        //open: true, to make it open by default
-        children: [{
-            key: "200-A",
-            label: "200-A"
-          },
-          {
-            key: "201-A",
-            label: "201-A"
-          },
-          {
-            key: "202-A",
-            label: "202-A"
-          }
-        ]
-      },
-      {
-        key: "Special",
-        label: "Special",
-        //open: true, to make it open by default
-        children: [{
-            key: "Training",
-            label: "Training"
-          },
-          {
-            key: "Spinning",
-            label: "Spinning"
-          },
-          {
-            key: "Dance",
-            label: "Dance"
-          },
-          {
-            key: "Lyd",
-            label: "Lyd"
-          },
-          {
-            key: "Gym",
-            label: "Gym"
-          }
-        ]
-      }
-    ];*/
-
   // NOTE: Trying to make div "data" scrollable but time stop at a certain point
   //link to possible solutions https://docs.dhtmlx.com/scheduler/api__scheduler_%7Btimelinename%7D_scale_date_template.html
 
@@ -153,7 +88,7 @@ function init() {
 
   scheduler.templates.event_class = function(start, end, event) {
 
-    if (event.type != "Lecture") {
+    if (event.type != "Lesson") {
       return "Event-Disabled";
     } else {
       return "";
@@ -172,12 +107,8 @@ function init() {
       var EventTimeEnd = EventEnd.slice(16, 21);
       if (event.type == "Test") {
         return "<div class=\"Event-Content-Main\"><label class=\"Event-Content-Time\">" + EventTimeStart + " - " + EventTimeEnd + "</label><label class=\"Event-Content-Type\">" + event.sub + "</label></div>";
-      } else if (event.vgs == "1") {
-
-        return "VGS 1";
-
-      } else if (event.type == "Lecture") {
-        scheduler.getEvent(event.id).readonly = true; //Makes all the lectures un-editable
+      } else if (event.type == "Lesson") {
+        scheduler.getEvent(event.id).readonly = true;
         return "<div class=\"Event-Content-Main\"><label class=\"Event-Content-Time\">" + EventTimeStart + " - " + EventTimeEnd + "</label><label class=\"Event-Content-Type\">" + event.title + "</label></div>";
       }
 
@@ -195,8 +126,8 @@ function init() {
   //Custom header for lightbox
   scheduler.templates.lightbox_header = function(start, end, event) {
     //event.title to get major from xml
-    //Make it so "Lecture" does not have a delete button
-    if (event.type == "Lecture") {
+    //Make it so "Test" does not have a delete button
+    if (event.type == "Lesson") {
       return "<div class='Lightbox-Header-Main' style='background: " + event.color + ";'><a class=\"dhx_delete_btn\" id=\"deleteButton\"><span class=\"fa fa-trash\" onClick=\"document.getElementById('deleteButton').click()\"></span></a><label class=\"Lightbox-Header-Title editable\">" + event.title + "</label><a class=\"dhx_cancel_btn\">X</a></div>";
     } else if (event.type == "Test") {
       return "<div class='Lightbox-Header-Main' style='background: " + event.color + ";'><label class=\"Lightbox-Header-Title\">" + event.title + "</label><a class=\"dhx_cancel_btn\">X</a></div>";
@@ -212,7 +143,7 @@ function init() {
 
     var ev = scheduler.getEvent(id);
 
-    if (ev == null || ev.type == "Lecture") {
+    if (ev == null || ev.type == "Lesson") {
       return true;
     } else if (ev.type == "Test") {
       return false;
@@ -222,16 +153,17 @@ function init() {
 
   });
 
-  scheduler.attachEvent("onEventCreated", function(id) {
+  scheduler.attachEvent("onEventCreated", function(id, two) {
     var ev = scheduler.getEvent(id);
+    ev.type = "Lesson";
     ev.title = "Select a major"
     ev.sub = "Select sub";
     ev.vgs = "All";
     ev.color = "#36414d";
-    ev.type = "Lecture";
     ev.ava = "0";
     ev.ava_max = "30";
     ev.details = "";
+    // NOTE: Get current teacher id
     ev.teacher_id = "";
   });
 
@@ -324,7 +256,7 @@ function init() {
         EventMonth = "Refresh or Contact Admin";
     }
 
-    if (ev.type == "Lecture") {
+    if (ev.type == "Lesson") {
       //CALENDAR BLOCK
       //DATE
       var Block_Date_MonthL = "<label class=\"Block-Date-MonthL\">" + EventMonth + "</label>";
@@ -800,7 +732,7 @@ function init() {
       //Gets event values(OLD VALUES)
       var ev = scheduler.getEvent(scheduler.getState().lightbox_id);
 
-      if (ev.type == "Lecture") {
+      if (ev.type == "Lesson") {
 
         //Get values from input fields(NEW VALUES)
         var NewVgs = $('.dd-selected-value').attr("value");
@@ -947,7 +879,7 @@ function init() {
 
         } else {
           //Update data here
-          if (ev.type == "Lecture") {
+          if (ev.type == "Lesson") {
             ev.vgs = NewVgs;
             //ev.color = NewColor;
             ev.ava_max = NewMaxAva;
@@ -1031,8 +963,15 @@ function init() {
   scheduler.init('scheduler_here', new Date(yyyy, mm, dd), "timeline");
 
   //Gets all events and loads it in
-  scheduler.load("../data/Test.xml");
-  scheduler.load("../data/Lecture.xml");
+  scheduler.load("php/Calendar/NewLessonInit.php");
+
+  var dp = new dataProcessor("php/Calendar/NewLessonInit.php");
+  dp.init(scheduler);
+
+  dp.attachEvent("onAfterUpdate", function(id, action, tid, response){
+       //your code here
+       console.log(response);
+  })
 
   //For picking date and updating current view
   /*scheduler.setCurrentView(new Date(2012,7,4));*/
@@ -1077,7 +1016,7 @@ scheduler.templates.tooltip_text = function(start, end, event) {
 
     return TitleTest + "<br>" + SubTest + "<br>" + TimeTest + "<br>" + VgsTest + "<br>" + AvaTest;
 
-  } else if (event.type == "Lecture") {
+  } else if (event.type == "Lesson") {
 
     var TitleLec = "Title: " + event.title;
     var SubLec = "Sub: " + event.sub;
