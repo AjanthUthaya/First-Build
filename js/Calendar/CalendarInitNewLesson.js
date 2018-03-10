@@ -968,9 +968,9 @@ function init() {
   var dp = new dataProcessor("php/Calendar/NewLessonInit.php");
   dp.init(scheduler);
 
-  dp.attachEvent("onAfterUpdate", function(id, action, tid, response){
-       //your code here
-       console.log(response);
+  dp.attachEvent("onAfterUpdate", function(id, action, tid, response) {
+    //your code here
+    console.log(response);
   })
 
   //For picking date and updating current view
