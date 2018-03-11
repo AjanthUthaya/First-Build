@@ -8,3 +8,53 @@ SELECT `lesson_id`,`id`,`type`,`start_date`,`end_date`,`teacher_id`,`title`,`sub
 
 Done in 0.0015881061554s
 
+
+
+====================================
+Log started, 11/03/2018 07:15:40
+====================================
+
+SELECT `lesson_id`,`id`,`type`,`start_date`,`end_date`,`teacher_id`,`title`,`sub`,`room`,`color`,`vgs`,`ava`,`ava_max`,`details` FROM lessons
+
+Done in 0.0123028755188s
+
+
+
+====================================
+Log started, 11/03/2018 07:19:43
+====================================
+
+SELECT `lesson_id`,`id`,`type`,`start_date`,`end_date`,`teacher_id`,`title`,`sub`,`room`,`color`,`vgs`,`ava`,`ava_max`,`details` FROM lessons
+
+Done in 0.0181510448456s
+
+
+
+====================================
+Log started, 11/03/2018 07:20:15
+====================================
+
+SELECT `lesson_id`,`id`,`type`,`start_date`,`end_date`,`teacher_id`,`title`,`sub`,`room`,`color`,`vgs`,`ava`,`ava_max`,`details` FROM lessons
+
+Done in 0.00167107582092s
+
+
+
+====================================
+Log started, 11/03/2018 07:21:41
+====================================
+
+SELECT `lesson_id`,`id`,`type`,`start_date`,`end_date`,`teacher_id`,`title`,`sub`,`room`,`color`,`vgs`,`ava`,`ava_max`,`details` FROM lessons
+
+Done in 0.0346400737762s
+
+
+
+====================================
+Log started, 11/03/2018 07:22:06
+====================================
+
+SELECT `lesson_id`,`id`,`type`,`start_date`,`end_date`,`teacher_id`,`title`,`sub`,`room`,`color`,`vgs`,`ava`,`ava_max`,`details` FROM lessons
+
+Done in 0.00826096534729s
+

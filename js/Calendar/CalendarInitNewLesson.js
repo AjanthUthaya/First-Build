@@ -44,7 +44,7 @@ function init() {
     $.ajax({
       'async': false,
       'global': false,
-      'url': "data/DataRoom.json",
+      'url': "php/Calendar/Rooms.php",
       'dataType': "json",
       'success': function(data) {
         RoomArr = data;
