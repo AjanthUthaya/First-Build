@@ -72,7 +72,7 @@ if ($Empty_Field == true) {
             // ---------- END: Declaring variable from registration page ---------- //
 
             // Check if username is taken
-            $Query_Username = "SELECT username FROM users WHERE username = '$Username'";
+            $Query_Username = "SELECT username FROM users WHERE username = '" . mysql_real_escape_string($Username) . "'";
             $Username_Taken = $conn->query($Query_Username);
 
             // Username is taken

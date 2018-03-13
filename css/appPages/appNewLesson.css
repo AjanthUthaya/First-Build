@@ -864,6 +864,7 @@ label.List-Item-Name {
 
 .List-Item-Detail-Item label {
   font-size: 10px;
+  padding-left: 5px;
 }
 
 .Teacher-List-Item a.Teacher-Li-Delete {

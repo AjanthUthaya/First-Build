@@ -1,4 +1,4 @@
-// ---------- START: Logout user ---------- //
+// ---------- START: Get user data and place it ---------- //
 
 // Delcaring ID
 var IdName = "User-Name-Main";
@@ -79,4 +79,4 @@ if ($("#" + IdName).length !== 0) {
 
 }
 
-// ---------- START: Logout user ---------- //
+// ---------- START: Get user data and place it ---------- //

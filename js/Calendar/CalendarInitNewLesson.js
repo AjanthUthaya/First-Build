@@ -12,6 +12,43 @@ if (mm < 10) {
 
 function init() {
 
+  // ---------- START: Get user data ---------- //
+
+  // Declaring where to store User_Data in JSON format
+  var UserData;
+
+  // Declare ajax requests name
+  var request;
+
+  // Fire off the request to php/Single/User_Data.php
+  request = $.ajax({
+    url: "php/Partials/User_Data.php",
+    type: "post",
+    dataType: "json",
+    async: false,
+    contentType: false, // The content type used when sending data to the server.
+    cache: false, // To unable request pages to be cached
+    processData: false, // To send DOMDocument or non processed data file it is set to false
+  });
+
+  // Fired up on ajax success
+  request.done(function(json) {
+    UserData = json;
+  })
+
+  // Fired up on ajax failure
+  request.fail(function(xhr, textStatus, errorThrown) {
+    console.log("Error: " + errorThrown);
+    /*    $('body').css('display', 'none');
+        alert("Failed to get user data, logging out");
+        window.stop();
+        window.location.href = "Login.html";*/
+  })
+
+  // ---------- START: Get user data ---------- //
+
+
+  // ---------- START: Basic config ---------- //
   scheduler.config.details_on_dblclick = true;
   //Set date format for xml data
   scheduler.config.xml_date = "%d-%m-%Y %H:%i";
@@ -24,6 +61,8 @@ function init() {
   scheduler.keys.edit_cancel = 27;
   //Disables save on enter
   scheduler.keys.edit_save = false;
+  //Make the form readonly
+  scheduler.config.readonly_form = false;
 
   // NOTE: Working but requires refresh if you resize the screen
   if ($(document).width() < 800) {
@@ -33,12 +72,9 @@ function init() {
     //Makes the lightbox wide if = true;
     scheduler.config.wide_form = true;
   }
+  // ---------- END: Basic config ---------- //
 
-  //===============
-  //Configuration
-  //===============
-
-  //Get json and put it into a javascript object
+  // Get room list from database
   var RoomArr = (function() {
     var RoomArr = null;
     $.ajax({
@@ -56,6 +92,30 @@ function init() {
       }
     });
     return RoomArr;
+  })();
+
+  // Get teacher list from database
+  var TeacherList = (function() {
+
+    // php/Calendar/Teachers.php
+    // data/DataTeacher.json
+
+    var TeacherList = null;
+    $.ajax({
+      'async': false,
+      'global': false,
+      'url': "php/Calendar/Teachers.php",
+      'dataType': "json",
+      'success': function(data) {
+        TeacherList = data;
+        /*alert("Done loading list of teachers");*/
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        alert("Status: " + textStatus);
+        alert("Error: " + errorThrown);
+      }
+    });
+    return TeacherList;
   })();
 
   // NOTE: Trying to make div "data" scrollable but time stop at a certain point
@@ -86,9 +146,57 @@ function init() {
     event_dy: 46,
   });
 
+  function CheckReadOnly(EventData, Mode) {
+
+    // Optional field
+    Mode = Mode || 'default';
+
+    if (EventData === '' || typeof EventData === 'undefined' || typeof EventData.teacher_id === 'undefined') {
+      // console.log("Empty");
+    } else {
+      // Define dynamic variable
+      var ev = EventData;
+
+      // ----- START: Check if user is creator ----- //
+
+      if (ev.creation_by == UserData.Username) {
+        return true;
+      }
+
+      // ----- END: Check if user is creator ----- //
+
+      // ----- START: Check if user is apart of the event ----- //
+
+      // console.log(ev.teacher_id);
+
+      var TeacherList = ev.teacher_id;
+      var TeacherListArray = TeacherList.split('§');
+
+      var UserInEvent = false;
+      // Defining increment
+      $.each(TeacherListArray, function(key, value) {
+        if (value == UserData.User_Id) {
+          UserInEvent = true;
+        }
+      });
+
+      if (UserInEvent == true) {
+        return true;
+      }
+
+      // ----- END: Check if user is apart of the event ----- //
+
+      // return false if non of the above are true
+      return false;
+    }
+
+  }
+
   scheduler.templates.event_class = function(start, end, event) {
 
-    if (event.type != "Lesson") {
+    var ReadOnlyValue = CheckReadOnly(event);
+
+    if (ReadOnlyValue !== true) {
       return "Event-Disabled";
     } else {
       return "";
@@ -116,44 +224,63 @@ function init() {
 
   });
 
-
-  scheduler.config.readonly_form = false;
-  //This function below is for resizing screen, not resizing of an element
-  /*  scheduler.attachEvent("onSchedulerResize", function() {
-      console.log("Resizing");
-    });*/
-
   //Custom header for lightbox
   scheduler.templates.lightbox_header = function(start, end, event) {
-    //event.title to get major from xml
-    //Make it so "Test" does not have a delete button
-    if (event.type == "Lesson") {
-      return "<div class='Lightbox-Header-Main' style='background: " + event.color + ";'><a class=\"dhx_delete_btn\" id=\"deleteButton\"><span class=\"fa fa-trash\" onClick=\"document.getElementById('deleteButton').click()\"></span></a><label class=\"Lightbox-Header-Title editable\">" + event.title + "</label><a class=\"dhx_cancel_btn\">X</a></div>";
-    } else if (event.type == "Test") {
+
+    var ReadOnlyValue = CheckReadOnly(event);
+
+    if (ReadOnlyValue !== true) {
+
       return "<div class='Lightbox-Header-Main' style='background: " + event.color + ";'><label class=\"Lightbox-Header-Title\">" + event.title + "</label><a class=\"dhx_cancel_btn\">X</a></div>";
+
     } else {
-      return "<div class='Lightbox-Header-Main' style='background: " + event.color + ";'><label class=\"Lightbox-Header-Title\">" + event.title + "</label><a class=\"dhx_cancel_btn\">X</a></div>";
+
+      // Check if type is lesson, if not readonly
+      if (event.type == "Lesson") {
+        return "<div class='Lightbox-Header-Main' style='background: " + event.color + ";'><a class=\"dhx_delete_btn\" id=\"deleteButton\"><span class=\"fa fa-trash\" onClick=\"document.getElementById('deleteButton').click()\"></span></a><label class=\"Lightbox-Header-Title editable\">" + event.title + "</label><a class=\"dhx_cancel_btn\">X</a></div>";
+      } else {
+        return "<div class='Lightbox-Header-Main' style='background: " + event.color + ";'><label class=\"Lightbox-Header-Title\">" + event.title + "</label><a class=\"dhx_cancel_btn\">X</a></div>";
+      }
+
     }
+
   };
 
 
-  // NOTE: Make a function that prevents events that are readonly from being draged
-
+  // Prevents events that are readonly from being draged
   scheduler.attachEvent("onBeforeDrag", function(id, mode, e) {
 
-    var ev = scheduler.getEvent(id);
+    if (mode == 'create') {
 
-    if (ev == null || ev.type == "Lesson") {
       return true;
-    } else if (ev.type == "Test") {
-      return false;
+
     } else {
-      return true;
+
+      var ev = scheduler.getEvent(id);
+
+      var ReadOnlyValue = CheckReadOnly(ev);
+
+      if (ReadOnlyValue !== true) {
+
+        return false;
+
+      } else {
+
+        if (ev == null || ev.type == "Lesson") {
+          return true;
+        } else if (ev.type == "Test") {
+          return false;
+        } else {
+          return true;
+        }
+
+      }
+
     }
 
   });
 
-  scheduler.attachEvent("onEventCreated", function(id, two) {
+  scheduler.attachEvent("onEventCreated", function(id) {
     var ev = scheduler.getEvent(id);
     ev.type = "Lesson";
     ev.title = "Select a major"
@@ -163,31 +290,8 @@ function init() {
     ev.ava = "0";
     ev.ava_max = "30";
     ev.details = "";
-    // NOTE: Get current teacher id
-    ev.teacher_id = "";
+    ev.teacher_id = UserData.User_Id;
   });
-
-
-  //Get json and put it into a javascript object
-  var TeacherList = (function() {
-    var TeacherList = null;
-    $.ajax({
-      'async': false,
-      'global': false,
-      'url': "data/DataTeacher.json",
-      'dataType': "json",
-      'success': function(data) {
-        TeacherList = data;
-        /*alert("Done loading list of teachers");*/
-      },
-      error: function(XMLHttpRequest, textStatus, errorThrown) {
-        alert("Status: " + textStatus);
-        alert("Error: " + errorThrown);
-      }
-    });
-    return TeacherList;
-  })();
-
 
   //Set content before lightbox opens
   scheduler.attachEvent("onBeforeLightbox", function(id) {
@@ -256,58 +360,9 @@ function init() {
         EventMonth = "Refresh or Contact Admin";
     }
 
-    if (ev.type == "Lesson") {
-      //CALENDAR BLOCK
-      //DATE
-      var Block_Date_MonthL = "<label class=\"Block-Date-MonthL\">" + EventMonth + "</label>";
-      var Block_Date_DayN = "<label class=\"Block-Date-DayN\">" + EventDay + "</label>";
-      var Block_Date_DayL = "<label class=\"Block-Date-DayL\">" + EventDayLetter + "</label>";
-      var Lecture_Block_Date = "<div class=\"Lecture-Block-Date\"><div class=\"Block-Date-Circle\">" + Block_Date_MonthL + Block_Date_DayN + Block_Date_DayL + "</div></div>";
+    var ReadOnlyValue = CheckReadOnly(ev);
 
-      //SUB
-      var Lecture_Block_Sub = "<div class=\"Lecture-Block-Sub\"><label class=\"Block-Sub-Title editable\" style=\"background:" + ev.color + ";\">" + ev.sub + "</label></div>";
-
-      //DATA SECTION
-      var Data_ListItem_Time = "<li class=\"Data-ListItem-Time\"><span class=\"fa fa-clock-o\"></span><label>" + EventTimeStart + " - " + EventTimeEnd + "</label></li>";
-      var Data_ListItem_Room = "<li class=\"Data-ListItem-Room\"><span class=\"fa fa-home\"></span><label>206</label></li>";
-      var Data_ListItem_Ava = "<li class=\"Data-ListItem-Ava\"><span class=\"fa fa-users\"></span><label>" + ev.ava + " / " + ev.ava_max + "</label></li>";
-      var Block_Data_List = "<ul class=\"Block-Data-List\">" + Data_ListItem_Time + Data_ListItem_Room + Data_ListItem_Ava + "</ul>";
-      var Lecture_Block_Data = "<div class=\"Lecture-Block-Data\">" + Block_Data_List + "</div>";
-
-      var Lightbox_Lecture_Block = "<div class=\"Lightbox-Lecture-Block\">" + Lecture_Block_Date + Lecture_Block_Sub + Lecture_Block_Data + "</div>";
-
-      //INPUT AREA
-      var Input_VGS = "<div class=\"Input-VGS\"><label>VGS</label><select autofocus></select></div>";
-      var Input_Color = "<div class=\"Input-Color\"><label>Color</label><input type=\"color\" id=\"ColorSelector\" class=\"jscolor\" value=\"" + ev.color + "\" disabled></input></div>";
-      var Input_AVA = "<div class=\"Input-AVA\"><label>AVA</label><input type=\"number\" value=\"" + ev.ava_max + "\"></input></div>";
-      var Lightbox_Content_Input = "<div class=\"Lightbox-Content-Input\">" + Input_VGS + Input_Color + Input_AVA + "</div>";
-
-
-      //TEXTAREA
-      var Lightbox_Content_Text = "<div class=\"Lightbox-Content-Text\"><label class=\"fa fa-wpforms\"></label><textarea>" + ev.details + "</textarea></div>";
-
-
-      //TEACHER LIST
-      var Teacher_Header_Main = "<div class=\"Teacher-Header-Main\"><span class=\"Teacher-Header fa fa-user-circle\"></span></div>";
-
-      var Teacher_Input_Main = "<div id=\"Teacher-Input-Main\"><div id=\"Teacher-Input-Dropdown\"></div></div>";
-
-      var Teacher_List_Main = "<ul class=\"Teacher-List-Main\">" + "</ul>";
-      var Teacher_Content_Main = "<div class=\"Teacher-Content-Main\">" + Teacher_Input_Main + Teacher_List_Main + "</div>";
-
-      var Lightbox_Content_Teacher = "<div class=\"Lightbox-Content-Teacher\">" + Teacher_Header_Main + Teacher_Content_Main + "</div>";
-
-
-      //SAVE BUTTON
-      var Lightbox_Save = "<a class=\"Lightbox-Content-Save dhx_save_btn\">Save</a>";
-
-
-      //MAIN RETURN VARIABLE
-      var Lightbox_Content_Main = "<div class=\"Lightbox-Content-Main\">" + "<div class=\"Lightbox-Content-First\">" + Lightbox_Lecture_Block + Lightbox_Content_Input + "</div>" + Lightbox_Content_Text + Lightbox_Content_Teacher + "</div>" + Lightbox_Save;
-      ev.my_template = Lightbox_Content_Main;
-
-
-    } else if (ev.type == "Test") {
+    if (ReadOnlyValue !== true) {
 
       //MAIN BODY
       var Lightbox_Content_Main_Title = "<label class=\"Lightbox-Content-Main-Title\">" + ev.sub + "</label>";
@@ -328,10 +383,64 @@ function init() {
       //MAIN RETURN VARIABLE
       ev.my_template = "<div class=\"Lightbox-Content\">" + Lightbox_Content_Main + Lightbox_Footer_Main + "</div>";
 
-
     } else {
-      ev.my_template = "Contact admin, event data error(check console log)";
-      console.log("Event data error: type does not match any values");
+
+      if (ev.type == "Lesson") {
+        //CALENDAR BLOCK
+        //DATE
+        var Block_Date_MonthL = "<label class=\"Block-Date-MonthL\">" + EventMonth + "</label>";
+        var Block_Date_DayN = "<label class=\"Block-Date-DayN\">" + EventDay + "</label>";
+        var Block_Date_DayL = "<label class=\"Block-Date-DayL\">" + EventDayLetter + "</label>";
+        var Lecture_Block_Date = "<div class=\"Lecture-Block-Date\"><div class=\"Block-Date-Circle\">" + Block_Date_MonthL + Block_Date_DayN + Block_Date_DayL + "</div></div>";
+
+        //SUB
+        var Lecture_Block_Sub = "<div class=\"Lecture-Block-Sub\"><label class=\"Block-Sub-Title editable\" style=\"background:" + ev.color + ";\">" + ev.sub + "</label></div>";
+
+        //DATA SECTION
+        var Data_ListItem_Time = "<li class=\"Data-ListItem-Time\"><span class=\"fa fa-clock-o\"></span><label>" + EventTimeStart + " - " + EventTimeEnd + "</label></li>";
+        var Data_ListItem_Room = "<li class=\"Data-ListItem-Room\"><span class=\"fa fa-home\"></span><label>206</label></li>";
+        var Data_ListItem_Ava = "<li class=\"Data-ListItem-Ava\"><span class=\"fa fa-users\"></span><label>" + ev.ava + " / " + ev.ava_max + "</label></li>";
+        var Block_Data_List = "<ul class=\"Block-Data-List\">" + Data_ListItem_Time + Data_ListItem_Room + Data_ListItem_Ava + "</ul>";
+        var Lecture_Block_Data = "<div class=\"Lecture-Block-Data\">" + Block_Data_List + "</div>";
+
+        var Lightbox_Lecture_Block = "<div class=\"Lightbox-Lecture-Block\">" + Lecture_Block_Date + Lecture_Block_Sub + Lecture_Block_Data + "</div>";
+
+        //INPUT AREA
+        var Input_VGS = "<div class=\"Input-VGS\"><label>VGS</label><select autofocus></select></div>";
+        var Input_Color = "<div class=\"Input-Color\"><label>Color</label><input type=\"color\" id=\"ColorSelector\" class=\"jscolor\" value=\"" + ev.color + "\" disabled></input></div>";
+        var Input_AVA = "<div class=\"Input-AVA\"><label>AVA</label><input type=\"number\" value=\"" + ev.ava_max + "\"></input></div>";
+        var Lightbox_Content_Input = "<div class=\"Lightbox-Content-Input\">" + Input_VGS + Input_Color + Input_AVA + "</div>";
+
+
+        //TEXTAREA
+        var Lightbox_Content_Text = "<div class=\"Lightbox-Content-Text\"><label class=\"fa fa-wpforms\"></label><textarea>" + ev.details + "</textarea></div>";
+
+
+        //TEACHER LIST
+        var Teacher_Header_Main = "<div class=\"Teacher-Header-Main\"><span class=\"Teacher-Header fa fa-user-circle\"></span></div>";
+
+        var Teacher_Input_Main = "<div id=\"Teacher-Input-Main\"><div id=\"Teacher-Input-Dropdown\"></div></div>";
+
+        var Teacher_List_Main = "<ul class=\"Teacher-List-Main\">" + "</ul>";
+        var Teacher_Content_Main = "<div class=\"Teacher-Content-Main\">" + Teacher_Input_Main + Teacher_List_Main + "</div>";
+
+        var Lightbox_Content_Teacher = "<div class=\"Lightbox-Content-Teacher\">" + Teacher_Header_Main + Teacher_Content_Main + "</div>";
+
+
+        //SAVE BUTTON
+        var Lightbox_Save = "<a class=\"Lightbox-Content-Save dhx_save_btn\">Save</a>";
+
+
+        //MAIN RETURN VARIABLE
+        var Lightbox_Content_Main = "<div class=\"Lightbox-Content-Main\">" + "<div class=\"Lightbox-Content-First\">" + Lightbox_Lecture_Block + Lightbox_Content_Input + "</div>" + Lightbox_Content_Text + Lightbox_Content_Teacher + "</div>" + Lightbox_Save;
+        ev.my_template = Lightbox_Content_Main;
+
+
+      } else {
+        ev.my_template = "Contact admin, event data error(check console log)";
+        console.log("Event data error: type does not match any values");
+      }
+
     }
 
     return true;
@@ -406,25 +515,19 @@ function init() {
 
         var Li_Content_Name = "<label class=\"List-Item-Name\">" + evt.name + "</label>";
 
-        var LI_Content_Details_Email = "<div class=\"List-Item-Detail-Item List-Item-Details-Email\"><span>Email: </span><label>" + evt.email + "</label></div>";
-        var LI_Content_Details_Phone = "<div class=\"List-Item-Detail-Item List-Item-Details-Phone\"><span>Phone: </span><label>" + evt.phone + "</label></div>";
+        var LI_Content_Details_Email = "<div class=\"List-Item-Detail-Item List-Item-Details-Email\"><span>Email:</span><label>" + evt.email + "</label></div>";
+        var LI_Content_Details_Phone = "<div class=\"List-Item-Detail-Item List-Item-Details-Phone\"><span>Phone:</span><label>" + evt.phone + "</label></div>";
         var LI_Content_Details = "<div class=\"List-Item-Details\">" + LI_Content_Details_Email + LI_Content_Details_Phone + "</div>";
 
         var Li_Content_Main = "<a class=\"List-Item-Option\">" + Li_Content_Id + Li_Content_Image + "<div class=\"List-Item-Info\">" + Li_Content_Name + LI_Content_Details + "</div>" + "</a>";
         var Teacher_List_Li = "<li><div class=\"Teacher-List-Item\">" + Li_Content_Main + "<a class=\"Teacher-Li-Delete\">x</a></div></li>";
 
-        //Script that makes it so that the user can not pick one teacher twice
-        /*        $(".dd-options").find(".dd-option-selected").each(function(i) {
-                  var li = $(this);
-                  var Id = li.find("input").val();
 
-                  console.log(Id);
-                });*/
-        //Get Value from teacher
+        // Get Value from teacher
         var TeacherLength = $('ul.Teacher-List-Main li').length >= 1;
 
-        //////Checks to see if teacher is already added
-        //items cotains id of of teacher/s that are added
+        // Checks to see if teacher is already added
+        // items cotains id of of teacher/s that are added
         var items = [];
         $(".Teacher-List-Main").find("li").each(function(i) {
           var li = $(this);
@@ -433,8 +536,7 @@ function init() {
           items.push(Id);
         });
 
-
-        //Function to check if value exists inside of array
+        // Function to check if X exists inside of array
         function checkValue(value, arr) {
           var status = false;
 
@@ -517,6 +619,10 @@ function init() {
         value: "All",
       }
     ];
+
+
+
+    // Set vgs on before lightbox
     if (ev.vgs == "All") {
       $('.Input-VGS select').ddslickVGS({
         data: ddBasic,
@@ -537,30 +643,35 @@ function init() {
 
     //Getting teacher/s id and showing them in Teacher-List-Main
     var ev = scheduler.getEvent(id);
-    if (ev.teacher_id != "") {
+    if (ev.teacher_id !== "" || typeof ev.teacher_id !== 'undefined') {
       var TeacherIdArr = ev.teacher_id.split("§");
       // Display array values on page
       for (var i = 0; i < TeacherIdArr.length; i++) {
-        //console.log(TeacherIdArr[i]);
-        arr = jQuery.grep(TeacherList, function(e) {
-          if (e.id == TeacherIdArr[i]) {
-            return e;
-          }
-        });
 
-        var evt = arr[0];
 
-        var Li_Content_Id = "<input class=\"List-Item-Id\" type=\"hidden\" value=\"" + evt.id + "\">";
-        var Li_Content_Image = "<div class=\"List-Item-Image-Main\"><img class=\"List-Item-Image\" src=\"" + evt.imgsrc + "\"></div>";
-        var Li_Content_Name = "<label class=\"List-Item-Name\">" + evt.name + "</label>";
 
-        var LI_Content_Details_Email = "<div class=\"List-Item-Detail-Item List-Item-Details-Email\"><span>Email: </span><label>" + evt.email + "</label></div>";
-        var LI_Content_Details_Phone = "<div class=\"List-Item-Detail-Item List-Item-Details-Phone\"><span>Phone: </span><label>" + evt.phone + "</label></div>";
-        var LI_Content_Details = "<div class=\"List-Item-Details\">" + LI_Content_Details_Email + LI_Content_Details_Phone + "</div>";
+        /*
+                console.log(TeacherIdArr[i]);
+                arr = jQuery.grep(TeacherList, function(e) {
+                  if (e.id == TeacherIdArr[i]) {
+                    return e;
+                  }
+                });
 
-        var Li_Content_Main = "<a class=\"List-Item-Option\">" + Li_Content_Id + Li_Content_Image + "<div class=\"List-Item-Info\">" + Li_Content_Name + LI_Content_Details + "</div>" + "</a>";
-        var Teacher_List_Li = "<li><div class=\"Teacher-List-Item\">" + Li_Content_Main + "<a class=\"Teacher-Li-Delete\">x</a></div></li>";
-        $(".Teacher-Content-Main .Teacher-List-Main").append(Teacher_List_Li);
+                var evt = arr[0];
+        */
+
+        /*        var Li_Content_Id = "<input class=\"List-Item-Id\" type=\"hidden\" value=\"" + evt.id + "\">";
+                var Li_Content_Image = "<div class=\"List-Item-Image-Main\"><img class=\"List-Item-Image\" src=\"" + evt.imgsrc + "\"></div>";
+                var Li_Content_Name = "<label class=\"List-Item-Name\">" + evt.name + "</label>";
+
+                var LI_Content_Details_Email = "<div class=\"List-Item-Detail-Item List-Item-Details-Email\"><span>Email: </span><label>" + evt.email + "</label></div>";
+                var LI_Content_Details_Phone = "<div class=\"List-Item-Detail-Item List-Item-Details-Phone\"><span>Phone: </span><label>" + evt.phone + "</label></div>";
+                var LI_Content_Details = "<div class=\"List-Item-Details\">" + LI_Content_Details_Email + LI_Content_Details_Phone + "</div>";
+
+                var Li_Content_Main = "<a class=\"List-Item-Option\">" + Li_Content_Id + Li_Content_Image + "<div class=\"List-Item-Info\">" + Li_Content_Name + LI_Content_Details + "</div>" + "</a>";
+                var Teacher_List_Li = "<li><div class=\"Teacher-List-Item\">" + Li_Content_Main + "<a class=\"Teacher-Li-Delete\">x</a></div></li>";
+                $(".Teacher-Content-Main .Teacher-List-Main").append(Teacher_List_Li);*/
         //console.log(evt);
       }
     }
@@ -651,7 +762,7 @@ function init() {
     });
 
 
-    //Script for removing li element onClick
+    //Script for removing li element(teacher) onClick
     $(".Teacher-List-Main").on("click", ".Teacher-List-Item a.Teacher-Li-Delete", function() {
       $(this).closest("li").remove();
     });
