@@ -10,7 +10,7 @@ error_reporting(E_ALL);
 $servername = "localhost";
 $username = "root";
 $password = "root";
-$dbname = "first-build";
+$dbname = "first-bu";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
