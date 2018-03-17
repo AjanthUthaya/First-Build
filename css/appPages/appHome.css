@@ -320,6 +320,7 @@ div.dhx_menu_head {
 
 .dhx_scale_holder {
   border-right: 1px solid black;
+  background: none;
 }
 
 .dhx_multi_day, .dhx_multi_day_icon, .dhx_multi_day_icon_small {
@@ -332,6 +333,7 @@ div.dhx_menu_head {
   border-right: 1px solid black;
   border-right-color: black;
   background-color: #ffef9759;
+  background: none;
 }
 
 .dhx_scale_hour {

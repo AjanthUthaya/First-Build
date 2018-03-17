@@ -179,40 +179,23 @@ table {
   background-color: #37414d;
 }
 
-/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+/* Removing background */
 
-
-- - - - - - - - - - - - - - - - - - - - - - - - - - */
-
-/* ***************************************************
-  Loading
-  (Top-Right-Bottom-Left)
-*************************************************** */
-
-#Loading-Main {
-  position: fixed;
-  z-index: 13;
-  top: 80px;
-  display: none;
-  /* Display flex in js to get the loading screen */
-  flex-direction: column;
-  width: 100vw;
-  height: calc(100vh - 80px);
-  color: white;
-  background: rgba(0, 0, 0, .7);
-  justify-content: center;
-  align-items: center;
+.dhx_scale_holder, .dhx_scale_holder_now {
+  background-image: none;
 }
 
-#Loading-Icon img {
-  width: 200px;
+/* Align text of events to the center, default: left */
+
+.dhx_body {
+  text-align: center;
 }
 
-/* Target this selector to add text */
+/* Hides on px that enables scroll mode for some reason */
 
-#Loading-Text {
-  font-size: 20px;
-  color: white;
+.dhx_cal_data {
+  overflow: hidden;
+  height: 100%;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -257,6 +240,8 @@ table {
   color: white;
   font-size: 20px;
   font-weight: bold;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 
 .iziToast-close:hover {

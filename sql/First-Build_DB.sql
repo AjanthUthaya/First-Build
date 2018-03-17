@@ -18,22 +18,86 @@ USE `first-build`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `room`
+-- Table structure for table `lesson_edit`
 --
 
-DROP TABLE IF EXISTS `room`;
+DROP TABLE IF EXISTS `lesson_edit`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `room` (
+CREATE TABLE `lesson_edit` (
+  `id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `lesson_order`
+--
+
+DROP TABLE IF EXISTS `lesson_order`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `lesson_order` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `room_group` int(11) NOT NULL,
-  `room` varchar(45) NOT NULL,
-  `capacity` varchar(45) NOT NULL,
+  `active` varchar(45) DEFAULT NULL,
+  `lesson_id` varchar(45) DEFAULT NULL,
+  `user_id` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `room_group_idx` (`room_group`),
-  CONSTRAINT `room_group` FOREIGN KEY (`room_group`) REFERENCES `room_group` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `lessons`
+--
+
+DROP TABLE IF EXISTS `lessons`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `lessons` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(50) NOT NULL DEFAULT 'Lesson',
+  `start_date` varchar(50) NOT NULL,
+  `end_date` varchar(50) NOT NULL,
+  `teacher_id` varchar(255) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `sub` varchar(50) NOT NULL,
+  `room` varchar(100) NOT NULL,
+  `color` varchar(30) NOT NULL,
+  `vgs` varchar(10) NOT NULL,
+  `ava` int(11) NOT NULL DEFAULT '0',
+  `ava_max` int(11) NOT NULL DEFAULT '30',
+  `details` mediumtext NOT NULL,
+  `creation_by` varchar(255) NOT NULL,
+  `creation_date` varchar(30) NOT NULL,
+  `creation_time` varchar(20) NOT NULL,
+  `creation_ip` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `first-build`.`lessons_CHANGE_ID` BEFORE INSERT ON `lessons` FOR EACH ROW
+BEGIN
+	
+	SET @AutoIncrement = (SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='lessons');
+
+	SET NEW.id = @AutoIncrement;
+
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `room_group`
@@ -52,6 +116,25 @@ CREATE TABLE `room_group` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `rooms`
+--
+
+DROP TABLE IF EXISTS `rooms`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `rooms` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `room_group_id` int(11) NOT NULL,
+  `room` varchar(45) NOT NULL,
+  `capacity` varchar(45) NOT NULL DEFAULT '30',
+  `label` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `room_group_idx` (`room_group_id`),
+  CONSTRAINT `room_group` FOREIGN KEY (`room_group_id`) REFERENCES `room_group` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `user_online`
 --
 
@@ -63,14 +146,14 @@ CREATE TABLE `user_online` (
   `user_id` int(11) NOT NULL,
   `user_type` varchar(20) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `ip_address` varchar(50) DEFAULT NULL,
-  `type` varchar(20) NOT NULL,
+  `ip_address` varchar(50) NOT NULL,
+  `type` varchar(50) NOT NULL,
   `page` varchar(255) NOT NULL,
   `last_update_date` varchar(20) NOT NULL,
   `last_update_time` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1522 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3579 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,11 +182,6 @@ CREATE TABLE `users` (
   `creation_date` varchar(30) NOT NULL,
   `creation_time` varchar(20) NOT NULL,
   `creation_ip` varchar(255) DEFAULT NULL,
-  `edited` varchar(20) NOT NULL DEFAULT 'false',
-  `edit_date` varchar(25) DEFAULT NULL,
-  `edit_time` varchar(45) DEFAULT NULL,
-  `edit_username` varchar(255) DEFAULT NULL,
-  `edit_ip` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
@@ -120,21 +198,11 @@ DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER update_user_id BEFORE INSERT ON users
 FOR EACH ROW
 BEGIN
-
-
-         IF NEW.user_id < 1 THEN
          
 
-			SET @user_id = (SELECT MAX(user_id) FROM users);
+	SET @user_id = (SELECT MAX(user_id) FROM users);
 
-			SET NEW.user_id = @user_id + 1;
-
-			IF NEW.user_id = 0 THEN
-				SET NEW.user_id = 1;
-			END IF;
-            
-
-         END IF;
+	SET NEW.user_id = IFNULL(@user_id + 1,1);
          
 
 END */;;
@@ -157,4 +225,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-05  8:51:27
+-- Dump completed on 2018-03-13 16:57:16

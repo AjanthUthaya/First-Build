@@ -2,7 +2,7 @@
 
 require($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/DB.php');
 
-$QueryTeachers = "SELECT id, firstname, middlename, lastname, email, phone, img_src FROM users WHERE active = 'true' AND user_type = 'Teacher'";
+$QueryTeachers = "SELECT id, firstname, middlename, lastname, email, phone, img_src FROM users WHERE active = 'true' AND user_type = 'Teacher' OR active = 'true'  AND user_type = 'Admin'";
 $TeachersResult = $conn->query($QueryTeachers);
 
 while ($Teacher_Item = $TeachersResult->fetch_assoc()) {

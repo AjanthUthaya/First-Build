@@ -38,11 +38,21 @@ function init() {
 
   // Fired up on ajax failure
   request.fail(function(xhr, textStatus, errorThrown) {
-    console.log("Error: " + errorThrown);
-    /*    $('body').css('display', 'none');
-        alert("Failed to get user data, logging out");
-        window.stop();
-        window.location.href = "Login.html";*/
+
+    // Notification to user
+    iziToast.error({
+      title: 'Error',
+      message: 'Failed to get user data, logging out',
+      timeout: 5000,
+      pauseOnHover: false,
+      drag: false
+    });
+
+    // Redirect user
+    setTimeout(function() {
+      window.location.href = "Login.html";
+    }, 5000);
+
   })
 
   // ---------- START: Get user data ---------- //
@@ -87,8 +97,11 @@ function init() {
         /*alert("Done loading list of teachers");*/
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
-        alert("Status: " + textStatus);
-        alert("Error: " + errorThrown);
+        iziToast.error({
+          title: 'Error',
+          message: 'Failed to load in rooms, try and refresh',
+          timeout: false
+        });
       }
     });
     return RoomArr;
@@ -153,6 +166,10 @@ function init() {
 
     if (EventData === '' || typeof EventData === 'undefined' || typeof EventData.teacher_id === 'undefined') {
       // console.log("Empty");
+    } else if (Mode == 'creation') {
+
+      console.log("Test");
+
     } else {
       // Define dynamic variable
       var ev = EventData;
@@ -251,6 +268,8 @@ function init() {
   scheduler.attachEvent("onBeforeDrag", function(id, mode, e) {
 
     if (mode == 'create') {
+
+      console.log();
 
       return true;
 
