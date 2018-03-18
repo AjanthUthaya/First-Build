@@ -159,17 +159,10 @@ function init() {
     event_dy: 46,
   });
 
-  function CheckReadOnly(EventData, Mode) {
-
-    // Optional field
-    Mode = Mode || 'default';
+  function CheckReadOnly(EventData) {
 
     if (EventData === '' || typeof EventData === 'undefined' || typeof EventData.teacher_id === 'undefined') {
       // console.log("Empty");
-    } else if (Mode == 'creation') {
-
-      console.log("Test");
-
     } else {
       // Define dynamic variable
       var ev = EventData;
@@ -269,8 +262,6 @@ function init() {
 
     if (mode == 'create') {
 
-      console.log();
-
       return true;
 
     } else {
@@ -299,6 +290,7 @@ function init() {
 
   });
 
+
   scheduler.attachEvent("onEventCreated", function(id) {
     var ev = scheduler.getEvent(id);
     ev.type = "Lesson";
@@ -310,7 +302,9 @@ function init() {
     ev.ava_max = "30";
     ev.details = "";
     ev.teacher_id = UserData.User_Id;
+    ev.creation_by = UserData.Username;
   });
+
 
   //Set content before lightbox opens
   scheduler.attachEvent("onBeforeLightbox", function(id) {
@@ -338,7 +332,7 @@ function init() {
 
     var EventDayLetter = weekday[d.getDay()];
 
-    //EventMonth = value of Month + " "(space)
+    // EventMonth = value of Month + " "(space)
     switch (EventMonth) {
       case "Jan ":
         EventMonth = "January";

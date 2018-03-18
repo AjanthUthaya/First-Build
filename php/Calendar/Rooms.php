@@ -15,8 +15,9 @@ $Room_Group_Increment = 0;
 
 foreach ($RoomGroupArray as $Room_Group_Item) {
 
+    // NOTE: Too much stress on server, find another way to load
     // Querry to get rooms
-    $QueryRooms = "SELECT * FROM rooms WHERE room_group_id = '" . $Room_Group_Item['id'] . "'";
+    $QueryRooms = "SELECT * FROM rooms WHERE room_group_id = '" . $Room_Group_Item['id'] . "' ORDER BY room";
     $RoomsResult = $conn->query($QueryRooms);
     while ($Rooms_Item = $RoomsResult->fetch_array()) {
         $RoomsArray[] = $Rooms_Item;
