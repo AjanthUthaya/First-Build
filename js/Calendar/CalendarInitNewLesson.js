@@ -667,31 +667,26 @@ function init() {
       // Display array values on page
       for (var i = 0; i < TeacherIdArr.length; i++) {
 
+        arr = jQuery.grep(TeacherList, function(e) {
+          if (e.id == TeacherIdArr[i]) {
+            return e;
+          }
+        });
+
+        var evt = arr[0];
 
 
-        /*
-                console.log(TeacherIdArr[i]);
-                arr = jQuery.grep(TeacherList, function(e) {
-                  if (e.id == TeacherIdArr[i]) {
-                    return e;
-                  }
-                });
+        var Li_Content_Id = "<input class=\"List-Item-Id\" type=\"hidden\" value=\"" + evt.id + "\">";
+        var Li_Content_Image = "<div class=\"List-Item-Image-Main\"><img class=\"List-Item-Image\" src=\"" + evt.imgsrc + "\"></div>";
+        var Li_Content_Name = "<label class=\"List-Item-Name\">" + evt.name + "</label>";
 
-                var evt = arr[0];
-        */
+        var LI_Content_Details_Email = "<div class=\"List-Item-Detail-Item List-Item-Details-Email\"><span>Email: </span><label>" + evt.email + "</label></div>";
+        var LI_Content_Details_Phone = "<div class=\"List-Item-Detail-Item List-Item-Details-Phone\"><span>Phone: </span><label>" + evt.phone + "</label></div>";
+        var LI_Content_Details = "<div class=\"List-Item-Details\">" + LI_Content_Details_Email + LI_Content_Details_Phone + "</div>";
 
-        /*        var Li_Content_Id = "<input class=\"List-Item-Id\" type=\"hidden\" value=\"" + evt.id + "\">";
-                var Li_Content_Image = "<div class=\"List-Item-Image-Main\"><img class=\"List-Item-Image\" src=\"" + evt.imgsrc + "\"></div>";
-                var Li_Content_Name = "<label class=\"List-Item-Name\">" + evt.name + "</label>";
-
-                var LI_Content_Details_Email = "<div class=\"List-Item-Detail-Item List-Item-Details-Email\"><span>Email: </span><label>" + evt.email + "</label></div>";
-                var LI_Content_Details_Phone = "<div class=\"List-Item-Detail-Item List-Item-Details-Phone\"><span>Phone: </span><label>" + evt.phone + "</label></div>";
-                var LI_Content_Details = "<div class=\"List-Item-Details\">" + LI_Content_Details_Email + LI_Content_Details_Phone + "</div>";
-
-                var Li_Content_Main = "<a class=\"List-Item-Option\">" + Li_Content_Id + Li_Content_Image + "<div class=\"List-Item-Info\">" + Li_Content_Name + LI_Content_Details + "</div>" + "</a>";
-                var Teacher_List_Li = "<li><div class=\"Teacher-List-Item\">" + Li_Content_Main + "<a class=\"Teacher-Li-Delete\">x</a></div></li>";
-                $(".Teacher-Content-Main .Teacher-List-Main").append(Teacher_List_Li);*/
-        //console.log(evt);
+        var Li_Content_Main = "<a class=\"List-Item-Option\">" + Li_Content_Id + Li_Content_Image + "<div class=\"List-Item-Info\">" + Li_Content_Name + LI_Content_Details + "</div>" + "</a>";
+        var Teacher_List_Li = "<li><div class=\"Teacher-List-Item\">" + Li_Content_Main + "<a class=\"Teacher-Li-Delete\">x</a></div></li>";
+        $(".Teacher-Content-Main .Teacher-List-Main").append(Teacher_List_Li);
       }
     }
 

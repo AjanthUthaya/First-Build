@@ -61,14 +61,26 @@ function ShadowDataUpdate($ev)
     $Creation_Date = date("d-m-Y");
     $Creation_Time = date("H:i:s");
 
-    // Created by
-    $ev->add_field("edit_by", $_SESSION['DB_Username']);
+    // DB variable
+    global $conn;
+
+    // Get update data
+    $Id = $ev->get_value("id");
+
+    $Edit_By = $_SESSION['DB_Username'];
+    $Edit_Date = $Creation_Date;
+    $Edit_Time = $Creation_Time;
+    $Edit_Ip = GetUserIP();
+
+    // Setting updated data //
+    // Edited by
+    $ev->add_field("edit_by", $Edit_By);
     // Date
-    $ev->add_field("edit_date", $Creation_Date);
+    $ev->add_field("edit_date", $Edit_Date);
     // Time
-    $ev->add_field("edit_time", $Creation_Time);
+    $ev->add_field("edit_time", $Edit_Time);
     // Ip
-    $ev->add_field("edit_ip", GetUserIP());
+    $ev->add_field("edit_ip", $Edit_Ip);
 }
 
 // Before insert
@@ -76,7 +88,7 @@ $scheduler->event->attach("beforeInsert", "ShadowDataInsert");
 // Before update
 $scheduler->event->attach("beforeUpdate", "ShadowDataUpdate");
 // Before delete
-$scheduler->event->attach("beforeDelete", "ShadowDataUpdate");
+// $scheduler->event->attach("beforeDelete", "ShadowDataUpdate");
 
 // Sort result by x field and order in ASC/DESC
 $scheduler->sort("start_date", "ASC");

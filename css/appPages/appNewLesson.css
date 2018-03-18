@@ -286,7 +286,8 @@ label {
 
 .dhx_cal_light {
   height: fit-content !important;
-  margin-top: 25px;
+  top: 0 !important;
+  margin-top: 85px;
   border: 0;
   box-shadow: inherit;
 }
