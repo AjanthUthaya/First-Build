@@ -25,6 +25,8 @@
   <script src="js/Calendar/CalendarInit.js"></script>
   <!-- END: Calendar and init -->
 
+  <script src="js/Partials/ScrollHideNav.js"></script>
+
 
 <?php } elseif ($Filename == 'Lesson') { ?>
 
@@ -33,6 +35,8 @@
   <script src="js/Calendar/CalendarInitLesson.js"></script>
   <!-- END: Get data from source -->
 
+  <script src="js/Partials/ScrollHideNav.js"></script>
+
 
 <?php } elseif ($Filename == 'Majors') { ?>
 
@@ -40,6 +44,8 @@
   <!-- START: Page specific scripts -->
   <script src="js/Pages/Major.js"></script>
   <!-- END: Page specific scripts -->
+
+  <script src="js/Partials/ScrollHideNav.js"></script>
 
 
 <?php } elseif ($Filename == 'NewLesson') { ?>
@@ -114,12 +120,13 @@
   <script src="js/Calendar/CalendarInitTest.js"></script>
   <!-- END: Get data from source -->
 
+  <script src="js/Partials/ScrollHideNav.js"></script>
+
 
 <?php } ?>
 
 
 <!-- START: Partial scripts -->
-<script src="js/Partials/ScrollHideNav.js"></script>
 <script src="js/Partials/SliderForProfile.js"></script>
 <script src="js/Partials/User_Data.js"></script>
 <script src="js/Partials/Profile_Update.js"></script>

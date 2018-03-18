@@ -90,7 +90,8 @@ function init() {
     $.ajax({
       'async': false,
       'global': false,
-      'url': "php/Calendar/Rooms.php",
+      //'url': "php/Calendar/Rooms.php",
+      'url': "data/DataRoom.json",
       'dataType': "json",
       'success': function(data) {
         RoomArr = data;
@@ -202,6 +203,51 @@ function init() {
 
   }
 
+  scheduler.attachEvent("onBeforeSectionRender", function(t, a, i) {
+    var n = {};
+    if ("tree" == t) {
+
+      // Declaring variable
+      var r, s, o, d, _, l;
+
+
+      d = "dhx_matrix_scell",
+        // TR class name
+        a.children ? (
+          r = i.folder_dy || i.dy, i.folder_dy && !i.section_autoheight &&
+          (o = "height:" + i.folder_dy + "px;"),
+          s = "dhx_row_folder Folder_Level_" + a.level + "",
+          d += " folder", _ = "<div class='dhx_scell_expand'>" + (a.open ? "-" : "+") + "</div>",
+          l = i.folder_events_available ? "dhx_data_table folder_events" : "dhx_data_table folder"
+          
+        ) : (
+
+        r = i.dy, s = "dhx_row_item Item_Level_" + a.level + "", d += " item", _ = "", l = "dhx_data_table"),
+        // TD class name
+        d += scheduler.templates[i.name + "_scaley_class"](a.key, a.label, a) ?
+        " " + scheduler.templates[i.name + "_scaley_class"](a.key, a.label, a) : "";
+
+
+      // TD content
+      var c = "<div class='dhx_scell_level" + a.level + "'>" + _ + "<div class='dhx_scell_name'>" +
+        (scheduler.templates[i.name + "_scale_label"](a.key, a.label, a) || a.label) + "</div></div>";
+
+
+      n = {
+        height: r,
+        style_height: o,
+        tr_className: s,
+        td_className: d,
+        td_content: c,
+        table_className: l
+      }
+    }
+
+
+    return n;
+  });
+
+
   scheduler.templates.event_class = function(start, end, event) {
 
     var ReadOnlyValue = CheckReadOnly(event);
@@ -215,6 +261,7 @@ function init() {
   };
 
   scheduler.attachEvent("onTemplatesReady", function() {
+
     scheduler.templates.event_bar_text = function(start, end, event) {
       var EventStart = String(event.start_date);
       var EventEnd = String(event.end_date);
@@ -229,10 +276,10 @@ function init() {
         scheduler.getEvent(event.id).readonly = true;
         return "<div class=\"Event-Content-Main\"><label class=\"Event-Content-Time\">" + EventTimeStart + " - " + EventTimeEnd + "</label><label class=\"Event-Content-Type\">" + event.title + "</label></div>";
       }
-
     }
 
   });
+
 
   //Custom header for lightbox
   scheduler.templates.lightbox_header = function(start, end, event) {
@@ -1096,7 +1143,6 @@ function init() {
   /*scheduler.setCurrentView(new Date(2012,7,4));*/
 
 } //End of init function
-
 
 function show_minical() {
   if (scheduler.isCalendarVisible()) {

@@ -1,7 +1,3 @@
-<div class="Title cell">
-  <h2>Create a new lesson</h2>
-</div>
-
 <!-- START: DHTMLXscheduler -->
 <div class="Calendar-Main">
 

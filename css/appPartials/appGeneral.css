@@ -204,6 +204,43 @@ table {
 - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 /* ***************************************************
+  Calendar folder
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+.dhx_matrix_scell .dhx_scell_level1{
+  padding-left: 40px;
+}
+
+.dhx_matrix_scell .dhx_scell_level2{
+  padding-left: 60px;
+}
+
+/* Nested folders on level one */
+
+.dhx_cal_data .Folder_Level_1 .folder, .dhx_cal_data .Folder_Level_1 td.dhx_matrix_cell {
+  background-color: orange;
+  color: white;
+}
+
+/* Nested items on level two */
+
+.dhx_cal_data .Item_Level_2 .item, .dhx_cal_data .Item_Level_2 td.dhx_matrix_cell {
+/*  background-color: #e49400;
+  color: white;*/
+}
+
+/* Add border to last item */
+.dhx_cal_data .Item_Level_2 .item:last-child, .dhx_cal_data .Item_Level_2 td.dhx_matrix_cell:last-child {
+  color: black;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
   Notifications
   (Top-Right-Bottom-Left)
 *************************************************** */
@@ -216,6 +253,11 @@ table {
 .iziToast-cover {}
 
 .iziToast-body {}
+
+.iziToast {
+  display: inline-flex;
+  align-items: center;
+}
 
 .iziToast-texts {}
 
@@ -232,7 +274,7 @@ table {
 }
 
 .iziToast {
-  padding: 5px 45px 4px 0;
+  padding: 5px 55px 5px 0;
 }
 
 .iziToast-close {

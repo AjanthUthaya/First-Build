@@ -1,43 +1,77 @@
 [{
     "key": "Room",
     "label": "Room",
-    "open": true,
+    "open": false,
     "children": [{
-        "key": "202",
-        "label": "Room 202 (30)"
-      }, {
-        "key": "203",
-        "label": "Room 203 (30)"
-      }, {
-        "key": "204",
-        "label": "Room 204 (30)"
-      },
-      {
-        "key": "205",
-        "label": "Room 205 (30)"
-      },
-      {
-        "key": "206",
-        "label": "Room 206 (30)"
-      }
-    ]
+      "key": "U-Floor-Room",
+      "label": "U Floor",
+      "open": false,
+      "children": [{
+          "key": "100",
+          "label": "Room 100 (30)"
+        }, {
+          "key": "101",
+          "label": "Room 101 (30)"
+        },
+        {
+          "key": "102",
+          "label": "Room 102 (30)"
+        }
+      ]
+    }, {
+      "key": "2-Floor-Room",
+      "label": "2 Floor",
+      "open": false,
+      "children": [{
+          "key": "200",
+          "label": "Room 200 (30)"
+        }, {
+          "key": "201",
+          "label": "Room 201 (30)"
+        },
+        {
+          "key": "202",
+          "label": "Room 202 (30)"
+        }
+      ]
+    }]
   },
   {
-    "key": "Group",
-    "label": "Group",
+    "key": "Group-Room",
+    "label": "Group Room",
     "children": [{
-        "key": "200-A",
-        "label": "200-A"
-      },
-      {
-        "key": "201-A",
-        "label": "201-A"
-      },
-      {
-        "key": "202-A",
-        "label": "202-A"
-      }
-    ]
+      "key": "U-Floor-Group",
+      "label": "U Floor",
+      "open": false,
+      "children": [{
+          "key": "100-A",
+          "label": "Room 100-A (30)"
+        }, {
+          "key": "101-A",
+          "label": "Room 101-A (30)"
+        },
+        {
+          "key": "102-A",
+          "label": "Room 102-A (30)"
+        }
+      ]
+    }, {
+      "key": "2-Floor-Group",
+      "label": "2 Floor",
+      "open": false,
+      "children": [{
+          "key": "200-A",
+          "label": "Room 200-A (30)"
+        }, {
+          "key": "201-A",
+          "label": "Room 201-A (30)"
+        },
+        {
+          "key": "202-A",
+          "label": "Room 202-A (30)"
+        }
+      ]
+    }]
   },
   {
     "key": "Special",

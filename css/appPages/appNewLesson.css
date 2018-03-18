@@ -64,7 +64,7 @@
 
 .Calendar-Main {
   position: absolute;
-  top: 149px;
+  top: 80px;
   overflow-x: auto;
   width: 100vw;
   max-width: 100%;
@@ -89,7 +89,7 @@ table tbody tr:nth-child(even) {
 
 .dhx_cal_navline {
   position: fixed;
-  top: 149px !important;
+  top: 80px !important;
   background-color: white;
 }
 
@@ -99,7 +99,7 @@ div#dhx_minical_icon {
 
 .dhx_cal_header {
   position: fixed;
-  top: 208px !important;
+  top: 139px !important;
   padding-top: 1px;
   border-top: 0;
   border-bottom: 2px solid black;
@@ -195,22 +195,6 @@ table tbody th, table tbody td {
   outline: 0;
 }
 
-tr.dhx_row_folder {
-  /*width: 1000px;*/
-}
-
-.dhx_matrix_line {
-  /*width: 1000px !important;*/
-}
-
-table.dhx_data_table {
-  /*width: 1000px !important;*/
-}
-
-tr.dhx_row_item {
-  /*width: 1000px;*/
-}
-
 /* Makes it so that text area fits inside the container */
 
 textarea {
@@ -285,8 +269,8 @@ label {
 }
 
 .dhx_cal_light {
-  height: fit-content !important;
   top: 0 !important;
+  height: fit-content !important;
   margin-top: 85px;
   border: 0;
   box-shadow: inherit;
