@@ -28,7 +28,7 @@ $.each(MajorList, function(key, ma) {
   //Actual appening area
   $(".Sub-Menu-List").append(MajorItem);
   //console.log(ma.color);
-  
+
 });
 
 // ---------- END: GET MAJORS AND LOAD INTO NAV ---------- //

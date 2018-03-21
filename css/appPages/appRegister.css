@@ -142,10 +142,8 @@ button {
   position: absolute;
   z-index: 101;
   display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
+  flex-direction: column;
   width: 140px;
   height: 100%;
   cursor: pointer;
@@ -153,12 +151,14 @@ button {
   -moz-transition: all .5s ease;
   -o-transition: all .5s ease;
   transition: all .5s ease;
+  opacity: .7;
   color: white;
   border: 5px solid #292c30;
   border-radius: 50%;
   /*background: rgba(0, 0, 0, .8);*/
   background-color: black;
-  opacity: .7;
+  justify-content: center;
+  align-items: center;
 }
 
 #Register-Img-Error:hover {
@@ -167,23 +167,21 @@ button {
 }
 
 #Register-Img-Error * {
-  color: white;
-  text-align: center;
   font-size: 12px;
   width: 100%;
+  text-align: center;
+  color: white;
 }
 
 #Img-Error-Title {
-  color: red;
   font-size: 14px;
   font-weight: bold;
+  color: red;
 }
 
 #Img-Error-Current {
   padding: 8px 0;
 }
-
-#Img-Error-Max {}
 
 /* __________ END: ERROR SECTION __________ */
 

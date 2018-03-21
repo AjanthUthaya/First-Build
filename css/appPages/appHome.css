@@ -36,11 +36,11 @@
 
 .Display-Item-Screen {
   line-height: 1;
+  display: flex;
   width: 100%;
   height: 80px;
   text-align: center;
   background-color: white;
-  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -332,8 +332,8 @@ div.dhx_menu_head {
 .dhx_scale_holder_now {
   border-right: 1px solid black;
   border-right-color: black;
-  background-color: #ffef9759;
   background: none;
+  background-color: #ffef9759;
 }
 
 .dhx_scale_hour {

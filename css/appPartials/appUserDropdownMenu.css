@@ -197,33 +197,33 @@ input {
 }
 
 .Profile-Content-Image img {
+  overflow: hidden;
   width: 90px;
   height: 90px;
   margin-top: 10px;
   cursor: pointer;
+  border: 2px solid white;
   border-radius: 50%;
   background: #292c31;
-  border: 2px solid white;
-  overflow: hidden;
   object-fit: cover;
 }
 
 .Profile-Img-Close {
-  display: none;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  margin-top: 12px;
-  right: 102px;
-  background-color: darkred;
-  color: white;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 999;
   font-size: 15px;
   font-weight: bold;
+  position: absolute;
+  z-index: 999;
+  right: 102px;
+  display: none;
+  width: 28px;
+  height: 28px;
+  margin-top: 12px;
+  cursor: pointer;
+  color: white;
+  border-radius: 50%;
+  background-color: darkred;
+  justify-content: center;
+  align-items: center;
 }
 
 .Profile-Img-Close:hover {
@@ -258,28 +258,28 @@ input {
 }
 
 .Profile-Img-Error {
-  display: none;
-  justify-content: center;
-  flex-direction: column;
-  margin-top: 10px;
   position: absolute;
-  background-color: grey;
-  opacity: 0.8;
+  display: none;
+  overflow: hidden;
+  flex-direction: column;
   width: 90px;
   height: 90px;
-  border-radius: 50%;
-  color: white;
-  overflow: hidden;
+  margin-top: 10px;
   text-overflow: ellipsis;
+  opacity: .8;
+  color: white;
+  border-radius: 50%;
+  background-color: grey;
+  justify-content: center;
 }
 
 .Profile-Img-Error * {
-  display: flex;
-  justify-content: center;
-  color: white;
   font-size: 10px;
+  display: flex;
   flex-direction: column;
   text-align: center;
+  color: white;
+  justify-content: center;
 }
 
 .Profile-Img-Error span {
@@ -380,11 +380,11 @@ input {
   display: flex;
   width: 100%;
   height: 35px;
-  opacity: 0.6;
+  cursor: default;
+  opacity: .6;
   background-color: #90c749;
   justify-content: center;
   align-items: center;
-  cursor: default;
 }
 
 #Save-Profile-Content:hover {

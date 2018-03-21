@@ -292,15 +292,13 @@ function init() {
   };
 
   //This part has display: none; as value
-  scheduler.config.lightbox.sections = [
-    {
-      name: "SubMajor",
-      height: 200,
-      map_to: "text",
-      type: "my_editor",
-      focus: false
-    }
-  ];
+  scheduler.config.lightbox.sections = [{
+    name: "SubMajor",
+    height: 200,
+    map_to: "text",
+    type: "my_editor",
+    focus: false
+  }];
 
   scheduler.attachEvent("onLightbox", function(id) {
     var ev = scheduler.getEvent(id);
@@ -315,7 +313,7 @@ function init() {
         Math.max(
           0,
           ($(window).height() - $(this).outerHeight()) / 2 +
-            $(window).scrollTop()
+          $(window).scrollTop()
         ) + "px"
       );
       this.css(
@@ -323,7 +321,7 @@ function init() {
         Math.max(
           0,
           ($(window).width() - $(this).outerWidth()) / 2 +
-            $(window).scrollLeft()
+          $(window).scrollLeft()
         ) + "px"
       );
       return this;

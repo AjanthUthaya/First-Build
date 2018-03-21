@@ -20,8 +20,8 @@ button {
 }
 
 .Placeholder-Active::placeholder {
+  transition: color .5s ease;
   color: white;
-  transition: color 0.5s ease;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -35,11 +35,11 @@ button {
 *************************************************** */
 
 .Login-Content-Logo {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   padding: 10px 40px;
   padding-top: 0;
-  display: flex;
-  flex-direction: column;
 }
 
 .Content-Logo-Img {
@@ -60,9 +60,9 @@ button {
 }
 
 .Content-Logo-Title label {
-  color: white;
   font-size: 30px;
   font-weight: bold;
+  color: white;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -123,9 +123,9 @@ button {
   width: 100%;
   height: 100%;
   padding-top: 20px;
+  padding-bottom: 20px;
   border-radius: 10px;
   background-color: #292c30;
-  padding-bottom: 20px;
 }
 
 .Login-Content-Title {
@@ -152,34 +152,38 @@ button {
 
 .Content-Fields-Field {
   display: flex;
-  justify-content: center;
+  width: 70%;
   margin-top: 20px;
   margin-bottom: 20px;
-  background-color: rgba(255, 255, 255, 0.1);
   padding: 5px 25px;
+  padding-top: 1px;
   padding-bottom: 10px;
   padding-left: 15px;
-  padding-top: 1px;
-  width: 70%;
   border-radius: 5px;
+  background-color: rgba(255, 255, 255, .1);
+  justify-content: center;
 }
 
 .Content-Fields-Field span {
-  color: #9a9a9a;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 30px;
+  display: flex;
+  padding-top: 10px;
   padding-right: 15px;
   padding-left: 5px;
-  padding-top: 10px;
-  transition: color 0.5s ease;
+  transition: color .5s ease;
+  color: #9a9a9a;
+  justify-content: center;
+  align-items: center;
 }
 
 .Content-Fields-Field input {
+  font-size: 16px;
+  line-height: 1;
   min-width: 200px;
   max-width: 320px;
-  font-size: 16px;
+  padding: 5px 5px;
+  padding-bottom: 0;
+  transition: color .5s ease;
   color: #9a9a9a;
   border-top: transparent !important;
   border-right: transparent !important;
@@ -187,18 +191,14 @@ button {
   border-left: transparent !important;
   background: transparent;
   box-shadow: none;
-  padding: 5px 5px;
-  padding-bottom: 0;
-  line-height: 1;
-  transition: color 0.5s ease;
 }
 
 .Content-Fields-Field input:focus {
-  outline: none;
   border: 0;
+  border-bottom: 2px solid white !important;
+  outline: none;
   background-color: transparent;
   box-shadow: none;
-  border-bottom: 2px solid white !important;
 }
 
 .Content-Fields-Field * {
@@ -209,23 +209,23 @@ button {
   display: flex;
   width: 100%;
   height: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   border-radius: 5px;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
 }
 
 #Login-Submit {
+  font-size: 14px;
+  font-weight: bold;
   display: flex;
   width: 150px;
   height: 50px;
+  margin: 0;
   border-radius: 5px;
   justify-content: center;
   align-items: center;
-  margin: 0;
-  font-size: 14px;
-  font-weight: bold;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -239,12 +239,12 @@ button {
 *************************************************** */
 
 .Spinner {
-  border: 5px solid #f3f3f3;
-  border-top: 5px solid #7fb836;
-  border-radius: 50%;
   width: 25px;
   height: 25px;
   animation: spin 2s linear infinite;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #7fb836;
+  border-radius: 50%;
 }
 
 @keyframes spin {

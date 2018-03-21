@@ -3,8 +3,31 @@
   (Top-Right-Bottom-Left)
 *************************************************** */
 
+* {
+  margin: 0;
+}
+
+*:focus {
+  outline: 0;
+}
+
 body * {
   margin: 0;
+}
+
+/* Makes all buttons, anchors and images unselectable */
+
+a, button, img {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+}
+
+table {
+  margin-bottom: 0;
 }
 
 #Mobile-View {
@@ -50,29 +73,6 @@ body * {
   max-width: 100%;
   min-height: calc(100vh - 80px);
   margin-top: 80px;
-}
-
-*:focus {
-  outline: 0;
-}
-
-* {
-  margin: 0;
-}
-
-/* Makes all buttons, anchors and images unselectable */
-
-a, button, img {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-touch-callout: none;
-  -khtml-user-select: none;
-}
-
-table {
-  margin-bottom: 0;
 }
 
 .unselectable {
@@ -208,29 +208,30 @@ table {
   (Top-Right-Bottom-Left)
 *************************************************** */
 
-.dhx_matrix_scell .dhx_scell_level1{
+.dhx_matrix_scell .dhx_scell_level1 {
   padding-left: 40px;
 }
 
-.dhx_matrix_scell .dhx_scell_level2{
+.dhx_matrix_scell .dhx_scell_level2 {
   padding-left: 60px;
 }
 
 /* Nested folders on level one */
 
 .dhx_cal_data .Folder_Level_1 .folder, .dhx_cal_data .Folder_Level_1 td.dhx_matrix_cell {
-  background-color: orange;
   color: white;
+  background-color: orange;
 }
 
 /* Nested items on level two */
 
 .dhx_cal_data .Item_Level_2 .item, .dhx_cal_data .Item_Level_2 td.dhx_matrix_cell {
-/*  background-color: #e49400;
+  /*  background-color: #e49400;
   color: white;*/
 }
 
 /* Add border to last item */
+
 .dhx_cal_data .Item_Level_2 .item:last-child, .dhx_cal_data .Item_Level_2 td.dhx_matrix_cell:last-child {
   color: black;
 }
@@ -246,24 +247,14 @@ table {
 *************************************************** */
 
 #Notify {
-  border-radius: 5px;
   overflow: hidden;
+  border-radius: 5px;
 }
-
-.iziToast-cover {}
-
-.iziToast-body {}
 
 .iziToast {
   display: inline-flex;
   align-items: center;
 }
-
-.iziToast-texts {}
-
-.iziToast-title {}
-
-.iziToast-message {}
 
 .iziToast>.iziToast-body {
   margin: 0 0 0 20px;
@@ -278,12 +269,12 @@ table {
 }
 
 .iziToast-close {
-  background-color: red !important;
-  color: white;
   font-size: 20px;
   font-weight: bold;
+  color: white;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
+  background-color: red !important;
 }
 
 .iziToast-close:hover {

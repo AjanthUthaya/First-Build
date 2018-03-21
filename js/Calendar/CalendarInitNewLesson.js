@@ -219,10 +219,10 @@ function init() {
           s = "dhx_row_folder Folder_Level_" + a.level + "",
           d += " folder", _ = "<div class='dhx_scell_expand'>" + (a.open ? "-" : "+") + "</div>",
           l = i.folder_events_available ? "dhx_data_table folder_events" : "dhx_data_table folder"
-          
+
         ) : (
 
-        r = i.dy, s = "dhx_row_item Item_Level_" + a.level + "", d += " item", _ = "", l = "dhx_data_table"),
+          r = i.dy, s = "dhx_row_item Item_Level_" + a.level + "", d += " item", _ = "", l = "dhx_data_table"),
         // TD class name
         d += scheduler.templates[i.name + "_scaley_class"](a.key, a.label, a) ?
         " " + scheduler.templates[i.name + "_scaley_class"](a.key, a.label, a) : "";

@@ -107,20 +107,20 @@
 #User-Name-Main {
   font-size: 15px;
   font-weight: bold;
-  display: block;
-  color: white;
   line-height: 4;
+  display: block;
+  overflow: hidden;
   width: fit-content;
   max-width: 170px;
+  padding-left: 10px;
   cursor: pointer;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  padding-left: 10px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: white;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
