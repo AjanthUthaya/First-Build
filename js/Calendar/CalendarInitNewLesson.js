@@ -90,7 +90,7 @@ function init() {
     $.ajax({
       'async': false,
       'global': false,
-      //'url': "php/Calendar/Rooms.php",
+      //'url': "php/Calendar/RoomList.php",
       'url': "data/DataRoom.json",
       'dataType': "json",
       'success': function(data) {
@@ -111,14 +111,14 @@ function init() {
   // Get teacher list from database
   var TeacherList = (function() {
 
-    // php/Calendar/Teachers.php
+    // php/Calendar/TeacherList.php
     // data/DataTeacher.json
 
     var TeacherList = null;
     $.ajax({
       'async': false,
       'global': false,
-      'url': "php/Calendar/Teachers.php",
+      'url': "php/Calendar/TeacherList.php",
       'dataType': "json",
       'success': function(data) {
         TeacherList = data;

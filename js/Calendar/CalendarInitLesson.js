@@ -1,4 +1,5 @@
 function init() {
+/*
   //Get json and put it into a javascript object
   var LessonData = (function() {
     var LessonData = null;
@@ -133,5 +134,5 @@ function init() {
     $(".Lesson-Item").append(Item_Main);
 
   });
-
+*/
 }

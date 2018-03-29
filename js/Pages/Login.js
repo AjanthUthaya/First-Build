@@ -108,7 +108,6 @@ function ShowLogin() {
         // Change login button text and color
         $('#Login-Submit').css('transition', 'none');
         $('#Login-Submit').css('background', '#7fb836');
-        $('#Login-Submit').html('Logging in...');
 
         window.location.href = 'Home.php';
 

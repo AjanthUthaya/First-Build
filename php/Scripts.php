@@ -123,6 +123,12 @@
   <script src="js/Partials/ScrollHideNav.js"></script>
 
 
+<?php } elseif ($Filename == 'Rooms') { ?>
+
+  <script src="js/Pages/Rooms.js"></script>
+
+  <script src="js/Partials/ScrollHideNav.js"></script>
+
 <?php } ?>
 
 

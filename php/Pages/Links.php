@@ -10,6 +10,7 @@ $URI_Major = "Majors.php";
 $URI_Test = "Test.php";
 $URI_NewLesson = "NewLesson.php";
 $URI_NewTest = "NewTest.php";
+$URI_Rooms = "Rooms.php";
 
 // Social
 $URI_Facebook = "https://www.Facebook.com/";
