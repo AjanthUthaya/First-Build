@@ -74,19 +74,18 @@
   padding: 0 !important;
   color: white;
   border: 0;
-  background: grey;
+  background: #4c4c4c;
   justify-content: center;
   align-items: center;
 }
 
 .accordion-title:focus {
-  color: white;
-  background: grey;
+  background: #4c4c4c;
 }
 
 .accordion-title:hover {
-  color: black;
-  background-color: #a0a0a0;
+  color: white;
+  background-color: #5c5c5c;
 }
 
 .accordion-title span {
@@ -162,44 +161,83 @@
 
 .Item-Time {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  overflow: hidden;
   width: 100%;
   height: 25px;
-  overflow: hidden;
   background: #4c4c4c;
+  justify-content: center;
+  align-items: center;
 }
 
 .Item-Time-Label {
-  color: white;
   font-weight: 500;
+  color: white;
 }
 
 .Item-Title {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  overflow: hidden;
   width: 100%;
   height: 40px;
-  background-color: #35414d;
-  color: white;
-  overflow: hidden;
   padding: 0 15px;
+  color: white;
+  background-color: #35414d;
+  justify-content: center;
+  align-items: center;
 }
 
 .Item-Title * {
-  font-weight: bold;
   font-size: 20px;
-  color: white;
+  font-weight: bold;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  color: white;
 }
 
 .Item-Content {
   width: 100%;
-  height: 180px;
-  background-color: red;
+}
+
+.Content-List {
+  width: 100%;
+  margin: 0;
+  padding: 10px;
+  list-style: none;
+  background: #2c3138;
+}
+
+.Content-List-Item:first-child {
+  margin-top: 0;
+}
+
+.Content-List-Item {
+  display: flex;
+  width: 100%;
+  height: 35px;
+  margin-top: 10px;
+  background: #696969;
+}
+
+.Content-List-Item span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 35px;
+  color: white;
+  font-size: 18px;
+  background-color: #4c4c4c;
+}
+
+.Content-List-Item label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  width: calc(100% - 35px);
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

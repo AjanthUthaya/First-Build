@@ -14,7 +14,8 @@
 <script src="js/Partials/app.js"></script>
 
 
-<?php if ($Filename == 'Home') { ?>
+<?php if ($Filename == 'Home') {
+    ?>
 
 
   <!-- START: Calendar and init -->
@@ -28,7 +29,9 @@
   <script src="js/Partials/ScrollHideNav.js"></script>
 
 
-<?php } elseif ($Filename == 'Lesson') { ?>
+<?php
+} elseif ($Filename == 'Lesson') {
+        ?>
 
 
   <!-- START: Get data from source -->
@@ -38,7 +41,9 @@
   <script src="js/Partials/ScrollHideNav.js"></script>
 
 
-<?php } elseif ($Filename == 'Majors') { ?>
+<?php
+    } elseif ($Filename == 'Majors') {
+        ?>
 
 
   <!-- START: Page specific scripts -->
@@ -48,7 +53,9 @@
   <script src="js/Partials/ScrollHideNav.js"></script>
 
 
-<?php } elseif ($Filename == 'NewLesson') { ?>
+<?php
+    } elseif ($Filename == 'NewLesson') {
+        ?>
 
 
   <!-- START: Calendar and init -->
@@ -70,17 +77,24 @@
 
   <!-- START: Script to change event color -->
   <script>
-    $("#ColorSelector").on("change", function() {
-      //Get Color
-      var color = $("#ColorSelector").val();
-      //apply cuurent color to div
-      $(".Cal-Type").css("background", color);
+    $(document).ready(function () {
+      $("#ColorSelector").on("change", "input", function() {
+        //Get Color
+        var color = $("#ColorSelector").val();
+
+        //apply cuurent color to sub
+        $(".Block-Sub-Title").css("background", color);
+        //apply cuurent color to div
+        $(".Cal-Type").css("background", color);
+      });
     });
   </script>
   <!-- END: Script to change event color -->
 
 
-<?php } elseif ($Filename == 'NewTest') { ?>
+<?php
+    } elseif ($Filename == 'NewTest') {
+        ?>
 
 
   <!-- START: Calendar and init -->
@@ -106,14 +120,19 @@
     $("#ColorSelector").on("change", function() {
       //Get Color
       var color = $("#ColorSelector").val();
-      //apply cuurent color to div
+
+      //apply cuurent color to header
       $(".Cal-Type").css("background", color);
+      //apply cuurent color to sub
+      $(".Block-Sub-Title").css("background", color);
     });
   </script>
   <!-- END: Script to change event color -->
 
 
-<?php } elseif ($Filename == 'Test') { ?>
+<?php
+    } elseif ($Filename == 'Test') {
+        ?>
 
 
   <!-- START: Get data from source -->
@@ -123,13 +142,16 @@
   <script src="js/Partials/ScrollHideNav.js"></script>
 
 
-<?php } elseif ($Filename == 'Rooms') { ?>
+<?php
+    } elseif ($Filename == 'Rooms') {
+        ?>
 
   <script src="js/Pages/Rooms.js"></script>
 
   <script src="js/Partials/ScrollHideNav.js"></script>
 
-<?php } ?>
+<?php
+    } ?>
 
 
 <!-- START: Partial scripts -->

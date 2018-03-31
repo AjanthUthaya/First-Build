@@ -467,7 +467,7 @@ function init() {
 
         //INPUT AREA
         var Input_VGS = "<div class=\"Input-VGS\"><label>VGS</label><select autofocus></select></div>";
-        var Input_Color = "<div class=\"Input-Color\"><label>Color</label><input type=\"color\" id=\"ColorSelector\" class=\"jscolor\" value=\"" + ev.color + "\" disabled></input></div>";
+        var Input_Color = "<div class=\"Input-Color\"><label>Color</label><input type=\"color\" id=\"ColorSelector\" class=\"jscolor\" value=\"" + ev.color + "\"></input></div>";
         var Input_AVA = "<div class=\"Input-AVA\"><label>AVA</label><input type=\"number\" value=\"" + ev.ava_max + "\"></input></div>";
         var Lightbox_Content_Input = "<div class=\"Lightbox-Content-Input\">" + Input_VGS + Input_Color + Input_AVA + "</div>";
 
@@ -1047,7 +1047,7 @@ function init() {
           //Update data here
           if (ev.type == "Lesson") {
             ev.vgs = NewVgs;
-            //ev.color = NewColor;
+            ev.color = NewColor;
             ev.ava_max = NewMaxAva;
             ev.details = NewDetails;
             ev.sub = NewType;
