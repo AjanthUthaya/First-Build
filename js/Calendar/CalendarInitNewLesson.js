@@ -546,16 +546,14 @@ function init() {
     $(".Input-VGS input").focus();
 
     //OnClick Run script that makes header and Cal-Type change Color
-    $("#ColorSelector").click(function() {
       $("#ColorSelector").on("change", function() {
         //Get Color
         var color = $("#ColorSelector").val();
         //apply cuurent color to divs
         $(".Cal-Type").css("background", color);
         $(".Lightbox-Header-Main").css("background", color);
-
+        $(".Block-Sub-Title").css("background", color);
       });
-    });
 
 
     //Init teacher dropdown

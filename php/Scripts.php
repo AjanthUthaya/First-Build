@@ -75,23 +75,6 @@
   <!-- END: Addons -->
 
 
-  <!-- START: Script to change event color -->
-  <script>
-    $(document).ready(function () {
-      $("#ColorSelector").on("change", "input", function() {
-        //Get Color
-        var color = $("#ColorSelector").val();
-
-        //apply cuurent color to sub
-        $(".Block-Sub-Title").css("background", color);
-        //apply cuurent color to div
-        $(".Cal-Type").css("background", color);
-      });
-    });
-  </script>
-  <!-- END: Script to change event color -->
-
-
 <?php
     } elseif ($Filename == 'NewTest') {
         ?>
@@ -113,21 +96,6 @@
   <script src="js/Addons/PowerTip/Powertip.js"></script>
   <script src="js/Addons/DropDownSlick/DDSlick.js"></script>
   <!-- END: Addons -->
-
-
-  <!-- START: Script to change event color -->
-  <script>
-    $("#ColorSelector").on("change", function() {
-      //Get Color
-      var color = $("#ColorSelector").val();
-
-      //apply cuurent color to header
-      $(".Cal-Type").css("background", color);
-      //apply cuurent color to sub
-      $(".Block-Sub-Title").css("background", color);
-    });
-  </script>
-  <!-- END: Script to change event color -->
 
 
 <?php
