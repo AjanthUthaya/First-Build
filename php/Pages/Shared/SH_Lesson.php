@@ -10,75 +10,68 @@
 <div class="Lesson-Content-Main">
   <ul class="accordion" data-accordion data-multi-expand="true" data-allow-all-closed="true">
 
-
     <?php
+        // DB config file
+        require($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/DB.php');
 
-      // DB config
-      require($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/DB.php');
+        // MySQLi statement
+        $QueryGrouped = "SELECT SUBSTRING_INDEX(start_date, ' ', 1) AS Date_Date, COUNT(id) AS Date_Count
+          FROM lessons
+          WHERE UNIX_TIMESTAMP(STR_TO_DATE(start_date, '%d-%m-%Y')) >= UNIX_TIMESTAMP(UTC_DATE())
+          GROUP BY SUBSTRING_INDEX(start_date, ' ', 1)
+          ORDER BY STR_TO_DATE(start_date, '%d-%m-%Y') ASC";
 
-      // MySQLi statement
-      $Query = "SELECT SUBSTRING_INDEX(start_date, ' ', 1) AS Date_Date, COUNT(id) AS Date_Count
-                FROM lessons
-                WHERE UNIX_TIMESTAMP(STR_TO_DATE(start_date, '%d-%m-%Y')) >= UNIX_TIMESTAMP(UTC_DATE())
-                GROUP BY SUBSTRING_INDEX(start_date, ' ', 1)
-                ORDER BY STR_TO_DATE(start_date, '%d-%m-%Y') ASC";
+        // Connect and run query
+        $ResultGrouped = $conn->query($QueryGrouped);
 
-      // Connect and run query
-      $Result = $conn->query($Query);
+        if ($ResultGrouped->num_rows > 0) {
 
-      if ($Result->fetch_array()) {
-          // Results found, keep in mind that this query check for new events >= $TodayDate
-
-
-          // While query is running get results
-          while ($Result_Item = $Result->fetch_array()) {
-              // BUG: Getting error loading events, most likely client side or $QueryLesson query
-              // BUG: Error is on line 56
-              $Result_Array[] = $Result_Item;
-          }
+          // Store result in array
+        while ($ResultGrouped_Item = $ResultGrouped->fetch_assoc()) {
+            $ResultGrouped_Array[] = $ResultGrouped_Item;
+        }
 
 
+        // MySQLi statement
+        $QueryLesson = "SELECT *
+          FROM lessons
+          WHERE UNIX_TIMESTAMP(STR_TO_DATE(start_date, '%d-%m-%Y')) >= UNIX_TIMESTAMP(UTC_DATE())
+          ORDER BY STR_TO_DATE(start_date, '%d-%m-%Y') ASC";
 
-          $QueryLesson = "SELECT * FROM lessons ORDER BY STR_TO_DATE(start_date, '%d-%m-%Y') ASC";
+        // Connect and run query
+        $ResultLesson = $conn->query($QueryLesson);
 
-          // Connect and run query
-          $ResultLesson = $conn->query($QueryLesson);
+          // Store result in array
+        while ($ResultLesson_Item = $ResultLesson->fetch_assoc()) {
+            $ResultLesson_Array[] = $ResultLesson_Item;
+        }
 
-          // While query is running get results
-          while ($Result_Item_Lesson = $ResultLesson->fetch_array()) {
-              $Result_Lesson_Array[] = $Result_Item_Lesson;
-          }
+        // Close connection
+        $conn->close();
 
-          // Close connection
-          $conn->close();
+        // Index to make first item/date open
+        $IndexDate = 0;
 
-          $ItemIndex = 0;
+        foreach ($ResultGrouped_Array as $LessonDates) {
+          $IndexDate++;
+     ?>
 
-          foreach ($Result_Array as $Item) {
-              $ItemIndex++;
-
-              $old_date = $Item['Date_Date'];
-              $old_date_timestamp = strtotime($old_date);
-              $new_date = date('D d.M.Y', $old_date_timestamp); ?>
-
-     <li class="accordion-item <?php if ($ItemIndex == 1) {
-                  echo 'is-active';
-              } ?>" data-accordion-item>
+     <li class="accordion-item<?php echo ($IndexDate == '1') ? " is-active" : ""; ?>" data-accordion-item>
        <!-- Accordion tab title -->
-       <a class="accordion-title"><span>(<?php echo $Item['Date_Count'] ?>)</span><?php echo $new_date ?></a>
+       <a class="accordion-title"><span>( <?php echo $LessonDates['Date_Count']; ?> )</span><?php echo $LessonDates['Date_Date']; ?></a>
 
        <!-- Accordion content -->
        <div class="accordion-content" data-tab-content>
          <div class="Accordion-Content-Main grid-x small-up-1 medium-up-4 large-up-3">
 
 
-           <?php foreach ($Result_Lesson_Array as $Item_Lesson) {
-                  $Start = explode(" ", $Item_Lesson['start_date']);
-                  $End = explode(" ", $Item_Lesson['end_date']);
+           <?php foreach ($ResultLesson_Array as $LessonData) {
+              $LessonDates_Date = $LessonDates['Date_Date'];
+              $LessonData_StartDate = explode(" ", $LessonData['start_date']);
+              $LessonData_EndDate = explode(" ", $LessonData['end_date']);
 
-                  if ($Item['Date_Date'] == $End[0]) {
-                      ?>
-
+              if ($LessonDates_Date == $LessonData_StartDate[0]) {
+              ?>
 
            <!-- Accordion item -->
            <div class="Accordion-Item-Main cell">
@@ -86,49 +79,45 @@
 
                <!-- Item top -->
                <div class="Item-Time">
-                 <label class="Item-Time-Label"><?php echo $Start[1] . ' - ' . $End[1]; ?></label>
+                 <label class="Item-Time-Label"><?php echo $LessonData_StartDate[1] . ' - ' . $LessonData_EndDate[1] ?></label>
                </div>
 
                <!-- Item title -->
-               <div class="Item-Title" style="background: <?php echo $Item_Lesson['color']; ?>;">
-                 <label class="Item-Title-Label"><?php echo $Item_Lesson['title']; ?></label>
+               <div class="Item-Title" style="background: black;">
+                 <label class="Item-Title-Label"><?php echo $LessonData['title']; ?></label>
                </div>
 
                <!-- Item content -->
                <div class="Item-Content">
                  <ul class="Content-List">
-                   <li class="Content-List-Item"><span class="fa fa-users"></span><label><?php echo $Item_Lesson['ava']; ?> / <?php echo $Item_Lesson['ava_max']; ?></label></li>
-                   <li class="Content-List-Item"><span class="fa fa-building"></span><label><?php echo $Item_Lesson['room']; ?></label></li>
+                   <li class="Content-List-Item"><span class="fa fa-users"></span><label><?php echo $LessonData['ava'] . ' / ' . $LessonData['ava_max']; ?></label></li>
+                   <li class="Content-List-Item"><span class="fa fa-building"></span><label><?php echo $LessonData['room'] ?></label></li>
                  </ul>
                </div>
 
              </div>
            </div>
 
-           <?php
-                  }
-              } ?>
+           <?php } } ?>
 
 
          </div>
        </div>
 
+
+
      </li>
 
-   <?php
-          } ?>
+   <?php }
+   // If no results
+   } else { ?>
 
+     <div class="Lesson-No-Events">
+       <label>No upcoming events</label>
+     </div>
+
+    <?php } ?>
 
   </ul>
-  <?php
-      } else {
-          // results not found
-  ?>
 
-  <div class="Lesson-No-Events">
-    <label>No upcoming events</label>
-  </div>
-
-  <?php
-      } ?>
 </div>

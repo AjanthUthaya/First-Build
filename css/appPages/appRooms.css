@@ -54,12 +54,15 @@
 
 .Accordion-Main {
   width: 80vw;
+  max-width: 1000px;
+  background: initial;
 }
 
 /* ----- START: Parrent folder ----- */
 
 .Accordion-Parrent {
   background: #36414d;
+  margin: 15px 0;
 }
 
 .Accordion-Parrent a {
