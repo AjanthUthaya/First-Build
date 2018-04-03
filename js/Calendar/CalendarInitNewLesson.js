@@ -90,8 +90,8 @@ function init() {
     $.ajax({
       'async': false,
       'global': false,
-      //'url': "php/Calendar/RoomList.php",
-      'url': "data/DataRoom.json",
+      'url': "php/Calendar/RoomList.php",
+      //'url': "data/DataRoom.json",
       'dataType': "json",
       'success': function(data) {
         RoomArr = data;

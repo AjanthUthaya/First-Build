@@ -1,6 +1,6 @@
 [{
     "key": "Room",
-    "label": "Room",
+    "label": "Room1",
     "open": false,
     "children": [{
       "key": "U-Floor-Room",
