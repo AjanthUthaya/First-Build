@@ -114,9 +114,13 @@
     } elseif ($Filename == 'Rooms') {
         ?>
 
-  <script src="js/Pages/Rooms.js"></script>
+  <!-- START: Addons -->
+  <script src="js/Addons/JqueryModal/Modal.js"></script>
+  <!-- END: Addons -->
 
   <script src="js/Partials/ScrollHideNav.js"></script>
+
+  <script src="js/Pages/Rooms.js"></script>
 
 <?php
     } ?>

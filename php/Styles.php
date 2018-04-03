@@ -72,6 +72,9 @@
 
 <?php } elseif ($Filename == 'Rooms') { ?>
 
+  <!-- Modal box -->
+  <link rel="stylesheet" href="css/JqueryModal.css">
+
   <!-- START: Page specific files -->
   <link rel="stylesheet" href="css/appPages/appRooms.css">
   <!-- END: Page specific files -->

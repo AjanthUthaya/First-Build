@@ -36,10 +36,10 @@
 
 .Room-Content-Main {
   display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100vw;
   margin-top: 50px;
+  justify-content: center;
+  align-items: center;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -61,8 +61,8 @@
 /* ----- START: Parrent folder ----- */
 
 .Accordion-Parrent {
-  background: #36414d;
   margin: 15px 0;
+  background: #36414d;
 }
 
 .Accordion-Parrent a {
@@ -70,7 +70,7 @@
 }
 
 .Accordion-Parrent a:hover {
-  background-color: #cccccc;
+  background-color: #ccc;
 }
 
 /* ----- END: Parrent folder ----- */
@@ -82,8 +82,8 @@
 }
 
 .Accordion-Item a {
-  color: black;
   cursor: default;
+  color: black;
 }
 
 .Accordion-Item a:hover {
@@ -107,6 +107,138 @@
 .accordion-title {
   padding-left: 30px;
 }
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  Popup box
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+.blocker {
+  background-color: rgba(0, 0, 0, .6);
+}
+
+.modal {
+  overflow: hidden;
+  max-width: 600px;
+  padding: 0;
+  border-radius: 5px;
+}
+
+.modal a.close-modal {
+  display: none;
+}
+
+.AddRoom-Header {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 50px;
+  color: white;
+  background-color: #35414d;
+  justify-content: center;
+  align-items: center;
+}
+
+.AddRoom-Header label {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+.AddRoom-Header a {
+  font-size: 25px;
+  font-weight: bold;
+  position: absolute;
+  right: 0;
+  display: flex;
+  width: 50px;
+  height: 100%;
+  cursor: pointer;
+  color: white;
+  background-color: #f44336;
+  justify-content: center;
+  align-items: center;
+}
+
+.AddRoom-Header a:hover {
+  background-color: #e53935;
+}
+
+.AddRoom-Submit {
+  display: flex;
+  width: 100%;
+  padding-bottom: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+.AddRoom-Submit-Button {
+  font-size: 18px;
+  display: flex;
+  height: 40px;
+  margin: 0;
+  padding: 0 40px;
+  color: white;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ----- START: Main content for add room container ----- */
+
+.AddRoom-Content {
+  width: 100%;
+  padding: 20px;
+}
+
+.Room-Input-Container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.Room-Input {
+  display: inline-block;
+  padding: 0 20px;
+  padding-top: 20px;
+}
+
+.Room-Input label {
+  font-size: 16px;
+  display: flex;
+  padding-bottom: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.Room-Input input {
+  text-align: center;
+}
+
+.Room-Select-Main {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 450px;
+  margin: 0 auto;
+  padding-top: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+.Room-Select-Main label {
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ----- END: Main content for add room container ----- */
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 

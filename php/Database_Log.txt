@@ -11420,3 +11420,199 @@ Edit operation finished
 
 Done in 0.0027551651001s
 
+
+
+====================================
+Log started, 03/04/2018 05:54:18
+====================================
+
+SELECT `id`,`id`,`type`,`start_date`,`end_date`,`teacher_id`,`title`,`sub`,`room`,`color`,`vgs`,`ava`,`ava_max`,`details`,`creation_by` FROM lessons ORDER BY `start_date` ASC
+
+Done in 0.00828504562378s
+
+
+
+====================================
+Log started, 03/04/2018 05:54:57
+====================================
+
+DataProcessor object initialized
+1522770863297_room => 200
+1522770863297_start_date => 02-04-2018 08:00
+1522770863297_end_date => 02-04-2018 09:45
+1522770863297_text => New event
+1522770863297_id => 1522770863297
+1522770863297_type => Lesson
+1522770863297_title => Testing old date (2)
+1522770863297_sub => Select sub
+1522770863297_vgs => All
+1522770863297_color => #36414d
+1522770863297_ava => 0
+1522770863297_ava_max => 30
+1522770863297_details => 
+1522770863297_teacher_id => 1
+1522770863297_creation_by => Admin
+1522770863297_readonly => true
+1522770863297_my_template => <div class="Lightbox-Content-Main"><div class="Lightbox-Content-First"><div class="Lightbox-Lecture-Block"><div class="Lecture-Block-Date"><div class="Block-Date-Circle"><label class="Block-Date-MonthL">April</label><label class="Block-Date-DayN">02</label><label class="Block-Date-DayL">Monday</label></div></div><div class="Lecture-Block-Sub"><label class="Block-Sub-Title editable" style="background:#36414d;">Select sub</label></div><div class="Lecture-Block-Data"><ul class="Block-Data-List"><li class="Data-ListItem-Time"><span class="fa fa-clock-o"></span><label>08:00 - 09:45</label></li><li class="Data-ListItem-Room"><span class="fa fa-home"></span><label>206</label></li><li class="Data-ListItem-Ava"><span class="fa fa-users"></span><label>0 / 30</label></li></ul></div></div><div class="Lightbox-Content-Input"><div class="Input-VGS"><label>VGS</label><select autofocus></select></div><div class="Input-Color"><label>Color</label><input type="color" id="ColorSelector" class="jscolor" value="#36414d"></input></div><div class="Input-AVA"><label>AVA</label><input type="number" value="30"></input></div></div></div><div class="Lightbox-Content-Text"><label class="fa fa-wpforms"></label><textarea></textarea></div><div class="Lightbox-Content-Teacher"><div class="Teacher-Header-Main"><span class="Teacher-Header fa fa-user-circle"></span></div><div class="Teacher-Content-Main"><div id="Teacher-Input-Main"><div id="Teacher-Input-Dropdown"></div></div><ul class="Teacher-List-Main"></ul></div></div></div><a class="Lightbox-Content-Save dhx_save_btn">Save</a>
+1522770863297_!nativeeditor_status => inserted
+ids => 1522770863297
+
+Row data [1522770863297]
+room => 200
+start_date => 02-04-2018 08:00
+end_date => 02-04-2018 09:45
+text => New event
+id => 1522770863297
+type => Lesson
+title => Testing old date (2)
+sub => Select sub
+vgs => All
+color => #36414d
+ava => 0
+ava_max => 30
+details => 
+teacher_id => 1
+creation_by => Admin
+readonly => true
+my_template => April02MondaySelect sub08:00 - 09:452060 / 30VGSColorAVASave
+!nativeeditor_status => inserted
+
+change value of: creation_by as: Admin
+
+adding field: creation_date, with value: 03-04-2018
+
+adding field: creation_time, with value: 17:54:57
+
+Undefined index: HTTP_CLIENT_IP at /Users/ajanth1608/Desktop/OneDrive - Oslo Kommune Utdanningsetaten/On-Going-Tasks/First-Build(Web)/Dev-Folder/php/Functions/GetUserIp.php line 4
+
+Undefined index: HTTP_X_FORWARDED_FOR at /Users/ajanth1608/Desktop/OneDrive - Oslo Kommune Utdanningsetaten/On-Going-Tasks/First-Build(Web)/Dev-Folder/php/Functions/GetUserIp.php line 5
+
+adding field: creation_ip, with value: ::1
+
+adding field: edit_by, with value: Admin
+
+adding field: edit_date, with value: 03-04-2018
+
+adding field: edit_time, with value: 17:54:57
+
+Undefined index: HTTP_CLIENT_IP at /Users/ajanth1608/Desktop/OneDrive - Oslo Kommune Utdanningsetaten/On-Going-Tasks/First-Build(Web)/Dev-Folder/php/Functions/GetUserIp.php line 4
+
+Undefined index: HTTP_X_FORWARDED_FOR at /Users/ajanth1608/Desktop/OneDrive - Oslo Kommune Utdanningsetaten/On-Going-Tasks/First-Build(Web)/Dev-Folder/php/Functions/GetUserIp.php line 5
+
+adding field: edit_ip, with value: ::1
+
+INSERT INTO lessons(`id`,`type`,`start_date`,`end_date`,`teacher_id`,`title`,`sub`,`room`,`color`,`vgs`,`ava`,`ava_max`,`details`,`creation_by`,`creation_date`,`creation_time`,`creation_ip`,`edit_by`,`edit_date`,`edit_time`,`edit_ip`) VALUES ('1522770863297','Lesson','02-04-2018 08:00','02-04-2018 09:45','1','Testing old date (2)','Select sub','200','#36414d','All','0','30','','Admin','03-04-2018','17:54:57','::1','Admin','03-04-2018','17:54:57','::1')
+
+Edit operation finished
+0 => action:inserted; sid:1522770863297; tid:74;
+
+Done in 0.15851688385s
+
+
+
+====================================
+Log started, 03/04/2018 05:55:03
+====================================
+
+SELECT `id`,`id`,`type`,`start_date`,`end_date`,`teacher_id`,`title`,`sub`,`room`,`color`,`vgs`,`ava`,`ava_max`,`details`,`creation_by` FROM lessons ORDER BY `start_date` ASC
+
+Done in 0.002032995224s
+
+
+
+====================================
+Log started, 03/04/2018 05:55:31
+====================================
+
+DataProcessor object initialized
+1522770909813_room => U100A
+1522770909813_start_date => 03-04-2018 08:00
+1522770909813_end_date => 03-04-2018 09:45
+1522770909813_text => New event
+1522770909813_id => 1522770909813
+1522770909813_type => Lesson
+1522770909813_title => Testing long names for events
+1522770909813_sub => Select sub
+1522770909813_vgs => All
+1522770909813_color => #36414d
+1522770909813_ava => 0
+1522770909813_ava_max => 30
+1522770909813_details => 
+1522770909813_teacher_id => 1
+1522770909813_creation_by => Admin
+1522770909813_readonly => true
+1522770909813_my_template => <div class="Lightbox-Content-Main"><div class="Lightbox-Content-First"><div class="Lightbox-Lecture-Block"><div class="Lecture-Block-Date"><div class="Block-Date-Circle"><label class="Block-Date-MonthL">April</label><label class="Block-Date-DayN">03</label><label class="Block-Date-DayL">Tuesday</label></div></div><div class="Lecture-Block-Sub"><label class="Block-Sub-Title editable" style="background:#36414d;">Select sub</label></div><div class="Lecture-Block-Data"><ul class="Block-Data-List"><li class="Data-ListItem-Time"><span class="fa fa-clock-o"></span><label>08:00 - 09:45</label></li><li class="Data-ListItem-Room"><span class="fa fa-home"></span><label>206</label></li><li class="Data-ListItem-Ava"><span class="fa fa-users"></span><label>0 / 30</label></li></ul></div></div><div class="Lightbox-Content-Input"><div class="Input-VGS"><label>VGS</label><select autofocus></select></div><div class="Input-Color"><label>Color</label><input type="color" id="ColorSelector" class="jscolor" value="#36414d"></input></div><div class="Input-AVA"><label>AVA</label><input type="number" value="30"></input></div></div></div><div class="Lightbox-Content-Text"><label class="fa fa-wpforms"></label><textarea></textarea></div><div class="Lightbox-Content-Teacher"><div class="Teacher-Header-Main"><span class="Teacher-Header fa fa-user-circle"></span></div><div class="Teacher-Content-Main"><div id="Teacher-Input-Main"><div id="Teacher-Input-Dropdown"></div></div><ul class="Teacher-List-Main"></ul></div></div></div><a class="Lightbox-Content-Save dhx_save_btn">Save</a>
+1522770909813_!nativeeditor_status => inserted
+ids => 1522770909813
+
+Row data [1522770909813]
+room => U100A
+start_date => 03-04-2018 08:00
+end_date => 03-04-2018 09:45
+text => New event
+id => 1522770909813
+type => Lesson
+title => Testing long names for events
+sub => Select sub
+vgs => All
+color => #36414d
+ava => 0
+ava_max => 30
+details => 
+teacher_id => 1
+creation_by => Admin
+readonly => true
+my_template => April03TuesdaySelect sub08:00 - 09:452060 / 30VGSColorAVASave
+!nativeeditor_status => inserted
+
+change value of: creation_by as: Admin
+
+adding field: creation_date, with value: 03-04-2018
+
+adding field: creation_time, with value: 17:55:31
+
+Undefined index: HTTP_CLIENT_IP at /Users/ajanth1608/Desktop/OneDrive - Oslo Kommune Utdanningsetaten/On-Going-Tasks/First-Build(Web)/Dev-Folder/php/Functions/GetUserIp.php line 4
+
+Undefined index: HTTP_X_FORWARDED_FOR at /Users/ajanth1608/Desktop/OneDrive - Oslo Kommune Utdanningsetaten/On-Going-Tasks/First-Build(Web)/Dev-Folder/php/Functions/GetUserIp.php line 5
+
+adding field: creation_ip, with value: ::1
+
+adding field: edit_by, with value: Admin
+
+adding field: edit_date, with value: 03-04-2018
+
+adding field: edit_time, with value: 17:55:31
+
+Undefined index: HTTP_CLIENT_IP at /Users/ajanth1608/Desktop/OneDrive - Oslo Kommune Utdanningsetaten/On-Going-Tasks/First-Build(Web)/Dev-Folder/php/Functions/GetUserIp.php line 4
+
+Undefined index: HTTP_X_FORWARDED_FOR at /Users/ajanth1608/Desktop/OneDrive - Oslo Kommune Utdanningsetaten/On-Going-Tasks/First-Build(Web)/Dev-Folder/php/Functions/GetUserIp.php line 5
+
+adding field: edit_ip, with value: ::1
+
+INSERT INTO lessons(`id`,`type`,`start_date`,`end_date`,`teacher_id`,`title`,`sub`,`room`,`color`,`vgs`,`ava`,`ava_max`,`details`,`creation_by`,`creation_date`,`creation_time`,`creation_ip`,`edit_by`,`edit_date`,`edit_time`,`edit_ip`) VALUES ('1522770909813','Lesson','03-04-2018 08:00','03-04-2018 09:45','1','Testing long names for events','Select sub','U100A','#36414d','All','0','30','','Admin','03-04-2018','17:55:31','::1','Admin','03-04-2018','17:55:31','::1')
+
+Edit operation finished
+0 => action:inserted; sid:1522770909813; tid:75;
+
+Done in 0.0314700603485s
+
+
+
+====================================
+Log started, 03/04/2018 05:55:47
+====================================
+
+SELECT `id`,`id`,`type`,`start_date`,`end_date`,`teacher_id`,`title`,`sub`,`room`,`color`,`vgs`,`ava`,`ava_max`,`details`,`creation_by` FROM lessons ORDER BY `start_date` ASC
+
+Done in 0.00239706039429s
+
+
+
+====================================
+Log started, 03/04/2018 07:11:11
+====================================
+
+SELECT `id`,`id`,`type`,`start_date`,`end_date`,`teacher_id`,`title`,`sub`,`room`,`color`,`vgs`,`ava`,`ava_max`,`details`,`creation_by` FROM lessons ORDER BY `start_date` ASC
+
+Done in 0.0303909778595s
+
