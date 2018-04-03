@@ -22,7 +22,8 @@ foreach ($RoomGroupArray as $RoomItem) {
                 "label" => $RoomItem['label'],
                 //"open" => $RoomItem['open'],
                 "open" => false,
-                "children" => array()
+                "children" => array(),
+                "type" => $RoomItem['type']
               );
 
         foreach ($RoomGroupArray as $RoomSubOne) {
@@ -33,7 +34,8 @@ foreach ($RoomGroupArray as $RoomItem) {
                         "label" => $RoomSubOne['label'],
                         //"open" => $RoomSubOne['open'],
                         "open" => false,
-                        "children" => array()
+                        "children" => array(),
+                        "type" => $RoomSubOne['type']
                       );
 
 
@@ -43,7 +45,8 @@ foreach ($RoomGroupArray as $RoomItem) {
                                 "key" => $RoomSubTwo['key'],
                                 "label" => $RoomSubTwo['label'],
                                 //"open" => $RoomSubTwo['open'],
-                                "open" => false
+                                "open" => false,
+                                "type" => $RoomSubTwo['type']
                               );
 
                             array_push($ChildOne['children'], $ChildTwo);
@@ -54,7 +57,8 @@ foreach ($RoomGroupArray as $RoomItem) {
                         "key" => $RoomSubOne['key'],
                         "label" => $RoomSubOne['label'],
                         //"open" => $RoomSubOne['open'],
-                        "open" => false
+                        "open" => false,
+                        "type" => $RoomSubOne['type']
                       );
                 }
 

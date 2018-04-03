@@ -49,6 +49,20 @@
   align-items: center;
 }
 
+div.Lesson-No-Events {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: calc(100% - 140px);
+}
+
+div.Lesson-No-Events label {
+  font-size: 25px;
+  font-weight: bold;
+}
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 

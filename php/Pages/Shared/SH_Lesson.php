@@ -26,36 +26,44 @@
       // Connect and run query
       $Result = $conn->query($Query);
 
-      // While query is running get results
-      while ($Result_Item = $Result->fetch_array()) {
-          $Result_Array[] = $Result_Item;
-      }
+      if ($Result->fetch_array()) {
+          // Results found, keep in mind that this query check for new events >= $TodayDate
+
+
+          // While query is running get results
+          while ($Result_Item = $Result->fetch_array()) {
+              // BUG: Getting error loading events, most likely client side or $QueryLesson query
+              // BUG: Error is on line 56
+              $Result_Array[] = $Result_Item;
+          }
 
 
 
-      $QueryLesson = "SELECT * FROM lessons ORDER BY STR_TO_DATE(start_date, '%d-%m-%Y') ASC";
+          $QueryLesson = "SELECT * FROM lessons ORDER BY STR_TO_DATE(start_date, '%d-%m-%Y') ASC";
 
-      // Connect and run query
-      $ResultLesson = $conn->query($QueryLesson);
+          // Connect and run query
+          $ResultLesson = $conn->query($QueryLesson);
 
-      // While query is running get results
-      while ($Result_Item_Lesson = $ResultLesson->fetch_array()) {
-          $Result_Lesson_Array[] = $Result_Item_Lesson;
-      }
+          // While query is running get results
+          while ($Result_Item_Lesson = $ResultLesson->fetch_array()) {
+              $Result_Lesson_Array[] = $Result_Item_Lesson;
+          }
 
-      // Close connection
-      $conn->close();
+          // Close connection
+          $conn->close();
 
-      $ItemIndex = 0;
+          $ItemIndex = 0;
 
-      foreach ($Result_Array as $Item) {
-          $ItemIndex++;
+          foreach ($Result_Array as $Item) {
+              $ItemIndex++;
 
-          $old_date = $Item['Date_Date'];
-          $old_date_timestamp = strtotime($old_date);
-          $new_date = date('D d.M.Y', $old_date_timestamp); ?>
+              $old_date = $Item['Date_Date'];
+              $old_date_timestamp = strtotime($old_date);
+              $new_date = date('D d.M.Y', $old_date_timestamp); ?>
 
-     <li class="accordion-item <?php if ($ItemIndex == 1) { echo 'is-active'; } ?>" data-accordion-item>
+     <li class="accordion-item <?php if ($ItemIndex == 1) {
+                  echo 'is-active';
+              } ?>" data-accordion-item>
        <!-- Accordion tab title -->
        <a class="accordion-title"><span>(<?php echo $Item['Date_Count'] ?>)</span><?php echo $new_date ?></a>
 
@@ -65,11 +73,11 @@
 
 
            <?php foreach ($Result_Lesson_Array as $Item_Lesson) {
-             $Start = explode(" ", $Item_Lesson['start_date']);
-             $End = explode(" ", $Item_Lesson['end_date']);
+                  $Start = explode(" ", $Item_Lesson['start_date']);
+                  $End = explode(" ", $Item_Lesson['end_date']);
 
-             if ($Item['Date_Date'] == $End[0]) {
-              ?>
+                  if ($Item['Date_Date'] == $End[0]) {
+                      ?>
 
 
            <!-- Accordion item -->
@@ -97,7 +105,9 @@
              </div>
            </div>
 
-           <?php } } ?>
+           <?php
+                  }
+              } ?>
 
 
          </div>
@@ -105,8 +115,20 @@
 
      </li>
 
-   <?php } ?>
+   <?php
+          } ?>
 
 
   </ul>
+  <?php
+      } else {
+          // results not found
+  ?>
+
+  <div class="Lesson-No-Events">
+    <label>No upcoming events</label>
+  </div>
+
+  <?php
+      } ?>
 </div>

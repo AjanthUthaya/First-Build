@@ -66,11 +66,15 @@
 
 <?php } elseif ($Filename == 'Test') { ?>
 
-
   <!-- START: Page specific files -->
   <link rel="stylesheet" href="css/appPages/appTest.css">
   <!-- END: Page specific files -->
 
+<?php } elseif ($Filename == 'Rooms') { ?>
+
+  <!-- START: Page specific files -->
+  <link rel="stylesheet" href="css/appPages/appRooms.css">
+  <!-- END: Page specific files -->
 
 <?php } ?>
 
