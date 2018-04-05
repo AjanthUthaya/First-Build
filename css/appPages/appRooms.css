@@ -70,10 +70,24 @@
 }
 
 .Accordion-Parrent a:hover {
-  background-color: #ccc;
+  background-color: #2a333e;
+  color: white;
 }
 
 /* ----- END: Parrent folder ----- */
+
+
+/* ----- START: Child Folder ----- */
+
+.Accordion-Folder {
+  background: orange;
+}
+
+.Accordion-Folder .accordion-title:hover {
+  background: #e49400;
+}
+
+/* ----- END: Child Folder ----- */
 
 /* ----- START: Child Item ----- */
 
@@ -88,21 +102,19 @@
 
 .Accordion-Item a:hover {
   background-color: white;
+  color: black;
 }
 
 .Accordion-Item .accordion-title::before {
   display: none;
 }
 
-/* ----- END: Child Item ----- */
-
-/* ----- START: Child Folder ----- */
-
-.Accordion-Folder {
-  background: orange;
+.Accordion-Item .accordion-title {
+  background-color: white !important;
+  color: black;
 }
 
-/* ----- END: Child Folder ----- */
+/* ----- END: Child Item ----- */
 
 .accordion-title {
   padding-left: 30px;

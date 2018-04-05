@@ -88,12 +88,12 @@
 
       <div class="Room-Input">
         <label>Key(No Space)</label>
-        <input id="Room-Input-Key" type="text" autofocus>
+        <input id="Room-Input-Key" type="text" placeholder="Unique identifier" autofocus required>
       </div>
 
       <div class="Room-Input">
         <label>Label</label>
-        <input id="Room-Input-Label" type="text">
+        <input id="Room-Input-Label" type="text" placeholder="Default = key" required>
       </div>
 
     </div>
@@ -129,7 +129,7 @@
 
         <?php } } else { ?>
 
-           <option value="" disabled selected>No parent folders found</option>
+           <option value="" disabled>No parent folders found</option>
 
          <?php }
 
