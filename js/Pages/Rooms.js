@@ -1,5 +1,54 @@
 function init() {
 
+  // Notification function (Title, TitleColor, Message, Icon, IconColor, Timeout)
+  require("js/Functions/Notify.js");
+
+
+  /* ---------------  --------------- */
+  // START: Load room list //
+  /* ---------------  --------------- */
+
+  // Define variable to store roomlist
+  var RoomList;
+
+  // Fire off the request
+  LoadRooms = $.ajax({
+    url: "php/Single/LoadRooms.php",
+    type: "get",
+    dataType: "json",
+    async: false,
+    contentType: false, // The content type used when sending data to the server.
+    cache: false, // To unable request pages to be cached
+    processData: false // To send DOMDocument or non processed data file it is set to false
+  });
+
+  // Fired up on success
+  LoadRooms.done(function(data) {
+
+    if (data.Status == 'Failed') {
+      Notify('Failed to load room list', 'yellow', data.Message, 'fa fa-warning', 'yellow', 5000);
+    } else {
+      RoomList = data;
+    }
+
+  })
+
+  // Fired up on failure
+  LoadRooms.fail(function(xhr, textStatus, errorThrown) {
+    Notify('ERROR', 'red', 'Server error: ' + textStatus, 'fa fa-close', 'red');
+  })
+
+
+  /* ---------------  --------------- */
+  // END: Load room list //
+  /* ---------------  --------------- */
+
+
+  /* ---------------  --------------- */
+  // START: Add Room //
+  /* ---------------  --------------- */
+
+
   $('#AddRoomButton').on('click', function(event) {
     $("#AddRoom").modal({
       fadeDuration: 250,
@@ -11,8 +60,7 @@ function init() {
     $('form#AddRoomForm').submit();
   });
 
-  // Notification function (Title, TitleColor, Message, Icon, IconColor, Timeout)
-  require("js/Functions/Notify.js");
+
 
   // Define form data variable
   var RoomFormData = new FormData();
@@ -76,7 +124,7 @@ function init() {
 
     // Fired up on success
     RoomRequest.done(function(data) {
-      if(data.Status == 'Error') {
+      if (data.Status == 'Error') {
         Notify(data.Status, 'red', data.Message, 'fa fa-close', 'red');
       } else if (data.Status == 'Failed') {
         Notify(data.Status, 'yellow', data.Message, 'fa fa-warning', 'yellow', 4000);
@@ -85,7 +133,7 @@ function init() {
         // Success Message
         Notify(data.Status, 'white', data.Message, 'fa fa-check', '#3FC380', 2000);
         // Make popup disappear
-        $('.jquery-modal.blocker.current').css('opacity', '0');
+        $.modal.close();
         // Unset old data
         $('#Room-Input-Key').val('');
         $('#Room-Input-Label').val('');
@@ -145,6 +193,107 @@ function init() {
       return false;
     }
   });
+
+
+  /* ---------------  --------------- */
+  // END: Add Room //
+  /* ---------------  --------------- */
+
+
+  /* ---------------  --------------- */
+  // START: Delete Room //
+  /* ---------------  --------------- */
+
+
+  $(document).on("click", "span#DeleteRoomButton", function(e) {
+    // Get value from javascript object
+    function search(myArray, nameKey) {
+      for (var i = 0; i < myArray.length; i++) {
+        if (myArray[i].name === nameKey) {
+          return myArray[i];
+        }
+      }
+    }
+
+    // Get data from element
+    var Room_Id = search(e.target.attributes, "value").value;
+
+    // Set data in pop-up element
+    $('#DeleteRoom-Id').val(Room_Id);
+
+
+    require("js/Functions/SearchObject.js");
+
+    // Returns in array format but there should only be one, x[0] to get object values
+    var x = getObjects(RoomList, 'id', Room_Id);
+
+    $('#DelRoom-Key').text(x[0].key);
+
+    // Show delete confirmation
+    $("#DelRoom").modal({
+      fadeDuration: 250,
+      fadeDelay: 0.20
+    });
+
+
+    $(document).on("click", "a#DelRoom-Yes", function() {
+      // Define form data variable
+      var DelRoomFormData = new FormData();
+
+      // Variable to hold request
+      var DelRoomRequest;
+
+      // Abort any pending request
+      if (DelRoomRequest) {
+        DelRoomRequest.abort();
+      }
+
+
+      // Get and prep value
+      DelRoomFormData.append('Room_Id', $('#DeleteRoom-Id').val());
+
+
+      // ---------- START: Post data ---------- //
+      DelRoomRequest = $.ajax({
+        url: "php/Single/Delete_Room.php",
+        type: "post",
+        data: DelRoomFormData,
+        dataType: "json",
+        async: false,
+        contentType: false, // The content type used when sending data to the server.
+        cache: false, // To unable request pages to be cached
+        processData: false, // To send DOMDocument or non processed data file it is set to false
+      });
+
+      // Fired up on success
+      DelRoomRequest.done(function(data) {
+        if (data.Status == 'Failed') {
+          Notify(data.Status, 'yellow', data.Message, 'fa fa-warning', 'yellow', 4000);
+        } else if (data.Status == 'Done') {
+          Notify(data.Status, 'white', data.Message + ' ' + x[0].key, 'fa fa-check', '#3FC380', 3000);
+
+          $(e.target).parent().remove();
+        } else {
+          Notify('Error', 'red', 'Response not recognized', 'fa fa-close', 'red');
+        }
+
+        // Remove value from input before closeing
+        $('#DeleteRoom-Id').val('');
+        $.modal.close();
+      })
+
+      // Fired up on failure
+      DelRoomRequest.fail(function(xhr, textStatus, errorThrown) {
+        Notify('ERROR', 'red', 'Server error: ' + textStatus, 'fa fa-close', 'red');
+      })
+      // ---------- END: Post data ---------- //
+    });
+
+
+  });
+  /* ---------------  --------------- */
+  // END: Delete Room //
+  /* ---------------  --------------- */
 
 
 }

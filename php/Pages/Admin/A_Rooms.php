@@ -30,7 +30,7 @@
     <li class="accordion-item Accordion-Parrent" data-accordion-item>
 
       <!-- Accordion tab title -->
-      <a class="accordion-title"><?php echo $ParrentRoom['key'] ?></a>
+      <a class="accordion-title"><?php echo $ParrentRoom['key']; ?></a>
 
       <!-- Accordion tab content: -->
       <div class="accordion-content" data-tab-content>
@@ -40,14 +40,16 @@
               if ($ChildOne['type'] == 'Folder') {
              ?>
           <li class="accordion-item Accordion-Folder" data-accordion-item>
-            <a class="accordion-title"><?php echo $ChildOne['key'] ?></a>
+            <a class="accordion-title"><?php echo $ChildOne['key']; ?></a>
 
             <div class="accordion-content" data-tab-content>
 
               <ul class="accordion Accordion-Sub" data-accordion data-multi-expand="true" data-allow-all-closed="true">
                 <?php foreach ($ChildOne['children'] as $ChildTwo) {  ?>
                    <li class="Accordion-Item">
-                     <a class="accordion-title"><?php echo $ChildTwo['key'] ?></a>
+                     <a class="accordion-title"><?php echo $ChildTwo['key']; ?>
+                       <span class="fa fa-trash Room-Delete" id="DeleteRoomButton" value="<?php echo $ChildTwo['Room_Id']; ?>"></span>
+                     </a>
                    </li>
                 <?php } ?>
               </ul>
@@ -56,7 +58,9 @@
           </li>
         <?php } else { ?>
           <li class="Accordion-Item">
-            <a class="accordion-title"><?php echo $ChildOne['key'] ?></a>
+            <a class="accordion-title"><?php echo $ChildOne['key']; ?>
+              <span class="fa fa-trash Room-Delete" id="DeleteRoomButton" value="<?php echo $ChildOne['Room_Id']; ?>"></span>
+            </a>
           </li>
         <?php  }} ?>
         </ul>
@@ -145,6 +149,37 @@
 
   <div class="AddRoom-Submit">
     <a class="AddRoom-Submit-Button button">Add</a>
+  </div>
+
+</div>
+
+
+<!-- Delete room from DB using AJAX -->
+<div id="DelRoom" class="modal">
+
+  <input type="hidden" id="DeleteRoom-Id" value="">
+
+  <div class="DelRoom-Header">
+    <label>Delete room</label>
+    <a rel="modal:close">x</a>
+  </div>
+
+  <form id="DelRoomForm">
+
+    <div class="DelRoom-Content">
+
+      <p>Are you sure you want to delete <span id="DelRoom-Key">206</span>?</p>
+
+    </div>
+
+  </form>
+
+  <div class="DelRoom-Buttons">
+
+    <a class="button" rel="modal:close">Cancel</a>
+
+    <a class="button" id="DelRoom-Yes">Delete</a>
+
   </div>
 
 </div>

@@ -28,11 +28,21 @@
   <!-- END: Page specific files -->
 
 
-<?php } elseif ($Filename == 'Majors') { ?>
+<?php } elseif ($Filename == 'EditMajor') { ?>
 
 
   <!-- START: Page specific files -->
-  <link rel="stylesheet" href="css/appPages/appMajor.css">
+  <link rel="stylesheet" href="css/appPages/appEditMajor.css">
+  <!-- END: Page specific files -->
+
+
+<?php } elseif ($Filename == 'Majors') { ?>
+
+  <!-- Modal box -->
+  <link rel="stylesheet" href="css/JqueryModal.css">
+
+  <!-- START: Page specific files -->
+  <link rel="stylesheet" href="css/appPages/appMajors.css">
   <!-- END: Page specific files -->
 
 

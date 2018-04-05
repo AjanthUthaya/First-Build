@@ -8,7 +8,7 @@
 
   <?php
 
-    include 'php/Pages/Admin/A_Majors.php';
+    include 'php/Pages/Admin/A_EditMajor.php';
 
    ?>
 

@@ -18,6 +18,7 @@
         <?php if ($Session_User_Type == 'Admin') { ?>
 
           <li><a href="<?php echo $URI_Rooms ?>" class="<?php echo ($Filename=='Rooms') ? "OffCanvas-Menu-List-Active" : "" ?>">Rooms</a></li>
+          <li><a href="<?php echo $URI_Majors ?>" class="<?php echo ($Filename=='Majors') ? "OffCanvas-Menu-List-Active" : "" ?>">Majors</a></li>
 
         <?php } ?>
 

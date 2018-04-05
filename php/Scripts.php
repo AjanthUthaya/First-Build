@@ -14,8 +14,7 @@
 <script src="js/Partials/app.js"></script>
 
 
-<?php if ($Filename == 'Home') {
-    ?>
+<?php if ($Filename == 'Home') { ?>
 
 
   <!-- START: Calendar and init -->
@@ -29,9 +28,7 @@
   <script src="js/Partials/ScrollHideNav.js"></script>
 
 
-<?php
-} elseif ($Filename == 'Lesson') {
-        ?>
+<?php } elseif ($Filename == 'Lesson') { ?>
 
 
   <!-- START: Get data from source -->
@@ -41,21 +38,30 @@
   <script src="js/Partials/ScrollHideNav.js"></script>
 
 
-<?php
-    } elseif ($Filename == 'Majors') {
-        ?>
+<?php } elseif ($Filename == 'Majors') { ?>
 
+  <!-- START: Addons -->
+  <script src="js/Addons/JqueryModal/Modal.js"></script>
+  <!-- END: Addons -->
 
   <!-- START: Page specific scripts -->
-  <script src="js/Pages/Major.js"></script>
+  <script src="js/Pages/Majors.js"></script>
   <!-- END: Page specific scripts -->
 
   <script src="js/Partials/ScrollHideNav.js"></script>
 
 
-<?php
-    } elseif ($Filename == 'NewLesson') {
-        ?>
+<?php } elseif ($Filename == 'EditMajor') { ?>
+
+
+  <!-- START: Page specific scripts -->
+  <script src="js/Pages/EditMajor.js"></script>
+  <!-- END: Page specific scripts -->
+
+  <script src="js/Partials/ScrollHideNav.js"></script>
+
+
+<?php } elseif ($Filename == 'NewLesson') { ?>
 
 
   <!-- START: Calendar and init -->
@@ -75,9 +81,7 @@
   <!-- END: Addons -->
 
 
-<?php
-    } elseif ($Filename == 'NewTest') {
-        ?>
+<?php } elseif ($Filename == 'NewTest') { ?>
 
 
   <!-- START: Calendar and init -->
@@ -98,9 +102,7 @@
   <!-- END: Addons -->
 
 
-<?php
-    } elseif ($Filename == 'Test') {
-        ?>
+<?php } elseif ($Filename == 'Test') { ?>
 
 
   <!-- START: Get data from source -->
@@ -110,9 +112,7 @@
   <script src="js/Partials/ScrollHideNav.js"></script>
 
 
-<?php
-    } elseif ($Filename == 'Rooms') {
-        ?>
+<?php } elseif ($Filename == 'Rooms') { ?>
 
   <!-- START: Addons -->
   <script src="js/Addons/JqueryModal/Modal.js"></script>
@@ -122,8 +122,7 @@
 
   <script src="js/Pages/Rooms.js"></script>
 
-<?php
-    } ?>
+<?php } ?>
 
 
 <!-- START: Partial scripts -->

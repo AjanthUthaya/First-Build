@@ -54,11 +54,15 @@
 
         foreach ($ResultGrouped_Array as $LessonDates) {
           $IndexDate++;
+
+          $old_date = $LessonDates['Date_Date']; // returns Saturday, January 30 10 02:06:34
+          $old_date_timestamp = strtotime($old_date);
+          $new_date = date('D d.M.y', $old_date_timestamp);
      ?>
 
      <li class="accordion-item<?php echo ($IndexDate == '1') ? " is-active" : ""; ?>" data-accordion-item>
        <!-- Accordion tab title -->
-       <a class="accordion-title"><span>( <?php echo $LessonDates['Date_Count']; ?> )</span><?php echo $LessonDates['Date_Date']; ?></a>
+       <a class="accordion-title"><span>( <?php echo $LessonDates['Date_Count']; ?> )</span><?php echo $new_date; ?></a>
 
        <!-- Accordion content -->
        <div class="accordion-content" data-tab-content>
