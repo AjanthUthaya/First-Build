@@ -1,7 +1,7 @@
 <?php
 require($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/DB.php');
 
-$QueryRoomGroup = 'SELECT * FROM rooms';
+$QueryRoomGroup = 'SELECT * FROM rooms ORDER BY `key`';
 $RoomGroupResult = $conn->query($QueryRoomGroup);
 
 while ($Room_Group_Item = $RoomGroupResult->fetch_array()) {

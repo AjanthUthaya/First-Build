@@ -134,12 +134,17 @@ function init() {
         Notify(data.Status, 'white', data.Message, 'fa fa-check', '#3FC380', 2000);
         // Make popup disappear
         $.modal.close();
+
+        var AccordionItem = '<li class="Accordion-Item"><a class="accordion-title">'+data.Key+'<span class="fa fa-trash Room-Delete" id="DeleteRoomButton" value="'+data.Room_Id+'"></span></a></li>';
+
+        $('.accordion-title:contains("'+data.ParrentKey+'")').siblings().children('.accordion').append(AccordionItem);
+
         // Unset old data
         $('#Room-Input-Key').val('');
         $('#Room-Input-Label').val('');
         $('#Room-Select').val('');
         // Reload page, to load new data
-        location.reload();
+        // location.reload();
 
       } else {
         Notify('Error', 'red', 'Response not recognized', 'fa fa-close', 'red');
@@ -160,7 +165,6 @@ function init() {
     // ---------- END: Form submit ---------- //
 
   });
-
 
 
   // Captalize first letter of input (username is not case sensitive, but password is)
@@ -270,9 +274,11 @@ function init() {
         if (data.Status == 'Failed') {
           Notify(data.Status, 'yellow', data.Message, 'fa fa-warning', 'yellow', 4000);
         } else if (data.Status == 'Done') {
+
           Notify(data.Status, 'white', data.Message + ' ' + x[0].key, 'fa fa-check', '#3FC380', 3000);
 
           $(e.target).parent().remove();
+
         } else {
           Notify('Error', 'red', 'Response not recognized', 'fa fa-close', 'red');
         }

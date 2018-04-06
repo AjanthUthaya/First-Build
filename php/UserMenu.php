@@ -6,7 +6,7 @@
     <!-- START: Main tab -->
     <div class="Tab-Main">
       <div class="User-Menu-Image">
-        <img src="img/Profile_placeholder.png" id="Profile-Img-Main" alt="Profile-Picture-Main">
+        <img src="img/Profile_Placeholder.png" id="Profile-Img-Main" alt="Profile-Picture-Main">
       </div>
 
       <div class="User-Menu-Name">
@@ -39,7 +39,7 @@
                 <label id="Img-Error-Limit"></label>
                 <label id="Img-Error-Current"></label>
               </div>
-              <img src="img/Profile_placeholder.png" id="Profile-Img-Edit" alt="Profile-Picture-Edit">
+              <img src="img/Profile_Placeholder.png" id="Profile-Img-Edit" alt="Profile-Picture-Edit">
               <input type="file" id="Profile-Img-Src" accept="image/png, image/jpg, image/jpeg" name="ImgSrc" style="display: none;">
 
             </div>

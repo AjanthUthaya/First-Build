@@ -61,11 +61,25 @@ if (!$stmt->execute()) {
 // Close prepared statement
 $stmt->close();
 
+$Response['Room_Id'] = $conn->insert_id;
 
 // Close DB connection
 $conn->close();
 
 
-ReportStatus("Done", "$Key added to room list");
+// Send responce back to user
+$Response['Status'] = 'Done';
+$Response['Message'] = $_POST['Key'] . ' added to db successfully';
+$Response['Key'] = $_POST['Key'];
+$Response['ParrentKey'] = $_POST['Parent_Room'];
+
+
+// Encode array into JSON
+$ResponseJSON = json_encode($Response);
+
+// Send JSON array
+echo $ResponseJSON;
+
+
 
  ?>

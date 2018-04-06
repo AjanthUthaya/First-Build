@@ -289,3 +289,28 @@ table {
 
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  jQuery Modal
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+.blocker {
+  background-color: rgba(0, 0, 0, .6);
+}
+
+.modal {
+  overflow: hidden;
+  max-width: 600px;
+  padding: 0;
+  border-radius: 5px;
+}
+
+.modal a.close-modal {
+  display: none;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */

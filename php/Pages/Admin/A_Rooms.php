@@ -148,7 +148,7 @@
   </form id="AddRoomForm">
 
   <div class="AddRoom-Submit">
-    <a class="AddRoom-Submit-Button button">Add</a>
+    <a class="AddRoom-Submit-Button button">Add room</a>
   </div>
 
 </div>
