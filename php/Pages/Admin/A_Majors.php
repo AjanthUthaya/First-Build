@@ -20,7 +20,7 @@
     require($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/DB.php');
 
     // MySQLi statement
-    $QueryMajors = "SELECT * FROM majors ORDER BY title";
+    $QueryMajors = "SELECT * FROM majors ORDER BY major";
     // Connect and run query
     $ResultMajors = $conn->query($QueryMajors);
 
@@ -38,7 +38,7 @@
 
       <div class="Major-Item" style="background: <?php echo $Major['color'] ?>;">
         <div class="Major-Item-Container">
-          <a class="Major-Item-Title" href="EditMajor.php?Major_Id=<?php echo $Major['id'] ?>" data-major_id="<?php echo $Major['short'] ?>"><?php echo $Major['title'] ?> (<?php echo $Major['short'] ?>)</a>
+          <a class="Major-Item-Title" href="EditMajor.php?Major_Id=<?php echo $Major['id'] ?>" data-major_id="<?php echo $Major['id'] ?>"><?php echo $Major['major'] ?> (<?php echo $Major['code'] ?>)</a>
         </div>
       </div>
 
@@ -66,12 +66,12 @@
     <div class="AddMajor-Title">
       <div class="AddMajor-Title-Major">
         <label>Major</label>
-        <input type="text" placeholder="Eks. Engelsk">
+        <input type="text" id="AddMajor-Major" placeholder="Eks. Engelsk">
       </div>
 
       <div class="AddMajor-Title-Code">
         <label>Code</label>
-        <input type="text" placeholder="Eks. 2ENG">
+        <input type="text" id="AddMajor-Code" placeholder="Eks. 2ENG">
       </div>
     </div>
 
@@ -79,7 +79,7 @@
     <div class="AddMajor-Details">
       <div class="AddMajor-Details-Vgs">
         <label>VGS</label>
-        <select class="AddMajor-Vgs-Value">
+        <select class="AddMajor-Vgs-Value" id="AddMajor-Vgs">
           <option value="" selected disabled>Select VGS</option>
           <option value="All">All</option>
           <option value="1">1-VGS</option>
@@ -90,12 +90,12 @@
 
       <div class="AddMajor-Details-Color">
         <label>Color</label>
-        <input type="color" value="#35414d">
+        <input type="color" value="#35414d" id="AddMajor-Color">
       </div>
 
       <div class="AddMajor-Details-Hours">
         <label>Hours(45m)</label>
-        <input type="number" placeholder="Eks. 148">
+        <input type="number" id="AddMajor-Hours" placeholder="Eks. 148">
       </div>
     </div>
   </form>

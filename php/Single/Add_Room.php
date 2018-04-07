@@ -8,13 +8,13 @@ $Parent_Room = $_POST['Parent_Room'];
 
 // Check if any of the values are empty
 if ($Key == '' || $Parent_Room == 'null') {
-  // Value not selected (Parent Room)
-  ReportStatus("Failed", "Missing input value");
-  exit();
+    // Value not selected (Parent Room)
+    ReportStatus("Failed", "Missing input value");
+    exit();
 }
 
 if ($Label == '') {
-  $Label = $Key;
+    $Label = $Key;
 }
 
 
@@ -22,40 +22,60 @@ if ($Label == '') {
 require($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/DB.php');
 
 
+
+
+/* ---------- ---------- */
+// START: Check if key is taken in the DB
+/* ---------- ---------- */
+
 // MySQLi statement
-$QueryCheckRooms = "SELECT * FROM rooms WHERE `key` = '$Key'";
+$QueryCheckRooms = "SELECT * FROM rooms WHERE `key` = ?";
 
-// Connect and run query
-$ResultCheckRooms = $conn->query($QueryCheckRooms);
-
-// If query failed
-if (!$ResultCheckRooms) {
-  ReportStatus("Error", "DB query failed");
-  exit();
+if (!($stmt = $conn->prepare($QueryCheckRooms))) {
+    ReportStatus("Error", "Prepareing statement");
+    exit();
 }
 
-// Check if key is taken
-if ($ResultCheckRooms->num_rows !== 0) {
-  ReportStatus("Failed", "Key is taken");
-  exit();
+if (!$stmt->bind_param("s", $Key)) {
+    ReportStatus("Error", "Binding parameters");
+    exit();
 }
+
+if (!$stmt->execute()) {
+    ReportStatus("Error", "Executing statement");
+    exit();
+}
+
+$result = $stmt->store_result();
+if ($stmt->num_rows !== 0) {
+    ReportStatus("Failed", "Key is taken");
+    exit();
+}
+
+// Close prepared statement
+$stmt->close();
+
+/* ---------- ---------- */
+// END: Check if key is taken in the DB
+/* ---------- ---------- */
+
 
 
 
 // Insert new room into DB (Prepared Statement)
 if (!($stmt = $conn->prepare("INSERT INTO rooms (`key`, `label`, `parent_key`) VALUES (?, ?, ?)"))) {
-  ReportStatus("Error", "Prepareing statement");
-  exit();
+    ReportStatus("Error", "Prepareing statement");
+    exit();
 }
 
 if (!$stmt->bind_param("sss", $Key, $Label, $Parent_Room)) {
-  ReportStatus("Error", "Binding parameters");
-  exit();
+    ReportStatus("Error", "Binding parameters");
+    exit();
 }
 
 if (!$stmt->execute()) {
-  ReportStatus("Error", "Executeing statement");
-  exit();
+    ReportStatus("Error", "Executeing statement");
+    exit();
 }
 
 // Close prepared statement
@@ -79,7 +99,3 @@ $ResponseJSON = json_encode($Response);
 
 // Send JSON array
 echo $ResponseJSON;
-
-
-
- ?>

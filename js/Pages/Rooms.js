@@ -130,10 +130,11 @@ function init() {
         Notify(data.Status, 'yellow', data.Message, 'fa fa-warning', 'yellow', 4000);
       } else if (data.Status == 'Done') {
 
-        // Success Message
-        Notify(data.Status, 'white', data.Message, 'fa fa-check', '#3FC380', 2000);
         // Make popup disappear
         $.modal.close();
+
+        // Success Message
+        Notify(data.Status, 'white', data.Message, 'fa fa-check', '#3FC380', 2000);
 
         var AccordionItem = '<li class="Accordion-Item"><a class="accordion-title">'+data.Key+'<span class="fa fa-trash Room-Delete" id="DeleteRoomButton" value="'+data.Room_Id+'"></span></a></li>';
 
@@ -275,7 +276,7 @@ function init() {
           Notify(data.Status, 'yellow', data.Message, 'fa fa-warning', 'yellow', 4000);
         } else if (data.Status == 'Done') {
 
-          Notify(data.Status, 'white', data.Message + ' ' + x[0].key, 'fa fa-check', '#3FC380', 3000);
+          Notify(data.Status, 'white', 'Room <b>' + x[0].key + '</b> deleted', 'fa fa-trash', '#3FC380', 3000);
 
           $(e.target).parent().remove();
 
