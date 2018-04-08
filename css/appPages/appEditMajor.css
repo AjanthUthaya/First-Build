@@ -3,6 +3,10 @@
   (Top-Right-Bottom-Left)
 *************************************************** */
 
+.Title-Left {
+  background-color: #e74c3c;
+}
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -12,6 +16,116 @@
   Edit Major
   (Top-Right-Bottom-Left)
 *************************************************** */
+
+.EditMajor-Content {
+  padding-top: 40px;
+  width: 100%;
+  height: calc(100vh - 120px - 20px);
+}
+
+.EditMajor-Section-Title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Section-Sub {
+  padding: 0 20px;
+  width: 50%;
+  max-width: 300px;
+}
+
+.Section-Sub label {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.Section-Sub input {
+  text-align: center;
+}
+
+#EditMajor-Major {
+  text-transform: capitalize;
+}
+
+#EditMajor-Code {
+  text-transform: uppercase;
+}
+
+.EditMajor-Section-Meta {
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Sub-Meta {
+  padding: 0 20px;
+  width: 50%;
+  max-width: 270px;
+}
+
+.EditMajor-Section-List {
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Section-List {
+  width: 50%;
+  max-width: 300px;
+  margin: 20px;
+}
+
+.Section-List label {
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.List-Box {
+  background: #d4d4d4;
+  width: 100%;
+  padding: 40px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-style: dashed;
+}
+
+.List-Box span {
+  width: 100%;
+  text-align: center;
+}
+
+.EditMajor-Section-Save {
+  position: relative;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 60px;
+}
+
+#EditMajor-Save {
+  padding: 15px 50px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+@media screen and (min-height: 800px) {
+  .EditMajor-Section-Meta, .EditMajor-Section-List, .EditMajor-Section-Save {
+      padding-top: 60px;
+  }
+}
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 

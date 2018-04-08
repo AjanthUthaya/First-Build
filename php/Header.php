@@ -31,6 +31,8 @@ $User_Ip = getUserIP();
 // Get current page
 $LoadPage = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
+// Links to all main files
+require 'Pages/Links.php';
 
 // Check user validation OnLoad
 $UserValidation = CheckUserVal($conn);
@@ -60,17 +62,23 @@ if ($UserValidation !== 'Session_DB_Equal') {
 
     // ---------- START: Redirect to login ---------- //
 
-    //echo $UserValidation;
-
     $URL = 'login.html';
 
 
-    //echo '<script> location.href="' . $URL . '"; </script>';
+    echo '<script> location.href="' . $URL . '"; </script>';
 
     // ---------- END: Redirect to login ---------- //
 
     exit();
 
+} elseif (strtolower ($Filename) == 'rooms' or strtolower ($Filename) == 'majors' or strtolower ($Filename) == 'editmajor') {
+  if ($_SESSION['DB_User_Type'] !== 'Admin') {
+
+    echo '<script> location.href="' . $URI_Home . '"; </script>';
+
+    exit();
+
+  }
 } else {
     // ----- Session && DB data is the same ----- //
 
@@ -86,9 +94,6 @@ if ($UserValidation !== 'Session_DB_Equal') {
 }
 
 // ---------- END: Check user validation ---------- //
-
-// Links to all main files
-include 'Pages/Links.php';
  ?>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
@@ -99,7 +104,7 @@ include 'Pages/Links.php';
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
   <!-- Tab title -->
-  <?php include 'Title.php'; ?>
+  <title><?php echo $FilenameFull ?> - First Build</title>
   <!-- Tab icon -->
   <link rel="icon" href="http://via.placeholder.com/50x50">
 

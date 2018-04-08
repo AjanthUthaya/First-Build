@@ -14,7 +14,7 @@
       <ul class="vertical menu align-center">
         <li><a href="<?php echo $URI_Home ?>" class="<?php echo ($Filename=='Home') ? "OffCanvas-Menu-List-Active" : "" ?>">Home</a></li>
         <li><a href="<?php echo $URI_Lesson ?>" class="<?php echo ($Filename=='Lesson') ? "OffCanvas-Menu-List-Active" : "" ?>">Lessons</a></li>
-        <?php if ($Session_User_Type == 'Admin') { ?>
+        <?php if ($_SESSION['DB_User_Type'] == 'Admin') { ?>
 
           <li><a href="<?php echo $URI_Majors ?>" class="<?php echo ($Filename=='Majors') ? "OffCanvas-Menu-List-Active" : "" ?>">Majors</a></li>
           <li><a href="<?php echo $URI_Rooms ?>" class="<?php echo ($Filename=='Rooms') ? "OffCanvas-Menu-List-Active" : "" ?>">Rooms</a></li>

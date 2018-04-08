@@ -12064,3 +12064,33 @@ SELECT `id`,`id`,`type`,`start_date`,`end_date`,`teacher_id`,`title`,`sub`,`room
 
 Done in 0.0421590805054s
 
+
+
+====================================
+Log started, 08/04/2018 01:57:27
+====================================
+
+SELECT `id`,`id`,`type`,`start_date`,`end_date`,`teacher_id`,`title`,`sub`,`room`,`color`,`vgs`,`ava`,`ava_max`,`details`,`creation_by` FROM lessons ORDER BY `start_date` ASC
+
+Done in 0.268170118332s
+
+
+
+====================================
+Log started, 08/04/2018 06:20:52
+====================================
+
+SELECT `id`,`id`,`type`,`start_date`,`end_date`,`teacher_id`,`title`,`sub`,`room`,`color`,`vgs`,`ava`,`ava_max`,`details`,`creation_by` FROM lessons ORDER BY `start_date` ASC
+
+Done in 0.0537440776825s
+
+
+
+====================================
+Log started, 08/04/2018 07:01:33
+====================================
+
+SELECT `id`,`id`,`type`,`start_date`,`end_date`,`teacher_id`,`title`,`sub`,`room`,`color`,`vgs`,`ava`,`ava_max`,`details`,`creation_by` FROM lessons ORDER BY `start_date` ASC
+
+Done in 0.00816607475281s
+
