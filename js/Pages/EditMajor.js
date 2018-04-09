@@ -1,5 +1,5 @@
 function init() {
 
-  console.log('Init major content');
+  console.log('Init editmajor content');
 
 }

@@ -122,6 +122,16 @@
 
   <script src="js/Pages/Rooms.js"></script>
 
+<?php } elseif ($Filename == 'Classes') { ?>
+
+  <!-- START: Addons -->
+  <script src="js/Addons/JqueryModal/Modal.js"></script>
+  <!-- END: Addons -->
+
+  <script src="js/Partials/ScrollHideNav.js"></script>
+
+  <script src="js/Pages/Classes.js"></script>
+
 <?php } ?>
 
 

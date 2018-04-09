@@ -19,6 +19,7 @@ $URI_Test = "Test.php";
 $URI_NewLesson = "NewLesson.php";
 $URI_NewTest = "NewTest.php";
 $URI_Rooms = "Rooms.php";
+$URI_Classes = "Classes.php";
 
 // Social
 $URI_Facebook = "https://www.Facebook.com/";

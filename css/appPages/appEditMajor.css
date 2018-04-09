@@ -20,7 +20,7 @@
 .EditMajor-Content {
   padding-top: 40px;
   width: 100%;
-  height: calc(100vh - 120px - 20px);
+  min-height: calc(100vh - 120px - 20px);
 }
 
 .EditMajor-Section-Title {
@@ -105,6 +105,10 @@
   text-align: center;
 }
 
+.List-Box:active {
+  background-color: #adadad;
+}
+
 .EditMajor-Section-Save {
   position: relative;
   bottom: 0;
@@ -123,7 +127,7 @@
 
 @media screen and (min-height: 800px) {
   .EditMajor-Section-Meta, .EditMajor-Section-List, .EditMajor-Section-Save {
-      padding-top: 60px;
+    padding-top: 60px;
   }
 }
 

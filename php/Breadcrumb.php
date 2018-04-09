@@ -88,4 +88,15 @@
   </div>
   <!-- END: Breadcrumb -->
 
+<?php } elseif ($Filename == 'Classes') { ?>
+
+  <!-- START: Breadcrumb -->
+  <div class="Breadcrumb" aria-label="You are here:" role="navigation">
+    <ul class="breadcrumbs unselectable">
+      <li><a href="<?php echo $URI_Home ?>"><span class="fa fa-home Breadcrumb-Home"></span>Home</a></li>
+      <li>Classes</li>
+    </ul>
+  </div>
+  <!-- END: Breadcrumb -->
+
 <?php } ?>

@@ -89,6 +89,15 @@
   <link rel="stylesheet" href="css/appPages/appRooms.css">
   <!-- END: Page specific files -->
 
+<?php } elseif ($Filename == 'Classes') { ?>
+
+  <!-- Modal box -->
+  <link rel="stylesheet" href="css/JqueryModal.css">
+
+  <!-- START: Page specific files -->
+  <link rel="stylesheet" href="css/appPages/appClasses.css">
+  <!-- END: Page specific files -->
+
 <?php } ?>
 
 

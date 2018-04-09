@@ -7,7 +7,9 @@
 <section id="Content-Main">
 
   <?php
-    include 'php/Pages/Shared/SH_Test.php';
+
+    include 'php/Pages/Admin/A_Classes.php';
+
    ?>
 
 </section>

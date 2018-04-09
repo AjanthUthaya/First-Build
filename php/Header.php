@@ -71,14 +71,6 @@ if ($UserValidation !== 'Session_DB_Equal') {
 
     exit();
 
-} elseif (strtolower ($Filename) == 'rooms' or strtolower ($Filename) == 'majors' or strtolower ($Filename) == 'editmajor') {
-  if ($_SESSION['DB_User_Type'] !== 'Admin') {
-
-    echo '<script> location.href="' . $URI_Home . '"; </script>';
-
-    exit();
-
-  }
 } else {
     // ----- Session && DB data is the same ----- //
 
@@ -91,6 +83,15 @@ if ($UserValidation !== 'Session_DB_Equal') {
 
     if ($conn->query($sql) === true) {}
     // ---------- END: Send data to DB ---------- //
+
+
+    // ---------- START: Check access ---------- //
+
+    // DB config file
+    require($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/RestrictAccess.php');
+
+    // ---------- END: Check access ---------- //
+
 }
 
 // ---------- END: Check user validation ---------- //
@@ -126,8 +127,6 @@ if ($UserValidation !== 'Session_DB_Equal') {
 
 
     <?php include 'OffCanvas.php'; ?>
-
-    <?php include 'OffCanvasSub.php'; ?>
 
     <?php include 'Nav.php'; ?>
 
