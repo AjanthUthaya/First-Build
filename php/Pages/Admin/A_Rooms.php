@@ -2,7 +2,7 @@
 
   <div class="Room-Title-Left"></div>
   <div class="Room-Title-Title"><span>Rooms</span></div>
-  <a class="Room-Title-Right button" id="AddRoomButton">Add/Edit</a>
+  <a class="Room-Title-Right button" id="AddRoomButton">Add room</a>
 
 </div>
 

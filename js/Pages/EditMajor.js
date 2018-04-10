@@ -1,5 +1,10 @@
 function init() {
 
-  console.log('Init editmajor content');
+  // Change header based on color
+  $('#EditMajor-Color').on('change', function(event) {
+    var ColorSelector = $(this).val();
+
+    $('.Title-Main').css('background', ColorSelector);
+  });
 
 }

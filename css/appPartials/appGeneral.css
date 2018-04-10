@@ -5,6 +5,7 @@
 
 * {
   margin: 0;
+  padding: 0;
 }
 
 *:focus {
@@ -304,7 +305,6 @@ table {
 }
 
 .modal {
-  overflow: hidden;
   max-width: 600px;
   padding: 0;
   border-radius: 5px;
@@ -312,6 +312,67 @@ table {
 
 .modal a.close-modal {
   display: none;
+}
+
+/* Modal box default style */
+
+.Modal-Header {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 50px;
+  color: white;
+  background-color: #35414d;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.Modal-Header label {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+.Modal-Header a {
+  font-size: 25px;
+  font-weight: bold;
+  position: absolute;
+  right: 0;
+  display: flex;
+  width: 50px;
+  height: 100%;
+  cursor: pointer;
+  color: white;
+  background-color: #f44336;
+  justify-content: center;
+  align-items: center;
+}
+
+.Modal-Header a:hover {
+  background-color: #e53935;
+}
+
+.Modal-Form {
+  padding: 40px 60px;
+}
+
+.Modal-Buttons {
+  display: flex;
+  width: 100%;
+  padding-bottom: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+.Modal-Buttons {
+  display: flex;
+  width: 100%;
+  padding-bottom: 40px;
+  justify-content: center;
+  align-items: center;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -326,7 +387,7 @@ table {
 
 .Title-Main {
   position: relative;
-  z-index: 5;
+  z-index: 1;
   display: flex;
   width: 100%;
   height: 60px;
@@ -363,6 +424,60 @@ table {
   color: white;
   justify-content: center;
   align-items: center;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  DDSlick addon
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+.dd-options {
+  width: 100%;
+}
+
+.dd-option {
+  padding: 5px !important;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.dd-selected {
+  padding: 0 !important;
+}
+
+.dd-selected-text, .dd-selected {
+  padding-bottom: 0 !important;
+  height: 2.4375rem;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.dd-container {
+  width: 100%;
+}
+
+.dd-option-text {
+  padding-bottom: 0 !important;
+  padding-right: 0 !important;
+  text-align: center;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 20px !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.dd-selected-text {
+  padding: 0 20px !important;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

@@ -93,6 +93,8 @@
 
   <!-- Modal box -->
   <link rel="stylesheet" href="css/JqueryModal.css">
+  <!-- Data Tables -->
+  <link rel="stylesheet" href="css/DataTables.css">
 
   <!-- START: Page specific files -->
   <link rel="stylesheet" href="css/appPages/appClasses.css">

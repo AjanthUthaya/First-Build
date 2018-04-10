@@ -49,14 +49,16 @@
     <div class="Section-List">
       <label>Teacher List</label>
       <div class="List-Box" id="EditMajor-List-Teacher">
-        <span>Add icon and count under</span>
+        <span class="fa fa-user List-Box-Icon"></span>
+        <span id="List-Box-Teacher">28</span>
       </div>
     </div>
 
     <div class="Section-List">
       <label>Student List</label>
       <div class="List-Box" id="EditMajor-List-Stundent">
-        <span>Add icon and count under</span>
+        <span class="fa fa-users List-Box-Icon"></span>
+        <span id="List-Box-Stundent">28</span>
       </div>
     </div>
 

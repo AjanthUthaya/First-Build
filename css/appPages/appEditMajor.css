@@ -92,12 +92,13 @@
 .List-Box {
   background: #d4d4d4;
   width: 100%;
-  padding: 40px 10px;
+  padding: 20px 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   border-style: dashed;
+  flex-direction: column;
 }
 
 .List-Box span {
@@ -105,8 +106,19 @@
   text-align: center;
 }
 
+#List-Box-Stundent, #List-Box-Teacher {
+  font-size: 18px;
+}
+
 .List-Box:active {
-  background-color: #adadad;
+  background-color: #8a8a8a;
+  color: white;
+}
+
+.List-Box-Icon {
+  font-size: 20px;
+  font-weight: bold;
+  padding-bottom: 10px;
 }
 
 .EditMajor-Section-Save {

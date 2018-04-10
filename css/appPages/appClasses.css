@@ -3,7 +3,208 @@
   (Top-Right-Bottom-Left)
 *************************************************** */
 
+.Content-Main {
+  width: 100%;
+  padding: 40px 60px;
+  padding-bottom: 20px;
+}
 
+div#Loading-Table {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  max-width: 800px !important;
+}
+
+label.dd-option-text {
+    font-size: 14px !important;
+    font-weight: normal !important;
+}
+
+label.dd-selected-text {
+  width: 100% !important;
+  max-width: 480px !important;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  DataTable Addon Edit
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+/* Remove default search bar */
+
+div#List_filter {
+  display: none;
+}
+
+/* Remove top and bottom padding from DataTables */
+
+table#List {
+  margin: 0;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow: hidden;
+  display: none;
+}
+
+/* Add padding to items */
+
+table.dataTable tbody th, table.dataTable tbody td {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  Style List and input
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+/* Styling search bar */
+
+#List-Search {
+  border: 2px solid #bdbdbd;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  height: 50px;
+  font-size: 14px;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  text-transform: capitalize;
+  padding-bottom: 5px;
+}
+
+table.dataTable thead th, table.dataTable thead td {
+  border-color: #bdbdbd;
+}
+
+table.dataTable.no-footer {
+  border-color: #bdbdbd;
+}
+
+#List-Search:focus {
+  border-bottom: 2px solid #797979;
+}
+
+/* Center paging buttons */
+
+div#List_paginate {
+  padding: 10px 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+/* Remove paging bottom padding */
+
+div#List_paginate .pagination {
+  margin: 0;
+}
+
+/* Paging buttons */
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+  background: #dcdcdc;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  padding: 8px 15px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover a {
+  color: white;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background-color: black;
+}
+
+.pagination a:hover, .pagination button:hover {
+  background: none;
+}
+
+.pagination a, .pagination button {
+  display: block;
+  padding: 0;
+  border-radius: 0;
+  color: #0a0a0a;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  Add Class Form
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+.Form-First, .Form-Program, .Form-Year {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Form-First, .Form-Program {
+  padding-bottom: 30px;
+}
+
+.AddClass-Container {
+  width: 100%;
+  padding: 0 20px;
+  max-width: 35%;
+}
+
+.AddClass-Container:first-child {
+  padding-left: 0;
+}
+
+.AddClass-Container:last-child {
+  padding-right: 0;
+}
+
+.AddClass-Container label {
+  padding-bottom: 5px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#AddClass-Separator {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.Form-Program label, .Form-Year label {
+  width: 30%;
+  max-width: 30%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-right: 20px;
+  min-width: 100px;
+  font-size: 16px;
+  font-weight: bold;
+}
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
