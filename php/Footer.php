@@ -62,7 +62,13 @@
 </div>
 <!-- END: Desktop view -->
 
-<?php include 'Scripts.php'; ?>
+<?php
+if ($Filename == 'Classes') {
+  
+} else {
+  include 'Scripts.php';
+}
+ ?>
 
 </body>
 

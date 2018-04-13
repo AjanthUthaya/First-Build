@@ -130,6 +130,8 @@
   <script src="js/Addons/DataTables/datatables.js"></script>
   <!-- END: Addons -->
 
+  <script src="js/Functions/Notify.js"></script>
+
   <script src="js/Partials/ScrollHideNav.js"></script>
 
   <script src="js/Pages/Classes.js"></script>

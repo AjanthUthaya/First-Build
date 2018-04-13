@@ -13,7 +13,7 @@ function init() {
 
   // Fire off the request
   LoadRooms = $.ajax({
-    url: "php/Single/LoadRooms.php",
+    url: "php/Single/Load_Rooms.php",
     type: "get",
     dataType: "json",
     async: false,

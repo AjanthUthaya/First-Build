@@ -22,6 +22,8 @@ while ($row = $result->fetch_assoc()) {
     ));
 }
 
+// NOTE: No åøæ allowed in json it causes a parse error
+
 echo json_encode($Array);
 
 

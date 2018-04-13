@@ -304,13 +304,13 @@ button {
 }
 
 .Register-Birth-Input {
-  padding-left: 50px !important;
+  padding-left: 45px !important;
   text-align: center !important;
 }
 
 .Register-VGS {
   min-width: 60px;
-  max-width: 130px;
+  max-width: 170px;
 }
 
 .Register-VGS label {

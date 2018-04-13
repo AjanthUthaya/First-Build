@@ -1,6 +1,6 @@
 // ---------- START: Place variable, for testing ---------- //
 
-/*// Firstname, Middlename, Lastname
+// Firstname, Middlename, Lastname
 $('#Register-Firstname').val('Test');
 $('#Register-Middlename').val('User');
 $('#Register-Lastname').val('Id');
@@ -14,13 +14,58 @@ $('#Register-Birth_Date').val('1999-05-13');
 $('#Register-Vgs').val('2');
 
 // Username
-$('#Register-Username').val('TestUser');
+$('#Register-Username').val('Admin');
 
 // Password, CPassword
 $('#Register-Password').val('TestPassword');
-$('#Register-CPassword').val('TestPassword');*/
+$('#Register-CPassword').val('TestPassword');
 
 // ---------- END: Place variable, for testing ---------- //
+
+
+
+// ----------   ---------- //
+// START: YEAR LIST
+// ----------   ---------- //
+
+// Get Program list
+var VgsList;
+
+// Fire off the request
+Request = $.ajax({
+  url: "php/Single/Load_Vgs.php",
+  type: "get",
+  dataType: "json",
+  async: false,
+  contentType: false, // The content type used when sending data to the server.
+  cache: false, // To unable request pages to be cached
+  processData: false, // To send DOMDocument or non processed data file it is set to false
+});
+
+// Fired up on success
+Request.done(function(data) {
+
+  VgsList = data;
+
+  $.each(VgsList, function(i, item) {
+    $('#Register-Vgs').append($('<option>', {
+      value: item.Id,
+      text: item.Title
+    }));
+  });
+
+})
+
+// Fired up on failure
+Request.fail(function(xhr, textStatus, errorThrown) {
+  NotifyError('Server error', textStatus + ' failed to load vgs list');
+})
+
+// ----------   ---------- //
+// END: YEAR LIST
+// ----------   ---------- //
+
+
 
 // Define form data variable
 var RegisterFormData = new FormData();
@@ -39,7 +84,11 @@ $('#Register-Img-Error').click(function() {
 // Notification function (Title, TitleColor, Message, Icon, IconColor, Timeout)
 require("js/Functions/Notify.js");
 
-// ---------- START: Img preview ---------- //
+
+
+// ----------  ---------- //
+// START: Img preview
+// ----------  ---------- //
 
 $("#Register-ImgSrc").on("change", function(e) {
   // Save image array, and send on form submit
@@ -134,7 +183,10 @@ $("#Register-ImgSrc").on("change", function(e) {
 
 });
 
-// ---------- END: Img preview ---------- //
+// ----------  ---------- //
+// END: Img preview
+// ----------  ---------- //
+
 
 
 // Variable to hold request
@@ -152,7 +204,10 @@ $("#Register-Main").submit(function(event) {
   }
 
 
-  /* ---------- START: Declaring field values ---------- */
+
+  // ----------  ---------- //
+  // START: Declaring values
+  // ----------  ---------- //
 
   // Setting new date format from (yyyy-mm-dd) to (dd-mm-yyyy)
   var Old_Birth_Date = $('#Register-Birth_Date').val();
@@ -171,10 +226,15 @@ $("#Register-Main").submit(function(event) {
   RegisterFormData.append('CPassword', $('#Register-CPassword').val());
   RegisterFormData.append('g-recaptcha-response', grecaptcha.getResponse());
 
-  /* ---------- END: Declaring field values ---------- */
+  // ----------  ---------- //
+  // START: Declaring values
+  // ----------  ---------- //
 
 
-  // ---------- START: Validation ---------- //
+
+  // ----------  ---------- //
+  // START: Validation
+  // ----------  ---------- //
 
   // Declare Validation variable
   var validationFailed = false;
@@ -224,27 +284,17 @@ $("#Register-Main").submit(function(event) {
       },
       Password: {
         required: true,
-        minlength: 6,
+        minlength: 5,
         maxlength: 50
       },
       CPassword: {
         required: true,
-        minlength: 6,
+        minlength: 5,
         maxlength: 50
       }
     }
   });
 
-  // Check to see if Password and CPassword match
-  if ($('#Register-Password').val() == $('#Register-CPassword').val()) {
-    // BUG: Keep this space or the script dosent work for some reason
-  } else {
-    // Password confirmation failed
-    Notify('Password confirmation', 'yellow', 'Your password and confirmation password do not match', 'fa fa-warning', 'yellow', 5000);
-
-    // Prevents form from submiting data
-    validationFailed = true;
-  }
 
   // Check if validation failed, and set new variable
   if ($ValidateForm.form()) {
@@ -262,23 +312,25 @@ $("#Register-Main").submit(function(event) {
     return false;
   }
 
-  // Else, if "validationFailed = false" keep running the script
+  // ----------  ---------- //
+  // END: Validation
+  // ----------  ---------- //
 
-  // ---------- END: Validation ---------- //
 
 
-  // ---------- START: Disabling input during form submit ---------- //
+  // ---------- START: Disabling inputs ---------- //
 
   var $inputs = $(this).find("input, select, button, textarea");
 
-  // Let's disable the inputs for the duration of the Ajax request.
   $inputs.prop("disabled", true);
 
-  // ---------- END: Disabling input during form submit ---------- //
+  // ---------- END: Disabling inputs ---------- //
 
 
 
-  // ---------- START: Form submit to Register.php ---------- //
+  // ----------  ---------- //
+  // START: Send data to php for processing
+  // ----------  ---------- //
 
   // Fire off the request to php/Single/Register.php
   RegisterRequest = $.ajax({
@@ -294,27 +346,30 @@ $("#Register-Main").submit(function(event) {
   // Fired up on success
   RegisterRequest.done(function(data) {
 
-    var data = JSON.parse(data);
+    // Process JSON object
+    data = jQuery.parseJSON(data);
 
     if (data.Status == 'Error') {
-      // ---------- START: Registration failed ---------- //
-
-      Notify('ERROR', 'red', data.Message, 'fa fa-close', 'red', 5000);
-
-      // ---------- END: Registration failed ---------- //
+      NotifyError(data.Title, data.Message);
+    } else if (data.Status == 'Failed') {
+      NotifyFailed(data.Title, data.Message);
     } else if (data.Status == 'Done') {
-      // ---------- START: Registration done ---------- //
 
-      Notify('Done', 'white', 'Redirecting to login page', 'fa fa-check', 'white', false);
-      window.location.href = 'Login.html';
+      // Show success message
+      NotifyDone(data.Title, data.Message);
+      // Redirect to login afte successful registration
+      setTimeout(function() {
+        // window.location.href = 'Login.html';
+      }, 3000);
 
-      // ---------- END: Registration done ---------- //
+      console.log(data.Message);
+
     } else {
-      // ---------- START: Response not recognized ---------- //
-      Notify('ERROR', 'red', 'Error: Response not recognized', 'fa fa-close', 'red', 5000);
-      //console.log(test); // NOTE: For testing
-      // ---------- END: Response not recognized ---------- //
+      NotifyError('Response error', 'Response not recognized');
+      console.log(data.Status);
     }
+
+
 
   })
 
@@ -332,7 +387,11 @@ $("#Register-Main").submit(function(event) {
     grecaptcha.reset();
   });
 
-  // ---------- END: Form submit to Register.php ---------- //
+  // ----------  ---------- //
+  // END: Send data to php for processing
+  // ----------  ---------- //
+
+
 
 });
 

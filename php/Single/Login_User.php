@@ -9,7 +9,7 @@ require '../Functions/ReportStatus.php';
 // Required field from registration
 $required = array(
   'Username',
-  'Password',
+  'Password'
 );
 
 // Loop over POST fields, make sure each one exists and is not empty

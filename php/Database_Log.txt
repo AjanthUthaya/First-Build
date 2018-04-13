@@ -12134,3 +12134,13 @@ SELECT `id`,`id`,`type`,`start_date`,`end_date`,`teacher_id`,`title`,`sub`,`room
 
 Done in 0.211338043213s
 
+
+
+====================================
+Log started, 11/04/2018 09:20:26
+====================================
+
+SELECT `id`,`id`,`type`,`start_date`,`end_date`,`teacher_id`,`title`,`sub`,`room`,`color`,`vgs`,`ava`,`ava_max`,`details`,`creation_by` FROM lessons ORDER BY `start_date` ASC
+
+Done in 0.0672128200531s
+
