@@ -1,5 +1,5 @@
 // ---------- START: Place variable, for testing ---------- //
-
+/*
 // Firstname, Middlename, Lastname
 $('#Register-Firstname').val('Test');
 $('#Register-Middlename').val('User');
@@ -14,12 +14,12 @@ $('#Register-Birth_Date').val('1999-05-13');
 $('#Register-Vgs').val('2');
 
 // Username
-$('#Register-Username').val('Admin');
+$('#Register-Username').val('Admin1');
 
 // Password, CPassword
 $('#Register-Password').val('TestPassword');
 $('#Register-CPassword').val('TestPassword');
-
+*/
 // ---------- END: Place variable, for testing ---------- //
 
 
@@ -137,6 +137,7 @@ $("#Register-ImgSrc").on("change", function(e) {
     return false;
 
   } else if (fileSize > 10485760) {
+
     // ---------- File size does not meet requirements ---------- //
     function formatBytes(bytes, decimalPoint) {
       if (bytes == 0) return '0 Bytes';
@@ -168,7 +169,7 @@ $("#Register-ImgSrc").on("change", function(e) {
     $('#Register-Img-Error').css('display', 'flex');
 
     // File size is too big
-    Notify('Image size', 'yellow', 'Image size is too big, max 10MB', 'fa fa-warning', 'yellow', 5000);
+    Notify('Image size', 'yellow', 'Image size is too big, max size is 10MB', 'fa fa-warning', 'yellow', 5000);
 
     return false;
 
@@ -357,9 +358,9 @@ $("#Register-Main").submit(function(event) {
 
       // Show success message
       NotifyDone(data.Title, data.Message);
-      // Redirect to login afte successful registration
+      // Redirect to login after successful registration
       setTimeout(function() {
-        // window.location.href = 'Login.html';
+        window.location.href = 'Login.html';
       }, 3000);
 
       console.log(data.Message);

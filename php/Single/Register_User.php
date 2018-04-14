@@ -1,15 +1,15 @@
 <?php
 
-// Including db connection
-require '../Partials/DB.php';
-
-// Function to get user IP
-include '../Functions/GetUserIP.php';
-
 // Function to give AJAX response
 require($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/JsonResponse.php');
 
-// Required field from registration
+
+
+// ----------   ---------- //
+// START: Check for empty $_POST variables
+// ----------   ---------- //
+
+// Required fields from registration
 $required = array(
  'Firstname',
  'Lastname',
@@ -31,17 +31,29 @@ foreach ($required as $field) {
   }
 }
 
+// Check if any of the $_POST variables are empty
+if ($Empty_Field == true) {
+  JsonResponse("Failed", "", "Please fill out all fields");
+  exit();
+}
+
+// ----------   ---------- //
+// END: Check for empty $_POST variables
+// ----------   ---------- //
+
+
+
 // Check if Password and CPassword matches
 if ($_POST['Password'] !== $_POST['CPassword']) {
   JsonResponse("Failed", "", "Password does not match the confirm password");
   exit();
 }
 
-// Check if any of the $_POST variables are empty
-if ($Empty_Field == true) {
-  JsonResponse("Failed", "", "Missing input value");
-  exit();
-}
+
+
+// ----------   ---------- //
+// START: reCAPTCHA section
+// ----------   ---------- //
 
 // Check if reCAPTCHA is activated
 if (empty($_POST['g-recaptcha-response'])) {
@@ -68,6 +80,10 @@ if ($responseData->success !== true) {
   exit();
 }
 
+// ----------   ---------- //
+// END: reCAPTCHA section
+// ----------   ---------- //
+
 
 
 // ----------   ---------- //
@@ -91,6 +107,11 @@ $CPassword = $_POST["CPassword"];
 
 
 
+// Including db connection
+require($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/DB.php');
+
+
+
 // ----------   ---------- //
 // START: Check if username is taken
 // ----------   ---------- //
@@ -105,7 +126,7 @@ if (!($stmt = $conn->prepare($Query))) {
 }
 
 // Binding parameters
-if (!$stmt->bind_param("s", $Username)) {
+if (!$stmt->bind_param("s", $_POST["Username"])) {
   JsonResponse("Error", "", "Binding parameters");
   exit();
 }
@@ -134,139 +155,140 @@ $stmt->close();
 
 
 
-JsonResponse("Done", "", "Passed by all parameters");
-exit();
+// Check if image is corrupted, or displaying any errors
+if ($_FILES["ImgSrc"]["error"] > 0) {
+  JsonResponse("Error", "", "There was an error uploading the image");
+  exit();
+}
+
+// Check if image is empty
+if (empty($_FILES["ImgSrc"])) {
+  JsonResponse("Failed", "", "Please select a image");
+  exit();
+}
 
 
-  // ---------- START: Upload image ---------- //
 
-  if (isset($_FILES["ImgSrc"]["type"])) {
+// ----------   ---------- //
+// START: Check if image file has a valid ext
+// ----------   ---------- //
 
-   // ---------- Set validation (fileType) ---------- //
+// Declare valid extensions in array
+$ValidExtensions = array(
+ "jpeg",
+ "jpg",
+ "png"
+);
 
-   $validextensions = array(
-    "jpeg",
-    "jpg",
-    "png"
-   );
-   $temporary = explode(".", $_FILES["ImgSrc"]["name"]);
-   $file_extension = end($temporary);
+// Get the extension format of the file
+$Temp_File = explode(".", $_FILES["ImgSrc"]["name"]);
+$File_Extension = end($Temp_File);
 
-   // ---------- Set validation (fileType - fileSize) ---------- //
+// Set default value
+$ValidFormat = false;
 
-   if ((($_FILES["ImgSrc"]["type"] == "image/png") || ($_FILES["ImgSrc"]["type"] == "image/jpg") || ($_FILES["ImgSrc"]["type"] == "image/jpeg")) && ($_FILES["ImgSrc"]["size"] < 10485760) // 10MB files can be uploaded.
-    && in_array($file_extension, $validextensions)) {
-    if ($_FILES["ImgSrc"]["error"] > 0) {
-
-     // ---------- Image error ---------- //
-
-     ReportStatus("Error", "Image file error");
-    } else {
-     /*              if (file_exists("img/Profile/" . $_FILES["ImgSrc"]["name"])) {
-
-     // ---------- Image already exits ---------- //
-
-     echo $_FILES["ImgSrc"]["name"] . " <span id='invalid'><b>already exists.</b></span> ";
-     } else {*/
-
-     // ---------- START: Prep image for upload to server if sql success ---------- //
-
-     $temp = explode(".", $_FILES["ImgSrc"]["tmp_name"]);
-     $fileType = $_FILES["ImgSrc"]["type"];
-     $fileTypeExt = explode("/", $fileType) [1];
-
-     // Declare file name
-
-     $User_Username = $Username;
-
-     // NB: Replace with sql query
-
-     $User_Img_Increment = "1";
-
-     // Set filename
-
-     $newfilename = $User_Username . "_" . $User_Img_Increment . "." . $fileTypeExt;
-     $filePath = "img/Profile/" . $newfilename;
-
-     // ---------- END: Prep image for upload to server if sql success ---------- //
-     // Encrypt password
-
-     $Encrypted_Password = password_hash($Password, PASSWORD_BCRYPT);
-
-     // Setting timezone
-
-     date_default_timezone_set("Europe/Oslo");
-
-     // Setting creation date to now
-
-     $Creation_Date = date("d-m-Y");
-     $Creation_Time = date("H:i:s");
-
-     // Gets user ip
-
-     $User_Ip = GetUserIP();
-     /*
-
-     // Send data to the database
-
-     $CreateNewUser = "INSERT INTO users
-     (firstname, middlename, lastname, email, phone, birth_date, vgs, username, password, img_src, creation_date, creation_time, creation_ip)
-     VALUES
-     ('$Firstname', '$Middlename', '$Lastname', '$Email', '$Phone', '$Birth_Date', '$Vgs', '$Username', '$Encrypted_Password', '$filePath', '$Creation_Date', '$Creation_Time', '$User_Ip')";
-     if ($conn->query($CreateNewUser) === TRUE) {
-
-     // SQL success
-     // Upload img to folder
-
-     move_uploaded_file($_FILES["ImgSrc"]["tmp_name"], "../../img/Profile/" . $newfilename);
-     ReportStatus("Done", "Success");
-     } else {
-     ReportStatus("Error", "Database connection");
-
-     // echo $conn->connect_error;
-
-     }
-
-     // NOTE: Add prepered statement
-
-     */
-
-     // Send data to the database
-
-     $CreateUserSql = "INSERT INTO users
-                  (firstname, middlename, lastname, email, phone, birth_date, vgs, username, password, img_src, creation_date, creation_time, creation_ip)
-                  VALUES
-                  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-     if ($NewUserQurry = $conn->prepare($CreateUserSql)) {
-
-      // Upload img to server folder folder
-
-      move_uploaded_file($_FILES["ImgSrc"]["tmp_name"], "../../img/Profile/" . $newfilename);
-
-      // 13 values
-
-      $NewUserQurry->bind_param('ssssssissssss', $Firstname, $Middlename, $Lastname, $Email, $Phone, $Birth_Date, $Vgs, $Username, $Encrypted_Password, $filePath, $Creation_Date, $Creation_Time, $User_Ip);
-      $NewUserQurry->execute();
-      $NewUserQurry->close();
-      ReportStatus("Done", "Success");
-     } else {
-      ReportStatus("Error", "Database connection");
-     }
-
-     /*} // Check if file already exits */
-    }
-   } else {
-
-    // ---------- Validation failed ---------- //
-
-    ReportStatus("Error", "Image validation failed");
-   }
-  } else {
-
-   // ---------- No file was selected ---------- //
-
-   ReportStatus("Error", "Image not selected");
+// Loop thourgh array to see if any match
+foreach ($ValidExtensions as $ext) {
+  if ($ext == $File_Extension) {
+    $ValidFormat = true;
   }
+}
+
+// Check if file has a invalid extension
+if ($ValidFormat == false) {
+  JsonResponse("Failed", "", "Not a valid image format, image needs to be: .JPEG - .JPG - .PNG");
+  exit();
+}
+
+// ----------   ---------- //
+// END: Check if image file has a valid ext
+// ----------   ---------- //
+
+
+
+// Check if image is within 10MB
+if ($_FILES["ImgSrc"]["size"] > 10485760) {
+  JsonResponse("Failed", "", "Image size is too big, max size is 10MB");
+  exit();
+}
+
+
+
+// ----------   ---------- //
+// START: Declare variables for insert to DB
+// ----------   ---------- //
+
+// Set image filename (1 = increment)
+$Increment = '1';
+$NewImgName = $Username . '_' . $Increment . '.' . $File_Extension;
+
+// Set image path
+$NewImgPath = 'img/Profile/' . $NewImgName;
+
+// Set time and date
+date_default_timezone_set("Europe/Oslo");
+$Date_Now = date("d-m-Y");
+$Time_Now = date("H:i:s");
+
+// Get GetUserIP
+include($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/GetUserIP.php');
+$User_Ip = GetUserIP();
+
+// Hash password
+$Hashed_Password = password_hash($Password, PASSWORD_BCRYPT);
+
+// ----------   ---------- //
+// END: Declare variables for insert to DB
+// ----------   ---------- //
+
+
+
+// ----------   ---------- //
+// START: Insert values with prepared statement
+// ----------   ---------- //
+
+$Query = 'INSERT INTO users
+          (firstname, middlename, lastname, email, phone, birth_date, vgs, username,
+            password, img_src, creation_date, creation_time, creation_ip)
+          VALUES
+          (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+
+// Prepareing statement
+if (!($stmt = $conn->prepare($Query))) {
+  JsonResponse('Error', '', 'Prepareing statement');
+  exit();
+}
+
+// Binding parameters (13 values)
+if (!$stmt->bind_param('ssssssissssss', $Firstname, $Middlename, $Lastname, $Email,
+    $Phone, $Birth_Date, $Vgs, $Username, $Hashed_Password, $NewImgPath, $Date_Now, $Time_Now, $User_Ip)) {
+  JsonResponse('Error', '', 'Binding parameters');
+  exit();
+}
+
+// Executeing statement
+if (!$stmt->execute()) {
+  JsonResponse('Error', '', $stmt->error);
+  exit();
+}
+
+// Close prepared statement
+$stmt->close();
+
+// ----------   ---------- //
+// START: Insert values with prepared statement
+// ----------   ---------- //
+
+
 
 // Close connection to the database
 $conn->close();
+
+
+// Upload img to server folder folder
+move_uploaded_file($_FILES["ImgSrc"]["tmp_name"], "../../img/Profile/" . $NewImgName);
+
+
+// Send success response
+JsonResponse("Done", "User added", $Username . " successfully added");
+exit();
