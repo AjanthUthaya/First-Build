@@ -1,208 +1,179 @@
 <?php
+// Start session, and get access to session storage
 session_start();
 
-// Including db connection
-require '../Partials/DB.php';
+// Function to give AJAX response
+require($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/JsonResponse.php');
 
-require '../Functions/ReportStatus.php';
+// Function to log user activity
+require($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/UserOnline.php');
 
-// Required field from registration
+
+// ----------  ---------- //
+// START: Check for empty $_POST variables
+// ----------  ---------- //
+
+// Required fields for login
 $required = array(
   'Username',
   'Password'
 );
 
-// Loop over POST fields, make sure each one exists and is not empty
+// Set default value, before loop
 $Empty_Field = false;
 
+// Loops through the values to see if any are empty
 foreach($required as $field) {
   if (empty($_POST[$field])) {
     $Empty_Field = true;
   }
 }
 
-// If any empty fields return Empty field
+// If empty value is found, run this code
 if ($Empty_Field == true) {
-  ReportStatus("Error", "Missing_Field_Data");
-} else {
-
-  // ---------- START: Declaring POST values from Login.html ---------- //
-
-  $Username = $_POST["Username"];
-  $Password = $_POST["Password"];
-
-  // ---------- END: Declaring POST values from Login.html ---------- //
-
-
-// ---------- START: Check if username exists ---------- //
-
-  $CheckUsernameSql = "SELECT * FROM users WHERE username = '" . $Username . "' AND active = 'true'";
-  $UsernameExists = mysqli_query($conn, $CheckUsernameSql);
-
-// ---------- END: Check if username exists ---------- //
-
-  if (mysqli_num_rows($UsernameExists) !== 1) {
-    // ---------- Username no match to DB usernames ---------- //
-    ReportStatus("Failed", "Login failed, try again");
-  } else {
-
-    // ---------- START: Username match found ---------- //
-
-    // Get hased password from database and match with user input
-    while ($MatchLogin = mysqli_fetch_row($UsernameExists)){
-      //$DBPassword = $MatchLogin[1];
-      $DBMatchData = json_encode($MatchLogin, JSON_FORCE_OBJECT);
-    }
-
-    if (empty($DBMatchData)) {
-      // ---------- Could not get password from database ---------- //
-      ReportStatus("Error", "DB_GetData_Error: Error with database connection");
-    } else {
-
-      // ---------- Got password from database ---------- //
-
-      $DBMatchDataDecoded = json_decode($DBMatchData, true);
-
-      // Matching DBPassword with user input
-      if (password_verify($Password, $DBMatchDataDecoded[5])) {
-
-        // ---------- Password matched DBPassword ---------- //
-
-        // Declareing array for DB data
-        $DB_Data = array();
-
-        // ---------- START: Declaring data from DB into variables ---------- //
-
-        $DB_User_Id = $DBMatchDataDecoded[2];
-        $DB_User_Type = $DBMatchDataDecoded[3];
-        $DB_Username = $DBMatchDataDecoded[4];
-        $DB_Password = $DBMatchDataDecoded[5];
-        $DB_Firstname = $DBMatchDataDecoded[6];
-        $DB_Middlename = $DBMatchDataDecoded[7];
-        $DB_Lastname = $DBMatchDataDecoded[8];
-        $DB_Email = $DBMatchDataDecoded[9];
-        $DB_Phone = $DBMatchDataDecoded[10];
-        $DB_Birth_Date = $DBMatchDataDecoded[11];
-        $DB_Vgs = $DBMatchDataDecoded[12];
-        $DB_Img_Src = $DBMatchDataDecoded[13];
-
-        // ---------- END: Declaring data from DB into variables ---------- //
-
-        // Pushing variables into $DB_Data
-        array_push($DB_Data, $DB_User_Id, $DB_User_Type, $DB_Username, $DB_Password, $DB_Firstname, $DB_Middlename, $DB_Lastname, $DB_Email, $DB_Phone, $DB_Birth_Date, $DB_Vgs, $DB_Img_Src);
-
-        $DB_Array_Empty = false;
-
-        foreach((array)$DB_Data as $item) {
-          if (empty($item)) {
-            $DB_Array_Empty = true;
-          }
-        }
-
-        // ---------- START: Checking if any of the values are empty ---------- //
-        if ($DB_Array_Empty == false) {
-          // ---------- Did not find any empty values ---------- //
-
-          // ---------- START: Storing DB variables into session cookies ---------- //
-
-          // Set default timezone
-          date_default_timezone_set('Europe/Oslo');
-
-          // Date now (dd-mm-yyyy)
-          $DateNow = date('d-m-Y H:i:s');
-
-          $_SESSION['DB_User_Id'] = $DB_User_Id;
-          $_SESSION['DB_User_Type'] = $DB_User_Type;
-          $_SESSION['DB_Username'] = $DB_Username;
-          // $_SESSION['DB_Password'] = $DB_Password; // NB: Not sure if this is safe
-          $_SESSION['DB_Firstname'] = $DB_Firstname;
-          $_SESSION['DB_Middlename'] = $DB_Middlename;
-          $_SESSION['DB_Lastname'] = $DB_Lastname;
-          $_SESSION['DB_Email'] = $DB_Email;
-          $_SESSION['DB_Phone'] = $DB_Phone;
-          $_SESSION['DB_Birth_Date'] = $DB_Birth_Date;
-          $_SESSION['DB_Vgs'] = $DB_Vgs;
-          $_SESSION['DB_Img_Src'] = $DB_Img_Src;
-          $_SESSION['Login_Date'] = $DateNow;
-
-          // ---------- END: Storing DB variables into session cookies ---------- //
-
-          // Date now (dd-mm-yyyy)
-          $DateNow = date('d-m-Y');
-          // Time now (HH:MM:SS)
-          $TimeNow = date('H:i:s');
-
-          // ---------- Session && DB data is the same ---------- //
-          // NOTE: Send validation data to db, user_online
-
-          function getUserIP(){
-            $client  = @$_SERVER['HTTP_CLIENT_IP'];
-            $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
-            $remote  = $_SERVER['REMOTE_ADDR'];
-
-            if(filter_var($client, FILTER_VALIDATE_IP)){
-              $ip = $client;
-            }
-            elseif(filter_var($forward, FILTER_VALIDATE_IP)){
-              $ip = $forward;
-            }
-            else{
-              $ip = $remote;
-            }
-
-            return $ip;
-          }
-
-          // ---------- START: Declaring variables ---------- //
-
-          $Session_User_Id = $_SESSION['DB_User_Id'];
-          $Session_User_Type = $_SESSION['DB_User_Type'];
-          $Session_Username = $_SESSION['DB_Username'];
-          $User_Ip = getUserIP();
-          $Type = 'Login';
-          $Page = $_SERVER['HTTP_REFERER'];
-          // $DateNow
-          // $TimeNow
-
-          // ---------- END: Declaring variables ---------- //
-
-          // ---------- START: Send data to DB ---------- //
-
-          $sql = "INSERT INTO user_online (user_id, user_type, username, ip_address, type, page, last_update_date, last_update_time)
-          VALUES ('$Session_User_Id', '$Session_User_Type', '$Session_Username', '$User_Ip', '$Type', '$Page', '$DateNow', '$TimeNow')";
-
-          if ($conn->query($sql) === TRUE) {}
-
-          $conn->close();
-
-          // ---------- END: Send data to DB ---------- //
-
-          ReportStatus("Done", $DB_User_Type);
-
-        } else {
-          // ---------- Found empty value, NB: There should not be any empty values ---------- //
-          ReportStatus("Error", "DB_GetData_EmptyValue: Error with database connection");
-        }
-        // ---------- END: Checking if any of the values are empty ---------- //
-
-      } else {
-        // ---------- Password did not match DBPassword ---------- //
-        ReportStatus("Failed", "Login failed, try again");
-      }
-
-      // Print all values from array for TESTING
-      //print_r(array_values($DBMatchDataDecoded));
-
-    }
-
-
-
-    // ---------- END: Username match found ---------- //
-
-  }
-
-
-
+  JsonResponse('Failed', '', 'Please fill out all fields');
+  exit();
 }
+
+// ----------  ---------- //
+// END: Check for empty $_POST variables
+// ----------  ---------- //
+
+
+
+// ---------- START: Declaring POST values ---------- //
+
+$Username = $_POST['Username'];
+$Password = $_POST['Password'];
+
+// ---------- END: Declaring POST values ---------- //
+
+
+
+// Including db connection
+require($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/DB.php');
+
+
+
+// ----------  ---------- //
+// START: Check if username exists
+// ----------  ---------- //
+
+// Check if username exists
+$Query = 'SELECT * FROM users WHERE username = ? AND active = "true"';
+
+// Prepareing statement
+if (!($stmt = $conn->prepare($Query))) {
+  JsonResponse('Error', '', 'Prepareing statement');
+  exit();
+}
+
+// Binding parameters
+if (!$stmt->bind_param('s', $Username)) {
+  JsonResponse('Error', '', 'Binding parameters');
+  exit();
+}
+
+// Executeing statement
+if (!$stmt->execute()) {
+  JsonResponse('Error', '', 'Executeing statement');
+  exit();
+}
+
+// Store results from query
+$result = $stmt->get_result();
+
+// Check if num_rows is 0 (Username does not exist)
+if ($result->num_rows == 0) {
+  JsonResponse('Failed', '', 'Wrong username or password, try again');
+  // Report user activity
+  UserOnline('', '', $_POST['Username'], 'Login failed - Username not found');
+  exit();
+}
+
+// Define array to store values
+$data = array();
+
+// Loop through rows and store it in an array
+while ($row = $result->fetch_assoc()) {
+  $data[] = $row;
+}
+
+// Close prepared statement
+$stmt->close();
+
+// ----------  ---------- //
+// END: Check if username exists
+// ----------  ---------- //
+
+
+
+// ----------  ---------- //
+// START: Check if inputed password matches DB password
+// ----------  ---------- //
+
+if (!password_verify($Password, $data[0]['password'])) {
+  JsonResponse('Failed', '', 'Wrong username or password, try again');
+  // Report user activity
+  UserOnline('', '', $_POST['Username'], 'Login failed - Wrong password');
+  exit();
+}
+
+// ----------  ---------- //
+// END: Check if inputed password matches DB password
+// ----------  ---------- //
+
+
+
+// ----------  ---------- //
+// END: Check if any of the values are empty
+// ----------  ---------- //
+
+$DB_Array_Empty = false;
+
+foreach((array)$data[0] as $item) {
+  if (empty($item)) {
+   $DB_Array_Empty = true;
+  }
+}
+
+if ($DB_Array_Empty == true) {
+  JsonResponse('Error', '', 'Empty DB values');
+  // Report user activity
+  UserOnline('', '', $_POST['Username'], 'Login failed - Empty DB values');
+  exit();
+}
+
+// ----------  ---------- //
+// END: Check if any of the values are empty
+// ----------  ---------- //
+
+
+
+// ---------- START: Storeing user data in session + login date ---------- //
+
+$_SESSION['User_Id'] = $data[0]['id'];
+$_SESSION['User_Type'] = $data[0]['user_type'];
+$_SESSION['Username'] = $data[0]['username'];
+$_SESSION['Firstname'] = $data[0]['firstname'];
+$_SESSION['Middlename'] = $data[0]['middlename'];
+$_SESSION['Lastname'] = $data[0]['lastname'];
+$_SESSION['Email'] = $data[0]['email'];
+$_SESSION['Phone'] = $data[0]['phone'];
+$_SESSION['Birth_Date'] = $data[0]['birth_date'];
+$_SESSION['Img_Src'] = $data[0]['img_src'];
+
+// Set login date (DD-MM-YYYY HH:MM:SS)
+date_default_timezone_set('Europe/Oslo');
+$_SESSION['Login_Date'] = date('d-m-Y H:i:s');
+
+// ---------- END: Storeing user data in session + login date ---------- //
+
+
+
+// Report user activity
+UserOnline($_SESSION['User_Id'], $_SESSION['User_Type'], $_POST['Username'], 'Login successful');
+JsonResponse('Done', '', 'Login successful');
+exit();
 
 ?>

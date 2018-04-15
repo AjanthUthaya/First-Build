@@ -66,20 +66,17 @@ function ShowLogin() {
     // Fired up on success
     LoginRequest.done(function(data) {
 
+
       if (data.Status == 'Error') {
 
-        // ---------- START: Error ---------- //
 
-        // Title, TitleColor, Message, Icon, IconColor, Timeout
-        Notify('ERROR', 'red', data.Message, 'fa fa-close', 'red', false);
+        NotifyError(data.Title, data.Message);
         // Make button text back to 'Login' from spinner
         $('#Login-Submit').html('Login');
 
-        // ---------- END: Error ---------- //
 
       } else if (data.Status == 'Failed') {
 
-        // ---------- START: Login failed ---------- //
 
         //Start button shake and color change
         $('#Login-Submit').html('Login');
@@ -93,17 +90,13 @@ function ShowLogin() {
           $('#Login-Password').focus();
         }, 600);
 
-        // Title, TitleColor, Message, Icon, IconColor, Timeout
-        Notify('Login failed', 'yellow', data.Message, 'fa fa-warning', 'yellow', 3000);
+        NotifyFailed(data.Title, data.Message);
         // Make button text back to 'Login' from spinner
         $('#Login-Submit').html('Login');
 
 
-        // ---------- END: Login failed ---------- //
-
       } else if (data.Status == 'Done') {
 
-        // ---------- START: Login done ---------- //
 
         // Change login button text and color
         $('#Login-Submit').css('transition', 'none');
@@ -112,17 +105,16 @@ function ShowLogin() {
         window.location.href = 'Home.php';
 
 
-        // ---------- END: Login done ---------- //
-
       } else {
-        // ---------- START: Response not recognized ---------- //
-        // Title, TitleColor, Message, Icon, IconColor, Timeout
-        Notify('ERROR', 'red', 'Error: Response not recognized', 'fa fa-close', 'red', false);
-        // console.log(data); // NOTE: For testing
-        // ---------- END: Response not recognized ---------- //
+
+
+        NotifyError('Response error', 'Response not recognized');
         // Make button text back to 'Login' from spinner
         $('#Login-Submit').html('Login');
+
+
       }
+
 
     })
 

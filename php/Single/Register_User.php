@@ -3,7 +3,8 @@
 // Function to give AJAX response
 require($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/JsonResponse.php');
 
-
+// Function to log user activity
+require($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/UserOnline.php');
 
 // ----------   ---------- //
 // START: Check for empty $_POST variables
@@ -291,4 +292,6 @@ move_uploaded_file($_FILES["ImgSrc"]["tmp_name"], "../../img/Profile/" . $NewImg
 
 // Send success response
 JsonResponse("Done", "User added", $Username . " successfully added");
+// Report user activity
+UserOnline('', '', $_POST['Username'], 'Registration - New user added');
 exit();
