@@ -1,28 +1,49 @@
 <?php
 
 // ---------- START: Clears SESSION data ---------- //
+
+
 function ClearSession($Reason){
 
-  unset($_SESSION['DB_User_Id']);
-  unset($_SESSION['DB_User_Type']);
-  unset($_SESSION['DB_Username']);
-  unset($_SESSION['DB_Password']);
-  unset($_SESSION['DB_Firstname']);
-  unset($_SESSION['DB_Middlename']);
-  unset($_SESSION['DB_Lastname']);
-  unset($_SESSION['DB_Email']);
-  unset($_SESSION['DB_Phone']);
-  unset($_SESSION['DB_Birth_Date']);
-  unset($_SESSION['DB_Vgs']);
-  unset($_SESSION['DB_Img_Src']);
-  unset($_SESSION['Login_Date']);
+  // Session values inside array
+  require ($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/Session_Variables.php');
 
-  $Clear_Session_Data_Reason = $Reason;
 
-  // Redirect to login
-  return "Redirect-" . $Clear_Session_Data_Reason;
+  // Unset all session variables
+  foreach (array_keys($Session) as $key) {
+    unset($_SESSION[$key]);
+  }
+
+
+  // Reason for redirecting, add underscore where there is space
+  $RedirectReason = str_replace(' ', '_', $Reason);
+
+  // Return value
+  return 'Reason=' . $RedirectReason;
 
 }
+
+function ClearSessionAndRedirect($Reason){
+
+  // Session values inside array
+  require ($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/Session_Variables.php');
+
+
+  // Unset all session variables
+  foreach (array_keys($Session) as $key) {
+    unset($_SESSION[$key]);
+  }
+
+
+  // Reason for redirecting, add underscore where there is space
+  $RedirectReason = str_replace(' ', '_', $Reason);
+
+  // Redirect to login
+  echo '<script>window.location.href = "Login.html?Reason=' . $RedirectReason . '";</script>';
+  exit();
+
+}
+
 // ---------- END: Clears SESSION data ---------- //
 
  ?>

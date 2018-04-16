@@ -86,7 +86,7 @@ $stmt->close();
 
 // ----- Define exstra variables ----- //
 // Creation_Id:
-$Creation_Id = $_SESSION["DB_User_Id"];
+$Creation_Id = $_SESSION["User_Id"];
 
 // Creation_Ip:
 // Get user ip function

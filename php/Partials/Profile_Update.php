@@ -2,7 +2,7 @@
 session_start();
 
 // Including db connection
-require 'DB.php';
+require ($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/DB.php');
 
 // For testing
 /*print_r($_POST);

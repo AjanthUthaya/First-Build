@@ -2,7 +2,7 @@
 session_start();
 
 // Including db connection
-require 'DB.php';
+require ($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/DB.php');
 
 // Set default timezone
 date_default_timezone_set('Europe/Oslo');
@@ -35,9 +35,9 @@ function getUserIP(){
 
 // ---------- START: Declaring variables ---------- //
 
-$Session_User_Id = $_SESSION['DB_User_Id'];
-$Session_User_Type = $_SESSION['DB_User_Type'];
-$Session_Username = $_SESSION['DB_Username'];
+$Session_User_Id = $_SESSION['User_Id'];
+$Session_User_Type = $_SESSION['User_Type'];
+$Session_Username = $_SESSION['Username'];
 $User_Ip = getUserIP();
 $Type = 'Logout';
 $Page = $_SERVER['HTTP_REFERER'];
@@ -60,18 +60,18 @@ $conn->close();
 // Unset all data
 
 // ---------- Clears session data ---------- //
-unset($_SESSION['DB_User_Id']);
-unset($_SESSION['DB_User_Type']);
-unset($_SESSION['DB_Username']);
-unset($_SESSION['DB_Password']);
-unset($_SESSION['DB_Firstname']);
-unset($_SESSION['DB_Middlename']);
-unset($_SESSION['DB_Lastname']);
-unset($_SESSION['DB_Email']);
-unset($_SESSION['DB_Phone']);
-unset($_SESSION['DB_Birth_Date']);
-unset($_SESSION['DB_Vgs']);
-unset($_SESSION['DB_Img_Src']);
+unset($_SESSION['User_Id']);
+unset($_SESSION['User_Type']);
+unset($_SESSION['Username']);
+unset($_SESSION['Password']);
+unset($_SESSION['Firstname']);
+unset($_SESSION['Middlename']);
+unset($_SESSION['Lastname']);
+unset($_SESSION['Email']);
+unset($_SESSION['Phone']);
+unset($_SESSION['Birth_Date']);
+unset($_SESSION['Vgs']);
+unset($_SESSION['Img_Src']);
 unset($_SESSION['Login_Date']);
 
 // ---------- Echo reason for clearing out data ---------- //

@@ -64,18 +64,21 @@ $Query = 'SELECT * FROM users WHERE username = ? AND active = "true"';
 
 // Prepareing statement
 if (!($stmt = $conn->prepare($Query))) {
+  UserOnline('', '', $Username, 'Login error - Prepareing Statement');
   JsonResponse('Error', '', 'Prepareing statement');
   exit();
 }
 
 // Binding parameters
 if (!$stmt->bind_param('s', $Username)) {
+  UserOnline('', '', $Username, 'Login error - Binding Parameters');
   JsonResponse('Error', '', 'Binding parameters');
   exit();
 }
 
 // Executeing statement
 if (!$stmt->execute()) {
+  UserOnline('', '', $Username, 'Login error - Executeing Statement');
   JsonResponse('Error', '', 'Executeing statement');
   exit();
 }
@@ -85,9 +88,8 @@ $result = $stmt->get_result();
 
 // Check if num_rows is 0 (Username does not exist)
 if ($result->num_rows == 0) {
+  UserOnline('', '', $Username, 'Login failed - Username not found');
   JsonResponse('Failed', '', 'Wrong username or password, try again');
-  // Report user activity
-  UserOnline('', '', $_POST['Username'], 'Login failed - Username not found');
   exit();
 }
 
@@ -113,9 +115,8 @@ $stmt->close();
 // ----------  ---------- //
 
 if (!password_verify($Password, $data[0]['password'])) {
+  UserOnline('', '', $Username, 'Login failed - Wrong password');
   JsonResponse('Failed', '', 'Wrong username or password, try again');
-  // Report user activity
-  UserOnline('', '', $_POST['Username'], 'Login failed - Wrong password');
   exit();
 }
 
@@ -138,9 +139,8 @@ foreach((array)$data[0] as $item) {
 }
 
 if ($DB_Array_Empty == true) {
+  UserOnline('', '', $Username, 'Login failed - Empty DB values');
   JsonResponse('Error', '', 'Empty DB values');
-  // Report user activity
-  UserOnline('', '', $_POST['Username'], 'Login failed - Empty DB values');
   exit();
 }
 

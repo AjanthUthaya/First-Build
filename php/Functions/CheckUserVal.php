@@ -1,8 +1,32 @@
 <?php
 
-function CheckUserVal($conn)
-{
- require ($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/ClearSession.php');
+function CheckUserVal($conn) {
+ require($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/ClearSession.php');
+
+ // ----------  ---------- //
+ // START: Check if any values inside session is empty
+ // ----------  ---------- //
+
+ require($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/Session_Variables.php');
+
+ $Session_Empty = false;
+ foreach($SessionRequired as $Value) {
+  if (empty($_SESSION[$Value]) && isset($_SESSION[$Value])) {
+   $Session_Empty = true;
+  }
+ }
+
+ if ($Session_Empty == true) {
+  ClearSession('Session_Data_Empty');
+  exit();
+ }
+
+ return 'Session_DB_Equal';
+ exit();
+
+ // ----------  ---------- //
+ // END: Check if any values inside session is empty
+ // ----------  ---------- //
 
  if (isset($_SESSION['DB_User_Id'], $_SESSION['DB_User_Type'], $_SESSION['DB_Username'], $_SESSION['DB_Firstname'], $_SESSION['DB_Middlename'], $_SESSION['DB_Lastname'], $_SESSION['DB_Email'], $_SESSION['DB_Phone'], $_SESSION['DB_Birth_Date'], $_SESSION['DB_Img_Src'])) {
 

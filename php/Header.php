@@ -2,17 +2,12 @@
 // Start the session
 session_start();
 
-// NOTE: Error reporting for testing
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 // Including db connection
 require 'Partials/DB.php';
 
 // ---------- START: Check user validation ---------- //
 
-// Load function
+// Load function to check user validation
 require 'Functions/CheckUserVal.php';
 
 
@@ -75,7 +70,7 @@ if ($UserValidation !== 'Session_DB_Equal') {
     // ----- Session && DB data is the same ----- //
 
     // Declare session $_POST values into variables
-    require 'php/Functions/DeclareSessionVariables.php';
+    //require 'php/Functions/DeclareSessionVariables.php';
 
     // ---------- START: Send data to DB ---------- //
     $sql = "INSERT INTO user_online (user_id, user_type, username, ip_address, type, page, last_update_date, last_update_time)
@@ -87,7 +82,7 @@ if ($UserValidation !== 'Session_DB_Equal') {
 
     // ---------- START: Check access ---------- //
 
-    // DB config file
+    // Add function to check access
     require($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/RestrictAccess.php');
 
     // ---------- END: Check access ---------- //

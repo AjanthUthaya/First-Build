@@ -14,7 +14,6 @@ function UpdateUser($conn, $NewEmail, $NewPhone, $NewImg)
     $Session_Email = $_SESSION['DB_Email'];
     $Session_Phone = $_SESSION['DB_Phone'];
     $Session_Birth_Date = $_SESSION['DB_Birth_Date'];
-    $Session_Vgs = $_SESSION['DB_Vgs'];
     $Session_Img_Src = $_SESSION['DB_Img_Src'];
 
     // ---------- END: Get SESSION data ---------- //

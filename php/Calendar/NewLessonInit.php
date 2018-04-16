@@ -32,7 +32,7 @@ function ShadowDataInsert($ev)
     $Creation_Time = date("H:i:s");
 
     // Created by
-    $ev->set_value("creation_by", $_SESSION['DB_Username']);
+    $ev->set_value("creation_by", $_SESSION['Username']);
     // Date
     $ev->add_field("creation_date", $Creation_Date);
     // Time
@@ -41,7 +41,7 @@ function ShadowDataInsert($ev)
     $ev->add_field("creation_ip", GetUserIP());
 
     // Edited by
-    $ev->add_field("edit_by", $_SESSION['DB_Username']);
+    $ev->add_field("edit_by", $_SESSION['Username']);
     // Date
     $ev->add_field("edit_date", $Creation_Date);
     // Time
@@ -67,7 +67,7 @@ function ShadowDataUpdate($ev)
     // Get update data
     $Id = $ev->get_value("id");
 
-    $Edit_By = $_SESSION['DB_Username'];
+    $Edit_By = $_SESSION['Username'];
     $Edit_Date = $Creation_Date;
     $Edit_Time = $Creation_Time;
     $Edit_Ip = GetUserIP();
