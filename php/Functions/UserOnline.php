@@ -18,7 +18,7 @@ function UserOnline($User_Id, $User_Type, $Username, $Type){
   $User_Ip = GetUserIP();
 
   // Get current page url
-  $Page = $_SERVER['HTTP_REFERER'];
+  $Page = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
 
 

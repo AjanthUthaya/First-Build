@@ -1,14 +1,20 @@
 <?php
-// Start the session
 session_start();
 
-// Including db connection
-require 'Partials/DB.php';
+// DB config file
+require($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/DB.php');
 
-// ---------- START: Check user validation ---------- //
+// Function to check user validation
+require($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/CheckUserVal.php');
 
-// Load function to check user validation
-require 'Functions/CheckUserVal.php';
+// Function to log user activity
+require($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/UserOnline.php');
+
+// Get session variables
+require($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/Session_Variables.php');
+
+// Links to all main files, and access to $Filename variable
+require($_SERVER['DOCUMENT_ROOT'] . '/php/Pages/Links.php');
 
 
 // Set default timezone
@@ -19,77 +25,9 @@ $DateNow = date('d-m-Y');
 $TimeNow = date('H:i:s');
 
 
-// Get user ip
-include 'Functions/GetUserIp.php';
-$User_Ip = getUserIP();
+// Check user validation OnLoad, also checks access and displays any kind of errors
+CheckUserVal($conn);
 
-// Get current page
-$LoadPage = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-
-// Links to all main files
-require 'Pages/Links.php';
-
-// Check user validation OnLoad
-$UserValidation = CheckUserVal($conn);
-
-if ($UserValidation !== 'Session_DB_Equal') {
-    // Session && DB data is the same //
-    // CheckUserVal() function returns 'Redirect-$Reason' or 'Session_DB_Equal'
-
-    // ---------- START: List of all error responses ---------- //
-    /*
-
-    - Session_Data_NotSet
-    - Session_Data_Empty
-    - DB_Username_NoMatch
-    - DB_Data_Empty
-    - Session_DB_NotEqual
-
-    */
-    // ---------- END: List of all error responses ---------- //
-
-    // ---------- START: Send data to DB ---------- //
-    $sql = "INSERT INTO user_online (user_id, user_type, username, ip_address, type, page, last_update_date, last_update_time)
-    VALUES ('$Session_User_Id', '$Session_User_Type', '$Session_Username', '$User_Ip', 'OnLoad-Validation-Failed', '$LoadPage', '$DateNow', '$TimeNow')";
-
-    if ($conn->query($sql) === true) {}
-    // ---------- END: Send data to DB ---------- //
-
-    // ---------- START: Redirect to login ---------- //
-
-    $URL = 'login.html';
-
-
-    echo '<script> location.href="' . $URL . '"; </script>';
-
-    // ---------- END: Redirect to login ---------- //
-
-    exit();
-
-} else {
-    // ----- Session && DB data is the same ----- //
-
-    // Declare session $_POST values into variables
-    //require 'php/Functions/DeclareSessionVariables.php';
-
-    // ---------- START: Send data to DB ---------- //
-    $sql = "INSERT INTO user_online (user_id, user_type, username, ip_address, type, page, last_update_date, last_update_time)
-    VALUES ('$Session_User_Id', '$Session_User_Type', '$Session_Username', '$User_Ip', 'OnLoad-Validation-Success', '$LoadPage', '$DateNow', '$TimeNow')";
-
-    if ($conn->query($sql) === true) {}
-    // ---------- END: Send data to DB ---------- //
-
-
-    // ---------- START: Check access ---------- //
-
-    // Add function to check access
-    require($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/RestrictAccess.php');
-
-    // ---------- END: Check access ---------- //
-
-}
-
-// ---------- END: Check user validation ---------- //
  ?>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">

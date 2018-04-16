@@ -23,7 +23,7 @@ function ClearSession($Reason){
 
 }
 
-function ClearSessionAndRedirect($Reason){
+function ClearSessionAndRedirect($Status, $Reason){
 
   // Session values inside array
   require ($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/Session_Variables.php');
@@ -35,11 +35,8 @@ function ClearSessionAndRedirect($Reason){
   }
 
 
-  // Reason for redirecting, add underscore where there is space
-  $RedirectReason = str_replace(' ', '_', $Reason);
-
-  // Redirect to login
-  echo '<script>window.location.href = "Login.html?Reason=' . $RedirectReason . '";</script>';
+  // Redirect to login (Auto-Login sets reason)
+  echo '<script>window.location.href = "Login.html?' . $Status . '=' . $Reason . '";</script>';
   exit();
 
 }

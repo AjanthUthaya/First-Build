@@ -38,6 +38,7 @@
         FROM classes
         INNER JOIN programs ON classes.program_id = programs.id
         INNER JOIN years ON classes.year_id = years.id
+        WHERE classes.id != 0
         ORDER BY years.title';
 
         if (!($stmt = $conn->prepare($QueryGetClasses))) {

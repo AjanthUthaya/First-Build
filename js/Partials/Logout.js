@@ -12,10 +12,10 @@ if ($("#" + IdName).length !== 0) {
     // Declare ajax requests name
     var request;
 
-    // Function to stop what ever the page is doing and redirect the user to login page
-    function StopAndRedirect() {
+    // Function to stop everthing, and redirect to x
+    function StopAndRedirect(Href) {
       window.stop();
-      window.location.href = "Login.html";
+      window.location.href = Href;
     }
 
     // Fire off the request to php/Single/Logout.php
@@ -32,7 +32,7 @@ if ($("#" + IdName).length !== 0) {
     request.done(function(data) {
 
       if (data == "Logged out") {
-        StopAndRedirect();
+        StopAndRedirect('Login.html?Reason=Logged_Out');
       } else {
         alert("Error: Could not logout");
       }

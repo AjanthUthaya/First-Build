@@ -58,7 +58,7 @@ $NowDate = strtotime($DateNow);
 
 
 // Check if login date is valid (Within x days)
-if ($LoginDate < $NowDate){
+if ($LoginDate < $NowDate) {
   UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], 'AutoLogin failed - Login Date Expired');
   ClearSession('Login_Date_Expired');
   JsonResponse('Failed', '', 'Login_Date_Expired');

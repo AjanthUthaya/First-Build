@@ -1,32 +1,50 @@
 <?php
 
 function CheckUserVal($conn) {
+
+  // Function to clear and redirect to login
  require($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/ClearSession.php');
+
+ // Include array with session and SessionRequired
+ require($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/Session_Variables.php');
+
+
 
  // ----------  ---------- //
  // START: Check if any values inside session is empty
  // ----------  ---------- //
 
- require($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/Session_Variables.php');
-
  $Session_Empty = false;
  foreach($SessionRequired as $Value) {
-  if (empty($_SESSION[$Value]) && isset($_SESSION[$Value])) {
+  if (empty($_SESSION[$Value]) && !isset($_SESSION[$Value])) {
    $Session_Empty = true;
   }
  }
 
  if ($Session_Empty == true) {
-  ClearSession('Session_Data_Empty');
+  ClearSessionAndRedirect('Session Data Empty');
   exit();
  }
-
- return 'Session_DB_Equal';
- exit();
 
  // ----------  ---------- //
  // END: Check if any values inside session is empty
  // ----------  ---------- //
+
+
+
+ // ----------  ---------- //
+ // START: Check if Login_Date has expired
+ // ----------  ---------- //
+
+ 
+
+ // ----------  ---------- //
+ // END: Check if Login_Date has expired
+ // ----------  ---------- //
+
+ return 'Passed all params';
+ exit();
+
 
  if (isset($_SESSION['DB_User_Id'], $_SESSION['DB_User_Type'], $_SESSION['DB_Username'], $_SESSION['DB_Firstname'], $_SESSION['DB_Middlename'], $_SESSION['DB_Lastname'], $_SESSION['DB_Email'], $_SESSION['DB_Phone'], $_SESSION['DB_Birth_Date'], $_SESSION['DB_Img_Src'])) {
 
