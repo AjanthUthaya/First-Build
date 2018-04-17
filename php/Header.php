@@ -2,31 +2,45 @@
 session_start();
 
 // DB config file
-require($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/DB.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/DB.php');
 
 // Function to check user validation
-require($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/CheckUserVal.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/CheckUserVal.php');
 
 // Function to log user activity
-require($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/UserOnline.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/UserOnline.php');
 
 // Get session variables
-require($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/Session_Variables.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/Session_Variables.php');
 
 // Links to all main files, and access to $Filename variable
-require($_SERVER['DOCUMENT_ROOT'] . '/php/Pages/Links.php');
-
-
-// Set default timezone
-date_default_timezone_set('Europe/Oslo');
-// Date now (dd-mm-yyyy)
-$DateNow = date('d-m-Y');
-// Time now (HH:MM:SS)
-$TimeNow = date('H:i:s');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/php/Pages/Links.php');
 
 
 // Check user validation OnLoad, also checks access and displays any kind of errors
-CheckUserVal($conn);
+$UserVal = CheckUserVal($conn, $Session, 'Load');
+
+
+if ($UserVal['Status'] == 'Done') {
+  // Login successful
+
+} elseif ($UserVal['Status'] == 'Failed') {
+  // Login failed
+
+  ClearSessionDoc($Status, $UserVal['Message']);
+  exit();
+} elseif ($UserVal['Status'] == 'Error') {
+  // Login error
+
+  ClearSessionDoc($Status, $UserVal['Message']);
+  exit();
+} else {
+  // Response not recognized
+
+  ClearSessionDoc('Error', 'Response not recognized');
+  exit();
+}
+
 
  ?>
 <!doctype html>

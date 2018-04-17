@@ -1,24 +1,35 @@
 <?php
 
-function UserOnline($User_Id, $User_Type, $Username, $Type){
+function UserOnline($User_Id, $User_Type, $Username, $Type, $Page){
 
-  // Check if user_id is not defined
+
+
+  // ----------  ---------- //
+  // START: Check for undefined values
+  // ----------  ---------- //
+
   if ($User_Id == '') {
     $User_Id = '0';
   }
 
-  // Check if user_id is not defined
   if ($User_Type == '') {
     $User_Type = 'Unknown';
   }
+
+  if (!isset($Page)) {
+    // Get current page url
+    $Page = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+  }
+
+  // ----------  ---------- //
+  // END: Check for undefined values
+  // ----------  ---------- //
+
 
 
   // Get user ip address
   require_once($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/GetUserIp.php');
   $User_Ip = GetUserIP();
-
-  // Get current page url
-  $Page = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
 
 

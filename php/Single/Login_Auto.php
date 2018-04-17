@@ -17,27 +17,54 @@ require ($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/Session_Variables.php');
 require ($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/UserOnline.php');
 
 
+
 // ----------   ---------- //
 // START: Check if all session variables are set
 // ----------   ---------- //
 
-$Session_NotSet = false;
+$Session_Not_Set = false;
 
 foreach ($Session as $key => $value) {
   if (!isset($_SESSION[$key])) {
-    $Session_NotSet = true;
+    $Session_Not_Set = true;
   }
 }
 
 
-if ($Session_NotSet == true) {
-  ClearSession('Session_NotSet');
-  JsonResponse('Failed', '', 'Session_NotSet');
+if ($Session_Not_Set == true) {
+  ClearSession('Session_Not_Set');
+  JsonResponse('Failed', '', 'Session_Not_Set');
   exit();
 }
 
 // ----------   ---------- //
 // START: Check if all session variables are set
+// ----------   ---------- //
+
+
+
+// ----------   ---------- //
+// START: Check if any of the session variables are empty
+// ----------   ---------- //
+
+$Session_Empty = false;
+
+foreach ($Session as $key => $value) {
+  if (empty($value)) {
+    $Session_Empty = true;
+  }
+}
+
+
+if ($Session_Empty == true) {
+  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], 'AutoLogin failed - Session Empty', $_SERVER["HTTP_REFERER"]);
+  ClearSession('Session_Empty');
+  JsonResponse('Failed', '', 'Session_Empty');
+  exit();
+}
+
+// ----------   ---------- //
+// END: Check if any of the session variables are empty
 // ----------   ---------- //
 
 
@@ -59,7 +86,7 @@ $NowDate = strtotime($DateNow);
 
 // Check if login date is valid (Within x days)
 if ($LoginDate < $NowDate) {
-  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], 'AutoLogin failed - Login Date Expired');
+  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], 'AutoLogin failed - Login Date Expired', $_SERVER["HTTP_REFERER"]);
   ClearSession('Login_Date_Expired');
   JsonResponse('Failed', '', 'Login_Date_Expired');
   exit();
@@ -67,32 +94,6 @@ if ($LoginDate < $NowDate) {
 
 // ----------   ---------- //
 // END: Set and compare time in unix timestamp (seconds since 1970)
-// ----------   ---------- //
-
-
-
-// ----------   ---------- //
-// START: Check if any of the session variables are empty
-// ----------   ---------- //
-
-$Session_Empty = false;
-
-foreach ($Session as $key => $value) {
-  if (empty($value)) {
-    $Session_Empty = true;
-  }
-}
-
-
-if ($Session_Empty == true) {
-  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], 'AutoLogin failed - Session Empty');
-  ClearSession('Session_Empty');
-  JsonResponse('Failed', '', 'Session_Empty');
-  exit();
-}
-
-// ----------   ---------- //
-// END: Check if any of the session variables are empty
 // ----------   ---------- //
 
 
@@ -107,7 +108,7 @@ $Query = 'SELECT * FROM users WHERE username = ? AND active = "true"';
 
 // Prepareing statement
 if (!($stmt = $conn->prepare($Query))) {
-  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], 'AutoLogin error - Prepareing Statement');
+  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], 'AutoLogin error - Prepareing Statement', $_SERVER["HTTP_REFERER"]);
   ClearSession('Prepareing_Statement');
   JsonResponse('Error', '', 'Prepareing_Statement');
   exit();
@@ -115,7 +116,7 @@ if (!($stmt = $conn->prepare($Query))) {
 
 // Binding parameters
 if (!$stmt->bind_param('s', $Session['Username'])) {
-  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], 'AutoLogin error - Binding Parameters');
+  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], 'AutoLogin error - Binding Parameters', $_SERVER["HTTP_REFERER"]);
   ClearSession('Binding_Parameters');
   JsonResponse('Error', '', 'Binding_Parameters');
   exit();
@@ -123,7 +124,7 @@ if (!$stmt->bind_param('s', $Session['Username'])) {
 
 // Executeing statement
 if (!$stmt->execute()) {
-  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], 'AutoLogin error - Executeing Statement');
+  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], 'AutoLogin error - Executeing Statement', $_SERVER["HTTP_REFERER"]);
   ClearSession('Executeing_Statement');
   JsonResponse('Error', '', 'Executeing_Statement');
   exit();
@@ -134,7 +135,7 @@ $result = $stmt->get_result();
 
 // Check if result is empty
 if ($result->num_rows == 0) {
-  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], 'AutoLogin failed - Username Not Found');
+  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], 'AutoLogin failed - Username Not Found', $_SERVER["HTTP_REFERER"]);
   ClearSession('Username_Not_Found');
   JsonResponse('Failed', '', 'Username_Not_Found');
   exit();
@@ -174,7 +175,7 @@ foreach ($DB as $key => $value) {
 }
 
 if ($DB_Empty == true) {
-  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], 'AutoLogin failed - DB Empty');
+  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], 'AutoLogin failed - DB Empty', $_SERVER["HTTP_REFERER"]);
   ClearSession('DB_Empty');
   JsonResponse('Failed', '', 'DB_Empty');
   exit();
@@ -231,9 +232,9 @@ foreach ($Session_Compare as $Session_Key => $Session_Value) {
 
 
 if ($Session_DB_Equal == false) {
-  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], 'AutoLogin failed - Session DB NotEqual');
-  ClearSession('Session_DB_NotEqual');
-  JsonResponse('Failed', '', 'Session_DB_NotEqual');
+  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], 'AutoLogin failed - Session DB NotEqual', $_SERVER["HTTP_REFERER"]);
+  ClearSession('Session_DB_Not_Equal');
+  JsonResponse('Failed', '', 'Session_DB_Not_Equal');
   exit();
 }
 
@@ -247,7 +248,7 @@ if ($Session_DB_Equal == false) {
 // START: DONE
 // ----------   ---------- //
 
-UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], 'AutoLogin successful');
+UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], 'AutoLogin successful', $_SERVER["HTTP_REFERER"]);
 JsonResponse('Done', '', 'Session_DB_Equal');
 exit();
 

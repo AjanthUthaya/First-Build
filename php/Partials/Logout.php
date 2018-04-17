@@ -14,7 +14,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/UserOnline.php');
 require($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/Session_Variables.php');
 
 
-UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], 'Logged out');
+UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], 'Logged out', $_SERVER["HTTP_REFERER"]);
 ClearSession('Logged_Out');
 
 

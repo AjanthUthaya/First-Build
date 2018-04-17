@@ -2,8 +2,12 @@
 
 // Declaring filename
 $File = explode('.', basename($_SERVER['SCRIPT_FILENAME']));
+// Gives you the filename
 $Filename = $File[0];
+// Gives you the file extension
 $FileExt = $File[1];
+
+// Put a space in between capital letters
 $FilenameSplit = preg_split('/(?=[A-Z])/', $Filename);
 $FilenameFull = implode(" ", array_filter($FilenameSplit));
 
