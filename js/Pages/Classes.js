@@ -1,3 +1,6 @@
+// Include functions to display notifications
+require("js/Functions/Notify.js");
+
 function init() {
 
   // Captalize first letter of input
@@ -39,7 +42,7 @@ function init() {
     "ordering": true,
     // Default orderdering (asc/desc)
     "order": [
-      [1, 'desc'],
+      [2, 'asc'],
       [0, 'asc']
     ],
     // Activate search bar
@@ -55,6 +58,8 @@ function init() {
     "initComplete": function(settings, json) {
       // Hide loading
       $('#Loading-Table').hide();
+      // Show search
+      $('#List-Search').show();
       // Show table after loading
       $('#List').show();
     }
@@ -235,6 +240,7 @@ function init() {
     data: YearList,
     selectText: 'Select Year',
     onSelected: function(data) {
+
       if (data.selectedIndex == 0) {
         LoadingFailed = $('#AddClass-Year .dd-option span').hasClass('FailedListIcon');
         if (LoadingFailed) {
@@ -331,7 +337,8 @@ function init() {
 
         setTimeout(function() {
           location.reload();
-        }, 2500);;
+        }, 2500);
+
       } else {
         NotifyError('Response error', 'Response not recognized');
       }
@@ -339,7 +346,7 @@ function init() {
 
     // Fired up on failure
     RequestAddClass.fail(function(xhr, textStatus, errorThrown) {
-      NotifyError('Server error', textStatus + ' adding class');
+      NotifyError('Server error', textStatus);
     })
 
     // Fired up no matter if the result is a success or failure
@@ -411,12 +418,65 @@ function init() {
 
     // Fired up on success
     Request.done(function(data) {
-      console.log(data);
+      if (data.Status == 'Error') {
+        NotifyError(data.Title, data.Message);
+      } else if (data.Status == 'Failed') {
+        NotifyFailed(data.Title, data.Message);
+      } else if (data.Status == 'Done') {
+        NotifyDone(data.Title, data.Message);
+
+        // Destroy DDSlick
+        $('#AddClass-Program').ddslick('destroy');
+
+        // Add the new program to array
+        ProgramList.push({
+          'value': data.Id,
+          'text': data.Program + ' (' + data.Code + ')'
+        });
+
+        // INIT DDSlick for program list
+        $('#AddClass-Program').ddslick({
+          data: ProgramList,
+          selectText: 'Select Program',
+          onSelected: function(data) {
+
+            if (data.selectedIndex == 0) {
+              LoadingFailed = $('#AddClass-Program .dd-option span').hasClass('FailedListIcon');
+              if (LoadingFailed) {
+                $("#AddClass-Program .dd-selected").text("Select Program");
+              } else {
+                $("#AddClass-Program .dd-selected").text("Select Program");
+                $("#AddProgram").modal({
+                  fadeDuration: 250,
+                  fadeDelay: 0.20,
+                  closeExisting: false
+                });
+              }
+            }
+
+          }
+        });
+
+        // Add class to first item(+ Add new)
+        $('#AddClass-Program .dd-options li:first').addClass('AddNew');
+
+        // Close add program modal
+        $('#AddProgram').modal('close');
+
+        // Open add class again
+        setTimeout(function() {
+          $("#AddClassModal").modal({});
+        }, 250);
+
+
+      } else {
+        NotifyError('Response error', 'Response not recognized');
+      }
     })
 
     // Fired up on failure
     Request.fail(function(xhr, textStatus, errorThrown) {
-      NotifyError('Server error', textStatus + ' failed to add program');
+      NotifyError('Server error', textStatus);
     })
 
     // Fired up no matter if the result is a success or failure
@@ -432,5 +492,170 @@ function init() {
   // ----------   ---------- //
   // END: ADD PROGRAM
   // ----------   ---------- //
+
+
+
+  // ----------   ---------- //
+  // START: ADD YEAR
+  // ----------   ---------- //
+
+  // Send data to php for processing
+  // Define form data variable
+  var FormDataAddYear = new FormData();
+
+  // Variable to hold request
+  var RequestAddYear;
+
+  $(document).on('click', '#AddYear-Add', function(event) {
+
+    // Abort any pending request
+    if (RequestAddYear) {
+      RequestAddYear.abort();
+    }
+
+
+    // ---------- START: Declaring field values ---------- //
+
+    FormDataAddYear.append('Title', $('#AddYear-Title').val());
+    FormDataAddYear.append('Start_Date', $('#AddYear-Start_Date').val());
+    FormDataAddYear.append('End_Date', $('#AddYear-End_Date').val());
+
+    // ---------- END: Declaring field values ---------- //
+
+
+    // ----- START: Disabling input during form submit ----- //
+
+    var $inputs = $("#AddYear").find("input, select, button, textarea");
+
+    // Let's disable the inputs for the duration of the Ajax request.
+    $inputs.prop("disabled", true);
+
+    // ----- END: Disabling input during form submit ----- //
+
+
+    // ---------- START: Form submit ---------- //
+
+    // Fire off the request
+    Request = $.ajax({
+      url: "php/Single/Add_Year.php",
+      type: "post",
+      data: FormDataAddYear,
+      dataType: "json",
+      async: false,
+      contentType: false, // The content type used when sending data to the server.
+      cache: false, // To unable request pages to be cached
+      processData: false, // To send DOMDocument or non processed data file it is set to false
+    });
+
+    // Fired up on success
+    Request.done(function(data) {
+      if (data.Status == 'Error') {
+        NotifyError(data.Title, data.Message);
+      } else if (data.Status == 'Failed') {
+        NotifyFailed(data.Title, data.Message);
+      } else if (data.Status == 'Done') {
+        NotifyDone(data.Title, data.Message);
+
+        // Destroy DDSlick
+        $('#AddClass-Year').ddslick('destroy');
+
+        // Add the new program to array
+        YearList.push({
+          'value': data.Id,
+          'text': data.Title
+        });
+
+        // INIT DDSlick for program list
+        $('#AddClass-Year').ddslick({
+          data: YearList,
+          selectText: 'Select Year',
+          onSelected: function(data) {
+
+            if (data.selectedIndex == 0) {
+              LoadingFailed = $('#AddClass-Year .dd-option span').hasClass('FailedListIcon');
+              if (LoadingFailed) {
+                $("#AddClass-Program .dd-selected").text("Select Year");
+              } else {
+                $("#AddClass-Year .dd-selected").text("Select Year");
+                $("#AddYear").modal({
+                  fadeDuration: 250,
+                  fadeDelay: 0.20,
+                  closeExisting: false
+                });
+              }
+            }
+
+          }
+        });
+
+        // Add class to first item(+ Add new)
+        $('#AddClass-Year .dd-options li:first').addClass('AddNew');
+
+        // Close add program modal
+        $('#AddYear').modal('close');
+
+        // Open add class again
+        setTimeout(function() {
+          $("#AddClassModal").modal({});
+        }, 300);
+
+
+      } else {
+        NotifyError('Response error', 'Response not recognized');
+      }
+    })
+
+    // Fired up on failure
+    Request.fail(function(xhr, textStatus, errorThrown) {
+      NotifyError('Server error', textStatus);
+    })
+
+    // Fired up no matter if the result is a success or failure
+    Request.always(function() {
+      // Reenable the inputs
+      $inputs.prop("disabled", false);
+    })
+
+    // ---------- END: Form submit ---------- //
+
+  });
+
+  // ----------   ---------- //
+  // END: ADD YEAR
+  // ----------   ---------- //
+
+
+
+  // ----------   ---------- //
+  // START: Delete function
+  // ----------   ---------- //
+
+  function ConfirmDelete(Type, Title, Message, Id) {
+
+    if (Id !== '') {
+      // ID
+      $('#Delete-Id').val(Id);
+    }
+
+    // Title
+    $('#Delete-Title').html(Title);
+
+    // Message
+    $('#Delete-Message').html(Message);
+
+    $('#Delete').addClass(Type);
+
+    $("#Delete").modal({
+      fadeDuration: 250,
+      fadeDelay: 0.20
+    });
+
+  }
+
+  // ----------   ---------- //
+  // END: Delete function
+  // ----------   ---------- //
+
+
 
 }

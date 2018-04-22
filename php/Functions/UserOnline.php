@@ -1,6 +1,6 @@
 <?php
 
-function UserOnline($User_Id, $User_Type, $Username, $Type, $Page){
+function UserOnline($User_Id, $User_Type, $Username, $Type, $Page) {
 
 
 

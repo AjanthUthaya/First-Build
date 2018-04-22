@@ -3,7 +3,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/DB.php');
 
 
-$sql = "SELECT * FROM programs ORDER BY program";
+$sql = "SELECT * FROM programs WHERE id != 0 ORDER BY program";
 $result = $conn->query($sql);
 
 if ($result->num_rows == 0) {

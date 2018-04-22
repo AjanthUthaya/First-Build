@@ -72,6 +72,10 @@ label.dd-selected-text {
   color: white;
 }
 
+.dd-options {
+  box-shadow: none !important;
+}
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -111,6 +115,15 @@ table#List th, table#List td {
   text-align: center;
 }
 
+#List thead {
+  background: #36414d;
+  color: white;
+}
+
+table.dataTable.stripe tbody tr.odd, table.dataTable.display tbody tr.odd {
+  background-color: #e2e2e2;
+}
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -129,11 +142,13 @@ table#List th, table#List td {
   border-top-right-radius: 8px;
   height: 50px;
   font-size: 14px;
-  color: black;
+  color: white;
   font-weight: bold;
   text-align: center;
   text-transform: capitalize;
   padding-bottom: 5px;
+  background: #35414d;
+  display: none;
 }
 
 table.dataTable thead th, table.dataTable thead td {
@@ -145,7 +160,7 @@ table.dataTable.no-footer {
 }
 
 #List-Search:focus {
-  border-bottom: 2px solid #797979;
+  border-bottom: 2px solid white;
 }
 
 /* Center paging buttons */
@@ -291,6 +306,57 @@ div#List_paginate .pagination {
 
 .AddProgram-Program input, .AddProgram-Code input {
   padding: 0px 10px;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  Add Year Form
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+#AddYear .Modal-Form * {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.AddYear-First {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 30px;
+}
+
+.AddYear-First input {
+  max-width: 400px;
+  text-align: center;
+}
+
+.AddYear-Second label, .AddYear-Third label {
+  width: 30%;
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.AddYear-Second input, .AddYear-Third input {
+  text-align: center;
+  padding-left: 65px;
+}
+
+.AddYear-Second {
+  display: flex;
+  padding-bottom: 10px;
+}
+
+.AddYear-Third {
+  display: flex;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

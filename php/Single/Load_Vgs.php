@@ -10,6 +10,7 @@ $QueryGetClasses = 'SELECT classes.id, classes.vgs, programs.code, classes.separ
 FROM classes
 INNER JOIN programs ON classes.program_id = programs.id
 INNER JOIN years ON classes.year_id = years.id
+WHERE classes.id != 0
 ORDER BY years.title, classes.vgs, programs.code, classes.separator';
 
 if (!($stmt = $conn->prepare($QueryGetClasses))) {

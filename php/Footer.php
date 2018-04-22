@@ -18,7 +18,7 @@
 
   <div class="Footer-Logo">
     <div class="Footer-Logo-Underlayer">
-      <a href="<?php echo $URI_Home ?>"><img src="http://via.placeholder.com/90x90" width="90px" height="90px" alt="Logo-Footer"></a>
+      <a href="<?php echo $URI_Home ?>"><img src="//via.placeholder.com/90x90" width="90px" height="90px" alt="Logo-Footer"></a>
     </div>
   </div>
 
@@ -64,7 +64,7 @@
 
 <?php
 if ($Filename == 'Classes') {
-  
+
 } else {
   include 'Scripts.php';
 }

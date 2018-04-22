@@ -13,7 +13,6 @@ body {
   min-height: calc(100vh - 60px);
   margin-top: 60px;
   justify-content: center;
-  padding-bottom: 40px;
 }
 
 button {

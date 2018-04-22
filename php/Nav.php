@@ -20,7 +20,7 @@
       </div>
 
       <div class="Rectangle">
-        <a href="<?php echo $URI_Home ?>"><img src="http://via.placeholder.com/50x50" alt="Logo-TopNav" id="TopBar-Logo" class="unselectable"/></a>
+        <a href="<?php echo $URI_Home ?>"><img src="//via.placeholder.com/50x50" alt="Logo-TopNav" id="TopBar-Logo" class="unselectable"/></a>
       </div>
 
       <div class="Triangle-Right">

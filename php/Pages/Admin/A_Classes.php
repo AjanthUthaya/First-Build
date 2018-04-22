@@ -19,8 +19,9 @@
     <table id="List" class="stripe">
       <thead>
           <tr>
-              <th>Class</th>
-              <th>Year</th>
+            <th>Full code</th>
+            <th>Program</th>
+            <th>Year</th>
           </tr>
       </thead>
       <tbody>
@@ -34,7 +35,7 @@
         require($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/DocResponse.php');
 
         // MySQLi statement
-        $QueryGetClasses = 'SELECT classes.id, classes.vgs, programs.code, classes.separator, years.title
+        $QueryGetClasses = 'SELECT classes.id, programs.program, classes.vgs, programs.code, classes.separator, years.title
         FROM classes
         INNER JOIN programs ON classes.program_id = programs.id
         INNER JOIN years ON classes.year_id = years.id
@@ -53,7 +54,7 @@
 
         $stmt->store_result();
 
-        $stmt->bind_result($Id, $Vgs, $Code, $Separator, $Title);
+        $stmt->bind_result($Id, $Program, $Vgs, $Code, $Separator, $Title);
 
         $ResultClasses;
 
@@ -65,6 +66,7 @@
 
               <tr data-id="<?php echo $Id; ?>">
                 <td><?php echo $Vgs . $Code . $Separator; ?></td>
+                <td><?php echo $Program; ?></td>
                 <td><?php echo $Title; ?></td>
               </tr>
 
@@ -135,7 +137,7 @@
 
 <!-- Add program to DB using AJAX -->
 <div id="AddProgram" class="modal">
-  <input type="hidden" id="AddClass-Id" value="">
+  <input type="hidden" id="AddProgram-Id" value="">
 
   <div class="Modal-Header">
     <label>Add new program</label>
@@ -157,4 +159,60 @@
   <div class="Modal-Buttons">
     <a class="button" id="AddProgram-Add">Add program</a>
   </div>
+</div>
+
+<!-- Add program to DB using AJAX -->
+<div id="AddYear" class="modal">
+  <input type="hidden" id="AddYear-Id" value="">
+
+  <div class="Modal-Header">
+    <label>Add new year</label>
+    <a rel="modal:close">x</a>
+  </div>
+
+  <div class="Modal-Form">
+
+    <div class="AddYear-First">
+      <label>Title</label>
+      <input type="text" id="AddYear-Title" placeholder="Default: START_Year / END_Year">
+    </div>
+
+    <div class="AddYear-Second">
+      <label>Start date</label>
+      <input type="date" id="AddYear-Start_Date">
+    </div>
+
+    <div class="AddYear-Third">
+      <label>End date</label>
+      <input type="date" id="AddYear-End_Date">
+    </div>
+
+  </div>
+
+  <div class="Modal-Buttons">
+    <a class="button" id="AddYear-Add">Add year</a>
+  </div>
+
+</div>
+
+<!-- Are you sure, confirmation before delete -->
+<div id="Delete" class="modal">
+  <input type="hidden" id="Delete-Id" value="">
+
+  <div class="Modal-Header">
+    <label id="Delete-Title"></label>
+    <a rel="modal:close">x</a>
+  </div>
+
+  <div class="Modal-Form">
+
+    <h3 id="Delete-Message"></h3>
+
+  </div>
+
+  <div class="Modal-Buttons">
+    <a class="button" id="Delete-No">Cancel</a>
+    <a class="alert button" id="Delete-Yes">Delete</a>
+  </div>
+
 </div>

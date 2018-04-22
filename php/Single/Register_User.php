@@ -6,6 +6,8 @@ require($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/JsonResponse.php');
 // Function to log user activity
 require($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/UserOnline.php');
 
+
+
 // ----------   ---------- //
 // START: Check for empty $_POST variables
 // ----------   ---------- //
@@ -17,7 +19,6 @@ $required = array(
  'Email',
  'Phone',
  'Birth_Date',
- 'Vgs',
  'Username',
  'Password',
  'CPassword'
@@ -92,12 +93,11 @@ if ($responseData->success !== true) {
 // ----------   ---------- //
 
 $Firstname = $_POST["Firstname"];
-$Middlename = $_POST["Middlename"] ? : 'NULL';
+$Middlename = $_POST["Middlename"] ?: 'NULL';
 $Lastname = $_POST["Lastname"];
 $Email = $_POST["Email"];
 $Phone = $_POST["Phone"];
 $Birth_Date = $_POST["Birth_Date"];
-$Vgs = $_POST["Vgs"];
 $Username = $_POST["Username"];
 $Password = $_POST["Password"];
 $CPassword = $_POST["CPassword"];
@@ -249,10 +249,10 @@ $Hashed_Password = password_hash($Password, PASSWORD_BCRYPT);
 // ----------   ---------- //
 
 $Query = 'INSERT INTO users
-          (firstname, middlename, lastname, email, phone, birth_date, vgs, username,
+          (firstname, middlename, lastname, email, phone, birth_date, username,
             password, img_src, creation_date, creation_time, creation_ip)
           VALUES
-          (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+          (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
 // Prepareing statement
 if (!($stmt = $conn->prepare($Query))) {
@@ -261,8 +261,8 @@ if (!($stmt = $conn->prepare($Query))) {
 }
 
 // Binding parameters (13 values)
-if (!$stmt->bind_param('ssssssissssss', $Firstname, $Middlename, $Lastname, $Email,
-    $Phone, $Birth_Date, $Vgs, $Username, $Hashed_Password, $NewImgPath, $Date_Now, $Time_Now, $User_Ip)) {
+if (!$stmt->bind_param('ssssssssssss', $Firstname, $Middlename, $Lastname, $Email,
+    $Phone, $Birth_Date, $Username, $Hashed_Password, $NewImgPath, $Date_Now, $Time_Now, $User_Ip)) {
   JsonResponse('Error', '', 'Binding parameters');
   exit();
 }

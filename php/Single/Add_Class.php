@@ -132,6 +132,7 @@ $stmt->close();
 
 // ---------- ---------- //
 // START: Get data from inserted item
+// NOTE: Droped this, currently just using JS to refresh
 // ---------- ---------- //
 /*
 $Query = "SELECT  FROM table WHERE row = ?";
