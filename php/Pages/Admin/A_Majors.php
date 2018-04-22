@@ -56,7 +56,7 @@
 <!-- Add major to DB using AJAX -->
 <div id="AddMajor-Modal" class="modal">
 
-  <div class="AddMajor-Header">
+  <div class="Modal-Header">
     <label>Add new major</label>
     <a rel="modal:close">x</a>
   </div>
@@ -77,16 +77,18 @@
 
 
     <div class="AddMajor-Details">
+      <!--
       <div class="AddMajor-Details-Vgs">
         <label>VGS</label>
         <select class="AddMajor-Vgs-Value" id="AddMajor-Vgs">
           <option value="" selected disabled>Select VGS</option>
           <option value="All">All</option>
-          <option value="1">1-VGS</option>
-          <option value="2">2-VGS</option>
-          <option value="3">3-VGS</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
         </select>
       </div>
+      -->
 
       <div class="AddMajor-Details-Color">
         <label>Color</label>

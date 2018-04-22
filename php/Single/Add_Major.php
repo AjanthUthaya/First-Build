@@ -97,7 +97,7 @@ ReportStatus("Error", "Prepareing statement");
 exit();
 }
 
-if (!$stmt->bind_param("ssssi", $_POST['Major'], $_POST['Code'], $_POST['Vgs'], $_POST['Color'], $_POST['Hours'])) {
+if (!$stmt->bind_param("ssssi", $_POST['Major'], strtoupper($_POST['Code']), $_POST['Vgs'], $_POST['Color'], $_POST['Hours'])) {
 ReportStatus("Error", "Binding parameters");
 exit();
 }
@@ -121,7 +121,7 @@ $conn->close();
 $Response['Status'] = 'Done';
 $Response['Message'] = $_POST['Major'] . ' added to DB';
 $Response['Major'] = $_POST['Major'];
-$Response['Code'] = $_POST['Code'];
+$Response['Code'] = strtoupper($_POST['Code']);
 $Response['Color'] = $_POST['Color'];
 
 

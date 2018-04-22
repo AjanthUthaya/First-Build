@@ -466,7 +466,7 @@ function init() {
         // Open add class again
         setTimeout(function() {
           $("#AddClassModal").modal({});
-        }, 250);
+        }, 300);
 
 
       } else {

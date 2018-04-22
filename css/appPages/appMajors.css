@@ -304,20 +304,21 @@ a.button {
   width: 100%;
   padding-right: 20px;
 }
-.AddMajor-Vgs-Value{
+
+.AddMajor-Vgs-Value {
   text-align: center;
   text-align-last: center;
   padding-left: 20px;
 }
 
 .AddMajor-Details-Color {
-  width: 100%;
-  padding: 0 20px;
+  margin-right: 20px;
+  width: 30%;
 }
 
 .AddMajor-Details-Hours {
-  width: 100%;
-  padding-left: 20px;
+  margin-left: 20px;
+  width: 30%;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

@@ -81,7 +81,7 @@
 <!-- Add new room to DB using AJAX -->
 <div id="AddRoom" class="modal">
 
-  <div class="AddRoom-Header">
+  <div class="Modal-Header">
     <label>Add new room</label>
     <a rel="modal:close">x</a>
   </div>
@@ -159,7 +159,7 @@
 
   <input type="hidden" id="DeleteRoom-Id" value="">
 
-  <div class="DelRoom-Header">
+  <div class="Modal-Header">
     <label>Delete room</label>
     <a rel="modal:close">x</a>
   </div>

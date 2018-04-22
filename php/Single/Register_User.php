@@ -286,6 +286,10 @@ $stmt->close();
 $conn->close();
 
 
+// Create thumbnail
+require ($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/CreateTumbnail.php');
+CreateThumbnail($_FILES["ImgSrc"], "../../img/Profile/Thumbnail/" . $NewImgName, 100);
+
 // Upload img to server folder folder
 move_uploaded_file($_FILES["ImgSrc"]["tmp_name"], "../../img/Profile/" . $NewImgName);
 

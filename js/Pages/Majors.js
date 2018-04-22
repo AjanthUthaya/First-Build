@@ -24,7 +24,7 @@ function init() {
   $(".Major-Item").on("click", function(e) {
     var Major_Id = $(e.target).data('major_id');
 
-    console.log(Major_Id);
+    // console.log(Major_Id); // TESTING
   });
 
   $("#AddMajor").on("click", function(e) {
