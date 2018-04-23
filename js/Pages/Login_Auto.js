@@ -26,7 +26,7 @@ var URL_Param = Array(
   getUrlVars().ServerError
 );
 
-console.log(URL_Param);
+// console.log(URL_Param); // TESTING
 
 
 // Check if Reason is defined

@@ -38,3 +38,13 @@ SELECT `id`,`id`,`type`,`start_date`,`end_date`,`teacher_id`,`title`,`sub`,`room
 
 Done in 0.05326795578s
 
+
+
+====================================
+Log started, 22/04/2018 07:29:39
+====================================
+
+SELECT `id`,`id`,`type`,`start_date`,`end_date`,`teacher_id`,`title`,`sub`,`room`,`color`,`vgs`,`ava`,`ava_max`,`details`,`creation_by` FROM lessons ORDER BY `start_date` ASC
+
+Done in 0.194994926453s
+

@@ -18,11 +18,11 @@
 
     <table id="List" class="stripe">
       <thead>
-          <tr>
-            <th>Full code</th>
-            <th>Program</th>
-            <th>Year</th>
-          </tr>
+        <tr>
+          <th>Full code</th>
+          <th>Program</th>
+          <th>Year</th>
+        </tr>
       </thead>
       <tbody>
 
@@ -43,13 +43,13 @@
         ORDER BY years.title';
 
         if (!($stmt = $conn->prepare($QueryGetClasses))) {
-            DocResponse("Error", "", "Prepareing statement");
-            exit();
+          DocResponse("Error", "", "Prepareing statement");
+          exit();
         }
 
         if (!$stmt->execute()) {
-            DocResponse("Error", "", "Executing statement");
-            exit();
+          DocResponse("Error", "", "Executing statement");
+          exit();
         }
 
         $stmt->store_result();
@@ -62,15 +62,15 @@
           while ($row = $stmt->fetch()) {
 
 
-              ?>
+            ?>
 
-              <tr data-id="<?php echo $Id; ?>">
-                <td><?php echo $Vgs . $Code . $Separator; ?></td>
-                <td><?php echo $Program; ?></td>
-                <td><?php echo $Title; ?></td>
-              </tr>
+            <tr data-id="<?php echo $Id; ?>">
+              <td><?php echo $Vgs . $Code . $Separator; ?></td>
+              <td><?php echo $Program; ?></td>
+              <td><?php echo $Title; ?></td>
+            </tr>
 
-              <?php
+            <?php
 
           }
 
@@ -81,7 +81,7 @@
         $stmt->close();
 
 
-         ?>
+        ?>
 
       </tbody>
     </table>
@@ -103,7 +103,7 @@
 
     <div class="Form-First">
       <div class="AddClass-Container">
-          <label>VGS</label>
+        <label>VGS</label>
 
         <div id="AddClass-Vgs"></div>
       </div>
@@ -111,7 +111,7 @@
       <div class="AddClass-Container">
         <label>Separator</label>
 
-      <input type="text" id="AddClass-Separator" maxlength="1" placeholder="A/B/C/D" required>
+        <input type="text" id="AddClass-Separator" maxlength="1" placeholder="A/B/C/D" required>
       </div>
     </div>
 
@@ -215,4 +215,59 @@
     <a class="alert button" id="Delete-Yes">Delete</a>
   </div>
 
+</div>
+
+<!-- __________ Manage class __________ -->
+<div id="ManageClass" class="modal Full-Modal">
+  <!-- Class id -->
+  <input type="hidden" id="ManageClass-Id" value="">
+
+
+  <!-- Header -->
+  <div class="Modal-Header">
+    <!-- Header title -->
+    <label id="ManageClass-Title">
+      <span class="Title-Program">Medier og kommunikasjon</span>
+      <span class="Title-CodeYear">3MKA - 2018/2019</span>
+    </label>
+
+    <!-- Header close -->
+    <a rel="modal:close">x</a>
+  </div>
+
+
+  <!-- Content -->
+  <div class="Modal-Content">
+    <!-- Content filter -->
+    <div class="Filter-Container">
+      <div class="Filter-Header">
+        <span>Filter</span>
+      </div>
+      <div class="ManageClass-Filter">
+        <input type="text" id="Filter-Search" placeholder="Search...">
+        <div class="ManageClass-Filter-Main">
+
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Content list -->
+    <div class="List-Container">
+      <div class="ManageClass-List">
+        <div class="List-Header">
+          <span>Select participants</span>
+        </div>
+        <ul class="ManageClass-List-Main">
+
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer or buttons area -->
+  <div class="Modal-Buttons">
+    <a class="button" id="ManageClass-Save">Save</a>
+  </div>
 </div>

@@ -132,8 +132,6 @@
 
   <script src="js/Functions/Notify.js"></script>
 
-  <script src="js/Partials/ScrollHideNav.js"></script>
-
   <script src="js/Pages/Classes.js"></script>
 
 <?php } ?>

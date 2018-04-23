@@ -78,6 +78,11 @@ function init() {
 
     var data = table.row(this).data();
 
+    $("#ManageClass").modal({
+      fadeDuration: 250,
+      fadeDelay: 0.50
+    });
+
     console.log($(this).data('id'));
   });
 
@@ -655,6 +660,8 @@ function init() {
   // ----------   ---------- //
   // END: Delete function
   // ----------   ---------- //
+
+
 
 
 

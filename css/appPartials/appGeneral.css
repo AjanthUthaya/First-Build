@@ -65,6 +65,12 @@ table {
   #Mobile-View * {
     font-weight: bold;
   }
+  .blocker {
+    display: none;
+  }
+  .modal {
+    display: none;
+  }
 }
 
 @media screen and (max-height: 700px) {
@@ -317,17 +323,17 @@ table {
 /* Modal box default style */
 
 .Modal-Header {
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
   position: relative;
   display: flex;
+  overflow: hidden;
   width: 100%;
   height: 50px;
   color: white;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   background-color: #35414d;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
 }
 
 .Modal-Header label {
@@ -365,6 +371,23 @@ table {
   padding-bottom: 40px;
   justify-content: center;
   align-items: center;
+}
+
+/* ----- Full screen modal ----- */
+
+.Full-Modal {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 100vw;
+  max-width: 100vw;
+  min-height: calc(100vh - 80px);
+}
+
+.Full-Modal .Modal-Header {
+  height: 60px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -434,8 +457,8 @@ table {
 }
 
 .dd-option {
-  padding: 5px !important;
   display: flex !important;
+  padding: 5px !important;
   justify-content: center;
   align-items: center;
 }
@@ -445,9 +468,9 @@ table {
 }
 
 .dd-selected-text, .dd-selected {
-  padding-bottom: 0 !important;
-  height: 2.4375rem;
   display: flex !important;
+  height: 2.4375rem;
+  padding-bottom: 0 !important;
   justify-content: center;
   align-items: center;
 }
@@ -457,16 +480,16 @@ table {
 }
 
 .dd-option-text {
-  padding-bottom: 0 !important;
-  padding-right: 0 !important;
-  text-align: center;
+  overflow: hidden;
   width: 100% !important;
   max-width: 100% !important;
   padding: 0 20px !important;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  padding-right: 0 !important;
+  padding-bottom: 0 !important;
   cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .dd-selected-text {

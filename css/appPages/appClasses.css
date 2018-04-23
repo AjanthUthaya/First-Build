@@ -10,8 +10,8 @@
 }
 
 div#Loading-Table {
-  height: 300px;
   display: flex;
+  height: 300px;
   justify-content: center;
   align-items: center;
 }
@@ -49,15 +49,15 @@ label.dd-selected-text {
 }
 
 .dd-option-text .AddNewIcon {
-  color: white;
   font-size: 20px;
+  color: white;
 }
 
 .dd-option-text .AddNewLabel {
+  font-size: 14px;
+  font-weight: bold;
   padding-left: 20px;
   color: white;
-  font-weight: bold;
-  font-size: 14px;
 }
 
 .FailedLoadingList a {
@@ -95,11 +95,11 @@ div#List_filter {
 /* Remove top and bottom padding from DataTables */
 
 table#List {
-  margin: 0;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  overflow: hidden;
   display: none;
+  overflow: hidden;
+  margin: 0;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 /* Add padding to items */
@@ -116,8 +116,8 @@ table#List th, table#List td {
 }
 
 #List thead {
-  background: #36414d;
   color: white;
+  background: #36414d;
 }
 
 table.dataTable.stripe tbody tr.odd, table.dataTable.display tbody tr.odd {
@@ -137,18 +137,18 @@ table.dataTable.stripe tbody tr.odd, table.dataTable.display tbody tr.odd {
 /* Styling search bar */
 
 #List-Search {
+  font-size: 14px;
+  font-weight: bold;
+  display: none;
+  height: 50px;
+  padding-bottom: 5px;
+  text-align: center;
+  text-transform: capitalize;
+  color: white;
   border: 1px solid #bdbdbd;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  height: 50px;
-  font-size: 14px;
-  color: white;
-  font-weight: bold;
-  text-align: center;
-  text-transform: capitalize;
-  padding-bottom: 5px;
   background: #35414d;
-  display: none;
 }
 
 table.dataTable thead th, table.dataTable thead td {
@@ -166,13 +166,13 @@ table.dataTable.no-footer {
 /* Center paging buttons */
 
 div#List_paginate {
-  padding: 10px 40px;
-  width: 100%;
   display: flex;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  padding: 10px 40px;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  max-width: 100%;
 }
 
 /* Remove paging bottom padding */
@@ -206,12 +206,12 @@ div#List_paginate .pagination {
 .pagination a, .pagination button {
   display: block;
   padding: 0;
-  border-radius: 0;
   color: #0a0a0a;
+  border-radius: 0;
 }
 
 #List-Main {
-  max-width: 700px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -226,8 +226,8 @@ div#List_paginate .pagination {
 *************************************************** */
 
 .Form-First, .Form-Program, .Form-Year {
-  width: 100%;
   display: flex;
+  width: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -238,8 +238,8 @@ div#List_paginate .pagination {
 
 .AddClass-Container {
   width: 100%;
-  padding: 0 20px;
   max-width: 35%;
+  padding: 0 20px;
 }
 
 .AddClass-Container:first-child {
@@ -251,10 +251,10 @@ div#List_paginate .pagination {
 }
 
 .AddClass-Container label {
-  padding-bottom: 5px;
-  text-align: center;
   font-size: 16px;
   font-weight: bold;
+  padding-bottom: 5px;
+  text-align: center;
 }
 
 #AddClass-Separator {
@@ -263,15 +263,15 @@ div#List_paginate .pagination {
 }
 
 .Form-Program label, .Form-Year label {
-  width: 30%;
-  max-width: 30%;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  padding-right: 20px;
-  min-width: 100px;
   font-size: 16px;
   font-weight: bold;
+  overflow: hidden;
+  width: 30%;
+  min-width: 100px;
+  max-width: 30%;
+  padding-right: 20px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .AddProgram-Program, .AddProgram-Code {
@@ -295,17 +295,17 @@ div#List_paginate .pagination {
 }
 
 .AddProgram-Program label, .AddProgram-Code label {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  width: 30%;
-  min-width: 90px;
   font-size: 16px;
   font-weight: bold;
+  display: flex;
+  width: 30%;
+  min-width: 90px;
+  justify-content: left;
+  align-items: center;
 }
 
 .AddProgram-Program input, .AddProgram-Code input {
-  padding: 0px 10px;
+  padding: 0 10px;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -325,10 +325,10 @@ div#List_paginate .pagination {
 
 .AddYear-First {
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  align-items: center;
   padding-bottom: 30px;
+  justify-content: center;
+  align-items: center;
 }
 
 .AddYear-First input {
@@ -337,17 +337,17 @@ div#List_paginate .pagination {
 }
 
 .AddYear-Second label, .AddYear-Third label {
+  display: flex;
   width: 30%;
   max-width: 400px;
   margin: 0 auto;
-  display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .AddYear-Second input, .AddYear-Third input {
-  text-align: center;
   padding-left: 65px;
+  text-align: center;
 }
 
 .AddYear-Second {
@@ -357,6 +357,155 @@ div#List_paginate .pagination {
 
 .AddYear-Third {
   display: flex;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  Manage Class
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+.Full-Modal #ManageClass-Title {
+  position: absolute;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  width: calc(100vw - 50px);
+  height: 100%;
+  padding: 7px 0;
+  padding-left: 50px;
+}
+
+.Full-Modal .Title-Program, .Full-Modal .Title-CodeYear {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.Full-Modal .Title-Program {
+  font-size: 18px;
+  font-weight: bold;
+  height: 60%;
+}
+
+.Full-Modal .Title-CodeYear {
+  font-size: 12px;
+  font-weight: normal;
+  height: 40%;
+}
+
+.Full-Modal .Modal-Content {
+  position: relative;
+  display: flex;
+  height: calc(100vh - 80px - 60px);
+}
+
+.Full-Modal .Modal-Buttons {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  height: 60px;
+  padding: 0;
+  background-color: #424242;
+  justify-content: center;
+  align-items: center;
+}
+
+.Full-Modal .Modal-Buttons #ManageClass-Save {
+  width: 110px;
+  border-radius: 5px;
+}
+
+.Full-Modal .Filter-Container {
+  width: 25%;
+  min-width: 170px;
+  max-width: 200px;
+  min-height: 100%;
+}
+
+.Full-Modal .ManageClass-Filter {
+  position: relative;
+  overflow-y: scroll;
+  height: calc(100% - 50px - 60px);
+  background-color: darkred;
+}
+
+.Full-Modal .ManageClass-Filter-Main {
+  position: relative;
+  width: 100%;
+  height: 1200px;
+  min-height: 100%;
+  background-color: #3d4148;
+}
+
+.Full-Modal .Filter-Header {
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  height: 50px;
+  color: white;
+  background: #292c30;
+  justify-content: center;
+  align-items: center;
+}
+
+.Full-Modal #Filter-Search {
+  height: 40px;
+  text-align: center;
+  text-transform: capitalize;
+  border: 0;
+  box-shadow: none;
+}
+
+.Full-Modal .List-Container {
+  width: 100%;
+  min-width: 480px;
+  min-height: 100%;
+}
+
+.Full-Modal .ManageClass-List {
+  position: relative;
+  overflow-y: scroll;
+  height: calc(100% - 60px);
+  background-color: grey;
+}
+
+.Full-Modal .List-Header {
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  height: 50px;
+  color: white;
+  background: #292c30;
+  justify-content: center;
+  align-items: center;
+}
+
+.Full-Modal .ManageClass-List-Main {
+  position: relative;
+  width: 100%;
+  height: 1200px;
+  min-height: 100%;
+  background-color: lightgrey;
+}
+
+/* ----- Adding white border in between sections ----- */
+
+.Modal-Header {
+  border-bottom: 1px solid white;
+}
+
+.Filter-Container {
+  border-right: 1px solid white;
+}
+
+.Modal-Buttons {
+  border-top: 1px solid white;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
