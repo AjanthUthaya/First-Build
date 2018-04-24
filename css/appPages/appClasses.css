@@ -496,8 +496,8 @@ div#List_paginate .pagination {
   border-bottom: 1px solid white;
 }
 
-.Filter-Container {
-  border-right: 1px solid white;
+.List-Header {
+  border-left: 1px solid white;
 }
 
 .Modal-Buttons {
@@ -530,9 +530,15 @@ div#List_paginate .pagination {
   align-items: stretch;
 }
 
-@media print, screen and (min-width: 1100px) {
+@media print, screen and (min-width: 1000px) {
   .Full-Modal .ManageClass-List-Main {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media print, screen and (min-width: 1500px) {
+  .Full-Modal .ManageClass-List-Main {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
 

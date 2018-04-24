@@ -633,6 +633,7 @@ function init() {
 
   // ----------   ---------- //
   // START: Delete function
+  // Might just drop delete TESTING
   // ----------   ---------- //
 
   function ConfirmDelete(Type, Title, Message, Id) {
@@ -662,6 +663,204 @@ function init() {
   // ----------   ---------- //
 
 
+
+  // ----------   ---------- //
+  // START: Load all users
+  // ----------   ---------- //
+
+  var UsersArray = [{
+    "id": 1,
+    "user_type": "Admin",
+    "username": "Admin",
+    "firstname": "Admin",
+    "middlename": "NULL",
+    "lastname": "Main",
+    "email": "Admin@Email.com"
+  }, {
+    "id": 2,
+    "user_type": "Student",
+    "username": "Studentm",
+    "firstname": "Marcus",
+    "middlename": "NULL",
+    "lastname": "Hansen",
+    "email": "MarcusHansen@jourrapide.com"
+  }, {
+    "id": 3,
+    "user_type": "Student",
+    "username": "Studentf",
+    "firstname": "Amanda",
+    "middlename": "Li",
+    "lastname": "Ho",
+    "email": "AmandaHussain@rhyta.com"
+  }, {
+    "id": 4,
+    "user_type": "Teacher",
+    "username": "Teacherf",
+    "firstname": "Jennie",
+    "middlename": "NULL",
+    "lastname": "Ovrebo",
+    "email": "Agathevreb@rhyta.com"
+  }, {
+    "id": 5,
+    "user_type": "Teacher",
+    "username": "Teacherm",
+    "firstname": "Christian",
+    "middlename": "NULL",
+    "lastname": "Dahl",
+    "email": "ChristianDahl@rhyta.com"
+  }]
+
+  // ----------   ---------- //
+  // END: Load all users
+  // ----------   ---------- //
+
+
+
+  // ----------   ---------- //
+  // START: Append all users in array
+  // ----------   ---------- //
+
+  $.each(UsersArray, function(index, data) {
+
+
+    // ----------   ---------- //
+    // START: Define html template for item
+
+
+    var UserTemplate = {};
+
+    // Img section
+    UserTemplate.ImgStart = '<div class="List-Item-Img">';
+    UserTemplate.ImgContent = '<img src="http://via.placeholder.com/100x120">';
+    UserTemplate.ImgEnd = '</div>';
+
+    UserTemplate.Img = UserTemplate.ImgStart + UserTemplate.ImgContent + UserTemplate.ImgEnd;
+
+
+    // Content Section
+    UserTemplate.ContentStart = '<div class="List-Item-Content">';
+    if (data.middlename == 'NULL') {
+      UserTemplate.ContentContent = '<div class="Item-Content-Name"><span id="Item-Content-Name">' + data.firstname + ' ' + data.lastname + '</span></div>';
+    } else {
+      UserTemplate.ContentContent = '<div class="Item-Content-Name"><span id="Item-Content-Name">' + data.firstname + ' ' + data.middlename + ' ' + data.lastname + '</span></div>';
+    }
+    UserTemplate.ContentEnd = '</div>';
+
+    UserTemplate.Content = UserTemplate.ContentStart + UserTemplate.ContentContent + UserTemplate.ContentEnd;
+
+
+    // Checkbox section
+    UserTemplate.CheckboxStart = '<div class="List-Item-Checkbox">';
+    UserTemplate.CheckboxContent = '<label class="container"><input type="checkbox"><span class="checkmark"></span></label>';
+    UserTemplate.CheckboxEnd = '</div>';
+
+    UserTemplate.Checkbox = UserTemplate.CheckboxStart + UserTemplate.CheckboxContent + UserTemplate.CheckboxEnd;
+
+
+    // Full item
+    UserTemplate.Full = '<li class="List-Item" data-id="' + data.id + '">' + UserTemplate.Img + UserTemplate.Content + UserTemplate.Checkbox + '</li>';
+
+    // END: Define html template for item
+    // ----------   ---------- //
+
+    $(".ManageClass-List-Main").append(UserTemplate.Full);
+
+  });
+
+  // ----------   ---------- //
+  // END: Append all users in array
+  // ----------   ---------- //
+
+
+
+  // ----------   ---------- //
+  // START: Search filter
+  // ----------   ---------- //
+
+  var UsersFilteredArray = $.grep(UsersArray, function(data, index) {
+    return true;
+  });
+
+  console.log(UsersFilteredArray);
+
+  $('#Filter-Search').on('keyup', function(event) {
+
+    // User input
+    var SearchInput = $('#Filter-Search').val();
+
+
+    // ---------- ---------- //
+    // START: Loop through array to check if item matches filter paramaters
+
+    var UsersFilteredArray = $.grep(UsersArray, function(data, index) {
+
+      // Define and set variable for storing if all paramaters match
+      var MatchesParam = true;
+
+      // Defining conditions for if statements (Firstname, Middlename or lastname)
+      var CheckFirstname = data.firstname.toLowerCase().indexOf(SearchInput.toLowerCase()) == -1;
+      var CheckMiddlename = data.middlename.toLowerCase().indexOf(SearchInput.toLowerCase()) == -1;
+      var CheckLastname = data.lastname.toLowerCase().indexOf(SearchInput.toLowerCase()) == -1;
+
+
+
+      // ----------   ---------- //
+      // START: Check if name matches user input
+      // ----------   ---------- //
+
+      // Check if middlename is NULL
+      if (data.middlename == 'NULL') {
+
+        // Check if firstname or lastname matches user input
+        if (CheckFirstname && CheckLastname) {
+          MatchesParam = false;
+        }
+
+      } else {
+
+        // Check if firstname, middlename, or lastname matches user input
+        if (CheckFirstname && CheckMiddlename && CheckLastname) {
+          MatchesParam = false;
+        }
+
+      }
+
+      // ----------   ---------- //
+      // START: Check if name matches user input
+      // ----------   ---------- //
+
+
+
+      // ----------   ---------- //
+      // START: Matches all paramaters
+      // ----------   ---------- //
+
+      if (MatchesParam) {
+        return true;
+      } else {
+        return false;
+      }
+
+      // ----------   ---------- //
+      // END: Matches all paramaters
+      // ----------   ---------- //
+
+
+
+    });
+
+    // END: Loop through array to check if item matches filter paramaters
+    // ---------- ---------- //
+
+
+    // TESTING
+    console.log(UsersFilteredArray);
+
+  });
+
+  // ----------   ---------- //
+  // END: Search filter
+  // ----------   ---------- //
 
 
 

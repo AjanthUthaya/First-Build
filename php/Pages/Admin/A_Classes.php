@@ -260,48 +260,16 @@
         </div>
         <ul class="ManageClass-List-Main">
 
-          <!-- Content list item -->
-          <li class="List-Item">
-            <!-- List item img -->
-            <div class="List-Item-Img">
-              <img src="http://via.placeholder.com/100x120">
-            </div>
+          
 
-
-            <!-- List item content -->
-            <div class="List-Item-Content">
-              <div class="Item-Content-Name">
-                <span id="Item-Content-Name">Firstname Lastname</span>
-              </div>
-
-              <!--
-              <div class="Item-Content-Details">
-              <span id="Item-Content-Email">Firstname123@Gmail.com</span>
-              <span id="Item-Content-Phone">46124938</span>
-            </div>
-          -->
-
-        </div>
-
-
-        <!-- List item checkbox -->
-        <div class="List-Item-Checkbox">
-          <label class="container">
-            <input type="checkbox">
-            <span class="checkmark"></span>
-          </label>
-        </div>
-        <!-- List item checkbox -->
-      </li>
-
-    </ul>
+        </ul>
+      </div>
+    </div>
   </div>
-</div>
-</div>
 
 
-<!-- Footer or buttons area -->
-<div class="Modal-Buttons">
-  <a class="button" id="ManageClass-Save">Save</a>
-</div>
+  <!-- Footer or buttons area -->
+  <div class="Modal-Buttons">
+    <a class="button" id="ManageClass-Save">Save</a>
+  </div>
 </div>
