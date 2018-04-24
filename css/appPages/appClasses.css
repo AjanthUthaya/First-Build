@@ -670,6 +670,7 @@ div#List_paginate .pagination {
   height: 25px;
   width: 25px;
   background-color: #eee;
+  border-radius: 5px;
 }
 
 /* On mouse-over, add a grey background color */

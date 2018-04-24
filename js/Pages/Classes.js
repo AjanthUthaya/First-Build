@@ -71,21 +71,6 @@ function init() {
     oTable.search($(this).val()).draw();
   })
 
-  // OnClick of list item
-  $('#List tbody').on('click', 'tr', function() {
-    // Define table
-    var table = $('#List').DataTable();
-
-    var data = table.row(this).data();
-
-    $("#ManageClass").modal({
-      fadeDuration: 250,
-      fadeDelay: 0.50
-    });
-
-    console.log($(this).data('id'));
-  });
-
   // Open Add Class OnClick (jQueryModal)
   $('#Add-Class').on('click', function(event) {
     $("#AddClassModal").modal({
@@ -677,7 +662,7 @@ function init() {
     "lastname": "Main",
     "email": "Admin@Email.com"
   }, {
-    "id": 2,
+    "id": 10,
     "user_type": "Student",
     "username": "Studentm",
     "firstname": "Marcus",
@@ -708,7 +693,7 @@ function init() {
     "middlename": "NULL",
     "lastname": "Dahl",
     "email": "ChristianDahl@rhyta.com"
-  }]
+  }];
 
   // ----------   ---------- //
   // END: Load all users
@@ -774,14 +759,120 @@ function init() {
 
 
   // ----------   ---------- //
+  // START: Manage class load data
+  // ----------   ---------- //
+
+  // OnClick of list item
+  $('#List tbody').on('click', 'tr', function() {
+
+    // Define table
+    var table = $('#List').DataTable();
+    // Get data from item (column)
+    var data = table.row(this).data();
+    // Get id from item
+    var Class_Id = $(this).data('id');
+
+    // Set id for modal
+    $('#ManageClass-Id').val(Class_Id);
+
+
+    // ----------   ---------- //
+    // START: Load selected items from DB
+
+    var UsersSelectedDB = [{
+      "id": 1
+    }, {
+      "id": 10
+    }, {
+      "id": 5
+    }];
+
+    // END: Manage class load data
+    // ----------   ---------- //
+
+
+    $(".ManageClass-List-Main > li").each(function() {
+
+
+      // Item
+      var Item = $(this);
+      // Get id of item
+      var Item_Id = $(this).data('id');
+
+      var Id_Exists = false;
+
+      // Loop thourgh UsersSelectedDB
+      $.each(UsersSelectedDB, function(index, data) {
+        if (Item_Id == data.id) {
+          Id_Exists = true;
+        }
+      });
+
+      // Check if id exsists in UsersSelectedDB
+      if (Id_Exists) {
+        Item.find("input").prop("checked", true);
+      } else {
+        Item.find("input").prop("checked", false);
+      }
+
+
+    });
+
+
+    // console.log(Class_Id); // TESTING
+
+    // Show modal
+    $("#ManageClass").modal({
+      fadeDuration: 250,
+      fadeDelay: 0.50
+    });
+
+
+
+    // ----------   ---------- //
+    // START: Save all checked
+    // ----------   ---------- //
+
+    $('#ManageClass-Save').on('click', function(event) {
+
+      // Declare array to store all selected users
+      var UsersSelected = [];
+
+      // Loop through all items and check if checkbox is checked
+      $('.ManageClass-List-Main  input:checked').each(function() {
+        UsersSelected.push({
+          id: $(this).closest('li').data('id')
+        });
+      });
+
+      // TESTING
+      console.log(UsersSelected);
+
+    });
+
+    // ----------   ---------- //
+    // END: Save all checked
+    // ----------   ---------- //
+
+
+
+  });
+
+  // ----------   ---------- //
+  // END: Manage class load data
+  // ----------   ---------- //
+
+
+
+  // ----------   ---------- //
   // START: Search filter
   // ----------   ---------- //
 
+  // Init once, because the filter requires an input to run
   var UsersFilteredArray = $.grep(UsersArray, function(data, index) {
     return true;
   });
 
-  console.log(UsersFilteredArray);
 
   $('#Filter-Search').on('keyup', function(event) {
 
@@ -789,7 +880,7 @@ function init() {
     var SearchInput = $('#Filter-Search').val();
 
 
-    // ---------- ---------- //
+    // ----------   ---------- //
     // START: Loop through array to check if item matches filter paramaters
 
     var UsersFilteredArray = $.grep(UsersArray, function(data, index) {
@@ -850,11 +941,44 @@ function init() {
     });
 
     // END: Loop through array to check if item matches filter paramaters
-    // ---------- ---------- //
+    // ----------   ---------- //
 
 
-    // TESTING
-    console.log(UsersFilteredArray);
+
+    // ----------   ---------- //
+    // START: Get all items inside ul and check if id matches id from UsersFilteredArray
+    // ----------   ---------- //
+
+    $(".ManageClass-List-Main > li").each(function() {
+
+      // Item
+      var Item = $(this);
+      // Get id of item
+      var Item_Id = $(this).data('id');
+
+      var Id_Exists = false;
+
+      // Loop thourgh UsersFilteredArray
+      $.each(UsersFilteredArray, function(index, data) {
+        if (Item_Id == data.id) {
+          Id_Exists = true;
+        }
+      });
+
+      // Check if id exsists in UsersFilteredArray
+      if (Id_Exists) {
+        Item.css('display', 'flex');
+      } else {
+        Item.css('display', 'none');
+      }
+
+    });
+
+    // ----------   ---------- //
+    // END: Get all items inside ul and check if id matches id from UsersFilteredArray
+    // ----------   ---------- //
+
+
 
   });
 
