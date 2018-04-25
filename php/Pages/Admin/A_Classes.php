@@ -227,8 +227,8 @@
   <div class="Modal-Header">
     <!-- Header title -->
     <label id="ManageClass-Title">
-      <span class="Title-Program">Medier og kommunikasjon</span>
-      <span class="Title-CodeYear">3MKA - 2018/2019</span>
+      <span class="Title-Program"></span>
+      <span class="Title-CodeYear"></span>
     </label>
 
     <!-- Header close -->
@@ -260,7 +260,7 @@
         </div>
         <ul class="ManageClass-List-Main">
 
-          
+
 
         </ul>
       </div>

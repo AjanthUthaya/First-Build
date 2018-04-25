@@ -408,6 +408,7 @@ function init() {
 
     // Fired up on success
     Request.done(function(data) {
+
       if (data.Status == 'Error') {
         NotifyError(data.Title, data.Message);
       } else if (data.Status == 'Failed') {
@@ -462,6 +463,8 @@ function init() {
       } else {
         NotifyError('Response error', 'Response not recognized');
       }
+
+
     })
 
     // Fired up on failure
@@ -653,107 +656,54 @@ function init() {
   // START: Load all users
   // ----------   ---------- //
 
-  var UsersArray = [{
-    "id": 1,
-    "user_type": "Admin",
-    "username": "Admin",
-    "firstname": "Admin",
-    "middlename": "NULL",
-    "lastname": "Main",
-    "email": "Admin@Email.com"
-  }, {
-    "id": 10,
-    "user_type": "Student",
-    "username": "Studentm",
-    "firstname": "Marcus",
-    "middlename": "NULL",
-    "lastname": "Hansen",
-    "email": "MarcusHansen@jourrapide.com"
-  }, {
-    "id": 3,
-    "user_type": "Student",
-    "username": "Studentf",
-    "firstname": "Amanda",
-    "middlename": "Li",
-    "lastname": "Ho",
-    "email": "AmandaHussain@rhyta.com"
-  }, {
-    "id": 4,
-    "user_type": "Teacher",
-    "username": "Teacherf",
-    "firstname": "Jennie",
-    "middlename": "NULL",
-    "lastname": "Ovrebo",
-    "email": "Agathevreb@rhyta.com"
-  }, {
-    "id": 5,
-    "user_type": "Teacher",
-    "username": "Teacherm",
-    "firstname": "Christian",
-    "middlename": "NULL",
-    "lastname": "Dahl",
-    "email": "ChristianDahl@rhyta.com"
-  }];
+  // Declare array to store users from DB
+  var UsersArray = new Array();
 
-  // ----------   ---------- //
-  // END: Load all users
-  // ----------   ---------- //
+
+  // ---------- START: Ajax request ---------- //
+
+  // Fire off the request
+  Request = $.ajax({
+    url: "php/Single/Load_Users.php",
+    type: "get",
+    dataType: "json",
+    async: false,
+    contentType: false, // The content type used when sending data to the server.
+    cache: false, // To unable request pages to be cached
+    processData: false, // To send DOMDocument or non processed data file it is set to false
+  });
+
+  // Fired up on success
+  Request.done(function(data) {
+
+    // Store results
+    UsersArray = data.data;
+    // console.log(UsersArray); // TESTING
+
+    if (data.Status == 'Error') {
+      NotifyError(data.Title, data.Message);
+    } else if (data.Status == 'Failed') {
+      NotifyFailed(data.Title, data.Message);
+    } else if (data.Status == 'Done') {
 
 
 
-  // ----------   ---------- //
-  // START: Append all users in array
-  // ----------   ---------- //
-
-  $.each(UsersArray, function(index, data) {
-
-
-    // ----------   ---------- //
-    // START: Define html template for item
-
-
-    var UserTemplate = {};
-
-    // Img section
-    UserTemplate.ImgStart = '<div class="List-Item-Img">';
-    UserTemplate.ImgContent = '<img src="http://via.placeholder.com/100x120">';
-    UserTemplate.ImgEnd = '</div>';
-
-    UserTemplate.Img = UserTemplate.ImgStart + UserTemplate.ImgContent + UserTemplate.ImgEnd;
-
-
-    // Content Section
-    UserTemplate.ContentStart = '<div class="List-Item-Content">';
-    if (data.middlename == 'NULL') {
-      UserTemplate.ContentContent = '<div class="Item-Content-Name"><span id="Item-Content-Name">' + data.firstname + ' ' + data.lastname + '</span></div>';
     } else {
-      UserTemplate.ContentContent = '<div class="Item-Content-Name"><span id="Item-Content-Name">' + data.firstname + ' ' + data.middlename + ' ' + data.lastname + '</span></div>';
+      NotifyError('Response error', 'Response not recognized');
     }
-    UserTemplate.ContentEnd = '</div>';
-
-    UserTemplate.Content = UserTemplate.ContentStart + UserTemplate.ContentContent + UserTemplate.ContentEnd;
-
-
-    // Checkbox section
-    UserTemplate.CheckboxStart = '<div class="List-Item-Checkbox">';
-    UserTemplate.CheckboxContent = '<label class="container"><input type="checkbox"><span class="checkmark"></span></label>';
-    UserTemplate.CheckboxEnd = '</div>';
-
-    UserTemplate.Checkbox = UserTemplate.CheckboxStart + UserTemplate.CheckboxContent + UserTemplate.CheckboxEnd;
-
-
-    // Full item
-    UserTemplate.Full = '<li class="List-Item" data-id="' + data.id + '">' + UserTemplate.Img + UserTemplate.Content + UserTemplate.Checkbox + '</li>';
-
-    // END: Define html template for item
-    // ----------   ---------- //
-
-    $(".ManageClass-List-Main").append(UserTemplate.Full);
 
   });
 
+  // Fired up on failure
+  Request.fail(function(xhr, textStatus, errorThrown) {
+    NotifyError('Server error', textStatus);
+  });
+
+  // ---------- END: Ajax request ---------- //
+
+
   // ----------   ---------- //
-  // END: Append all users in array
+  // END: Load all users
   // ----------   ---------- //
 
 
@@ -765,6 +715,10 @@ function init() {
   // OnClick of list item
   $('#List tbody').on('click', 'tr', function() {
 
+    // Empty user list from before
+    $('.ManageClass-List-Main').empty();
+
+
     // Define table
     var table = $('#List').DataTable();
     // Get data from item (column)
@@ -775,24 +729,158 @@ function init() {
     // Set id for modal
     $('#ManageClass-Id').val(Class_Id);
 
+    // console.log(Class_Id); // TESTING
+
+    // ----------   ---------- //
+    // START: Load all selected users from DB + Class details
+    // ----------   ---------- //
+
+    // Define form data variable
+    var Class_Id_Form = new FormData();
+
+    Class_Id_Form.append('Class_Id', Class_Id);
+
+    // Declare array to store users from DB
+    var UsersSelectedDB = new Array();
+
+    // ---------- START: Ajax request ---------- //
+
+    // Fire off the request
+    Request = $.ajax({
+      url: "php/Single/Load_Users_Selected.php",
+      type: "post",
+      data: Class_Id_Form,
+      dataType: "json",
+      async: false,
+      contentType: false, // The content type used when sending data to the server.
+      cache: false, // To unable request pages to be cached
+      processData: false, // To send DOMDocument or non processed data file it is set to false
+    });
+
+    // Fired up on success
+    Request.done(function(data) {
+
+      // Store results
+      UsersSelectedDB = data;
+      console.log(UsersSelectedDB); // TESTING
+
+      // ----------   ---------- //
+      // START: Set class details
+
+      $('.Title-Program').html(data.Program);
+
+      $('.Title-CodeYear').html(data.Code + ' - ' + data.Year);
+
+      // END: Set class details
+      // ----------   ---------- //
+
+    });
+
+    // Fired up on failure
+    Request.fail(function(xhr, textStatus, errorThrown) {
+      NotifyError('Server error', textStatus);
+    });
+
+    // ---------- END: Ajax request ---------- //
+
+    // ----------   ---------- //
+    // END: Load all selected users from DB + Class details
+    // ----------   ---------- //
+
+
+
+    // ----------   ---------- //
+    // START: Append all users in array
+    // ----------   ---------- //
+
+    // Check if array is empty
+    if (UsersArray == undefined) {
+
+      // Append fallback if no users are found
+      $('.ManageClass-List-Main').append('<li id="ManageClass_No_Users">No users found</li>');
+
+    } else {
+
+      $.each(UsersArray, function(index, data) {
+
+
+        // ----------   ---------- //
+        // START: Define html template for item
+
+        var UserTemplate = {};
+
+        // Img section
+        UserTemplate.ImgStart = '<div class="List-Item-Img">';
+        UserTemplate.ImgContent = '<img src="' + 'img/Profile/Thumbnail/' + data.Img_Name + '">';
+        UserTemplate.ImgEnd = '</div>';
+
+        UserTemplate.Img = UserTemplate.ImgStart + UserTemplate.ImgContent + UserTemplate.ImgEnd;
+
+
+        // Content Section
+        UserTemplate.ContentStart = '<div class="List-Item-Content">';
+        if (data.Middlename == 'NULL') {
+          UserTemplate.ContentContent = '<div class="Item-Content-Name"><span id="Item-Content-Name">' + data.Firstname + ' ' + data.Lastname + '</span></div>';
+        } else {
+          UserTemplate.ContentContent = '<div class="Item-Content-Name"><span id="Item-Content-Name">' + data.Firstname + ' ' + data.Middlename + ' ' + data.Lastname + '</span></div>';
+        }
+        UserTemplate.ContentEnd = '</div>';
+
+        UserTemplate.Content = UserTemplate.ContentStart + UserTemplate.ContentContent + UserTemplate.ContentEnd;
+
+
+        // Checkbox section
+        UserTemplate.CheckboxStart = '<div class="List-Item-Checkbox">';
+        UserTemplate.CheckboxContent = '<label class="container"><input type="checkbox"><span class="checkmark"></span></label>';
+        UserTemplate.CheckboxEnd = '</div>';
+
+        UserTemplate.Checkbox = UserTemplate.CheckboxStart + UserTemplate.CheckboxContent + UserTemplate.CheckboxEnd;
+
+
+        // Full item
+        UserTemplate.Full = '<li class="List-Item" data-id="' + data.Id + '">' + UserTemplate.Img + UserTemplate.Content + UserTemplate.Checkbox + '</li>';
+
+        // END: Define html template for item
+        // ----------   ---------- //
+
+
+        $(".ManageClass-List-Main").append(UserTemplate.Full);
+
+      });
+
+    }
+
+    // ----------   ---------- //
+    // END: Append all users in array
+    // ----------   ---------- //
+
 
     // ----------   ---------- //
     // START: Load selected items from DB
 
-    var UsersSelectedDB = [{
-      "id": 1
-    }, {
-      "id": 10
-    }, {
-      "id": 5
-    }];
+
+    // Define array selected items from DB
+    var UsersSelectedDB;
+
+    // Check if there is any users
+    if (UsersArray !== undefined) {
+
+      UsersSelectedDB = [{
+        "Id": 11
+      }, {
+        "Id": 10
+      }, {
+        "Id": 5
+      }];
+
+    }
+
 
     // END: Manage class load data
     // ----------   ---------- //
 
 
     $(".ManageClass-List-Main > li").each(function() {
-
 
       // Item
       var Item = $(this);
@@ -803,7 +891,7 @@ function init() {
 
       // Loop thourgh UsersSelectedDB
       $.each(UsersSelectedDB, function(index, data) {
-        if (Item_Id == data.id) {
+        if (Item_Id == data.Id) {
           Id_Exists = true;
         }
       });
@@ -814,7 +902,6 @@ function init() {
       } else {
         Item.find("input").prop("checked", false);
       }
-
 
     });
 
@@ -868,10 +955,14 @@ function init() {
   // START: Search filter
   // ----------   ---------- //
 
-  // Init once, because the filter requires an input to run
-  var UsersFilteredArray = $.grep(UsersArray, function(data, index) {
-    return true;
-  });
+  if (UsersArray !== undefined) {
+
+    // Init once, because the filter requires an input to run
+    var UsersFilteredArray = $.grep(UsersArray, function(data, index) {
+      return true;
+    });
+
+  }
 
 
   $('#Filter-Search').on('keyup', function(event) {
@@ -885,13 +976,14 @@ function init() {
 
     var UsersFilteredArray = $.grep(UsersArray, function(data, index) {
 
+
       // Define and set variable for storing if all paramaters match
       var MatchesParam = true;
 
       // Defining conditions for if statements (Firstname, Middlename or lastname)
-      var CheckFirstname = data.firstname.toLowerCase().indexOf(SearchInput.toLowerCase()) == -1;
-      var CheckMiddlename = data.middlename.toLowerCase().indexOf(SearchInput.toLowerCase()) == -1;
-      var CheckLastname = data.lastname.toLowerCase().indexOf(SearchInput.toLowerCase()) == -1;
+      var CheckFirstname = data.Firstname.toLowerCase().indexOf(SearchInput.toLowerCase()) == -1;
+      var CheckMiddlename = data.Middlename.toLowerCase().indexOf(SearchInput.toLowerCase()) == -1;
+      var CheckLastname = data.Lastname.toLowerCase().indexOf(SearchInput.toLowerCase()) == -1;
 
 
 
@@ -900,7 +992,7 @@ function init() {
       // ----------   ---------- //
 
       // Check if middlename is NULL
-      if (data.middlename == 'NULL') {
+      if (data.Middlename == 'NULL') {
 
         // Check if firstname or lastname matches user input
         if (CheckFirstname && CheckLastname) {
@@ -960,7 +1052,7 @@ function init() {
 
       // Loop thourgh UsersFilteredArray
       $.each(UsersFilteredArray, function(index, data) {
-        if (Item_Id == data.id) {
+        if (Item_Id == data.Id) {
           Id_Exists = true;
         }
       });

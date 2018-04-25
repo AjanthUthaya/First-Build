@@ -250,9 +250,9 @@ $Hashed_Password = password_hash($Password, PASSWORD_BCRYPT);
 
 $Query = 'INSERT INTO users
           (firstname, middlename, lastname, email, phone, birth_date, username,
-            password, img_src, creation_date, creation_time, creation_ip)
+            password, img_src, img_name, creation_date, creation_time, creation_ip)
           VALUES
-          (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+          (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
 // Prepareing statement
 if (!($stmt = $conn->prepare($Query))) {
@@ -260,9 +260,9 @@ if (!($stmt = $conn->prepare($Query))) {
   exit();
 }
 
-// Binding parameters (13 values)
-if (!$stmt->bind_param('ssssssssssss', $Firstname, $Middlename, $Lastname, $Email,
-    $Phone, $Birth_Date, $Username, $Hashed_Password, $NewImgPath, $Date_Now, $Time_Now, $User_Ip)) {
+// Binding parameters (14 values)
+if (!$stmt->bind_param('sssssssssssss', $Firstname, $Middlename, $Lastname, $Email,
+    $Phone, $Birth_Date, $Username, $Hashed_Password, $NewImgPath, $NewImgName, $Date_Now, $Time_Now, $User_Ip)) {
   JsonResponse('Error', '', 'Binding parameters');
   exit();
 }

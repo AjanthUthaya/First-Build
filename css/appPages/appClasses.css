@@ -369,6 +369,18 @@ div#List_paginate .pagination {
   (Top-Right-Bottom-Left)
 *************************************************** */
 
+#ManageClass_No_Users {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  font-weight: bold;
+  padding-bottom: 40px;
+}
+
 .Full-Modal #ManageClass-Title {
   position: absolute;
   left: 0;
