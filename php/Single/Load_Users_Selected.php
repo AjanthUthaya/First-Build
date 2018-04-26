@@ -82,7 +82,57 @@ $stmt->close();
 // START: Load all selected users with class id x
 // ----------   ---------- //
 
+
+
+// MySQLi statement
+$QueryUsersSelected = 'SELECT user_id
+FROM class_order
+WHERE class_id = ?';
+
+
+if (!($stmt = $conn->prepare($QueryUsersSelected))) {
+  JsonResponse("Error", "", "Prepareing statement");
+  exit();
+}
+
+if (!$stmt->bind_param("i", $Class_Id)) {
+  ReportStatus("Error", "Binding parameters");
+  exit();
+}
+
+if (!$stmt->execute()) {
+  JsonResponse("Error", "", "Executing statement");
+  exit();
+}
+
+
+// Store results
+$stmt->store_result();
+
+// Bind results to variables
+$stmt->bind_result($Result_UsersSelected);
+
+
+// Define array to store results
 $UsersSelected = array();
+
+
+// Check if result is empty
+if ($stmt->num_rows !== 0) {
+
+  // Loop through results
+  while ($row = $stmt->fetch()) {
+    array_push($UsersSelected, array(
+      'Id' => $Result_UsersSelected
+    ));
+  }
+
+}
+
+// Close prepared statement
+$stmt->close();
+
+
 
 // ----------   ---------- //
 // START: Load all selected users with class id x

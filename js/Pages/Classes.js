@@ -741,7 +741,7 @@ function init() {
     Class_Id_Form.append('Class_Id', Class_Id);
 
     // Declare array to store users from DB
-    var UsersSelectedDB = new Array();
+    var UsersSelectedDB_Results = new Array();
 
     // ---------- START: Ajax request ---------- //
 
@@ -760,19 +760,29 @@ function init() {
     // Fired up on success
     Request.done(function(data) {
 
-      // Store results
-      UsersSelectedDB = data;
-      console.log(UsersSelectedDB); // TESTING
+      if (data.Status == 'Error') {
+        NotifyError(data.Title, data.Message);
+      } else if (data.Status == 'Failed') {
+        NotifyFailed(data.Title, data.Message);
+      } else if (data.Status == 'Done') {
 
-      // ----------   ---------- //
-      // START: Set class details
+        // Store results
+        UsersSelectedDB_Results = data.data;
+        // console.log(data); // TESTING
 
-      $('.Title-Program').html(data.Program);
+        // ----------   ---------- //
+        // START: Set class details
 
-      $('.Title-CodeYear').html(data.Code + ' - ' + data.Year);
+        $('.Title-Program').html(data.Program);
 
-      // END: Set class details
-      // ----------   ---------- //
+        $('.Title-CodeYear').html(data.Code + ' - ' + data.Year);
+
+        // END: Set class details
+        // ----------   ---------- //
+
+      } else {
+        NotifyError('Response error', 'Response not recognized');
+      }
 
     });
 
@@ -865,13 +875,7 @@ function init() {
     // Check if there is any users
     if (UsersArray !== undefined) {
 
-      UsersSelectedDB = [{
-        "Id": 11
-      }, {
-        "Id": 10
-      }, {
-        "Id": 5
-      }];
+      UsersSelectedDB = UsersSelectedDB_Results;
 
     }
 
@@ -920,20 +924,91 @@ function init() {
     // START: Save all checked
     // ----------   ---------- //
 
-    $('#ManageClass-Save').on('click', function(event) {
+    $('#ManageClass-Save').unbind().on('click', function(event) {
 
       // Declare array to store all selected users
       var UsersSelected = [];
 
       // Loop through all items and check if checkbox is checked
       $('.ManageClass-List-Main  input:checked').each(function() {
-        UsersSelected.push({
-          id: $(this).closest('li').data('id')
-        });
+        data = $(this).closest('li').data('id');
+        UsersSelected.push({data});
       });
 
       // TESTING
       console.log(UsersSelected);
+
+
+
+      // ----------   ---------- //
+      // START: POST selected for processing
+      // ----------   ---------- //
+
+      // Define form data variable
+      var UsersSelected_FormData = new FormData();
+
+
+      // BUG: old data shows, when you click save on two diffrent classes
+
+      /* ---------- START: Declaring field values ---------- */
+
+
+      UsersSelected_FormData.append('Class_Id', $('#ManageClass-Id').val());
+      UsersSelected_FormData.append('UsersSelected', JSON.stringify(UsersSelected));
+
+      /* ---------- END: Declaring field values ---------- */
+
+
+      // ----- START: Disabling input during form submit ----- //
+
+      var $inputs = $('#ManageClass').find("input, select, button, textarea, a");
+
+      // Disable buttons and inputs on form submit
+      $inputs.prop("disabled", true);
+
+      // ----- END: Disabling input during form submit ----- //
+
+
+
+      // ---------- START: Ajax request ---------- //
+
+      // Fire off the request
+      Request = $.ajax({
+        url: "php/Single/Save_Users_Selected.php",
+        type: "post",
+        data: UsersSelected_FormData,
+        dataType: "json",
+        async: false,
+        contentType: false, // The content type used when sending data to the server.
+        cache: false, // To unable request pages to be cached
+        processData: false // To send DOMDocument or non processed data file it is set to false
+      });
+
+      // Fired up on success
+      Request.done(function(data) {
+        console.log(data);
+      });
+
+      // Fired up on failure
+      Request.fail(function(xhr, textStatus, errorThrown) {
+        NotifyError('Server error', textStatus);
+      });
+
+      // Fired up no matter if the result is a success or failure
+      Request.always(function() {
+        // Reenable the inputs
+        $inputs.prop("disabled", false);
+      });
+
+      // ---------- END: Ajax request ---------- //
+
+
+
+      // ----------   ---------- //
+      // END: POST selected for processing
+      // ----------   ---------- //
+
+
 
     });
 

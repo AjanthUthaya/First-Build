@@ -432,6 +432,7 @@ div#List_paginate .pagination {
   width: 110px;
   border-radius: 5px;
   font-weight: bold;
+  margin: 0;
 }
 
 .Full-Modal .Filter-Container {
@@ -556,7 +557,7 @@ div#List_paginate .pagination {
 
 .List-Item {
   display: flex;
-  height: 80px;
+  height: 60px;
   position: relative;
   box-shadow: 2px 3px 6px 0px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
@@ -574,7 +575,7 @@ div#List_paginate .pagination {
 .List-Item-Img img {
   object-fit: cover;
   height: 100%;
-  width: 80px;
+  width: 60px;
 }
 
 .List-Item-Content {

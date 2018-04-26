@@ -270,6 +270,6 @@
 
   <!-- Footer or buttons area -->
   <div class="Modal-Buttons">
-    <a class="button" id="ManageClass-Save">Save</a>
+    <button class="button" id="ManageClass-Save">Save</button>
   </div>
 </div>
