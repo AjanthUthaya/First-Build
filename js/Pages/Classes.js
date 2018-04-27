@@ -935,9 +935,6 @@ function init() {
         UsersSelected.push({data});
       });
 
-      // TESTING
-      console.log(UsersSelected);
-
 
 
       // ----------   ---------- //
@@ -986,7 +983,20 @@ function init() {
 
       // Fired up on success
       Request.done(function(data) {
-        console.log(data);
+        if (data.Status == 'Error') {
+          NotifyError(data.Title, data.Message);
+        } else if (data.Status == 'Failed') {
+          NotifyFailed(data.Title, data.Message);
+        } else if (data.Status == 'Done') {
+
+          // Close ManageClass modal
+          $('#ManageClass').modal('close');
+
+          NotifyDone(data.Title, data.Message);
+
+        } else {
+          NotifyError('Response error', 'Response not recognized');
+        }
       });
 
       // Fired up on failure
