@@ -370,15 +370,15 @@ div#List_paginate .pagination {
 *************************************************** */
 
 #ManageClass_No_Users {
-  display: flex;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
   font-size: 25px;
   font-weight: bold;
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 100%;
   padding-bottom: 40px;
+  justify-content: center;
+  align-items: center;
 }
 
 .Full-Modal #ManageClass-Title {
@@ -429,10 +429,10 @@ div#List_paginate .pagination {
 }
 
 .Full-Modal .Modal-Buttons #ManageClass-Save {
-  width: 110px;
-  border-radius: 5px;
   font-weight: bold;
+  width: 110px;
   margin: 0;
+  border-radius: 5px;
 }
 
 .Full-Modal .Filter-Container {
@@ -446,13 +446,12 @@ div#List_paginate .pagination {
   position: relative;
   overflow-y: scroll;
   height: calc(100% - 50px - 60px);
-  background-color: darkred;
 }
 
 .Full-Modal .ManageClass-Filter-Main {
   position: relative;
   width: 100%;
-  min-height: calc(100% - 40px);
+  min-height: calc(100% - 40px - 30px);
   background-color: #3d4148;
 }
 
@@ -468,13 +467,13 @@ div#List_paginate .pagination {
 }
 
 .Full-Modal #Filter-Search {
+  font-size: 16px;
+  font-weight: bold;
   height: 40px;
   text-align: center;
   text-transform: capitalize;
   border: 0;
   box-shadow: none;
-  font-size: 16px;
-  font-weight: bold;
 }
 
 .Full-Modal .List-Container {
@@ -531,12 +530,12 @@ div#List_paginate .pagination {
 
 .Full-Modal .ManageClass-List-Main {
   position: relative;
+  display: grid;
   width: 100%;
   min-height: calc(100% - 50px);
   padding: 40px;
   list-style: none;
   background-color: lightgrey;
-  display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: 0fr;
   grid-gap: 20px;
@@ -556,16 +555,16 @@ div#List_paginate .pagination {
 }
 
 .List-Item {
-  display: flex;
-  height: 60px;
   position: relative;
-  box-shadow: 2px 3px 6px 0px rgba(0, 0, 0, 0.3);
-  border-radius: 5px;
+  display: flex;
   overflow: hidden;
-  max-width: 450px;
-  margin: 0 auto;
   width: 100%;
+  max-width: 450px;
+  height: 60px;
+  margin: 0 auto;
   border: 1px solid grey;
+  border-radius: 5px;
+  box-shadow: 2px 3px 6px 0 rgba(0, 0, 0, .3);
 }
 
 .List-Item-Img {
@@ -573,73 +572,73 @@ div#List_paginate .pagination {
 }
 
 .List-Item-Img img {
-  object-fit: cover;
-  height: 100%;
   width: 60px;
+  height: 100%;
+  object-fit: cover;
 }
 
 .List-Item-Content {
-  flex-grow: 1;
-  background-color: white;
   padding: 10px 20px;
+  background-color: white;
+  flex-grow: 1;
 }
 
 .Item-Content-Name {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
   font-size: 14px;
   font-weight: bold;
-  margin: 0 auto;
+  position: relative;
+  display: flex;
   height: 100%;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
 }
 
 #Item-Content-Name {
+  overflow: hidden;
+  overflow: hidden;
   max-width: 230px;
-  overflow: hidden;
-  overflow: hidden;
-  text-overflow: ellipsis;
   text-align: center;
+  text-overflow: ellipsis;
 }
 
 .Item-Content-Details {
-  display: flex;
-  position: relative;
-  justify-content: center;
-  align-items: center;
   font-size: 12px;
   font-weight: normal;
+  position: relative;
+  display: flex;
   width: 230px;
   margin: 0 auto;
+  justify-content: center;
+  align-items: center;
 }
 
 #Item-Content-Email {
-  max-width: 200px;
   overflow: hidden;
+  overflow: hidden;
+  max-width: 200px;
   padding-right: 20px;
   white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .List-Item-Checkbox {
   position: relative;
   right: 0;
-  height: 100%;
   display: flex;
+  width: 50px;
+  height: 100%;
+  background-color: grey;
   justify-content: center;
   align-items: center;
-  width: 50px;
-  background-color: grey;
 }
 
 .List-Item-Checkbox .container {
-  height: 100%;
   display: flex;
+  width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
-  width: 100%;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -656,10 +655,10 @@ div#List_paginate .pagination {
 /* Customize the label (the container) */
 
 .container {
-  display: block;
-  position: relative;
-  cursor: pointer;
   font-size: 22px;
+  position: relative;
+  display: block;
+  cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -669,10 +668,10 @@ div#List_paginate .pagination {
 /* Hide the browser's default checkbox */
 
 .container input {
-  display: none;
   position: absolute;
-  opacity: 0;
+  display: none;
   cursor: pointer;
+  opacity: 0;
 }
 
 /* Create a custom checkbox */
@@ -680,10 +679,10 @@ div#List_paginate .pagination {
 .checkmark {
   top: 0;
   left: 0;
-  height: 25px;
   width: 25px;
-  background-color: #eee;
+  height: 25px;
   border-radius: 5px;
+  background-color: #eee;
 }
 
 /* On mouse-over, add a grey background color */
@@ -705,8 +704,8 @@ div#List_paginate .pagination {
 /* Create the checkmark/indicator (hidden when not checked) */
 
 .checkmark:after {
-  content: "";
   display: none;
+  content: '';
 }
 
 /* Show the checkmark when checked */
@@ -719,15 +718,239 @@ div#List_paginate .pagination {
 
 .container .checkmark:after {
   position: relative;
-  left: 10px;
   top: 7px;
+  left: 10px;
   width: 5px;
   height: 10px;
-  border: solid white;
-  border-width: 0 3px 3px 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+  border: solid white;
+  border-width: 0 3px 3px 0;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  Filter section
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+/* Accordion title/folder */
+
+.ManageClass-Filter .accordion-title {
+  color: white;
+  background: #35414d;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Remove default padding given by foundation */
+
+.ManageClass-Filter-Main .accordion-content {
+  padding: 20px 20px;
+  background: #3d4148;
+  border: 0;
+  border-left: 0;
+  border-right: 3px solid lightgrey;
+  border-top: 1px solid grey;
+}
+
+/* Content inside User_Type */
+
+.Filter-User_Type {
+  width: 100%;
+  height: 100%;
+}
+
+/* ========== START ========== */
+
+/* Filter style for checkbox */
+
+.Filter-Checkbox {
+  margin-top: 10px;
+}
+
+.Filter-Checkbox:first-child {
+  margin-top: 0;
+}
+
+.Filter-Checkbox input[type='checkbox'] {
+  display: none;
+}
+
+.Filter-Checkbox .Filter-Checkbox-Box {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  background: white;
+  margin-right: 15px;
+  margin-bottom: 3px;
+  color: red;
+  font-size: 15px;
+}
+
+.Filter-Checkbox label {
+  padding: 0;
+  margin: 0;
+}
+
+.Filter-Checkbox .Filter-Checkbox-Label {
+  position: relative;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  font-size: 14px;
+  color: white;
+  height: 30px;
+  line-height: 1;
+  width: auto;
+}
+
+.Filter-Checkbox .Filter-Checkbox-Label:hover span {
+  background-color: lightgrey;
+}
+
+/* Filter style for checkbox */
+
+/* ========== END ========== */
+
+/* ========== START ========== */
+
+/* General section */
+
+.General-Section-Separate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* ORDER */
+
+.General-Section-Order {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-right: 5px;
+}
+
+.General-Section-Order label {
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.General-Section-Order #General-Order {
+  margin-top: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  height: 35px;
+  padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* LIMIT */
+
+.General-Section-Limit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.General-Section-Limit .General-Limit-Label {
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  margin-bottom: 7px;
+}
+
+#General-Limit .dd-select {
+  border-radius: 5px;
+  height: 30px;
+}
+
+#General-Limit .dd-selected-text {
+  height: 30px;
+}
+
+#General-Limit .dd-pointer {
+  right: 5px;
+}
+
+#General-Limit .dd-selected-text, .dd-selected {
+  height: 30px !important;
+}
+
+#General-Limit .dd-options {
+  top: 27px;
+}
+
+#General-Limit .dd-option-text {
+  padding: 0 !important;
+}
+
+.General-Section-Grade {
+  margin-top: 10px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.General-Grade-Label {
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+#General-Grade .dd-selected {
+  font-size: 12px;
+  font-weight: normal;
+}
+
+#General-Grade .dd-selected-text {
+  font-size: 12px !important;
+  font-weight: normal;
+}
+
+/* General section */
+
+/* ========== END ========== */
+
+#Filter-Clear {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f44336;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+#Filter-Clear span {
+  margin-right: 5px;
+}
+
+#Filter-Clear:hover {
+  background-color: #e53935;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

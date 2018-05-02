@@ -3,1166 +3,1267 @@ require("js/Functions/Notify.js");
 
 function init() {
 
-  // Captalize first letter of input
-  $('#AddProgram-Program, #AddClass-Separator').on('keydown', function(event) {
-    if (this.selectionStart == 0 && event.keyCode >= 65 && event.keyCode <= 90 && !(event.shiftKey) && !(event.ctrlKey) && !(event.metaKey) && !(event.altKey)) {
-      var $t = $(this);
-      event.preventDefault();
-      var char = String.fromCharCode(event.keyCode);
-      $t.val(char + $t.val().slice(this.selectionEnd));
-      this.setSelectionRange(1, 1);
-    }
-  });
-
-  // Only allow letters
-  $('#AddClass-Separator').keydown(function(e) {
-    var regex = new RegExp("^[a-zA-Z\s\b]+$");
-    var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
-    if (regex.test(str)) {
-      return true;
-    } else {
-      e.preventDefault();
-      return false;
-    }
-  });
-
-
-  // Hide table
-  $('#List').hide();
-  // Show loading
-  $('#Loading-Table').show();
-
-  // Init classes list
-  $('#List').DataTable({
-    // Showing x out of x.length
-    "info": false,
-    // Activate pagination
-    "paging": true,
-    // Order OnClcik of header
-    "ordering": true,
-    // Default orderdering (asc/desc)
-    "order": [
-      [2, 'asc'],
-      [0, 'asc']
-    ],
-    // Activate search bar
-    "searching": true,
-    // Disable ability to change page length
-    "lengthChange": false,
-    // Array of options to limit paging
-    "lengthMenu": [10, 25, 50, 75, 100],
-    // Set default paging limit
-    "pageLength": 20,
-    // Set size based on data
-    "autoWidth": true,
-    "initComplete": function(settings, json) {
-      // Hide loading
-      $('#Loading-Table').hide();
-      // Show search
-      $('#List-Search').show();
-      // Show table after loading
-      $('#List').show();
-    }
-  });
-
-  // Enables search bar to filter content
-  oTable = $('#List').DataTable();
-  $('#List-Search').keyup(function() {
-    oTable.search($(this).val()).draw();
-  })
-
-  // Open Add Class OnClick (jQueryModal)
-  $('#Add-Class').on('click', function(event) {
-    $("#AddClassModal").modal({
-      fadeDuration: 250,
-      fadeDelay: 0.50
-    });
-  });
-
-
-
-  // ----------   ---------- //
-  // START: VGS LIST
-  // ----------   ---------- //
-
-  // VGS data
-  var Vgs = [{
-      text: "1",
-      value: 1,
-    },
-    {
-      text: "2",
-      value: 2,
-    },
-    {
-      text: "3",
-      value: 3,
-    }
-  ];
-
-  // INIT DDSlick for vgs list
-  $('#AddClass-Vgs').ddslick({
-    data: Vgs,
-    selectText: 'Select VGS'
-  });
-
-  // ----------   ---------- //
-  // END: VGS LIST
-  // ----------   ---------- //
-
-
-
-  // ----------   ---------- //
-  // START: PROGRAM LIST
-  // ----------   ---------- //
-
-  // Get Program list
-  var ProgramList;
-
-  // Fire off the request
-  Request = $.ajax({
-    url: "php/Single/Load_Programs.php",
-    type: "get",
-    dataType: "json",
-    async: false,
-    contentType: false, // The content type used when sending data to the server.
-    cache: false, // To unable request pages to be cached
-    processData: false, // To send DOMDocument or non processed data file it is set to false
-  });
-
-  // Fired up on success
-  Request.done(function(data) {
-    ProgramList = data;
-
-    // Add top item, so the user can add new Program
-    ProgramList.unshift({
-      'value': 0,
-      'text': '<span class="fa fa-plus-square AddNewIcon"></span><span class="AddNewLabel">Add new program</span>'
-    });
-  })
-
-  // Fired up on failure
-  Request.fail(function(xhr, textStatus, errorThrown) {
-    NotifyError('Server error', textStatus + ' failed to load program list');
-    ProgramList = [{
-      'value': 0,
-      'text': '<span class="fa fa-plus-close FailedListIcon"></span><span class="FailedListLabel">Failed to load program list...</span>'
-    }];
-  })
-
-  // INIT DDSlick for program list
-  $('#AddClass-Program').ddslick({
-    data: ProgramList,
-    selectText: 'Select Program',
-    onSelected: function(data) {
-      if (data.selectedIndex == 0) {
-        LoadingFailed = $('#AddClass-Program .dd-option span').hasClass('FailedListIcon');
-        if (LoadingFailed) {
-          $("#AddClass-Program .dd-selected").text("Select Program");
-        } else {
-          $("#AddClass-Program .dd-selected").text("Select Program");
-          $("#AddProgram").modal({
-            fadeDuration: 250,
-            fadeDelay: 0.20,
-            closeExisting: false
-          });
-        }
+   // Captalize first letter of input
+   $('#AddProgram-Program, #AddClass-Separator').on('keydown', function(event) {
+      if (this.selectionStart == 0 && event.keyCode >= 65 && event.keyCode <= 90 && !(event.shiftKey) && !(event.ctrlKey) && !(event.metaKey) && !(event.altKey)) {
+         var $t = $(this);
+         event.preventDefault();
+         var char = String.fromCharCode(event.keyCode);
+         $t.val(char + $t.val().slice(this.selectionEnd));
+         this.setSelectionRange(1, 1);
       }
+   });
 
-    }
-  });
-
-  LoadingFailed = $('#AddClass-Program .dd-option span').hasClass('FailedListIcon');
-
-  if (LoadingFailed) {
-    $('#AddClass-Program .dd-options li:first').addClass('FailedLoadingList');
-  } else {
-    // Add class to first item(+ Add new)
-    $('#AddClass-Program .dd-options li:first').addClass('AddNew');
-  }
-  // ----------   ---------- //
-  // END: PROGRAM LIST
-  // ----------   ---------- //
-
-
-
-  // ----------   ---------- //
-  // START: YEAR LIST
-  // ----------   ---------- //
-
-  // Get Program list
-  var YearList;
-
-  // Fire off the request
-  Request = $.ajax({
-    url: "php/Single/Load_Years.php",
-    type: "get",
-    dataType: "json",
-    async: false,
-    contentType: false, // The content type used when sending data to the server.
-    cache: false, // To unable request pages to be cached
-    processData: false, // To send DOMDocument or non processed data file it is set to false
-  });
-
-  // Fired up on success
-  Request.done(function(data) {
-    YearList = data;
-
-    // Add top item, so the user can add new Program
-    YearList.unshift({
-      'value': 0,
-      'text': '<span class="fa fa-plus-square AddNewIcon"></span><span class="AddNewLabel">Add new year</span>'
-    });
-  })
-
-  // Fired up on failure
-  Request.fail(function(xhr, textStatus, errorThrown) {
-    NotifyError('Server error', textStatus + ' failed to load year list');
-    YearList = [{
-      'value': 0,
-      'text': '<span class="fa fa-plus-close FailedListIcon"></span><span class="FailedListLabel">Failed to load year list...</span>'
-    }];
-  })
-
-
-  // INIT DDSlick for year list
-  $('#AddClass-Year').ddslick({
-    data: YearList,
-    selectText: 'Select Year',
-    onSelected: function(data) {
-
-      if (data.selectedIndex == 0) {
-        LoadingFailed = $('#AddClass-Year .dd-option span').hasClass('FailedListIcon');
-        if (LoadingFailed) {
-          $("#AddClass-Year .dd-selected").text("Select Year");
-        } else {
-          $("#AddClass-Year .dd-selected").text("Select Year");
-          $("#AddYear").modal({
-            fadeDuration: 250,
-            fadeDelay: 0.20,
-            closeExisting: false
-          });
-        }
-      }
-
-    }
-  });
-
-  LoadingFailed = $('#AddClass-Year .dd-option span').hasClass('FailedListIcon');
-
-  if (LoadingFailed) {
-    $('#AddClass-Year .dd-options li:first').addClass('FailedLoadingList');
-  } else {
-    // Add class to first item(+ Add new)
-    $('#AddClass-Year .dd-options li:first').addClass('AddNew');
-  }
-
-  // ----------   ---------- //
-  // END: YEAR LIST
-  // ----------   ---------- //
-
-
-
-  // ----------   ---------- //
-  // START: ADD CLASS
-  // ----------   ---------- //
-
-  // Send data to php for processing
-  // Define form data variable
-  var FormDataAddClass = new FormData();
-
-  // Variable to hold request
-  var RequestAddClass;
-
-  $(document).on('click', '#AddClass-Add', function(event) {
-
-    // Abort any pending request
-    if (RequestAddClass) {
-      RequestAddClass.abort();
-    }
-
-
-    // ---------- START: Declaring field values ---------- //
-
-    FormDataAddClass.append('Vgs', $('#AddClass-Vgs .dd-selected-value').val());
-    FormDataAddClass.append('Separator', $('#AddClass-Separator').val());
-    FormDataAddClass.append('Program', $('#AddClass-Program .dd-selected-value').val());
-    FormDataAddClass.append('Year', $('#AddClass-Year .dd-selected-value').val());
-
-    // ---------- END: Declaring field values ---------- //
-
-
-    // ----- START: Disabling input during form submit ----- //
-
-    var $inputs = $("#AddClassModal").find("input, select, button, textarea");
-
-    // Let's disable the inputs for the duration of the Ajax request.
-    $inputs.prop("disabled", true);
-
-    // ----- END: Disabling input during form submit ----- //
-
-
-    // ---------- START: Form submit ---------- //
-
-    // Fire off the request
-    RequestAddClass = $.ajax({
-      url: "php/Single/Add_Class.php",
-      type: "post",
-      data: FormDataAddClass,
-      dataType: "json",
-      async: false,
-      contentType: false, // The content type used when sending data to the server.
-      cache: false, // To unable request pages to be cached
-      processData: false, // To send DOMDocument or non processed data file it is set to false
-    });
-
-    // Fired up on success
-    RequestAddClass.done(function(data) {
-      if (data.Status == 'Error') {
-        NotifyError(data.Title, data.Message);
-      } else if (data.Status == 'Failed') {
-        NotifyFailed(data.Title, data.Message);
-      } else if (data.Status == 'Done') {
-        NotifyDone(data.Title, data.Message);
-
-        setTimeout(function() {
-          location.reload();
-        }, 2500);
-
+   // Only allow letters
+   $('#AddClass-Separator').keydown(function(e) {
+      var regex = new RegExp("^[a-zA-Z\s\b]+$");
+      var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+      if (regex.test(str)) {
+         return true;
       } else {
-        NotifyError('Response error', 'Response not recognized');
+         e.preventDefault();
+         return false;
       }
-    })
-
-    // Fired up on failure
-    RequestAddClass.fail(function(xhr, textStatus, errorThrown) {
-      NotifyError('Server error', textStatus);
-    })
-
-    // Fired up no matter if the result is a success or failure
-    RequestAddClass.always(function() {
-      // Reenable the inputs
-      $inputs.prop("disabled", false);
-    })
-
-    // ---------- END: Form submit ---------- //
-
-  });
-
-  // ----------   ---------- //
-  // END: ADD CLASS
-  // ----------   ---------- //
+   });
 
 
+   // Hide table
+   $('#List').hide();
+   // Show loading
+   $('#Loading-Table').show();
 
-  // ----------   ---------- //
-  // START: ADD PROGRAM
-  // ----------   ---------- //
+   // Init classes list
+   $('#List').DataTable({
+      // Showing x out of x.length
+      "info": false,
+      // Activate pagination
+      "paging": true,
+      // Order OnClcik of header
+      "ordering": true,
+      // Default orderdering (asc/desc)
+      "order": [
+         [2, 'asc'],
+         [0, 'asc']
+      ],
+      // Activate search bar
+      "searching": true,
+      // Disable ability to change page length
+      "lengthChange": false,
+      // Array of options to limit paging
+      "lengthMenu": [10, 25, 50, 75, 100],
+      // Set default paging limit
+      "pageLength": 20,
+      // Set size based on data
+      "autoWidth": true,
+      "initComplete": function(settings, json) {
+         // Hide loading
+         $('#Loading-Table').hide();
+         // Show search
+         $('#List-Search').show();
+         // Show table after loading
+         $('#List').show();
+      }
+   });
 
-  // Send data to php for processing
-  // Define form data variable
-  var FormDataAddProgram = new FormData();
+   // Enables search bar to filter content
+   oTable = $('#List').DataTable();
+   $('#List-Search').keyup(function() {
+      oTable.search($(this).val()).draw();
+   })
 
-  // Variable to hold request
-  var RequestAddProgram;
-
-  $(document).on('click', '#AddProgram-Add', function(event) {
-
-    // Abort any pending request
-    if (RequestAddProgram) {
-      RequestAddProgram.abort();
-    }
-
-
-    // ---------- START: Declaring field values ---------- //
-
-    FormDataAddProgram.append('Program', $('#AddProgram-Program').val());
-    FormDataAddProgram.append('Code', $('#AddProgram-Code').val());
-
-    // ---------- END: Declaring field values ---------- //
+   // Open Add Class OnClick (jQueryModal)
+   $('#Add-Class').on('click', function(event) {
+      $("#AddClassModal").modal({
+         fadeDuration: 250,
+         fadeDelay: 0.50
+      });
+   });
 
 
-    // ----- START: Disabling input during form submit ----- //
 
-    var $inputs = $("#AddProgram").find("input, select, button, textarea");
+   // ----------   ---------- //
+   // START: VGS LIST
+   // ----------   ---------- //
 
-    // Let's disable the inputs for the duration of the Ajax request.
-    $inputs.prop("disabled", true);
+   // VGS data
+   var Vgs = [{
+         text: "1",
+         value: 1,
+      },
+      {
+         text: "2",
+         value: 2,
+      },
+      {
+         text: "3",
+         value: 3,
+      }
+   ];
 
-    // ----- END: Disabling input during form submit ----- //
+   // INIT DDSlick for vgs list
+   $('#AddClass-Vgs').ddslick({
+      data: Vgs,
+      selectText: 'Select VGS'
+   });
+
+   // ----------   ---------- //
+   // END: VGS LIST
+   // ----------   ---------- //
 
 
-    // ---------- START: Form submit ---------- //
 
-    // Fire off the request
-    Request = $.ajax({
-      url: "php/Single/Add_Program.php",
-      type: "post",
-      data: FormDataAddProgram,
+   // ----------   ---------- //
+   // START: PROGRAM LIST
+   // ----------   ---------- //
+
+   // Get Program list
+   var ProgramList;
+
+   // Fire off the request
+   Request = $.ajax({
+      url: "php/Single/Load_Programs.php",
+      type: "get",
       dataType: "json",
       async: false,
       contentType: false, // The content type used when sending data to the server.
       cache: false, // To unable request pages to be cached
       processData: false, // To send DOMDocument or non processed data file it is set to false
-    });
+   });
 
-    // Fired up on success
-    Request.done(function(data) {
+   // Fired up on success
+   Request.done(function(data) {
+      ProgramList = data;
 
-      if (data.Status == 'Error') {
-        NotifyError(data.Title, data.Message);
-      } else if (data.Status == 'Failed') {
-        NotifyFailed(data.Title, data.Message);
-      } else if (data.Status == 'Done') {
-        NotifyDone(data.Title, data.Message);
+      // Add top item, so the user can add new Program
+      ProgramList.unshift({
+         'value': 0,
+         'text': '<span class="fa fa-plus-square AddNewIcon"></span><span class="AddNewLabel">Add new program</span>'
+      });
+   })
 
-        // Destroy DDSlick
-        $('#AddClass-Program').ddslick('destroy');
+   // Fired up on failure
+   Request.fail(function(xhr, textStatus, errorThrown) {
+      NotifyError('Server error', textStatus + ' failed to load program list');
+      ProgramList = [{
+         'value': 0,
+         'text': '<span class="fa fa-plus-close FailedListIcon"></span><span class="FailedListLabel">Failed to load program list...</span>'
+      }];
+   })
 
-        // Add the new program to array
-        ProgramList.push({
-          'value': data.Id,
-          'text': data.Program + ' (' + data.Code + ')'
-        });
-
-        // INIT DDSlick for program list
-        $('#AddClass-Program').ddslick({
-          data: ProgramList,
-          selectText: 'Select Program',
-          onSelected: function(data) {
-
-            if (data.selectedIndex == 0) {
-              LoadingFailed = $('#AddClass-Program .dd-option span').hasClass('FailedListIcon');
-              if (LoadingFailed) {
-                $("#AddClass-Program .dd-selected").text("Select Program");
-              } else {
-                $("#AddClass-Program .dd-selected").text("Select Program");
-                $("#AddProgram").modal({
+   // INIT DDSlick for program list
+   $('#AddClass-Program').ddslick({
+      data: ProgramList,
+      selectText: 'Select Program',
+      onSelected: function(data) {
+         if (data.selectedIndex == 0) {
+            LoadingFailed = $('#AddClass-Program .dd-option span').hasClass('FailedListIcon');
+            if (LoadingFailed) {
+               $("#AddClass-Program .dd-selected").text("Select Program");
+            } else {
+               $("#AddClass-Program .dd-selected").text("Select Program");
+               $("#AddProgram").modal({
                   fadeDuration: 250,
                   fadeDelay: 0.20,
                   closeExisting: false
-                });
-              }
+               });
             }
+         }
 
-          }
-        });
-
-        // Add class to first item(+ Add new)
-        $('#AddClass-Program .dd-options li:first').addClass('AddNew');
-
-        // Close add program modal
-        $('#AddProgram').modal('close');
-
-        // Open add class again
-        setTimeout(function() {
-          $("#AddClassModal").modal({});
-        }, 300);
-
-
-      } else {
-        NotifyError('Response error', 'Response not recognized');
       }
+   });
 
+   LoadingFailed = $('#AddClass-Program .dd-option span').hasClass('FailedListIcon');
 
-    })
-
-    // Fired up on failure
-    Request.fail(function(xhr, textStatus, errorThrown) {
-      NotifyError('Server error', textStatus);
-    })
-
-    // Fired up no matter if the result is a success or failure
-    Request.always(function() {
-      // Reenable the inputs
-      $inputs.prop("disabled", false);
-    })
-
-    // ---------- END: Form submit ---------- //
-
-  });
-
-  // ----------   ---------- //
-  // END: ADD PROGRAM
-  // ----------   ---------- //
+   if (LoadingFailed) {
+      $('#AddClass-Program .dd-options li:first').addClass('FailedLoadingList');
+   } else {
+      // Add class to first item(+ Add new)
+      $('#AddClass-Program .dd-options li:first').addClass('AddNew');
+   }
+   // ----------   ---------- //
+   // END: PROGRAM LIST
+   // ----------   ---------- //
 
 
 
-  // ----------   ---------- //
-  // START: ADD YEAR
-  // ----------   ---------- //
+   // ----------   ---------- //
+   // START: YEAR LIST
+   // ----------   ---------- //
 
-  // Send data to php for processing
-  // Define form data variable
-  var FormDataAddYear = new FormData();
+   // Get Program list
+   var YearList;
 
-  // Variable to hold request
-  var RequestAddYear;
-
-  $(document).on('click', '#AddYear-Add', function(event) {
-
-    // Abort any pending request
-    if (RequestAddYear) {
-      RequestAddYear.abort();
-    }
-
-
-    // ---------- START: Declaring field values ---------- //
-
-    FormDataAddYear.append('Title', $('#AddYear-Title').val());
-    FormDataAddYear.append('Start_Date', $('#AddYear-Start_Date').val());
-    FormDataAddYear.append('End_Date', $('#AddYear-End_Date').val());
-
-    // ---------- END: Declaring field values ---------- //
-
-
-    // ----- START: Disabling input during form submit ----- //
-
-    var $inputs = $("#AddYear").find("input, select, button, textarea");
-
-    // Let's disable the inputs for the duration of the Ajax request.
-    $inputs.prop("disabled", true);
-
-    // ----- END: Disabling input during form submit ----- //
-
-
-    // ---------- START: Form submit ---------- //
-
-    // Fire off the request
-    Request = $.ajax({
-      url: "php/Single/Add_Year.php",
-      type: "post",
-      data: FormDataAddYear,
+   // Fire off the request
+   Request = $.ajax({
+      url: "php/Single/Load_Years.php",
+      type: "get",
       dataType: "json",
       async: false,
       contentType: false, // The content type used when sending data to the server.
       cache: false, // To unable request pages to be cached
       processData: false, // To send DOMDocument or non processed data file it is set to false
-    });
+   });
 
-    // Fired up on success
-    Request.done(function(data) {
-      if (data.Status == 'Error') {
-        NotifyError(data.Title, data.Message);
-      } else if (data.Status == 'Failed') {
-        NotifyFailed(data.Title, data.Message);
-      } else if (data.Status == 'Done') {
-        NotifyDone(data.Title, data.Message);
+   // Fired up on success
+   Request.done(function(data) {
+      YearList = data;
 
-        // Destroy DDSlick
-        $('#AddClass-Year').ddslick('destroy');
+      // Add top item, so the user can add new Program
+      YearList.unshift({
+         'value': 0,
+         'text': '<span class="fa fa-plus-square AddNewIcon"></span><span class="AddNewLabel">Add new year</span>'
+      });
+   })
 
-        // Add the new program to array
-        YearList.push({
-          'value': data.Id,
-          'text': data.Title
-        });
+   // Fired up on failure
+   Request.fail(function(xhr, textStatus, errorThrown) {
+      NotifyError('Server error', textStatus + ' failed to load year list');
+      YearList = [{
+         'value': 0,
+         'text': '<span class="fa fa-plus-close FailedListIcon"></span><span class="FailedListLabel">Failed to load year list...</span>'
+      }];
+   })
 
-        // INIT DDSlick for program list
-        $('#AddClass-Year').ddslick({
-          data: YearList,
-          selectText: 'Select Year',
-          onSelected: function(data) {
 
-            if (data.selectedIndex == 0) {
-              LoadingFailed = $('#AddClass-Year .dd-option span').hasClass('FailedListIcon');
-              if (LoadingFailed) {
-                $("#AddClass-Program .dd-selected").text("Select Year");
-              } else {
-                $("#AddClass-Year .dd-selected").text("Select Year");
-                $("#AddYear").modal({
+   // INIT DDSlick for year list
+   $('#AddClass-Year').ddslick({
+      data: YearList,
+      selectText: 'Select Year',
+      onSelected: function(data) {
+
+         if (data.selectedIndex == 0) {
+            LoadingFailed = $('#AddClass-Year .dd-option span').hasClass('FailedListIcon');
+            if (LoadingFailed) {
+               $("#AddClass-Year .dd-selected").text("Select Year");
+            } else {
+               $("#AddClass-Year .dd-selected").text("Select Year");
+               $("#AddYear").modal({
                   fadeDuration: 250,
                   fadeDelay: 0.20,
                   closeExisting: false
-                });
-              }
+               });
             }
+         }
 
-          }
-        });
-
-        // Add class to first item(+ Add new)
-        $('#AddClass-Year .dd-options li:first').addClass('AddNew');
-
-        // Close add program modal
-        $('#AddYear').modal('close');
-
-        // Open add class again
-        setTimeout(function() {
-          $("#AddClassModal").modal({});
-        }, 300);
-
-
-      } else {
-        NotifyError('Response error', 'Response not recognized');
       }
-    })
+   });
 
-    // Fired up on failure
-    Request.fail(function(xhr, textStatus, errorThrown) {
-      NotifyError('Server error', textStatus);
-    })
+   LoadingFailed = $('#AddClass-Year .dd-option span').hasClass('FailedListIcon');
 
-    // Fired up no matter if the result is a success or failure
-    Request.always(function() {
-      // Reenable the inputs
-      $inputs.prop("disabled", false);
-    })
+   if (LoadingFailed) {
+      $('#AddClass-Year .dd-options li:first').addClass('FailedLoadingList');
+   } else {
+      // Add class to first item(+ Add new)
+      $('#AddClass-Year .dd-options li:first').addClass('AddNew');
+   }
 
-    // ---------- END: Form submit ---------- //
-
-  });
-
-  // ----------   ---------- //
-  // END: ADD YEAR
-  // ----------   ---------- //
+   // ----------   ---------- //
+   // END: YEAR LIST
+   // ----------   ---------- //
 
 
 
-  // ----------   ---------- //
-  // START: Delete function
-  // Might just drop delete TESTING
-  // ----------   ---------- //
+   // ----------   ---------- //
+   // START: ADD CLASS
+   // ----------   ---------- //
 
-  function ConfirmDelete(Type, Title, Message, Id) {
+   // Send data to php for processing
+   // Define form data variable
+   var FormDataAddClass = new FormData();
 
-    if (Id !== '') {
-      // ID
-      $('#Delete-Id').val(Id);
-    }
+   // Variable to hold request
+   var RequestAddClass;
 
-    // Title
-    $('#Delete-Title').html(Title);
+   $(document).on('click', '#AddClass-Add', function(event) {
 
-    // Message
-    $('#Delete-Message').html(Message);
-
-    $('#Delete').addClass(Type);
-
-    $("#Delete").modal({
-      fadeDuration: 250,
-      fadeDelay: 0.20
-    });
-
-  }
-
-  // ----------   ---------- //
-  // END: Delete function
-  // ----------   ---------- //
-
-
-
-  // ----------   ---------- //
-  // START: Load all users
-  // ----------   ---------- //
-
-  // Declare array to store users from DB
-  var UsersArray = new Array();
-
-
-  // ---------- START: Ajax request ---------- //
-
-  // Fire off the request
-  Request = $.ajax({
-    url: "php/Single/Load_Users.php",
-    type: "get",
-    dataType: "json",
-    async: false,
-    contentType: false, // The content type used when sending data to the server.
-    cache: false, // To unable request pages to be cached
-    processData: false, // To send DOMDocument or non processed data file it is set to false
-  });
-
-  // Fired up on success
-  Request.done(function(data) {
-
-    // Store results
-    UsersArray = data.data;
-    // console.log(UsersArray); // TESTING
-
-    if (data.Status == 'Error') {
-      NotifyError(data.Title, data.Message);
-    } else if (data.Status == 'Failed') {
-      NotifyFailed(data.Title, data.Message);
-    } else if (data.Status == 'Done') {
-
-
-
-    } else {
-      NotifyError('Response error', 'Response not recognized');
-    }
-
-  });
-
-  // Fired up on failure
-  Request.fail(function(xhr, textStatus, errorThrown) {
-    NotifyError('Server error', textStatus);
-  });
-
-  // ---------- END: Ajax request ---------- //
-
-
-  // ----------   ---------- //
-  // END: Load all users
-  // ----------   ---------- //
-
-
-
-  // ----------   ---------- //
-  // START: Manage class load data
-  // ----------   ---------- //
-
-  // OnClick of list item
-  $('#List tbody').on('click', 'tr', function() {
-
-    // Empty user list from before
-    $('.ManageClass-List-Main').empty();
-
-
-    // Define table
-    var table = $('#List').DataTable();
-    // Get data from item (column)
-    var data = table.row(this).data();
-    // Get id from item
-    var Class_Id = $(this).data('id');
-
-    // Set id for modal
-    $('#ManageClass-Id').val(Class_Id);
-
-    // console.log(Class_Id); // TESTING
-
-    // ----------   ---------- //
-    // START: Load all selected users from DB + Class details
-    // ----------   ---------- //
-
-    // Define form data variable
-    var Class_Id_Form = new FormData();
-
-    Class_Id_Form.append('Class_Id', Class_Id);
-
-    // Declare array to store users from DB
-    var UsersSelectedDB_Results = new Array();
-
-    // ---------- START: Ajax request ---------- //
-
-    // Fire off the request
-    Request = $.ajax({
-      url: "php/Single/Load_Users_Selected.php",
-      type: "post",
-      data: Class_Id_Form,
-      dataType: "json",
-      async: false,
-      contentType: false, // The content type used when sending data to the server.
-      cache: false, // To unable request pages to be cached
-      processData: false, // To send DOMDocument or non processed data file it is set to false
-    });
-
-    // Fired up on success
-    Request.done(function(data) {
-
-      if (data.Status == 'Error') {
-        NotifyError(data.Title, data.Message);
-      } else if (data.Status == 'Failed') {
-        NotifyFailed(data.Title, data.Message);
-      } else if (data.Status == 'Done') {
-
-        // Store results
-        UsersSelectedDB_Results = data.data;
-        // console.log(data); // TESTING
-
-        // ----------   ---------- //
-        // START: Set class details
-
-        $('.Title-Program').html(data.Program);
-
-        $('.Title-CodeYear').html(data.Code + ' - ' + data.Year);
-
-        // END: Set class details
-        // ----------   ---------- //
-
-      } else {
-        NotifyError('Response error', 'Response not recognized');
+      // Abort any pending request
+      if (RequestAddClass) {
+         RequestAddClass.abort();
       }
 
-    });
 
-    // Fired up on failure
-    Request.fail(function(xhr, textStatus, errorThrown) {
-      NotifyError('Server error', textStatus);
-    });
+      // ---------- START: Declaring field values ---------- //
 
-    // ---------- END: Ajax request ---------- //
+      FormDataAddClass.append('Vgs', $('#AddClass-Vgs .dd-selected-value').val());
+      FormDataAddClass.append('Separator', $('#AddClass-Separator').val());
+      FormDataAddClass.append('Program', $('#AddClass-Program .dd-selected-value').val());
+      FormDataAddClass.append('Year', $('#AddClass-Year .dd-selected-value').val());
 
-    // ----------   ---------- //
-    // END: Load all selected users from DB + Class details
-    // ----------   ---------- //
-
-
-
-    // ----------   ---------- //
-    // START: Append all users in array
-    // ----------   ---------- //
-
-    // Check if array is empty
-    if (UsersArray == undefined) {
-
-      // Append fallback if no users are found
-      $('.ManageClass-List-Main').append('<li id="ManageClass_No_Users">No users found</li>');
-
-    } else {
-
-      $.each(UsersArray, function(index, data) {
-
-
-        // ----------   ---------- //
-        // START: Define html template for item
-
-        var UserTemplate = {};
-
-        // Img section
-        UserTemplate.ImgStart = '<div class="List-Item-Img">';
-        UserTemplate.ImgContent = '<img src="' + 'img/Profile/Thumbnail/' + data.Img_Name + '">';
-        UserTemplate.ImgEnd = '</div>';
-
-        UserTemplate.Img = UserTemplate.ImgStart + UserTemplate.ImgContent + UserTemplate.ImgEnd;
-
-
-        // Content Section
-        UserTemplate.ContentStart = '<div class="List-Item-Content">';
-        if (data.Middlename == 'NULL') {
-          UserTemplate.ContentContent = '<div class="Item-Content-Name"><span id="Item-Content-Name">' + data.Firstname + ' ' + data.Lastname + '</span></div>';
-        } else {
-          UserTemplate.ContentContent = '<div class="Item-Content-Name"><span id="Item-Content-Name">' + data.Firstname + ' ' + data.Middlename + ' ' + data.Lastname + '</span></div>';
-        }
-        UserTemplate.ContentEnd = '</div>';
-
-        UserTemplate.Content = UserTemplate.ContentStart + UserTemplate.ContentContent + UserTemplate.ContentEnd;
-
-
-        // Checkbox section
-        UserTemplate.CheckboxStart = '<div class="List-Item-Checkbox">';
-        UserTemplate.CheckboxContent = '<label class="container"><input type="checkbox"><span class="checkmark"></span></label>';
-        UserTemplate.CheckboxEnd = '</div>';
-
-        UserTemplate.Checkbox = UserTemplate.CheckboxStart + UserTemplate.CheckboxContent + UserTemplate.CheckboxEnd;
-
-
-        // Full item
-        UserTemplate.Full = '<li class="List-Item" data-id="' + data.Id + '">' + UserTemplate.Img + UserTemplate.Content + UserTemplate.Checkbox + '</li>';
-
-        // END: Define html template for item
-        // ----------   ---------- //
-
-
-        $(".ManageClass-List-Main").append(UserTemplate.Full);
-
-      });
-
-    }
-
-    // ----------   ---------- //
-    // END: Append all users in array
-    // ----------   ---------- //
-
-
-    // ----------   ---------- //
-    // START: Load selected items from DB
-
-
-    // Define array selected items from DB
-    var UsersSelectedDB;
-
-    // Check if there is any users
-    if (UsersArray !== undefined) {
-
-      UsersSelectedDB = UsersSelectedDB_Results;
-
-    }
-
-
-    // END: Manage class load data
-    // ----------   ---------- //
-
-
-    $(".ManageClass-List-Main > li").each(function() {
-
-      // Item
-      var Item = $(this);
-      // Get id of item
-      var Item_Id = $(this).data('id');
-
-      var Id_Exists = false;
-
-      // Loop thourgh UsersSelectedDB
-      $.each(UsersSelectedDB, function(index, data) {
-        if (Item_Id == data.Id) {
-          Id_Exists = true;
-        }
-      });
-
-      // Check if id exsists in UsersSelectedDB
-      if (Id_Exists) {
-        Item.find("input").prop("checked", true);
-      } else {
-        Item.find("input").prop("checked", false);
-      }
-
-    });
-
-
-    // console.log(Class_Id); // TESTING
-
-    // Show modal
-    $("#ManageClass").modal({
-      fadeDuration: 250,
-      fadeDelay: 0.50
-    });
-
-
-
-    // ----------   ---------- //
-    // START: Save all checked
-    // ----------   ---------- //
-
-    $('#ManageClass-Save').unbind().on('click', function(event) {
-
-      // Declare array to store all selected users
-      var UsersSelected = [];
-
-      // Loop through all items and check if checkbox is checked
-      $('.ManageClass-List-Main  input:checked').each(function() {
-        data = $(this).closest('li').data('id');
-        UsersSelected.push({data});
-      });
-
-
-
-      // ----------   ---------- //
-      // START: POST selected for processing
-      // ----------   ---------- //
-
-      // Define form data variable
-      var UsersSelected_FormData = new FormData();
-
-
-      // BUG: old data shows, when you click save on two diffrent classes
-
-      /* ---------- START: Declaring field values ---------- */
-
-
-      UsersSelected_FormData.append('Class_Id', $('#ManageClass-Id').val());
-      UsersSelected_FormData.append('UsersSelected', JSON.stringify(UsersSelected));
-
-      /* ---------- END: Declaring field values ---------- */
+      // ---------- END: Declaring field values ---------- //
 
 
       // ----- START: Disabling input during form submit ----- //
 
-      var $inputs = $('#ManageClass').find("input, select, button, textarea, a");
+      var $inputs = $("#AddClassModal").find("input, select, button, textarea");
 
-      // Disable buttons and inputs on form submit
+      // Let's disable the inputs for the duration of the Ajax request.
       $inputs.prop("disabled", true);
 
       // ----- END: Disabling input during form submit ----- //
 
 
+      // ---------- START: Form submit ---------- //
+
+      // Fire off the request
+      RequestAddClass = $.ajax({
+         url: "php/Single/Add_Class.php",
+         type: "post",
+         data: FormDataAddClass,
+         dataType: "json",
+         async: false,
+         contentType: false, // The content type used when sending data to the server.
+         cache: false, // To unable request pages to be cached
+         processData: false, // To send DOMDocument or non processed data file it is set to false
+      });
+
+      // Fired up on success
+      RequestAddClass.done(function(data) {
+         if (data.Status == 'Error') {
+            NotifyError(data.Title, data.Message);
+         } else if (data.Status == 'Failed') {
+            NotifyFailed(data.Title, data.Message);
+         } else if (data.Status == 'Done') {
+            NotifyDone(data.Title, data.Message);
+
+            setTimeout(function() {
+               location.reload();
+            }, 2500);
+
+         } else {
+            NotifyError('Response error', 'Response not recognized');
+         }
+      })
+
+      // Fired up on failure
+      RequestAddClass.fail(function(xhr, textStatus, errorThrown) {
+         NotifyError('Server error', textStatus);
+      })
+
+      // Fired up no matter if the result is a success or failure
+      RequestAddClass.always(function() {
+         // Reenable the inputs
+         $inputs.prop("disabled", false);
+      })
+
+      // ---------- END: Form submit ---------- //
+
+   });
+
+   // ----------   ---------- //
+   // END: ADD CLASS
+   // ----------   ---------- //
+
+
+
+   // ----------   ---------- //
+   // START: ADD PROGRAM
+   // ----------   ---------- //
+
+   // Send data to php for processing
+   // Define form data variable
+   var FormDataAddProgram = new FormData();
+
+   // Variable to hold request
+   var RequestAddProgram;
+
+   $(document).on('click', '#AddProgram-Add', function(event) {
+
+      // Abort any pending request
+      if (RequestAddProgram) {
+         RequestAddProgram.abort();
+      }
+
+
+      // ---------- START: Declaring field values ---------- //
+
+      FormDataAddProgram.append('Program', $('#AddProgram-Program').val());
+      FormDataAddProgram.append('Code', $('#AddProgram-Code').val());
+
+      // ---------- END: Declaring field values ---------- //
+
+
+      // ----- START: Disabling input during form submit ----- //
+
+      var $inputs = $("#AddProgram").find("input, select, button, textarea");
+
+      // Let's disable the inputs for the duration of the Ajax request.
+      $inputs.prop("disabled", true);
+
+      // ----- END: Disabling input during form submit ----- //
+
+
+      // ---------- START: Form submit ---------- //
+
+      // Fire off the request
+      Request = $.ajax({
+         url: "php/Single/Add_Program.php",
+         type: "post",
+         data: FormDataAddProgram,
+         dataType: "json",
+         async: false,
+         contentType: false, // The content type used when sending data to the server.
+         cache: false, // To unable request pages to be cached
+         processData: false, // To send DOMDocument or non processed data file it is set to false
+      });
+
+      // Fired up on success
+      Request.done(function(data) {
+
+         if (data.Status == 'Error') {
+            NotifyError(data.Title, data.Message);
+         } else if (data.Status == 'Failed') {
+            NotifyFailed(data.Title, data.Message);
+         } else if (data.Status == 'Done') {
+            NotifyDone(data.Title, data.Message);
+
+            // Destroy DDSlick
+            $('#AddClass-Program').ddslick('destroy');
+
+            // Add the new program to array
+            ProgramList.push({
+               'value': data.Id,
+               'text': data.Program + ' (' + data.Code + ')'
+            });
+
+            // INIT DDSlick for program list
+            $('#AddClass-Program').ddslick({
+               data: ProgramList,
+               selectText: 'Select Program',
+               onSelected: function(data) {
+
+                  if (data.selectedIndex == 0) {
+                     LoadingFailed = $('#AddClass-Program .dd-option span').hasClass('FailedListIcon');
+                     if (LoadingFailed) {
+                        $("#AddClass-Program .dd-selected").text("Select Program");
+                     } else {
+                        $("#AddClass-Program .dd-selected").text("Select Program");
+                        $("#AddProgram").modal({
+                           fadeDuration: 250,
+                           fadeDelay: 0.20,
+                           closeExisting: false
+                        });
+                     }
+                  }
+
+               }
+            });
+
+            // Add class to first item(+ Add new)
+            $('#AddClass-Program .dd-options li:first').addClass('AddNew');
+
+            // Close add program modal
+            $('#AddProgram').modal('close');
+
+            // Open add class again
+            setTimeout(function() {
+               $("#AddClassModal").modal({});
+            }, 300);
+
+
+         } else {
+            NotifyError('Response error', 'Response not recognized');
+         }
+
+
+      })
+
+      // Fired up on failure
+      Request.fail(function(xhr, textStatus, errorThrown) {
+         NotifyError('Server error', textStatus);
+      })
+
+      // Fired up no matter if the result is a success or failure
+      Request.always(function() {
+         // Reenable the inputs
+         $inputs.prop("disabled", false);
+      })
+
+      // ---------- END: Form submit ---------- //
+
+   });
+
+   // ----------   ---------- //
+   // END: ADD PROGRAM
+   // ----------   ---------- //
+
+
+
+   // ----------   ---------- //
+   // START: ADD YEAR
+   // ----------   ---------- //
+
+   // Send data to php for processing
+   // Define form data variable
+   var FormDataAddYear = new FormData();
+
+   // Variable to hold request
+   var RequestAddYear;
+
+   $(document).on('click', '#AddYear-Add', function(event) {
+
+      // Abort any pending request
+      if (RequestAddYear) {
+         RequestAddYear.abort();
+      }
+
+
+      // ---------- START: Declaring field values ---------- //
+
+      FormDataAddYear.append('Title', $('#AddYear-Title').val());
+      FormDataAddYear.append('Start_Date', $('#AddYear-Start_Date').val());
+      FormDataAddYear.append('End_Date', $('#AddYear-End_Date').val());
+
+      // ---------- END: Declaring field values ---------- //
+
+
+      // ----- START: Disabling input during form submit ----- //
+
+      var $inputs = $("#AddYear").find("input, select, button, textarea");
+
+      // Let's disable the inputs for the duration of the Ajax request.
+      $inputs.prop("disabled", true);
+
+      // ----- END: Disabling input during form submit ----- //
+
+
+      // ---------- START: Form submit ---------- //
+
+      // Fire off the request
+      Request = $.ajax({
+         url: "php/Single/Add_Year.php",
+         type: "post",
+         data: FormDataAddYear,
+         dataType: "json",
+         async: false,
+         contentType: false, // The content type used when sending data to the server.
+         cache: false, // To unable request pages to be cached
+         processData: false, // To send DOMDocument or non processed data file it is set to false
+      });
+
+      // Fired up on success
+      Request.done(function(data) {
+         if (data.Status == 'Error') {
+            NotifyError(data.Title, data.Message);
+         } else if (data.Status == 'Failed') {
+            NotifyFailed(data.Title, data.Message);
+         } else if (data.Status == 'Done') {
+            NotifyDone(data.Title, data.Message);
+
+            // Destroy DDSlick
+            $('#AddClass-Year').ddslick('destroy');
+
+            // Add the new program to array
+            YearList.push({
+               'value': data.Id,
+               'text': data.Title
+            });
+
+            // INIT DDSlick for program list
+            $('#AddClass-Year').ddslick({
+               data: YearList,
+               selectText: 'Select Year',
+               onSelected: function(data) {
+
+                  if (data.selectedIndex == 0) {
+                     LoadingFailed = $('#AddClass-Year .dd-option span').hasClass('FailedListIcon');
+                     if (LoadingFailed) {
+                        $("#AddClass-Program .dd-selected").text("Select Year");
+                     } else {
+                        $("#AddClass-Year .dd-selected").text("Select Year");
+                        $("#AddYear").modal({
+                           fadeDuration: 250,
+                           fadeDelay: 0.20,
+                           closeExisting: false
+                        });
+                     }
+                  }
+
+               }
+            });
+
+            // Add class to first item(+ Add new)
+            $('#AddClass-Year .dd-options li:first').addClass('AddNew');
+
+            // Close add program modal
+            $('#AddYear').modal('close');
+
+            // Open add class again
+            setTimeout(function() {
+               $("#AddClassModal").modal({});
+            }, 300);
+
+
+         } else {
+            NotifyError('Response error', 'Response not recognized');
+         }
+      })
+
+      // Fired up on failure
+      Request.fail(function(xhr, textStatus, errorThrown) {
+         NotifyError('Server error', textStatus);
+      })
+
+      // Fired up no matter if the result is a success or failure
+      Request.always(function() {
+         // Reenable the inputs
+         $inputs.prop("disabled", false);
+      })
+
+      // ---------- END: Form submit ---------- //
+
+   });
+
+   // ----------   ---------- //
+   // END: ADD YEAR
+   // ----------   ---------- //
+
+
+
+   // ----------   ---------- //
+   // START: Delete function
+   // Might just drop delete TESTING
+   // ----------   ---------- //
+
+   function ConfirmDelete(Type, Title, Message, Id) {
+
+      if (Id !== '') {
+         // ID
+         $('#Delete-Id').val(Id);
+      }
+
+      // Title
+      $('#Delete-Title').html(Title);
+
+      // Message
+      $('#Delete-Message').html(Message);
+
+      $('#Delete').addClass(Type);
+
+      $("#Delete").modal({
+         fadeDuration: 250,
+         fadeDelay: 0.20
+      });
+
+   }
+
+   // ----------   ---------- //
+   // END: Delete function
+   // ----------   ---------- //
+
+
+
+   // ----------   ---------- //
+   // START: Load all users
+   // ----------   ---------- //
+
+   // Declare array to store users from DB
+   var UsersArray = new Array();
+
+
+   // ---------- START: Ajax request ---------- //
+
+   // Fire off the request
+   Request = $.ajax({
+      url: "php/Single/Load_Users.php",
+      type: "get",
+      dataType: "json",
+      async: false,
+      contentType: false, // The content type used when sending data to the server.
+      cache: false, // To unable request pages to be cached
+      processData: false, // To send DOMDocument or non processed data file it is set to false
+   });
+
+   // Fired up on success
+   Request.done(function(data) {
+
+      // Store results
+      UsersArray = data.data;
+      // console.log(UsersArray); // TESTING
+
+      if (data.Status == 'Error') {
+         NotifyError(data.Title, data.Message);
+      } else if (data.Status == 'Failed') {
+         NotifyFailed(data.Title, data.Message);
+      } else if (data.Status == 'Done') {
+
+
+
+      } else {
+         NotifyError('Response error', 'Response not recognized');
+      }
+
+   });
+
+   // Fired up on failure
+   Request.fail(function(xhr, textStatus, errorThrown) {
+      NotifyError('Server error', textStatus);
+   });
+
+   // ---------- END: Ajax request ---------- //
+
+
+   // ----------   ---------- //
+   // END: Load all users
+   // ----------   ---------- //
+
+
+
+   // ----------   ---------- //
+   // START: Manage class load data
+   // ----------   ---------- //
+
+   // OnClick of list item
+   $('#List tbody').on('click', 'tr', function() {
+
+      // INIT Foundation accordion
+      $('.ManageClass-Filter-Main').foundation();
+
+      // Empty user list from before
+      $('.ManageClass-List-Main').empty();
+
+
+      // Define table
+      var table = $('#List').DataTable();
+      // Get data from item (column)
+      var data = table.row(this).data();
+      // Get id from item
+      var Class_Id = $(this).data('id');
+
+      // Set id for modal
+      $('#ManageClass-Id').val(Class_Id);
+
+      // console.log(Class_Id); // TESTING
+
+      // ----------   ---------- //
+      // START: Load all selected users from DB + Class details
+      // ----------   ---------- //
+
+      // Define form data variable
+      var Class_Id_Form = new FormData();
+
+      Class_Id_Form.append('Class_Id', Class_Id);
+
+      // Declare array to store users from DB
+      var UsersSelectedDB_Results = new Array();
 
       // ---------- START: Ajax request ---------- //
 
       // Fire off the request
       Request = $.ajax({
-        url: "php/Single/Save_Users_Selected.php",
-        type: "post",
-        data: UsersSelected_FormData,
-        dataType: "json",
-        async: false,
-        contentType: false, // The content type used when sending data to the server.
-        cache: false, // To unable request pages to be cached
-        processData: false // To send DOMDocument or non processed data file it is set to false
+         url: "php/Single/Load_Users_Selected.php",
+         type: "post",
+         data: Class_Id_Form,
+         dataType: "json",
+         async: false,
+         contentType: false, // The content type used when sending data to the server.
+         cache: false, // To unable request pages to be cached
+         processData: false, // To send DOMDocument or non processed data file it is set to false
       });
 
       // Fired up on success
       Request.done(function(data) {
-        if (data.Status == 'Error') {
-          NotifyError(data.Title, data.Message);
-        } else if (data.Status == 'Failed') {
-          NotifyFailed(data.Title, data.Message);
-        } else if (data.Status == 'Done') {
 
-          // Close ManageClass modal
-          $('#ManageClass').modal('close');
+         if (data.Status == 'Error') {
+            NotifyError(data.Title, data.Message);
+         } else if (data.Status == 'Failed') {
+            NotifyFailed(data.Title, data.Message);
+         } else if (data.Status == 'Done') {
 
-          NotifyDone(data.Title, data.Message);
+            // Store results
+            UsersSelectedDB_Results = data.data;
+            // console.log(data); // TESTING
 
-        } else {
-          NotifyError('Response error', 'Response not recognized');
-        }
+            // ----------   ---------- //
+            // START: Set class details
+
+            $('.Title-Program').html(data.Program);
+
+            $('.Title-CodeYear').html(data.Code + ' - ' + data.Year);
+
+            // END: Set class details
+            // ----------   ---------- //
+
+         } else {
+            NotifyError('Response error', 'Response not recognized');
+         }
+
       });
 
       // Fired up on failure
       Request.fail(function(xhr, textStatus, errorThrown) {
-        NotifyError('Server error', textStatus);
-      });
-
-      // Fired up no matter if the result is a success or failure
-      Request.always(function() {
-        // Reenable the inputs
-        $inputs.prop("disabled", false);
+         NotifyError('Server error', textStatus);
       });
 
       // ---------- END: Ajax request ---------- //
 
-
-
       // ----------   ---------- //
-      // END: POST selected for processing
+      // END: Load all selected users from DB + Class details
       // ----------   ---------- //
 
 
 
-    });
-
-    // ----------   ---------- //
-    // END: Save all checked
-    // ----------   ---------- //
-
-
-
-  });
-
-  // ----------   ---------- //
-  // END: Manage class load data
-  // ----------   ---------- //
-
-
-
-  // ----------   ---------- //
-  // START: Search filter
-  // ----------   ---------- //
-
-  if (UsersArray !== undefined) {
-
-    // Init once, because the filter requires an input to run
-    var UsersFilteredArray = $.grep(UsersArray, function(data, index) {
-      return true;
-    });
-
-  }
-
-
-  $('#Filter-Search').on('keyup', function(event) {
-
-    // User input
-    var SearchInput = $('#Filter-Search').val();
-
-
-    // ----------   ---------- //
-    // START: Loop through array to check if item matches filter paramaters
-
-    var UsersFilteredArray = $.grep(UsersArray, function(data, index) {
-
-
-      // Define and set variable for storing if all paramaters match
-      var MatchesParam = true;
-
-      // Defining conditions for if statements (Firstname, Middlename or lastname)
-      var CheckFirstname = data.Firstname.toLowerCase().indexOf(SearchInput.toLowerCase()) == -1;
-      var CheckMiddlename = data.Middlename.toLowerCase().indexOf(SearchInput.toLowerCase()) == -1;
-      var CheckLastname = data.Lastname.toLowerCase().indexOf(SearchInput.toLowerCase()) == -1;
-
-
-
       // ----------   ---------- //
-      // START: Check if name matches user input
+      // START: Append all users in array
       // ----------   ---------- //
 
-      // Check if middlename is NULL
-      if (data.Middlename == 'NULL') {
+      // Check if array is empty
+      if (UsersArray == undefined) {
 
-        // Check if firstname or lastname matches user input
-        if (CheckFirstname && CheckLastname) {
-          MatchesParam = false;
-        }
+         // Append fallback if no users are found
+         $('.ManageClass-List-Main').append('<li id="ManageClass_No_Users">No users found</li>');
 
       } else {
 
-        // Check if firstname, middlename, or lastname matches user input
-        if (CheckFirstname && CheckMiddlename && CheckLastname) {
-          MatchesParam = false;
-        }
+         $.each(UsersArray, function(index, data) {
+
+
+            // ----------   ---------- //
+            // START: Define html template for item
+
+            var UserTemplate = {};
+
+            // Img section
+            UserTemplate.ImgStart = '<div class="List-Item-Img">';
+            UserTemplate.ImgContent = '<img src="' + 'img/Profile/Thumbnail/' + data.Img_Name + '">';
+            UserTemplate.ImgEnd = '</div>';
+
+            UserTemplate.Img = UserTemplate.ImgStart + UserTemplate.ImgContent + UserTemplate.ImgEnd;
+
+
+            // Content Section
+            UserTemplate.ContentStart = '<div class="List-Item-Content">';
+            if (data.Middlename == 'NULL') {
+               UserTemplate.ContentContent = '<div class="Item-Content-Name"><span id="Item-Content-Name">' + data.Firstname + ' ' + data.Lastname + '</span></div>';
+            } else {
+               UserTemplate.ContentContent = '<div class="Item-Content-Name"><span id="Item-Content-Name">' + data.Firstname + ' ' + data.Middlename + ' ' + data.Lastname + '</span></div>';
+            }
+            UserTemplate.ContentEnd = '</div>';
+
+            UserTemplate.Content = UserTemplate.ContentStart + UserTemplate.ContentContent + UserTemplate.ContentEnd;
+
+
+            // Checkbox section
+            UserTemplate.CheckboxStart = '<div class="List-Item-Checkbox">';
+            UserTemplate.CheckboxContent = '<label class="container"><input type="checkbox"><span class="checkmark"></span></label>';
+            UserTemplate.CheckboxEnd = '</div>';
+
+            UserTemplate.Checkbox = UserTemplate.CheckboxStart + UserTemplate.CheckboxContent + UserTemplate.CheckboxEnd;
+
+
+            // Full item
+            UserTemplate.Full = '<li class="List-Item" data-id="' + data.Id + '">' + UserTemplate.Img + UserTemplate.Content + UserTemplate.Checkbox + '</li>';
+
+            // END: Define html template for item
+            // ----------   ---------- //
+
+
+            $(".ManageClass-List-Main").append(UserTemplate.Full);
+
+         });
 
       }
 
       // ----------   ---------- //
-      // START: Check if name matches user input
+      // END: Append all users in array
       // ----------   ---------- //
 
 
-
       // ----------   ---------- //
-      // START: Matches all paramaters
-      // ----------   ---------- //
+      // START: Load selected items from DB
 
-      if (MatchesParam) {
-        return true;
-      } else {
-        return false;
+
+      // Define array selected items from DB
+      var UsersSelectedDB;
+
+      // Check if there is any users
+      if (UsersArray !== undefined) {
+
+         UsersSelectedDB = UsersSelectedDB_Results;
+
       }
 
+
+      // END: Manage class load data
       // ----------   ---------- //
-      // END: Matches all paramaters
-      // ----------   ---------- //
 
 
+      $(".ManageClass-List-Main > li").each(function() {
 
-    });
+         // Item
+         var Item = $(this);
+         // Get id of item
+         var Item_Id = $(this).data('id');
 
-    // END: Loop through array to check if item matches filter paramaters
-    // ----------   ---------- //
+         var Id_Exists = false;
 
+         // Loop thourgh UsersSelectedDB
+         $.each(UsersSelectedDB, function(index, data) {
+            if (Item_Id == data.Id) {
+               Id_Exists = true;
+            }
+         });
 
+         // Check if id exsists in UsersSelectedDB
+         if (Id_Exists) {
+            Item.find("input").prop("checked", true);
+         } else {
+            Item.find("input").prop("checked", false);
+         }
 
-    // ----------   ---------- //
-    // START: Get all items inside ul and check if id matches id from UsersFilteredArray
-    // ----------   ---------- //
-
-    $(".ManageClass-List-Main > li").each(function() {
-
-      // Item
-      var Item = $(this);
-      // Get id of item
-      var Item_Id = $(this).data('id');
-
-      var Id_Exists = false;
-
-      // Loop thourgh UsersFilteredArray
-      $.each(UsersFilteredArray, function(index, data) {
-        if (Item_Id == data.Id) {
-          Id_Exists = true;
-        }
       });
 
-      // Check if id exsists in UsersFilteredArray
-      if (Id_Exists) {
-        Item.css('display', 'flex');
+
+      // console.log(Class_Id); // TESTING
+
+      // Show modal
+      $("#ManageClass").modal({
+         fadeDuration: 250,
+         fadeDelay: 0.50
+      });
+
+
+
+      // ----------   ---------- //
+      // START: Save all checked
+      // ----------   ---------- //
+
+      $('#ManageClass-Save').unbind().on('click', function(event) {
+
+         // Declare array to store all selected users
+         var UsersSelected = [];
+
+         // Loop through all items and check if checkbox is checked
+         $('.ManageClass-List-Main  input:checked').each(function() {
+            data = $(this).closest('li').data('id');
+            UsersSelected.push({
+               data
+            });
+         });
+
+
+
+         // ----------   ---------- //
+         // START: POST selected for processing
+         // ----------   ---------- //
+
+         // Define form data variable
+         var UsersSelected_FormData = new FormData();
+
+         /* ---------- START: Declaring field values ---------- */
+
+
+         UsersSelected_FormData.append('Class_Id', $('#ManageClass-Id').val());
+         UsersSelected_FormData.append('UsersSelected', JSON.stringify(UsersSelected));
+
+         /* ---------- END: Declaring field values ---------- */
+
+
+         // ----- START: Disabling input during form submit ----- //
+
+         var $inputs = $('#ManageClass').find("input, select, button, textarea, a");
+
+         // Disable buttons and inputs on form submit
+         $inputs.prop("disabled", true);
+
+         // ----- END: Disabling input during form submit ----- //
+
+
+
+         // ---------- START: Ajax request ---------- //
+
+         // Fire off the request
+         Request = $.ajax({
+            url: "php/Single/Save_Users_Selected.php",
+            type: "post",
+            data: UsersSelected_FormData,
+            dataType: "json",
+            async: false,
+            contentType: false, // The content type used when sending data to the server.
+            cache: false, // To unable request pages to be cached
+            processData: false // To send DOMDocument or non processed data file it is set to false
+         });
+
+         // Fired up on success
+         Request.done(function(data) {
+            if (data.Status == 'Error') {
+               NotifyError(data.Title, data.Message);
+            } else if (data.Status == 'Failed') {
+               NotifyFailed(data.Title, data.Message);
+            } else if (data.Status == 'Done') {
+
+               // Close ManageClass modal
+               $('#ManageClass').modal('close');
+
+               NotifyDone(data.Title, data.Message);
+
+            } else {
+               NotifyError('Response error', 'Response not recognized');
+            }
+         });
+
+         // Fired up on failure
+         Request.fail(function(xhr, textStatus, errorThrown) {
+            NotifyError('Server error', textStatus);
+         });
+
+         // Fired up no matter if the result is a success or failure
+         Request.always(function() {
+            // Reenable the inputs
+            $inputs.prop("disabled", false);
+         });
+
+         // ---------- END: Ajax request ---------- //
+
+
+
+         // ----------   ---------- //
+         // END: POST selected for processing
+         // ----------   ---------- //
+
+
+
+      });
+
+      // ----------   ---------- //
+      // END: Save all checked
+      // ----------   ---------- //
+
+
+
+   });
+
+   // ----------   ---------- //
+   // END: Manage class load data
+   // ----------   ---------- //
+
+
+
+   // ----------   ---------- //
+   // START: Search filter
+   // ----------   ---------- //
+
+   if (UsersArray !== undefined) {
+
+      // Init once, because the filter requires an input to run
+      var UsersFilteredArray = $.grep(UsersArray, function(data, index) {
+         return true;
+      });
+
+   }
+
+
+   $('#Filter-Search').on('keyup', function(event) {
+
+      // User input
+      var SearchInput = $('#Filter-Search').val();
+
+
+      // ----------   ---------- //
+      // START: Loop through array to check if item matches filter paramaters
+
+      var UsersFilteredArray = $.grep(UsersArray, function(data, index) {
+
+
+         // Define and set variable for storing if all paramaters match
+         var MatchesParam = true;
+
+         // Defining conditions for if statements (Firstname, Middlename or lastname)
+         var CheckFirstname = data.Firstname.toLowerCase().indexOf(SearchInput.toLowerCase()) == -1;
+         var CheckMiddlename = data.Middlename.toLowerCase().indexOf(SearchInput.toLowerCase()) == -1;
+         var CheckLastname = data.Lastname.toLowerCase().indexOf(SearchInput.toLowerCase()) == -1;
+
+
+
+         // ----------   ---------- //
+         // START: Check if name matches user input
+         // ----------   ---------- //
+
+         // Check if middlename is NULL
+         if (data.Middlename == 'NULL') {
+
+            // Check if firstname or lastname matches user input
+            if (CheckFirstname && CheckLastname) {
+               MatchesParam = false;
+            }
+
+         } else {
+
+            // Check if firstname, middlename, or lastname matches user input
+            if (CheckFirstname && CheckMiddlename && CheckLastname) {
+               MatchesParam = false;
+            }
+
+         }
+
+         // ----------   ---------- //
+         // START: User type filter
+         // ----------   ---------- //
+
+
+
+         // ----------   ---------- //
+         // END: User type filter
+         // ----------   ---------- //
+
+
+
+         // ----------   ---------- //
+         // START: Matches all paramaters
+         // ----------   ---------- //
+
+         if (MatchesParam) {
+            return true;
+         } else {
+            return false;
+         }
+
+         // ----------   ---------- //
+         // END: Matches all paramaters
+         // ----------   ---------- //
+
+
+
+      });
+
+      // END: Loop through array to check if item matches filter paramaters
+      // ----------   ---------- //
+
+
+
+      // ----------   ---------- //
+      // START: Get all items inside ul and check if id matches id from UsersFilteredArray
+      // ----------   ---------- //
+
+      $(".ManageClass-List-Main > li").each(function() {
+
+         // Item
+         var Item = $(this);
+         // Get id of item
+         var Item_Id = $(this).data('id');
+
+         var Id_Exists = false;
+
+         // Loop thourgh UsersFilteredArray
+         $.each(UsersFilteredArray, function(index, data) {
+            if (Item_Id == data.Id) {
+               Id_Exists = true;
+            }
+         });
+
+         // Check if id exsists in UsersFilteredArray
+         if (Id_Exists) {
+            Item.css('display', 'flex');
+         } else {
+            Item.css('display', 'none');
+         }
+
+      });
+
+      // ----------   ---------- //
+      // END: Get all items inside ul and check if id matches id from UsersFilteredArray
+      // ----------   ---------- //
+
+
+   });
+
+   // ----------   ---------- //
+   // END: Search filter
+   // ----------   ---------- //
+
+   $('.Filter-Checkbox input[type="checkbox"]').on('click', function(e) {
+
+      var SpanBox = $(e.target).closest('.Filter-Checkbox').find('.Filter-Checkbox-Box');
+
+      if ($(this).is(':checked')) {
+         SpanBox.addClass('fa fa-check');
       } else {
-        Item.css('display', 'none');
+         SpanBox.removeClass('fa fa-check');
       }
 
-    });
+   });
 
-    // ----------   ---------- //
-    // END: Get all items inside ul and check if id matches id from UsersFilteredArray
-    // ----------   ---------- //
+   // ----------   ---------- //
+   // START: Select items per page
+   // ----------   ---------- //
+
+   // Limit items per page
+   var Limit_Data = [{
+         text: "10",
+         value: 10
+      },
+      {
+         text: "20",
+         value: 20
+      },
+      {
+         text: "30",
+         value: 30,
+         selected: true
+      },
+      {
+         text: "40",
+         value: 40
+      },
+      {
+         text: "50",
+         value: 50
+      }
+   ];
+
+   // INIT DDSlick for vgs list
+   $('#General-Limit').ddslick({
+      data: Limit_Data
+   });
+
+   // ----------   ---------- //
+   // END: Select items per page
+   // ----------   ---------- //
+
+   // ----------   ---------- //
+   // START: Select grade
+   // ----------   ---------- //
+
+   // Items for grade
+   var Grade_Data = [{
+         text: "1",
+         value: 1
+      },
+      {
+         text: "2",
+         value: 2
+      },
+      {
+         text: "3",
+         value: 3,
+      }
+   ];
+
+   // INIT DDSlick for vgs list
+   $('#General-Grade').ddslick({
+      data: Grade_Data,
+      selectText: 'Select grade/s',
+      onSelected: function(data) {
+        console.log(data);
+        $('#General-Grade .dd-selected-text').html('Select grade/s');
+      }
+   });
+
+   // ----------   ---------- //
+   // END: Select grade
+   // ----------   ---------- //
+
+   $(document).on('click', '#General-Order', function(e) {
+
+     var element = $(this).text();
+
+     if (element == 'ASC') {
+       $(this).html('DESC');
+     } else {
+       $(this).html('ASC');
+     }
 
 
-
-  });
-
-  // ----------   ---------- //
-  // END: Search filter
-  // ----------   ---------- //
-
+   });
 
 
 }

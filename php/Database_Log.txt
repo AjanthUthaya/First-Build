@@ -1,0 +1,10 @@
+
+
+====================================
+Log started, 01/05/2018 03:11:28
+====================================
+
+SELECT `id`,`id`,`type`,`start_date`,`end_date`,`teacher_id`,`title`,`sub`,`room`,`color`,`vgs`,`ava`,`ava_max`,`details`,`creation_by` FROM lessons ORDER BY `start_date` ASC
+
+Done in 0.0302801132202s
+
