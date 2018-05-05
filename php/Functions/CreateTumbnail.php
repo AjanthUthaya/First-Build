@@ -53,9 +53,9 @@ function CreateThumbnail($File, $Path, $NewHeight) {
 
   // Create image and move to path (IMG, PATH + NAME.EXT)
   if (pathinfo($File['name'], PATHINFO_EXTENSION) == 'jpeg' or pathinfo($File['name'], PATHINFO_EXTENSION) == 'jpg') {
-    ImageJpeg($newimage, $Path, 100);
+    ImageJpeg($newimage, $Path);
   } elseif (pathinfo($File['name'], PATHINFO_EXTENSION) == 'png') {
-    ImagePNG($newimage, $Path, 100);
+    ImagePNG($newimage, $Path);
   }
 
   $Response = array(

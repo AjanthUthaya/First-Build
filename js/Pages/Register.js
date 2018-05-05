@@ -1,25 +1,28 @@
 // ---------- START: Place variable, for testing ---------- //
-/*
+
+// IMG api: https://picsum.photos/200/300/?random
+$('#Register-ImgSrc').attr('src', 'img/Profile_Placeholder.png');
+
 // Firstname, Middlename, Lastname
 $('#Register-Firstname').val('Test');
-$('#Register-Middlename').val('User');
-$('#Register-Lastname').val('Id');
+$('#Register-Middlename').val('MassData');
+$('#Register-Lastname').val('Data');
 
 // Email, Phone
-$('#Register-Email').val('Test@Email.com');
-$('#Register-Phone').val('46472826');
+$('#Register-Email').val('Placeholder@gmail.com');
+$('#Register-Phone').val('46000000');
 
 // Birth date, Vgs
 $('#Register-Birth_Date').val('1999-05-13');
 $('#Register-Vgs').val('2');
 
 // Username
-$('#Register-Username').val('Admin1');
+$('#Register-Username').val('Placeholder1');
 
 // Password, CPassword
-$('#Register-Password').val('TestPassword');
-$('#Register-CPassword').val('TestPassword');
-*/
+$('#Register-Password').val('placeholder');
+$('#Register-CPassword').val('placeholder');
+
 // ---------- END: Place variable, for testing ---------- //
 
 
@@ -436,11 +439,11 @@ $('#Register-Username').on('keypress', function(event) {
 });
 
 // Disable paste
-$(document).ready(function() {
+/*$(document).ready(function() {
   $('#Register-Firstname, #Register-Middlename, #Register-Lastname, #Register-Username').bind("paste", function(e) {
     e.preventDefault();
   });
-});
+});*/
 
 // Captalize first letter of input
 $('#Register-Firstname, #Register-Middlename, #Register-Lastname, #Register-Username').on('keydown', function(event) {

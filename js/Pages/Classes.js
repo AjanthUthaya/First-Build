@@ -709,6 +709,83 @@ function init() {
 
 
    // ----------   ---------- //
+   // START: Function to load/append all users
+   // ----------   ---------- //
+   var User_Count;
+
+   function LoadUsers(UsersArray) {
+
+      // Check if array is empty
+      if (UsersArray == undefined) {
+
+         $(".ManageClass-List-Main").empty();
+
+         // Append fallback if no users are found
+         $('.ManageClass-List-Main').append('<li id="ManageClass_No_Users">No users found</li>');
+
+      } else {
+
+         $(".ManageClass-List-Main").empty();
+
+         $.each(UsersArray, function(index, data) {
+
+            // ----------   ---------- //
+            // START: Define html template for item
+
+            var UserTemplate = {};
+
+            // Img section
+            UserTemplate.ImgStart = '<div class="List-Item-Img">';
+            UserTemplate.ImgContent = '<img src="' + 'img/Profile/Thumbnail/' + data.Img_Name + '">';
+            UserTemplate.ImgEnd = '</div>';
+
+            UserTemplate.Img = UserTemplate.ImgStart + UserTemplate.ImgContent + UserTemplate.ImgEnd;
+
+
+            // Content Section
+            UserTemplate.ContentStart = '<div class="List-Item-Content">';
+            if (data.Middlename == 'NULL') {
+               UserTemplate.ContentContent = '<div class="Item-Content-Name"><span id="Item-Content-Name">' + data.Firstname + ' ' + data.Lastname + '</span></div>';
+            } else {
+               UserTemplate.ContentContent = '<div class="Item-Content-Name"><span id="Item-Content-Name">' + data.Firstname + ' ' + data.Middlename + ' ' + data.Lastname + '</span></div>';
+            }
+            UserTemplate.ContentEnd = '</div>';
+
+            UserTemplate.Content = UserTemplate.ContentStart + UserTemplate.ContentContent + UserTemplate.ContentEnd;
+
+
+            // Checkbox section
+            UserTemplate.CheckboxStart = '<div class="List-Item-Checkbox">';
+            UserTemplate.CheckboxContent = '<label class="container"><input type="checkbox"><span class="checkmark"></span></label>';
+            UserTemplate.CheckboxEnd = '</div>';
+
+            UserTemplate.Checkbox = UserTemplate.CheckboxStart + UserTemplate.CheckboxContent + UserTemplate.CheckboxEnd;
+
+
+            // Full item
+            UserTemplate.Full = '<li class="List-Item" data-id="' + data.Id + '">' + UserTemplate.Img + UserTemplate.Content + UserTemplate.Checkbox + '</li>';
+
+            // END: Define html template for item
+            // ----------   ---------- //
+
+
+            $(".ManageClass-List-Main").append(UserTemplate.Full);
+
+         });
+
+         User_Count = UsersArray.length;
+
+      }
+
+   }
+
+   // ----------   ---------- //
+   // END: Function to load/append all users
+   // ----------   ---------- //
+
+   var LoadSelectedUsers;
+
+   // ----------   ---------- //
    // START: Manage class load data
    // ----------   ---------- //
 
@@ -801,121 +878,84 @@ function init() {
       // ----------   ---------- //
 
 
+      // ----------   ---------- //
+      // START: Load all selected users from db
+      // ----------   ---------- //
+      LoadSelectedUsers = function LoadSelectedUsers() {
+         // Define array selected items from DB
+         var UsersSelectedDB;
+
+         // Check if there is any users
+         if (UsersArray !== undefined) {
+
+            UsersSelectedDB = UsersSelectedDB_Results;
+
+         }
+
+
+         $(".ManageClass-List-Main > li").each(function() {
+
+            // Item
+            var Item = $(this);
+            // Get id of item
+            var Item_Id = $(this).data('id');
+
+            var Id_Exists = false;
+
+            // Loop thourgh UsersSelectedDB
+            $.each(UsersSelectedDB, function(index, data) {
+               if (Item_Id == data.Id) {
+                  Id_Exists = true;
+               }
+            });
+
+            // Check if id exsists in UsersSelectedDB
+            if (Id_Exists) {
+               Item.find("input").prop("checked", true);
+            } else {
+               Item.find("input").prop("checked", false);
+            }
+
+         });
+
+         $('#User_Count').empty();
+         $('#User_Count').append(UsersSelectedDB.length + ' out of ' + User_Count + ' selected');
+
+      }
 
       // ----------   ---------- //
-      // START: Append all users in array
+      // END: Load all selected users from db
       // ----------   ---------- //
 
-      // Check if array is empty
-      if (UsersArray == undefined) {
 
-         // Append fallback if no users are found
-         $('.ManageClass-List-Main').append('<li id="ManageClass_No_Users">No users found</li>');
+
+      var element = $('#General-Order');
+
+      if (element.text() == 'ASC') {
+
+         // Only sorts firstname - ASC
+         SortUsersArray = UsersArray.sort(function(a, b) {
+            var x = a.Firstname,
+               y = b.Firstname;
+            return x < y ? -1 : x > y ? 1 : 0;
+         });
 
       } else {
 
-         $.each(UsersArray, function(index, data) {
-
-
-            // ----------   ---------- //
-            // START: Define html template for item
-
-            var UserTemplate = {};
-
-            // Img section
-            UserTemplate.ImgStart = '<div class="List-Item-Img">';
-            UserTemplate.ImgContent = '<img src="' + 'img/Profile/Thumbnail/' + data.Img_Name + '">';
-            UserTemplate.ImgEnd = '</div>';
-
-            UserTemplate.Img = UserTemplate.ImgStart + UserTemplate.ImgContent + UserTemplate.ImgEnd;
-
-
-            // Content Section
-            UserTemplate.ContentStart = '<div class="List-Item-Content">';
-            if (data.Middlename == 'NULL') {
-               UserTemplate.ContentContent = '<div class="Item-Content-Name"><span id="Item-Content-Name">' + data.Firstname + ' ' + data.Lastname + '</span></div>';
-            } else {
-               UserTemplate.ContentContent = '<div class="Item-Content-Name"><span id="Item-Content-Name">' + data.Firstname + ' ' + data.Middlename + ' ' + data.Lastname + '</span></div>';
-            }
-            UserTemplate.ContentEnd = '</div>';
-
-            UserTemplate.Content = UserTemplate.ContentStart + UserTemplate.ContentContent + UserTemplate.ContentEnd;
-
-
-            // Checkbox section
-            UserTemplate.CheckboxStart = '<div class="List-Item-Checkbox">';
-            UserTemplate.CheckboxContent = '<label class="container"><input type="checkbox"><span class="checkmark"></span></label>';
-            UserTemplate.CheckboxEnd = '</div>';
-
-            UserTemplate.Checkbox = UserTemplate.CheckboxStart + UserTemplate.CheckboxContent + UserTemplate.CheckboxEnd;
-
-
-            // Full item
-            UserTemplate.Full = '<li class="List-Item" data-id="' + data.Id + '">' + UserTemplate.Img + UserTemplate.Content + UserTemplate.Checkbox + '</li>';
-
-            // END: Define html template for item
-            // ----------   ---------- //
-
-
-            $(".ManageClass-List-Main").append(UserTemplate.Full);
-
+         // Only sorts firstname - DESC
+         SortUsersArray = UsersArray.sort(function(a, b) {
+            var x = a.Firstname,
+               y = b.Firstname;
+            return x < y ? 1 : x > y ? -1 : 0;
          });
 
       }
 
-      // ----------   ---------- //
-      // END: Append all users in array
-      // ----------   ---------- //
+      LoadUsers(SortUsersArray);
+      LoadSelectedUsers();
 
 
-      // ----------   ---------- //
-      // START: Load selected items from DB
-
-
-      // Define array selected items from DB
-      var UsersSelectedDB;
-
-      // Check if there is any users
-      if (UsersArray !== undefined) {
-
-         UsersSelectedDB = UsersSelectedDB_Results;
-
-      }
-
-
-      // END: Manage class load data
-      // ----------   ---------- //
-
-
-      $(".ManageClass-List-Main > li").each(function() {
-
-         // Item
-         var Item = $(this);
-         // Get id of item
-         var Item_Id = $(this).data('id');
-
-         var Id_Exists = false;
-
-         // Loop thourgh UsersSelectedDB
-         $.each(UsersSelectedDB, function(index, data) {
-            if (Item_Id == data.Id) {
-               Id_Exists = true;
-            }
-         });
-
-         // Check if id exsists in UsersSelectedDB
-         if (Id_Exists) {
-            Item.find("input").prop("checked", true);
-         } else {
-            Item.find("input").prop("checked", false);
-         }
-
-      });
-
-
-      // console.log(Class_Id); // TESTING
-
-      // Show modal
+      // Show ManageClass modal
       $("#ManageClass").modal({
          fadeDuration: 250,
          fadeDelay: 0.50
@@ -1038,138 +1078,7 @@ function init() {
 
 
 
-   // ----------   ---------- //
-   // START: Search filter
-   // ----------   ---------- //
-
-   if (UsersArray !== undefined) {
-
-      // Init once, because the filter requires an input to run
-      var UsersFilteredArray = $.grep(UsersArray, function(data, index) {
-         return true;
-      });
-
-   }
-
-
-   $('#Filter-Search').on('keyup', function(event) {
-
-      // User input
-      var SearchInput = $('#Filter-Search').val();
-
-
-      // ----------   ---------- //
-      // START: Loop through array to check if item matches filter paramaters
-
-      var UsersFilteredArray = $.grep(UsersArray, function(data, index) {
-
-
-         // Define and set variable for storing if all paramaters match
-         var MatchesParam = true;
-
-         // Defining conditions for if statements (Firstname, Middlename or lastname)
-         var CheckFirstname = data.Firstname.toLowerCase().indexOf(SearchInput.toLowerCase()) == -1;
-         var CheckMiddlename = data.Middlename.toLowerCase().indexOf(SearchInput.toLowerCase()) == -1;
-         var CheckLastname = data.Lastname.toLowerCase().indexOf(SearchInput.toLowerCase()) == -1;
-
-
-
-         // ----------   ---------- //
-         // START: Check if name matches user input
-         // ----------   ---------- //
-
-         // Check if middlename is NULL
-         if (data.Middlename == 'NULL') {
-
-            // Check if firstname or lastname matches user input
-            if (CheckFirstname && CheckLastname) {
-               MatchesParam = false;
-            }
-
-         } else {
-
-            // Check if firstname, middlename, or lastname matches user input
-            if (CheckFirstname && CheckMiddlename && CheckLastname) {
-               MatchesParam = false;
-            }
-
-         }
-
-         // ----------   ---------- //
-         // START: User type filter
-         // ----------   ---------- //
-
-
-
-         // ----------   ---------- //
-         // END: User type filter
-         // ----------   ---------- //
-
-
-
-         // ----------   ---------- //
-         // START: Matches all paramaters
-         // ----------   ---------- //
-
-         if (MatchesParam) {
-            return true;
-         } else {
-            return false;
-         }
-
-         // ----------   ---------- //
-         // END: Matches all paramaters
-         // ----------   ---------- //
-
-
-
-      });
-
-      // END: Loop through array to check if item matches filter paramaters
-      // ----------   ---------- //
-
-
-
-      // ----------   ---------- //
-      // START: Get all items inside ul and check if id matches id from UsersFilteredArray
-      // ----------   ---------- //
-
-      $(".ManageClass-List-Main > li").each(function() {
-
-         // Item
-         var Item = $(this);
-         // Get id of item
-         var Item_Id = $(this).data('id');
-
-         var Id_Exists = false;
-
-         // Loop thourgh UsersFilteredArray
-         $.each(UsersFilteredArray, function(index, data) {
-            if (Item_Id == data.Id) {
-               Id_Exists = true;
-            }
-         });
-
-         // Check if id exsists in UsersFilteredArray
-         if (Id_Exists) {
-            Item.css('display', 'flex');
-         } else {
-            Item.css('display', 'none');
-         }
-
-      });
-
-      // ----------   ---------- //
-      // END: Get all items inside ul and check if id matches id from UsersFilteredArray
-      // ----------   ---------- //
-
-
-   });
-
-   // ----------   ---------- //
-   // END: Search filter
-   // ----------   ---------- //
-
+   /* Add checkmark for box on selection of user_type */
    $('.Filter-Checkbox input[type="checkbox"]').on('click', function(e) {
 
       var SpanBox = $(e.target).closest('.Filter-Checkbox').find('.Filter-Checkbox-Box');
@@ -1181,6 +1090,211 @@ function init() {
       }
 
    });
+
+
+
+   // ----------   ---------- //
+   // START: Search filter
+   // ----------   ---------- //
+
+   function FilterData() {
+
+      // Change sort between ASC/DESC
+      var element = $('#General-Order');
+
+      $(element).on('click', (e) => {
+         if (element.text() == 'ASC') {
+            element.html('DESC');
+         } else {
+            element.html('ASC');
+         }
+      });
+
+
+
+
+      if (UsersArray !== undefined) {
+
+         // Init once, because the filter requires an input to run
+         var UsersFilteredArray = $.grep(UsersArray, function(data, index) {
+            return true;
+         });
+
+      }
+
+
+      $('#Filter-Search, #General-Order, #General-SelectedOnly, #User_Type-Admin, #User_Type-Teacher, #User_Type-Student').on('keyup click', function(event) {
+
+         console.log('Filter init');
+
+         $(".ManageClass-List-Main").empty();
+
+         // User input
+         var SearchInput = $('#Filter-Search').val();
+
+
+         // ----------   ---------- //
+         // START: Loop through array to check if item matches filter paramaters
+
+         var UsersFilteredArray = $.grep(UsersArray, function(data, index) {
+
+
+            // Define and set variable for storing if all paramaters match
+            var MatchesParam = true;
+
+
+
+            // ----------   ---------- //
+            // START: Check if name matches user input
+            // ----------   ---------- //
+
+            // Define SearchInput inside a new Regex
+            var Regex = new RegExp(SearchInput);
+
+            // Check if middlename is NULL
+            if (data.Middlename == 'NULL') {
+
+               // Define name
+               var FullName = data.Firstname.toLowerCase() + ' ' + data.Lastname.toLowerCase();
+
+               var TestInput = Regex.test(FullName);
+
+               // Check if firstname or lastname matches user input
+               if (!TestInput) {
+                  MatchesParam = false;
+               }
+
+            } else {
+
+               // Define name
+               var FullName = data.Firstname.toLowerCase() + ' ' + data.Middlename.toLowerCase() + ' ' + data.Lastname.toLowerCase();
+
+               var TestInput = Regex.test(FullName);
+
+               // Check if firstname, middlename, or lastname matches user input
+               if (!TestInput) {
+                  MatchesParam = false;
+               }
+
+            }
+
+            // ----------   ---------- //
+            // START: User type filter
+            // ----------   ---------- //
+
+
+
+            // ----------   ---------- //
+            // END: User type filter
+            // ----------   ---------- //
+
+
+
+            // ----------   ---------- //
+            // START: Matches all paramaters
+            // ----------   ---------- //
+
+            if (MatchesParam) {
+               return true;
+            } else {
+               return false;
+            }
+
+            // ----------   ---------- //
+            // END: Matches all paramaters
+            // ----------   ---------- //
+
+
+
+         });
+
+         // END: Loop through array to check if item matches filter paramaters
+         // ----------   ---------- //
+
+
+
+         // ----------   ---------- //
+         // START: Filter after ASC/DESC
+
+         var element = $('#General-Order');
+
+         if (element.text() == 'ASC') {
+
+            // Only sorts firstname - ASC
+            SortUsersArray = UsersArray.sort(function(a, b) {
+               var x = a.Firstname,
+                  y = b.Firstname;
+               return x < y ? -1 : x > y ? 1 : 0;
+            });
+
+         } else {
+
+            // Only sorts firstname - DESC
+            SortUsersArray = UsersArray.sort(function(a, b) {
+               var x = a.Firstname,
+                  y = b.Firstname;
+               return x < y ? 1 : x > y ? -1 : 0;
+            });
+
+         }
+
+         LoadUsers(SortUsersArray);
+         LoadSelectedUsers();
+
+         // END: Filter after ASC/DESC
+         // ----------   ---------- //
+
+
+
+         // ----------   ---------- //
+         // START: Get all items inside ul and check if id matches id from UsersFilteredArray
+         // ----------   ---------- //
+
+         $(".ManageClass-List-Main > li").each(function() {
+
+            // Item
+            var Item = $(this);
+            // Get id of item
+            var Item_Id = $(this).data('id');
+
+            var Id_Exists = false;
+
+            // Loop thourgh UsersFilteredArray
+            $.each(UsersFilteredArray, function(index, data) {
+               if (Item_Id == data.Id) {
+                  Id_Exists = true;
+               }
+            });
+
+
+
+            // Check if id exsists in UsersFilteredArray
+            if (Id_Exists) {
+               Item.css('display', 'flex');
+            } else {
+               Item.css('display', 'none');
+            }
+
+         });
+
+         // ----------   ---------- //
+         // END: Get all items inside ul and check if id matches id from UsersFilteredArray
+         // ----------   ---------- //
+
+
+         // Set the amount of students that are selected
+         $('#User_Count').empty();
+         $('#User_Count').append(' out of ' + User_Count + ' selected');
+
+      });
+
+   }
+
+   FilterData();
+
+   // ----------   ---------- //
+   // END: Search filter
+   // ----------   ---------- //
 
    // ----------   ---------- //
    // START: Select items per page
@@ -1219,51 +1333,41 @@ function init() {
    // END: Select items per page
    // ----------   ---------- //
 
+
    // ----------   ---------- //
-   // START: Select grade
+   // START: Clear filter options
    // ----------   ---------- //
 
-   // Items for grade
-   var Grade_Data = [{
-         text: "1",
-         value: 1
-      },
-      {
-         text: "2",
-         value: 2
-      },
-      {
-         text: "3",
-         value: 3,
-      }
-   ];
+   function ClearFilter() {
+      console.log('clicked');
 
-   // INIT DDSlick for vgs list
-   $('#General-Grade').ddslick({
-      data: Grade_Data,
-      selectText: 'Select grade/s',
-      onSelected: function(data) {
-        console.log(data);
-        $('#General-Grade .dd-selected-text').html('Select grade/s');
-      }
+      // Clear out search input
+      $('#Filter-Search').val('');
+
+      // Change sort to default (ASC)
+      $('#General-Order').html('ASC');
+
+      // Uncheck, only show checked
+      $('#General-SelectedOnly').prop('checked', false);
+
+      // Uncheck all user_type checkboxes
+      $('#User_Type-Admin, #User_Type-Teacher, #User_Type-Student').prop('checked', false);
+
+      // Remove checked icon from all checkboxes inside filter menu
+      $('.ManageClass-Filter-Main .Filter-Checkbox-Box').removeClass('fa fa-check');
+   }
+
+   $(document).on('click', '#Filter-Clear', (e) => {
+      ClearFilter();
+      FilterData();
+      // BUG: When i click clear and then sort button, it does not work. try unbind
+      LoadUsers(SortUsersArray);
+      LoadSelectedUsers();
    });
 
    // ----------   ---------- //
-   // END: Select grade
+   // END: Clear filter options
    // ----------   ---------- //
-
-   $(document).on('click', '#General-Order', function(e) {
-
-     var element = $(this).text();
-
-     if (element == 'ASC') {
-       $(this).html('DESC');
-     } else {
-       $(this).html('ASC');
-     }
-
-
-   });
 
 
 }

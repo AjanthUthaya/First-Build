@@ -7,7 +7,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/DB.php');
 require($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/JsonResponse.php');
 
 // MySQLi statement
-$QueryGetClasses = 'SELECT id, user_type, firstname, middlename, lastname, img_name
+$QueryGetClasses = 'SELECT users.id, users.user_type, users.firstname, users.middlename, users.lastname, users.img_name
 FROM users
 WHERE active = "true"';
 

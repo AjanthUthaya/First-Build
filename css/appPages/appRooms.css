@@ -92,6 +92,12 @@
   background: orange;
 }
 
+.Accordion-Folder:first-child > :first-child, .Accordion-Main a[role="tab"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .Accordion-Folder .accordion-title:hover {
   background: #e49400;
 }
