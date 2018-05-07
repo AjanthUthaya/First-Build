@@ -713,7 +713,7 @@ function init() {
    // ----------   ---------- //
    var User_Count;
 
-   function LoadUsers(UsersArray) {
+   function LoadUsers() {
 
       // Check if array is empty
       if (UsersArray == undefined) {
@@ -727,7 +727,35 @@ function init() {
 
          $(".ManageClass-List-Main").empty();
 
-         $.each(UsersArray, function(index, data) {
+
+         /* Chcek if sort is on ASC/DESC */
+
+         var element = $('#General-Order');
+
+         // Sort after current value
+         if (element.text() == 'ASC') {
+
+            // Only sorts firstname - ASC
+            SortUsersFilteredArray = UsersArray.sort(function(a, b) {
+               var x = a.Firstname,
+                  y = b.Firstname;
+               return x < y ? -1 : x > y ? 1 : 0;
+            });
+
+         } else {
+
+            // Only sorts firstname - DESC
+            SortUsersFilteredArray = UsersArray.sort(function(a, b) {
+               var x = a.Firstname,
+                  y = b.Firstname;
+               return x < y ? 1 : x > y ? -1 : 0;
+            });
+
+         }
+
+         /* Chcek if sort is on ASC/DESC */
+
+         $.each(SortUsersFilteredArray, function(index, data) {
 
             // ----------   ---------- //
             // START: Define html template for item
@@ -783,27 +811,30 @@ function init() {
    // END: Function to load/append all users
    // ----------   ---------- //
 
+
+
    var LoadSelectedUsers;
+   var UsersSelected;
 
    // Get all selected and store in updated array
    function UpdateSelected() {
 
       // Declare array to store all selected users
-      var UpdateSelectedArray = [];
+      var UsersSelected = [];
 
       // Loop through all items and check if checkbox is checked
       $('.ManageClass-List-Main  input:checked').each(function() {
          data = $(this).closest('li').data('id');
-         UpdateSelectedArray.push({
+         UsersSelected.push({
             Id: data
          });
       });
 
-      return UpdateSelectedArray;
+      return UsersSelected;
 
    }
 
-   var UsersSelected;
+
 
    // ----------   ---------- //
    // START: Manage class load data
@@ -978,17 +1009,12 @@ function init() {
       // INIT Filter and data
       ClearFilter();
       FilterData();
-      LoadUsers(SortUsersArray);
+      LoadUsers();
       LoadSelectedUsers(UsersSelectedDB_Results);
 
 
       // INIT UsersSelected array
       UsersSelected = UpdateSelected();
-
-      // Update UsersSelected on new selection/de-selection
-      $('.ManageClass-List-Main .List-Item-Checkbox .container').on('click', (e) => {
-         UsersSelected = UpdateSelected();
-      });
 
 
       // Show ManageClass modal
@@ -1009,7 +1035,7 @@ function init() {
          var UsersSelected = [];
 
          // Loop through all items and check if checkbox is checked
-         $('.ManageClass-List-Main  input:checked').each(function() {
+         $('.ManageClass-List-Main input:checked').each(function() {
             data = $(this).closest('li').data('id');
             UsersSelected.push({
                data
@@ -1119,6 +1145,7 @@ function init() {
    // ----------   ---------- //
 
    function ClearFilter() {
+      // TESTING
       console.log('Clear filter');
 
       // Clear out search input
@@ -1140,45 +1167,19 @@ function init() {
    }
 
 
-   // BUG: Runs twice, beacuse function is called twice OnClick
    $(document).on('click', '#Filter-Clear', (e) => {
+      // Update Selected users list before clearing users
+      var UsersSelected = UpdateSelected();
+
       ClearFilter();
       FilterData();
-      LoadUsers(SortUsersArray);
+      LoadUsers();
       LoadSelectedUsers(UsersSelected);
    });
 
    // ----------   ---------- //
    // END: Clear filter options
    // ----------   ---------- //
-
-
-
-   /* Add checkmark for box on selection of user_type */
-   $('.Filter-Checkbox input[type="checkbox"]').on('click', function(e) {
-
-      var SpanBox = $(e.target).closest('.Filter-Checkbox').find('.Filter-Checkbox-Box');
-
-      if ($(this).is(':checked')) {
-         SpanBox.addClass('fa fa-check');
-      } else {
-         SpanBox.removeClass('fa fa-check');
-      }
-
-   });
-
-
-   // Change sort between ASC/DESC
-   var element = $('#General-Order');
-
-   $(element).on('click', (e) => {
-      if (element.text() == 'ASC') {
-         element.html('DESC');
-      } else if (element.text() == 'DESC') {
-         element.html('ASC');
-      }
-   });
-
 
 
    // ----------   ---------- //
@@ -1205,8 +1206,14 @@ function init() {
 
       $('#Filter-Search, #General-Order, #General-SelectedOnly, #User_Type-Admin, #User_Type-Teacher, #User_Type-Student').on('keyup click', function(event) {
 
+         // TESTING
          console.log('Filter init');
 
+         // Define selected data before emptying it out
+         // BUG: Removes checked if user does not match paramaters
+         var UsersSelected = UpdateSelected();
+
+         // Empty old user data
          $(".ManageClass-List-Main").empty();
 
          // User input
@@ -1358,37 +1365,10 @@ function init() {
 
 
 
-         // ----------   ---------- //
-         // START: Filter after ASC/DESC
 
-         var element = $('#General-Order');
-
-         // Sort after current value
-         if (element.text() == 'ASC') {
-
-            // Only sorts firstname - ASC
-            SortUsersFilteredArray = UsersFilteredArray.sort(function(a, b) {
-               var x = a.Firstname,
-                  y = b.Firstname;
-               return x < y ? -1 : x > y ? 1 : 0;
-            });
-
-         } else {
-
-            // Only sorts firstname - DESC
-            SortUsersFilteredArray = UsersFilteredArray.sort(function(a, b) {
-               var x = a.Firstname,
-                  y = b.Firstname;
-               return x < y ? 1 : x > y ? -1 : 0;
-            });
-
-         }
-
-         LoadUsers(SortUsersFilteredArray);
+         LoadUsers();
          LoadSelectedUsers(UsersSelected);
 
-         // END: Filter after ASC/DESC
-         // ----------   ---------- //
 
 
 
@@ -1436,12 +1416,38 @@ function init() {
 
    }
 
-
-   FilterData();
-
    // ----------   ---------- //
    // END: Search filter
    // ----------   ---------- //
+
+
+
+   /* Add checkmark for box on selection of user_type */
+   $('.Filter-Checkbox input[type="checkbox"]').on('click', function(e) {
+
+      var SpanBox = $(e.target).closest('.Filter-Checkbox').find('.Filter-Checkbox-Box');
+
+      if ($(this).is(':checked')) {
+         SpanBox.addClass('fa fa-check');
+      } else {
+         SpanBox.removeClass('fa fa-check');
+      }
+
+   });
+
+
+   // Change sort between ASC/DESC
+   var element = $('#General-Order');
+
+   $(element).on('click', (e) => {
+      if (element.text() == 'ASC') {
+         element.html('DESC');
+      } else if (element.text() == 'DESC') {
+         element.html('ASC');
+      }
+   });
+
+
 
    // ----------   ---------- //
    // START: Select items per page
