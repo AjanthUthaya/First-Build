@@ -785,6 +785,26 @@ function init() {
 
    var LoadSelectedUsers;
 
+   // Get all selected and store in updated array
+   function UpdateSelected() {
+
+      // Declare array to store all selected users
+      var UpdateSelectedArray = [];
+
+      // Loop through all items and check if checkbox is checked
+      $('.ManageClass-List-Main  input:checked').each(function() {
+         data = $(this).closest('li').data('id');
+         UpdateSelectedArray.push({
+            Id: data
+         });
+      });
+
+      return UpdateSelectedArray;
+
+   }
+
+   var UsersSelected;
+
    // ----------   ---------- //
    // START: Manage class load data
    // ----------   ---------- //
@@ -797,6 +817,9 @@ function init() {
 
       // Empty user list from before
       $('.ManageClass-List-Main').empty();
+
+      // Empty out old selected array
+      UsersSelected = [];
 
 
       // Define table
@@ -881,14 +904,15 @@ function init() {
       // ----------   ---------- //
       // START: Load all selected users from db
       // ----------   ---------- //
-      LoadSelectedUsers = function LoadSelectedUsers() {
+      LoadSelectedUsers = function LoadSelectedUsers(SelectedArray) {
+
          // Define array selected items from DB
          var UsersSelectedDB;
 
          // Check if there is any users
          if (UsersArray !== undefined) {
 
-            UsersSelectedDB = UsersSelectedDB_Results;
+            UsersSelectedDB = SelectedArray;
 
          }
 
@@ -919,7 +943,7 @@ function init() {
          });
 
          $('#User_Count').empty();
-         $('#User_Count').append(UsersSelectedDB.length + ' out of ' + User_Count + ' selected');
+         $('#User_Count').append(User_Count + ' out of ' + User_Count);
 
       }
 
@@ -951,8 +975,20 @@ function init() {
 
       }
 
+      // INIT Filter and data
+      ClearFilter();
+      FilterData();
       LoadUsers(SortUsersArray);
-      LoadSelectedUsers();
+      LoadSelectedUsers(UsersSelectedDB_Results);
+
+
+      // INIT UsersSelected array
+      UsersSelected = UpdateSelected();
+
+      // Update UsersSelected on new selection/de-selection
+      $('.ManageClass-List-Main .List-Item-Checkbox .container').on('click', (e) => {
+         UsersSelected = UpdateSelected();
+      });
 
 
       // Show ManageClass modal
@@ -1078,6 +1114,46 @@ function init() {
 
 
 
+   // ----------   ---------- //
+   // START: Clear filter options
+   // ----------   ---------- //
+
+   function ClearFilter() {
+      console.log('Clear filter');
+
+      // Clear out search input
+      $('#Filter-Search').val('');
+
+      // Change sort to default (ASC)
+      if ($('#General-Order').text() == 'DESC') {
+         $('#General-Order').html('ASC');
+      }
+
+      // Uncheck, only show checked
+      $('#General-SelectedOnly').prop('checked', false);
+
+      // Uncheck all user_type checkboxes
+      $('#User_Type-Admin, #User_Type-Teacher, #User_Type-Student').prop('checked', false);
+
+      // Remove checked icon from all checkboxes inside filter menu
+      $('.ManageClass-Filter-Main .Filter-Checkbox-Box').removeClass('fa fa-check');
+   }
+
+
+   // BUG: Runs twice, beacuse function is called twice OnClick
+   $(document).on('click', '#Filter-Clear', (e) => {
+      ClearFilter();
+      FilterData();
+      LoadUsers(SortUsersArray);
+      LoadSelectedUsers(UsersSelected);
+   });
+
+   // ----------   ---------- //
+   // END: Clear filter options
+   // ----------   ---------- //
+
+
+
    /* Add checkmark for box on selection of user_type */
    $('.Filter-Checkbox input[type="checkbox"]').on('click', function(e) {
 
@@ -1092,26 +1168,24 @@ function init() {
    });
 
 
+   // Change sort between ASC/DESC
+   var element = $('#General-Order');
+
+   $(element).on('click', (e) => {
+      if (element.text() == 'ASC') {
+         element.html('DESC');
+      } else if (element.text() == 'DESC') {
+         element.html('ASC');
+      }
+   });
+
+
 
    // ----------   ---------- //
    // START: Search filter
    // ----------   ---------- //
 
    function FilterData() {
-
-      // Change sort between ASC/DESC
-      var element = $('#General-Order');
-
-      $(element).on('click', (e) => {
-         if (element.text() == 'ASC') {
-            element.html('DESC');
-         } else {
-            element.html('ASC');
-         }
-      });
-
-
-
 
       if (UsersArray !== undefined) {
 
@@ -1121,6 +1195,12 @@ function init() {
          });
 
       }
+
+      SortUsersArray = UsersArray.sort(function(a, b) {
+         var x = a.Firstname,
+            y = b.Firstname;
+         return x < y ? -1 : x > y ? 1 : 0;
+      });
 
 
       $('#Filter-Search, #General-Order, #General-SelectedOnly, #User_Type-Admin, #User_Type-Teacher, #User_Type-Student').on('keyup click', function(event) {
@@ -1137,7 +1217,6 @@ function init() {
          // START: Loop through array to check if item matches filter paramaters
 
          var UsersFilteredArray = $.grep(UsersArray, function(data, index) {
-
 
             // Define and set variable for storing if all paramaters match
             var MatchesParam = true;
@@ -1179,13 +1258,79 @@ function init() {
             }
 
             // ----------   ---------- //
-            // START: User type filter
+            // END: Check if name matches user input
             // ----------   ---------- //
 
 
 
             // ----------   ---------- //
-            // END: User type filter
+            // START: Filter Selected only
+            // ----------   ---------- //
+
+            // If Selected Only is checked, run this code aswell
+            if ($('#General-SelectedOnly').prop('checked')) {
+
+               // TESTING
+               console.log('Filter: Only show selected');
+
+               // Define default value, user is not checked
+               var User_Checked = false;
+
+               // Loop through Selected Users and check if user is checked
+               $.grep(UsersSelected, function(UserSelected, index) {
+                  if (UserSelected.Id == data.Id) {
+                     User_Checked = true;
+                  }
+               });
+
+               // If user is not selected, set filter value to false
+               if (User_Checked !== true) {
+                  MatchesParam = false;
+               }
+
+            }
+
+            // ----------   ---------- //
+            // END: Filter Selected only
+            // ----------   ---------- //
+
+
+
+            // ----------   ---------- //
+            // START: Filter User_Type
+            // ----------   ---------- //
+
+            var User_Type_Match = false;
+            var Array_Empty = true;
+
+            $('.Accordion-User_Type .Filter-Checkbox input:checked').each(function(index, el) {
+
+               Array_Empty = false;
+
+               // Label text (Admin/Teacher/Student)
+               target = $.trim($(this).siblings('label').text());
+
+               // Check if user.User_Type matches target
+               if (data.User_Type == target) {
+                  User_Type_Match = true;
+               }
+
+            });
+
+            // Check if array is empty, meaning nothing was selected
+            if (!Array_Empty) {
+
+               // Check if user and target does not matches (User_Type)
+               if (User_Type_Match !== true) {
+                  MatchesParam = false;
+               }
+
+            }
+
+
+
+            // ----------   ---------- //
+            // END: Filter User_Type
             // ----------   ---------- //
 
 
@@ -1218,10 +1363,11 @@ function init() {
 
          var element = $('#General-Order');
 
+         // Sort after current value
          if (element.text() == 'ASC') {
 
             // Only sorts firstname - ASC
-            SortUsersArray = UsersArray.sort(function(a, b) {
+            SortUsersFilteredArray = UsersFilteredArray.sort(function(a, b) {
                var x = a.Firstname,
                   y = b.Firstname;
                return x < y ? -1 : x > y ? 1 : 0;
@@ -1230,7 +1376,7 @@ function init() {
          } else {
 
             // Only sorts firstname - DESC
-            SortUsersArray = UsersArray.sort(function(a, b) {
+            SortUsersFilteredArray = UsersFilteredArray.sort(function(a, b) {
                var x = a.Firstname,
                   y = b.Firstname;
                return x < y ? 1 : x > y ? -1 : 0;
@@ -1238,8 +1384,8 @@ function init() {
 
          }
 
-         LoadUsers(SortUsersArray);
-         LoadSelectedUsers();
+         LoadUsers(SortUsersFilteredArray);
+         LoadSelectedUsers(UsersSelected);
 
          // END: Filter after ASC/DESC
          // ----------   ---------- //
@@ -1284,11 +1430,12 @@ function init() {
 
          // Set the amount of students that are selected
          $('#User_Count').empty();
-         $('#User_Count').append(' out of ' + User_Count + ' selected');
+         $('#User_Count').append(UsersFilteredArray.length + ' out of ' + UsersArray.length);
 
       });
 
    }
+
 
    FilterData();
 
@@ -1333,41 +1480,6 @@ function init() {
    // END: Select items per page
    // ----------   ---------- //
 
-
-   // ----------   ---------- //
-   // START: Clear filter options
-   // ----------   ---------- //
-
-   function ClearFilter() {
-      console.log('clicked');
-
-      // Clear out search input
-      $('#Filter-Search').val('');
-
-      // Change sort to default (ASC)
-      $('#General-Order').html('ASC');
-
-      // Uncheck, only show checked
-      $('#General-SelectedOnly').prop('checked', false);
-
-      // Uncheck all user_type checkboxes
-      $('#User_Type-Admin, #User_Type-Teacher, #User_Type-Student').prop('checked', false);
-
-      // Remove checked icon from all checkboxes inside filter menu
-      $('.ManageClass-Filter-Main .Filter-Checkbox-Box').removeClass('fa fa-check');
-   }
-
-   $(document).on('click', '#Filter-Clear', (e) => {
-      ClearFilter();
-      FilterData();
-      // BUG: When i click clear and then sort button, it does not work. try unbind
-      LoadUsers(SortUsersArray);
-      LoadSelectedUsers();
-   });
-
-   // ----------   ---------- //
-   // END: Clear filter options
-   // ----------   ---------- //
 
 
 }

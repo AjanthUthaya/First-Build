@@ -253,24 +253,9 @@
           <ul class="accordion" data-accordion data-multi-expand="true" data-allow-all-closed="true">
             <!-- Add is-active to li as a class, to make the item open on default -->
 
-            <li class="accordion-item is-active" data-accordion-item>
+            <li class="accordion-item Accordion-General is-active" data-accordion-item>
               <a class="accordion-title">General</a>
               <div class="accordion-content General-Section" data-tab-content>
-
-
-                <div class="General-Section-Separate">
-                  <div class="General-Section-Order">
-                    <label>Order</label>
-                    <a class="button" id="General-Order">ASC</a>
-                  </div>
-
-
-                  <div class="General-Section-Limit">
-                    <label class="General-Limit-Label">Limit</label>
-                    <select id="General-Limit">
-                    </select>
-                  </div>
-                </div>
 
 
                 <div class="Filter-Checkbox General-Section-SelectedOnly">
@@ -282,57 +267,74 @@
                   </label>
                 </div>
 
-                <!-- NOTE: Grade filter is not possible, because the user has no class yet
-                <div class="General-Section-Grade">
-                <label class="General-Grade-Label">Grade/s</label>
-                <select id="General-Grade">
-              </select>
-              <div class="General-Grade-Selected">
 
-            </div>
+                <div class="General-Section-Separate">
+                  <div class="General-Section-Order">
+                    <label>Order</label>
+                    <a class="button" id="General-Order">ASC</a>
+                  </div>
+
+
+                  <!--
+                  <div class="General-Section-Limit">
+                  <label class="General-Limit-Label">Limit</label>
+                  <select id="General-Limit">
+                </select>
+              </div>
+            -->
           </div>
-        -->
-      </div>
-    </li>
 
-
-    <li class="accordion-item is-active" data-accordion-item>
-      <!-- USER TYPE -->
-      <a class="accordion-title">User Type</a>
-      <div class="accordion-content" data-tab-content>
-
-        <!-- User_Type = Student -->
-        <div class="Filter-Checkbox">
-          <input type="checkbox" id="User_Type-Admin">
-
-          <label class="Filter-Checkbox-Label Filter-User_Type" for="User_Type-Admin">
-            <span class="Filter-Checkbox-Box"></span>
-            Admin
-          </label>
-        </div>
-
-        <div class="Filter-Checkbox">
-          <input type="checkbox" id="User_Type-Teacher">
-
-          <label class="Filter-Checkbox-Label Filter-User_Type" for="User_Type-Teacher">
-            <span class="Filter-Checkbox-Box"></span>
-            Teacher
-          </label>
-        </div>
-
-        <div class="Filter-Checkbox">
-          <input type="checkbox" id="User_Type-Student">
-
-          <label class="Filter-Checkbox-Label Filter-User_Type" for="User_Type-Student">
-            <span class="Filter-Checkbox-Box"></span>
-            Student
-          </label>
-        </div>
+          <!-- NOTE: Grade filter is not possible, because the user has no class yet
+          <div class="General-Section-Grade">
+          <label class="General-Grade-Label">Grade/s</label>
+          <select id="General-Grade">
+        </select>
+        <div class="General-Grade-Selected">
 
       </div>
-    </li>
+    </div>
+  -->
+</div>
+</li>
 
-  </ul>
+
+<li class="accordion-item Accordion-User_Type is-active" data-accordion-item>
+  <!-- USER TYPE -->
+  <a class="accordion-title">User Type</a>
+  <div class="accordion-content" data-tab-content>
+
+    <!-- User_Type = Student -->
+    <div class="Filter-Checkbox">
+      <input type="checkbox" id="User_Type-Admin">
+
+      <label class="Filter-Checkbox-Label Filter-User_Type" for="User_Type-Admin">
+        <span class="Filter-Checkbox-Box"></span>
+        Admin
+      </label>
+    </div>
+
+    <div class="Filter-Checkbox">
+      <input type="checkbox" id="User_Type-Teacher">
+
+      <label class="Filter-Checkbox-Label Filter-User_Type" for="User_Type-Teacher">
+        <span class="Filter-Checkbox-Box"></span>
+        Teacher
+      </label>
+    </div>
+
+    <div class="Filter-Checkbox">
+      <input type="checkbox" id="User_Type-Student">
+
+      <label class="Filter-Checkbox-Label Filter-User_Type" for="User_Type-Student">
+        <span class="Filter-Checkbox-Box"></span>
+        Student
+      </label>
+    </div>
+
+  </div>
+</li>
+
+</ul>
 
 
 </div>
