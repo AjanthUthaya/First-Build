@@ -1,5 +1,5 @@
 // ---------- START: Place variable, for testing ---------- //
-
+/*
 // IMG api: https://picsum.photos/200/300/?random
 $('#Register-ImgSrc').attr('src', 'img/Profile_Placeholder.png');
 
@@ -22,7 +22,7 @@ $('#Register-Username').val('Placeholder1');
 // Password, CPassword
 $('#Register-Password').val('placeholder');
 $('#Register-CPassword').val('placeholder');
-
+*/
 // ---------- END: Place variable, for testing ---------- //
 
 

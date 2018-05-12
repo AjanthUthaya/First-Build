@@ -1,80 +1,99 @@
 <?php
+// Start session
 session_start();
 
-// Including db connection
-require ($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/DB.php');
+// Including DB connection
+require($_SERVER['DOCUMENT_ROOT'] . '/php/Partials/DB.php');
 
-// For testing
-/*print_r($_POST);
-echo $_FILES['ImgSrc']['name'];*/
+// Report status in JSON format back to user
+require($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/JsonResponse.php');
 
-// Date now (dd-mm-yyyy)
-$DateNow = date('d-m-Y');
-// Time now (HH:MM:SS)
-$TimeNow = date('H:i:s');
 
-// ---------- START: Declare all POST values ---------- //
+
+// ==================== START ==================== //
+// # Declare all POST values #
+// ==================== START ==================== //
 
 $NewEmail = $_POST['Email'];
 $NewPhone = $_POST['Phone'];
 if (isset($_FILES['ImgSrc'])) {
-    $NewImg = $_FILES['ImgSrc'];
+  $NewImg = $_FILES['ImgSrc'];
 }
 
+// ==================== END ==================== //
+// # Declare all POST values #
+// ==================== END ==================== //
 
-// ---------- END: Declare all POST values ---------- //
 
 
 
-// ---------- START: Check if any of the are empty ---------- //
+
+// ==================== START ==================== //
+// # Check if any of the declared POST values are empty #
+// ==================== START ==================== //
 
 $NewImgEmpty = 'NotEmpty';
 $NewEmailEmpty = 'NotEmpty';
 $NewPhoneEmpty = 'NotEmpty';
 
 if (empty($NewImg)) {
-    $NewImgEmpty = 'Empty';
+  $NewImgEmpty = 'Empty';
 }
 
 if (empty($NewEmail)) {
-    $NewEmailEmpty = 'Empty';
+  $NewEmailEmpty = 'Empty';
 }
 
 if (empty($NewPhone)) {
-    $NewPhoneEmpty = 'Empty';
+  $NewPhoneEmpty = 'Empty';
 }
 
-// ---------- END: Check if any of the are empty ---------- //
+// ==================== END ==================== //
+// # Check if any of the declared POST values are empty #
+// ==================== END ==================== //
 
 
-// If phone or email is empty, return error
+
+// ***** Check if Email or Phone values are empty ***** //
 if ($NewEmailEmpty == 'Empty' || $NewPhoneEmpty == 'Empty') {
-    echo 'Empty_Email_Phone';
-} else {
-    require '../Functions/CheckUserVal.php';
-    $CheckUserValResult = CheckUserVal($conn);
-
-    if ($CheckUserValResult !== 'Session_DB_Equal') {
-        // CheckUserVal() function returns 'Redirect-$Reason' or 'Session_DB_Equal'
-    // ---------- START: List of all error responses ---------- //
-    /*
-
-    - Session_Data_NotSet
-    - Session_Data_Empty
-    - DB_Username_NoMatch
-    - DB_Data_Empty
-    - Session_DB_NotEqual
-
-    */
-    // ---------- END: List of all error responses ---------- //
-    } else {
-
-        require '../Functions/ProfileUpdateFunction.php';
-
-        if ($NewImgEmpty == 'Empty') {
-            UpdateUser($conn, $NewEmail, $NewPhone, 'Empty');
-        } else {
-            UpdateUser($conn, $NewEmail, $NewPhone, $NewImg);
-        }
-    }
+  JsonResponse('Failed', 'Required values are missing', 'Empty value/s, please fill out all fields');
+  exit();
 }
+
+
+// Require CheckUserVal function, to authenticate user login
+require($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/CheckUserVal.php');
+$CheckUserValResult = CheckUserVal($conn, $_SESSION, 'ProfileUpdate');
+
+
+// ***** Check if user authentication failed ***** //
+if ($CheckUserValResult['Message'] !== 'Session_DB_Equal') {
+  JsonResponse('Failed', '', $CheckUserValResult);
+  exit();
+}
+
+
+
+// ==================== START ==================== //
+// # Update user and send success message to user #
+// ==================== START ==================== //
+
+// Include function to update user profile
+require($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/ProfileUpdateFunction.php');
+
+
+// If there is no img, only update email and phone value
+if ($NewImgEmpty == 'Empty') {
+  $Test = UpdateUser($conn, $NewEmail, $NewPhone, 'Empty');
+  JsonResponse('Done', 'Update successfull', $Test);
+  exit();
+}
+
+// Update img, email and phone value
+UpdateUser($conn, $NewEmail, $NewPhone, $NewImg);
+JsonResponse('Done', 'Update successfull', 'User data successfully updated');
+exit();
+
+// ==================== END ==================== //
+// # Update user and send success message to user #
+// ==================== END ==================== //

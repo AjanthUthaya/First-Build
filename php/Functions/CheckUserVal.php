@@ -68,7 +68,7 @@ foreach ($Session as $key => $value) {
 
 
 if ($Session_Empty == true) {
-  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], $Type . ' failed - Session Empty');
+  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], $Type . ' - Failed - Session Empty');
   ClearSession('Session_Empty');
 
 
@@ -102,7 +102,7 @@ $NowDate = strtotime($DateNow);
 
 // Check if login date is valid (Within x days)
 if ($LoginDate < $NowDate) {
-  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], $Type . ' failed - Login Date Expired');
+  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], $Type . ' - Failed - Login Date Expired');
   ClearSession('Login_Date_Expired');
   // Declare array to return
   $Response['Status'] = 'Failed';
@@ -127,7 +127,7 @@ $Query = 'SELECT * FROM users WHERE username = ? AND active = "true"';
 
 // Prepareing statement
 if (!($stmt = $conn->prepare($Query))) {
-  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], $Type . ' error - Prepareing Statement');
+  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], $Type . ' - Error - Prepareing Statement');
   ClearSession('Prepareing_Statement');
   // Declare array to return
   $Response['Status'] = 'Error';
@@ -138,7 +138,7 @@ if (!($stmt = $conn->prepare($Query))) {
 
 // Binding parameters
 if (!$stmt->bind_param('s', $Session['Username'])) {
-  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], $Type . ' error - Binding Parameters');
+  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], $Type . ' - Error - Binding Parameters');
   ClearSession('Binding_Parameters');
   // Declare array to return
   $Response['Status'] = 'Error';
@@ -149,7 +149,7 @@ if (!$stmt->bind_param('s', $Session['Username'])) {
 
 // Executeing statement
 if (!$stmt->execute()) {
-  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], $Type . ' error - Executeing Statement');
+  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], $Type . ' - Error - Executeing Statement');
   ClearSession('Executeing_Statement');
   // Declare array to return
   $Response['Status'] = 'Error';
@@ -163,7 +163,7 @@ $result = $stmt->get_result();
 
 // Check if result is empty
 if ($result->num_rows == 0) {
-  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], $Type . ' failed - Username Not Found');
+  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], $Type . ' - Failed - Username Not Found');
   ClearSession('Username_Not_Found');
   // Declare array to return
   $Response['Status'] = 'Failed';
@@ -206,7 +206,7 @@ foreach ($DB as $key => $value) {
 }
 
 if ($DB_Empty == true) {
-  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], $Type . ' failed - DB Empty');
+  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], $Type . ' - Failed - DB Empty');
   ClearSession('DB_Empty');
   // Declare array to return
   $Response['Status'] = 'Failed';
@@ -266,7 +266,7 @@ foreach ($Session_Compare as $Session_Key => $Session_Value) {
 
 
 if ($Session_DB_Equal == false) {
-  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], $Type . ' failed - Session DB NotEqual');
+  UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], $Type . ' - Failed - Session DB NotEqual');
   ClearSession('Session_DB_Not_Equal');
   // Declare array to return
   $Response['Status'] = 'Failed';
@@ -285,10 +285,10 @@ if ($Session_DB_Equal == false) {
 // START: DONE
 // ----------   ---------- //
 
-UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], $Type . ' successful');
+UserOnline($Session['User_Id'], $Session['User_Type'], $Session['Username'], $Type . ' - Successful');
 // Declare array to return
 $Response['Status'] = 'Done';
-$Response['Message'] = 'Passed by all params';
+$Response['Message'] = 'Session_DB_Equal';
 // Return array
 return $Response;
 

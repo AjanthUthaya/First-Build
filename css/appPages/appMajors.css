@@ -46,6 +46,7 @@ a.button {
   color: white;
   justify-content: center;
   align-items: center;
+  font-weight: bold;
 }
 
 .Major-Item-Title:hover, .Major-Item-Title:focus {

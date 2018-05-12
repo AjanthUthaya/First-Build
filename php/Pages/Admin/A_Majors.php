@@ -56,7 +56,7 @@
 <!-- Add major to DB using AJAX -->
 <div id="AddMajor-Modal" class="modal">
 
-  <div class="Modal-Header">
+  <div class="Modal-Header AddMajor-Header">
     <label>Add new major</label>
     <a rel="modal:close">x</a>
   </div>

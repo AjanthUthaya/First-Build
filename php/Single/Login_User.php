@@ -1,5 +1,5 @@
 <?php
-// Start session, and get access to session storage
+// Start session
 session_start();
 
 // Function to give AJAX response
@@ -64,21 +64,21 @@ $Query = 'SELECT * FROM users WHERE username = ? AND active = "true"';
 
 // Prepareing statement
 if (!($stmt = $conn->prepare($Query))) {
-  UserOnline('', '', $Username, 'Login error - Prepareing Statement', $_SERVER["HTTP_REFERER"]);
+  UserOnline('', '', $Username, 'Login - Error - Prepareing Statement', $_SERVER["HTTP_REFERER"]);
   JsonResponse('Error', '', 'Prepareing statement');
   exit();
 }
 
 // Binding parameters
 if (!$stmt->bind_param('s', $Username)) {
-  UserOnline('', '', $Username, 'Login error - Binding Parameters', $_SERVER["HTTP_REFERER"]);
+  UserOnline('', '', $Username, 'Login - Error - Binding Parameters', $_SERVER["HTTP_REFERER"]);
   JsonResponse('Error', '', 'Binding parameters');
   exit();
 }
 
 // Executeing statement
 if (!$stmt->execute()) {
-  UserOnline('', '', $Username, 'Login error - Executeing Statement', $_SERVER["HTTP_REFERER"]);
+  UserOnline('', '', $Username, 'Login - Error - Executeing Statement', $_SERVER["HTTP_REFERER"]);
   JsonResponse('Error', '', 'Executeing statement');
   exit();
 }
@@ -88,7 +88,7 @@ $result = $stmt->get_result();
 
 // Check if num_rows is 0 (Username does not exist)
 if ($result->num_rows == 0) {
-  UserOnline('', '', $Username, 'Login failed - Username not found', $_SERVER["HTTP_REFERER"]);
+  UserOnline('', '', $Username, 'Login - Failed - Username not found', $_SERVER["HTTP_REFERER"]);
   JsonResponse('Failed', '', 'Wrong username or password, try again');
   exit();
 }
@@ -115,7 +115,7 @@ $stmt->close();
 // ----------  ---------- //
 
 if (!password_verify($Password, $data[0]['password'])) {
-  UserOnline('', '', $Username, 'Login failed - Wrong password', $_SERVER["HTTP_REFERER"]);
+  UserOnline('', '', $Username, 'Login - Failed - Wrong password', $_SERVER["HTTP_REFERER"]);
   JsonResponse('Failed', '', 'Wrong username or password, try again');
   exit();
 }
@@ -139,7 +139,7 @@ foreach((array)$data[0] as $item) {
 }
 
 if ($DB_Array_Empty == true) {
-  UserOnline('', '', $Username, 'Login failed - Empty DB values', $_SERVER["HTTP_REFERER"]);
+  UserOnline('', '', $Username, 'Login - Failed - Empty DB values', $_SERVER["HTTP_REFERER"]);
   JsonResponse('Error', '', 'Empty DB values');
   exit();
 }
@@ -172,7 +172,7 @@ $_SESSION['Login_Date'] = date('d-m-Y H:i:s');
 
 
 // Report user activity
-UserOnline($_SESSION['User_Id'], $_SESSION['User_Type'], $_POST['Username'], 'Login successful', $_SERVER["HTTP_REFERER"]);
+UserOnline($_SESSION['User_Id'], $_SESSION['User_Type'], $_POST['Username'], 'Login - Successful', $_SERVER["HTTP_REFERER"]);
 JsonResponse('Done', '', 'Login successful');
 exit();
 

@@ -984,28 +984,6 @@ function init() {
 
 
 
-      var element = $('#General-Order');
-
-      if (element.text() == 'ASC') {
-
-         // Only sorts firstname - ASC
-         SortUsersArray = UsersArray.sort(function(a, b) {
-            var x = a.Firstname,
-               y = b.Firstname;
-            return x < y ? -1 : x > y ? 1 : 0;
-         });
-
-      } else {
-
-         // Only sorts firstname - DESC
-         SortUsersArray = UsersArray.sort(function(a, b) {
-            var x = a.Firstname,
-               y = b.Firstname;
-            return x < y ? 1 : x > y ? -1 : 0;
-         });
-
-      }
-
       // INIT Filter and data
       ClearFilter();
       FilterData();
@@ -1146,7 +1124,7 @@ function init() {
 
    function ClearFilter() {
       // TESTING
-      console.log('Clear filter');
+      // console.log('Clear filter');
 
       // Clear out search input
       $('#Filter-Search').val('');
@@ -1207,7 +1185,7 @@ function init() {
       $('#Filter-Search, #General-Order, #General-SelectedOnly, #User_Type-Admin, #User_Type-Teacher, #User_Type-Student').on('keyup click', function(event) {
 
          // TESTING
-         console.log('Filter init');
+        //  console.log('Filter init');
 
          // Define selected data before emptying it out
          // BUG: Removes checked if user does not match paramaters
@@ -1278,7 +1256,7 @@ function init() {
             if ($('#General-SelectedOnly').prop('checked')) {
 
                // TESTING
-               console.log('Filter: Only show selected');
+               // console.log('Filter: Only show selected');
 
                // Define default value, user is not checked
                var User_Checked = false;

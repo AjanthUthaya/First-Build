@@ -294,8 +294,10 @@ CreateThumbnail($_FILES["ImgSrc"], "../../img/Profile/Thumbnail/" . $NewImgName,
 move_uploaded_file($_FILES["ImgSrc"]["tmp_name"], "../../img/Profile/" . $NewImgName);
 
 
-// Send success response
-JsonResponse("Done", "User added", $Username . " successfully added");
 // Report user activity
 UserOnline('', '', $_POST['Username'], 'Registration - New user added');
+
+// Send success response
+JsonResponse("Done", "User added", $Username . " successfully added");
+
 exit();
