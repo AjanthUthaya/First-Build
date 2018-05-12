@@ -75,25 +75,25 @@ if ($CheckUserValResult['Message'] !== 'Session_DB_Equal') {
 
 
 // ==================== START ==================== //
-// # Update user and send success message to user #
+// # Update user #
 // ==================== START ==================== //
 
 // Include function to update user profile
-require($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/ProfileUpdateFunction.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/UpdateProfile.php');
 
 
 // If there is no img, only update email and phone value
 if ($NewImgEmpty == 'Empty') {
-  $Test = UpdateUser($conn, $NewEmail, $NewPhone, 'Empty');
-  JsonResponse('Done', 'Update successfull', $Test);
+  UpdateProfile($conn, $NewEmail, $NewPhone, 'Empty');
+  JsonResponse('Done', 'Update successfull', 'User data successfully updated');
   exit();
 }
 
 // Update img, email and phone value
-UpdateUser($conn, $NewEmail, $NewPhone, $NewImg);
+UpdateProfile($conn, $NewEmail, $NewPhone, $NewImg);
 JsonResponse('Done', 'Update successfull', 'User data successfully updated');
 exit();
 
 // ==================== END ==================== //
-// # Update user and send success message to user #
+// # Update user #
 // ==================== END ==================== //

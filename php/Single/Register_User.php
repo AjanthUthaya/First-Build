@@ -287,7 +287,7 @@ $conn->close();
 
 
 // Create thumbnail
-require ($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/CreateTumbnail.php');
+require ($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/CreateThumbnail.php');
 CreateThumbnail($_FILES["ImgSrc"], "../../img/Profile/Thumbnail/" . $NewImgName, 100);
 
 // Upload img to server folder folder
