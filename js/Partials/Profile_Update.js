@@ -1,3 +1,6 @@
+// Include functions to display notifications
+require("js/Functions/Notify.js");
+
 // ---------- START: Check validation, if true activate save button ---------- //
 
 // Declaring where to store form data
@@ -277,9 +280,32 @@ $(document).ready(function() {
          // Fired up on success
          Validation.done(function(data) {
 
+            if (data.Status == 'Error') {
+               NotifyError(data.Title, data.Message);
+            } else if (data.Status == 'Failed') {
+               NotifyFailed(data.Title, data.Message);
+            } else if (data.Status == 'Done') {
 
-            console.log(data);
+               // Update old values with new phone and email
+               Old_Email_Val = data.Data.Email;
+               Old_Phone_Val = data.Data.Phone;
+               Old_Img_Val = $('#Profile-Img-Edit').attr('src');
 
+               // Update image
+               $('#Profile-Img-Main').attr('src', Old_Img_Val);
+               $('#Profile-Img-Edit').attr('src', Old_Img_Val);
+
+               // Remove red x button from img
+               $('.Profile-Img-Close').css('display', 'none');
+
+               // Disable save button
+               SaveButton('Disable');
+
+               NotifyDone(data.Title, data.Message);
+
+            } else {
+               NotifyError('Response error', 'Response not recognized');
+            }
 
          })
 

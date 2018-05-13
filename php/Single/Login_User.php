@@ -173,6 +173,8 @@ $_SESSION['Login_Date'] = date('d-m-Y H:i:s');
 
 // Report user activity
 UserOnline($_SESSION['User_Id'], $_SESSION['User_Type'], $_POST['Username'], 'Login - Successful', $_SERVER["HTTP_REFERER"]);
+
+// Send response to user
 JsonResponse('Done', '', 'Login successful');
 exit();
 

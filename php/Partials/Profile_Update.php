@@ -63,7 +63,7 @@ if ($NewEmailEmpty == 'Empty' || $NewPhoneEmpty == 'Empty') {
 
 // Require CheckUserVal function, to authenticate user login
 require($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/CheckUserVal.php');
-$CheckUserValResult = CheckUserVal($conn, $_SESSION, 'ProfileUpdate');
+$CheckUserValResult = CheckUserVal($conn, $_SESSION, 'Pre-Auth ProfileUpdate');
 
 
 // ***** Check if user authentication failed ***** //
@@ -80,20 +80,58 @@ if ($CheckUserValResult['Message'] !== 'Session_DB_Equal') {
 
 // Include function to update user profile
 require($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/UpdateProfile.php');
+// Include function to log user activity
+require_once($_SERVER['DOCUMENT_ROOT'] . '/php/Functions/UserOnline.php');
 
+// Report user activity
+UserOnline($_SESSION['User_Id'], $_SESSION['User_Type'], $_SESSION['Username'], 'ProfileUpdate - Running', $_SERVER["HTTP_REFERER"]);
 
 // If there is no img, only update email and phone value
 if ($NewImgEmpty == 'Empty') {
-  UpdateProfile($conn, $NewEmail, $NewPhone, 'Empty');
-  JsonResponse('Done', 'Update successfull', 'User data successfully updated');
-  exit();
-}
 
-// Update img, email and phone value
-UpdateProfile($conn, $NewEmail, $NewPhone, $NewImg);
-JsonResponse('Done', 'Update successfull', 'User data successfully updated');
-exit();
+  // Only update email and phone, not img
+  UpdateProfile($conn, $NewEmail, $NewPhone, 'Empty');
+
+  // Declare response array
+  $ResponseArray = array(
+    'Status' => 'Done',
+    'Title' => 'Update successful',
+    'Message' => 'Profile data successfully updated',
+    'Img' => 'false',
+    'Data' => array(
+      'Email' => $NewEmail,
+      'Phone' => $NewPhone
+    )
+  );
+
+} else {
+
+  // Update img, email and phone value
+  UpdateProfile($conn, $NewEmail, $NewPhone, $NewImg);
+
+  // Declare response array
+  $ResponseArray = array(
+    'Status' => 'Done',
+    'Title' => 'Update successful',
+    'Message' => 'Profile data successfully updated',
+    'Img' => 'true',
+    'Data' => array(
+      'Email' => $NewEmail,
+      'Phone' => $NewPhone
+    )
+  );
+
+}
 
 // ==================== END ==================== //
 // # Update user #
 // ==================== END ==================== //
+
+
+
+// Report user activity
+UserOnline($_SESSION['User_Id'], $_SESSION['User_Type'], $_SESSION['Username'], 'ProfileUpdate - Successful', $_SERVER["HTTP_REFERER"]);
+
+// Send feedback to user
+echo json_encode($ResponseArray);
+exit();
