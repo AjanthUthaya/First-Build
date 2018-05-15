@@ -1,155 +1,128 @@
 function init() {
 
-  // Toggle search bar
-  $('.Major-Title-Left').on('click', function(event) {
-    // Show search bar
-    $('.Major-Search-Main').toggleClass('Major-Search-Show');
-
-    // Focus on input
-    $("#Search-Major").focus();
-
-  });
-
-  // Runs search engine
-  $("#Search-Major").on("keyup", function(event) {
-    // Filters items on input
-    var value = $(this).val().toLowerCase();
-    $(".Major-List .Major-Item").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-
-
-  // On Item click
-  $(".Major-Item").on("click", function(e) {
-    var Major_Id = $(e.target).data('major_id');
-
-    // console.log(Major_Id); // TESTING
-  });
-
-  $("#AddMajor").on("click", function(e) {
-    $("#AddMajor-Modal").modal({
-      fadeDuration: 250,
-      fadeDelay: 0.50
-    });
-  });
-
-  // Captalize first letter of Major name
-  $(document).on("keydown", "#AddMajor-Major", function(e) {
-    if (this.selectionStart == 0 && event.keyCode >= 65 && event.keyCode <= 90 && !(event.shiftKey) && !(event.ctrlKey) && !(event.metaKey) && !(event.altKey)) {
-      var $t = $(this);
-      event.preventDefault();
-      var char = String.fromCharCode(event.keyCode);
-      $t.val(char + $t.val().slice(this.selectionEnd));
-      this.setSelectionRange(1, 1);
-    }
-  });
-
-
-  // On add major, send form
-  $(document).on("click", "#AddMajor-Confirm", function(e) {
-    $('form#AddMajorForm').submit();
-  });
-
-  // Notification function (Title, TitleColor, Message, Icon, IconColor, Timeout)
-  require("js/Functions/Notify.js");
-
-  // Define form data variable
-  var FormDataAddMajor = new FormData();
-
-  // Variable to hold request
-  var RequestAddMajor;
-
-  // Bind to the submit event of our form
-  $("#AddMajorForm").submit(function(event) {
-
-    // Prevent default posting of form
-    event.preventDefault();
-
-    // Abort any pending request
-    if (RequestAddMajor) {
-      RequestAddMajor.abort();
-    }
-
-
-    /* ---------- START: Declaring field values ---------- */
-
-    FormDataAddMajor.append('Major', $('#AddMajor-Major').val());
-    FormDataAddMajor.append('Code', $('#AddMajor-Code').val());
-    FormDataAddMajor.append('Vgs', $('#AddMajor-Vgs').val());
-    FormDataAddMajor.append('Color', $('#AddMajor-Color').val());
-    FormDataAddMajor.append('Hours', $('#AddMajor-Hours').val());
-
-    /* ---------- END: Declaring field values ---------- */
+   // &&&&& # Notify # &&&&& //
+   require("js/Functions/Notify.js");
 
 
 
-    // ----- START: Disabling input during form submit ----- //
+   // =============== START =============== //
+   // # TOGGLE SEARCH BAR #
+   // =============== START =============== //
 
-    var $inputs = $(this).find("input, select, button, textarea");
+   $('.Major-Title-Left').on('click', function(event) {
 
-    // Let's disable the inputs for the duration of the Ajax request.
-    $inputs.prop("disabled", true);
+      // # SHOW SEARCH BAR # //
+      $('.Major-Search-Main').toggleClass('Major-Search-Show');
 
-    // ----- END: Disabling input during form submit ----- //
+      // # FOCUS ON INPUT # //
+      $("#Search-Major").focus();
+
+   });
+
+   // =============== END =============== //
+   // # TOGGLE SEARCH BAR #
+   // =============== END =============== //
 
 
-    // ---------- START: Form submit ---------- //
 
-    // Fire off the request
-    RequestAddMajor = $.ajax({
-      url: "/php/Single/Add_Major.php",
-      type: "post",
-      data: FormDataAddMajor,
-      dataType: "json",
-      async: false,
-      contentType: false, // The content type used when sending data to the server.
-      cache: false, // To unable request pages to be cached
-      processData: false, // To send DOMDocument or non processed data file it is set to false
-    });
 
-    // Fired up on success
-    RequestAddMajor.done(function(data) {
-      if (data.Status == 'Error') {
-        Notify(data.Status, 'red', data.Message, 'fa fa-close', 'red');
-      } else if (data.Status == 'Failed') {
-        Notify(data.Status, 'yellow', data.Message, 'fa fa-warning', 'yellow', 5000);
-      } else if (data.Status == 'Done') {
 
-        // Make popup disappear
-        $.modal.close();
+   // =============== START =============== //
+   // # SEARCH ENGINE FOR MAJORS #
+   // =============== START =============== //
 
-        // Append item to major list
-        var Major_Item = '<div class="Major-Item" style="background: ' + data.Color + ';"><div class="Major-Item-Container"><a class="Major-Item-Title" href="EditMajor.php?Major_Id=' + data.Major_Id + '" data-major_id="' + data.Major_Id + '">' + data.Major + ' (' + data.Code + ')</a></div></div>';
-        $('.Major-List').append(Major_Item);
+   $("#Search-Major").on("keyup", function(event) {
 
-        // Show success message
-        Notify('Major added', 'white', data.Message, 'fa fa-check', '#3FC380', 3000);
+      // # FILTERS MAJORS ON INPUT # //
+      var value = $(this).val().toLowerCase();
+      $(".Major-List .Major-Item").filter(function() {
+         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
 
-      } else {
-        Notify('Error', 'red', 'Response not recognized', 'fa fa-close', 'red');
-      }
-    })
+   });
 
-    // Fired up on failure
-    RequestAddMajor.fail(function(xhr, textStatus, errorThrown) {
-      Notify('ERROR', 'red', 'Server error: ' + textStatus, 'fa fa-close', 'red');
-    })
+   // =============== END =============== //
+   // # SEARCH ENGINE FOR MAJORS #
+   // =============== END =============== //
 
-    // Fired up no matter if the result is a success or failure
-    RequestAddMajor.always(function() {
-      // Reenable the inputs
-      $inputs.prop("disabled", false);
-    })
 
-    // ---------- END: Form submit ---------- //
 
-  });
 
-  // Change color of add major header
-  $('#AddMajor-Color').change(function() {
-    $('.AddMajor-Header').css('background-color', $(this).val());
-  });
 
+   // =============== START =============== //
+   // # ADD MAJOR POPUP (NB: UNBIND ALL) #
+   // =============== START =============== //
+
+   $("#AddMajor").on("click", function(e) {
+
+
+      // ========== START ========== //
+      // # YEAR LIST #
+      // ========== START ========== //
+
+      // Year data
+      var Year = [{
+            text: "2017/2018",
+            value: 1
+         },
+         {
+            text: "2018/2019",
+            value: 2
+         },
+         {
+            text: "2020/2021",
+            value: 3
+         }
+      ];
+
+      // INIT DDSlick for year list
+      $('#AddMajor-Year').ddslick({
+         data: Year,
+         selectText: 'Select year'
+      });
+
+      // ========== END ========== //
+      // # YEAR LIST #
+      // ========== END ========== //
+
+
+
+      // # SHOW MODAL # //
+      $("#AddMajor-Modal").modal({
+         fadeDuration: 250,
+         fadeDelay: 0.50
+      });
+
+      // # ON COLOR SELECTION, CHANGE COLOR OF HEADER # //
+      $('#AddMajor-Color').unbind('#AddMajor-Color').change(function() {
+         $('.AddMajor-Header').css('background-color', $(this).val());
+      });
+
+      // # CAPITALIZE FIRST LETTER OF MAJOR NAME # //
+      $("#AddMajor-Title").unbind('#AddMajor-Title').on("input", function(e) {
+         console.log('input');
+         var txt = $(this).val();
+         txt = txt.substring(0, 1).toUpperCase() + txt.substring(1);
+         $(this).val(txt);
+      });
+
+      // # CAPITALIZE ALL LETTERS OF MAJOR CODE # //
+      $(document).unbind('#AddMajor-Code').on('input', '#AddMajor-Code', (e) => {
+         e.target.value = e.target.value.toUpperCase();
+      });
+
+      // # ONLY ALLOW NUMBERS (0-9), RegEx # //
+      $('#AddMajor-Hours_One, #AddMajor-Hours_Two').unbind('#AddMajor-Hours_One, #AddMajor-Hours_Two').on("input", function(e) {
+         if (/\D/g.test(this.value)) {
+            // Filter non-digits from input value.
+            this.value = this.value.replace(/\D/g, '');
+         }
+      });
+
+   });
+
+   // =============== END =============== //
+   // # ADD MAJOR POPUP #
+   // =============== END =============== //
 
 }

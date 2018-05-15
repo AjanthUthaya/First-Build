@@ -168,7 +168,6 @@ function init() {
                });
             }
          }
-
       }
    });
 
@@ -246,6 +245,7 @@ function init() {
          }
 
       }
+
    });
 
    LoadingFailed = $('#AddClass-Year .dd-option span').hasClass('FailedListIcon');

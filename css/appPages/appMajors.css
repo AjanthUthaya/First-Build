@@ -38,6 +38,7 @@ a.button {
 }
 
 .Major-Title-Right {
+  font-weight: bold;
   position: absolute;
   right: 0;
   display: flex;
@@ -46,7 +47,6 @@ a.button {
   color: white;
   justify-content: center;
   align-items: center;
-  font-weight: bold;
 }
 
 .Major-Item-Title:hover, .Major-Item-Title:focus {
@@ -54,11 +54,11 @@ a.button {
 }
 
 .Major-No-Result {
+  font-size: 20px;
   display: flex;
+  height: calc(100vh - 175px);
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 175px);
-  font-size: 20px;
 }
 
 .Major-No-Result * {
@@ -113,6 +113,10 @@ a.button {
   animation: Search .5s ease-out forwards;
 }
 
+#Search-Major {
+  text-transform: capitalize;
+}
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -145,7 +149,7 @@ a.button {
 }
 
 .Major-Item:hover {
-  opacity: 0.9;
+  opacity: .9;
 }
 
 @media only screen and (max-width: 750px) {
@@ -232,94 +236,167 @@ a.button {
 }
 
 #AddMajorForm {
-  padding: 20px;
+  padding: 30px 80px;
 }
 
-.AddMajor-Buttons {
-  width: 100%;
+/* ***************************************
+  Add major popup CONTENT
+  (Top-Right-Bottom-Left)
+*************************************** */
+
+.AddMajor-Container-TitleCode {
+  position: relative;
   display: flex;
+  width: 100%;
+  padding: 10px 0 20px 0;
   justify-content: center;
   align-items: center;
-  padding-bottom: 40px;
 }
 
-#AddMajor-Confirm {
-  font-size: 18px;
+.Container-TitleCode-Title {
   display: flex;
-  height: 40px;
-  margin: 0;
-  padding: 0 40px;
+  flex-direction: column;
+  width: 70%;
+  flex-grow: 1;
+}
+
+.Container-TitleCode-Code {
+  width: 30%;
+  max-width: 150px;
+}
+
+.Container-TitleCode-Title {
+  padding-right: 40px;
+}
+
+.TitleCode-Label {
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+  padding: 2.5px 0;
   color: white;
+  background-color: black;
   justify-content: center;
   align-items: center;
 }
 
-.AddMajor-Title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 20px;
-}
-
-.AddMajor-Title label, .AddMajor-Details label {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+.TitleCode-Input {
   font-size: 15px;
   font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.AddMajor-Title input, .AddMajor-Details input {
   text-align: center;
 }
 
-#AddMajor-Code {
-  text-transform: uppercase;
-}
-
-#Search-Major {
-  text-transform: capitalize;
-}
-
-.AddMajor-Title-Major {
-  margin-right: 20px;
-}
-
-.AddMajor-Title-Code {
-  margin-left: 20px;
-}
-
-.AddMajor-Details {
+.AddMajor-YearColor {
+  position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
-  padding: 0 20px;
+  padding-top: 10px;
   padding-bottom: 20px;
 }
 
-.AddMajor-Details-Vgs {
+#AddMajor-Year .dd-select {
+  height: 40px;
+}
+
+#AddMajor-Color {
+  height: 40px;
+  padding: 5px 8px;
+}
+
+.Container-Year {
+  display: flex;
+  width: 60%;
+  padding-right: 30px;
+}
+
+.Container-Color {
+  display: flex;
+  width: 40%;
+}
+
+.Container-Year .Year-Label, .Container-Color .Color-Label {
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+  width: 110px;
+  color: white;
+  background-color: black;
+  justify-content: center;
+  align-items: center;
+}
+
+.AddMajor-Hours {
+  padding-top: 10px;
   width: 100%;
-  padding-right: 20px;
 }
 
-.AddMajor-Vgs-Value {
+.AddMajor-Hours-Title {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-size: 16px;
+  background: black;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.Container-Hours {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.Hours-H1, .Hours-H2 {
+  display: flex;
+}
+
+.Hours-H1 {
+  padding-right: 40px;
+}
+
+.Hours-H1 label, .Hours-H2 label {
+  display: flex;
+  width: 50px;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.Hours-H1 input, .Hours-H2 input {
+  width: 100px;
   text-align: center;
-  text-align-last: center;
-  padding-left: 20px;
+  font-size: 14px;
+  font-weight: bold;
 }
 
-.AddMajor-Details-Color {
-  margin-right: 20px;
-  width: 30%;
+/* - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - */
+
+.AddMajor-Buttons {
+  display: flex;
+  width: 100%;
+  padding: 10px 0 40px 0;
+  justify-content: center;
+  align-items: center;
 }
 
-.AddMajor-Details-Hours {
-  margin-left: 20px;
-  width: 30%;
+#AddMajor-Confirm {
+  font-size: 15px;
+  font-weight: bold;
+  display: flex;
+  height: 38px;
+  margin: 0;
+  padding: 0 30px;
+  color: white;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
