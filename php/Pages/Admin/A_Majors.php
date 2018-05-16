@@ -69,13 +69,13 @@
         <!-- Container for title -->
         <div class="Container-TitleCode-Title Container">
           <label class="TitleCode-Label">Title</label>
-          <input class="TitleCode-Input" id="AddMajor-Title" type="text" placeholder="Eks. Naturfag">
+          <input class="TitleCode-Input" id="AddMajor-Title" type="text" maxlength="40" placeholder="Eks. Naturfag" autocomplete="off" required>
         </div>
 
         <!-- Container for code -->
         <div class="Container-TitleCode-Code Container">
           <label class="TitleCode-Label">Code</label>
-          <input class="TitleCode-Input" id="AddMajor-Code" type="text" placeholder="Eks. 2NAT">
+          <input class="TitleCode-Input" id="AddMajor-Code" type="text" maxlength="20" placeholder="Eks. 2NAT" autocomplete="off" required>
         </div>
       </div>
 
@@ -93,7 +93,7 @@
 
         <!-- Color container -->
         <div class="Container-Color">
-          <label class="Color-Label">Color*</label>
+          <label class="Color-Label">Color</label>
           <input id="AddMajor-Color" type="color" value="#35414d">
         </div>
       </div>
@@ -103,30 +103,29 @@
       <!-- HOURS SECTION CONTAINER -->
       <div class="AddMajor-Hours">
 
-        <label class="AddMajor-Hours-Title">Hours(45m)*</label>
+        <label class="AddMajor-Hours-Title">Hours(45m)</label>
 
         <div class="Container-Hours">
+          <!-- H1 -->
           <div class="Hours-H1">
-            <label>H1</label>
-            <input id="AddMajor-Hours_One" type="text" placeholder="Eks. 86">
+            <label>H1*</label>
+            <input id="AddMajor-Hours_One" type="text" maxlength="10" placeholder="Eks. 86" autocomplete="off">
           </div>
 
-
+          <!-- H2 -->
           <div class="Hours-H2">
-            <label>H2</label>
-            <input id="AddMajor-Hours_Two" type="text" placeholder="Eks. 74">
+            <label>H2*</label>
+            <input id="AddMajor-Hours_Two" type="text" maxlength="10" placeholder="Eks. 74" autocomplete="off">
           </div>
         </div>
 
       </div>
 
+      <!-- BUTTON TO SUBMIT FORM -->
+      <div class="AddMajor-Buttons">
+        <input class="button" type="submit" id="AddMajor-Confirm" value="Submit" />
+      </div>
+
     </form>
-
-
-    <div class="AddMajor-Buttons">
-
-      <a class="button" id="AddMajor-Confirm">Add major</a>
-
-    </div>
 
   </div>

@@ -92,7 +92,8 @@
   background: orange;
 }
 
-.Accordion-Folder:first-child > :first-child, .Accordion-Main a[role="tab"] {
+/* To target top layer: .Accordion-Main a[role="tab"] */
+.Accordion-Folder:first-child > :first-child {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -149,7 +150,7 @@
 }
 
 .Accordion-Item .accordion-title .Room-Delete:hover {
-  background-color: #96281b;
+  background-color: #d63c2a;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

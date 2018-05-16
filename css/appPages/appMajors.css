@@ -59,10 +59,12 @@ a.button {
   height: calc(100vh - 175px);
   justify-content: center;
   align-items: center;
+  padding-bottom: 10px;
 }
 
 .Major-No-Result * {
   font-size: 25px;
+  font-weight: bold;
 }
 
 .blocker {
@@ -199,6 +201,10 @@ a.button {
   (Top-Right-Bottom-Left)
 *************************************************** */
 
+.AddMajor-Modal {
+  max-width: 700px !important;
+}
+
 .AddMajor-Header {
   position: relative;
   display: flex;
@@ -298,6 +304,10 @@ a.button {
   height: 40px;
 }
 
+#AddMajor-Year .dd-selected-text {
+  font-weight: bold;
+}
+
 #AddMajor-Color {
   height: 40px;
   padding: 5px 8px;
@@ -326,7 +336,7 @@ a.button {
 }
 
 .AddMajor-Hours {
-  padding-top: 10px;
+  padding-top: 15px;
   width: 100%;
 }
 
@@ -335,10 +345,8 @@ a.button {
   justify-content: center;
   width: 100%;
   font-size: 16px;
-  background: black;
-  color: white;
   font-weight: bold;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .Container-Hours {
@@ -381,7 +389,7 @@ a.button {
 .AddMajor-Buttons {
   display: flex;
   width: 100%;
-  padding: 10px 0 40px 0;
+  padding: 38px 0 5px 0;
   justify-content: center;
   align-items: center;
 }
@@ -397,6 +405,18 @@ a.button {
   border-radius: 5px;
   justify-content: center;
   align-items: center;
+}
+
+@keyframes ValidationPulse {
+  0% {
+    background-color: white;
+  }
+  50% {
+    background-color: #c0392b;
+  }
+  100 {
+    background-color: white;
+  }
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
