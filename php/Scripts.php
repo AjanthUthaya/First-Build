@@ -10,6 +10,9 @@
 <!-- Addon: iziToast -->
 <script src="js/Addons/iziToast/iziToast.js"></script>
 
+<!-- Addon: SimpleBar -->
+<script src="js/Addons/SimpleBar/simplebar.js"></script>
+
 <!-- NOTE: General scripts for all pages -->
 <script src="js/Partials/app.js"></script>
 
@@ -80,37 +83,6 @@
   <script src="js/Addons/PowerTip/Powertip.js"></script>
   <script src="js/Addons/DropDownSlick/DDSlick.js"></script>
   <!-- END: Addons -->
-
-
-<?php } elseif ($Filename == 'NewTest') { ?>
-
-
-  <!-- START: Calendar and init -->
-  <script src="js/Addons/Dhtmlx/dhtmlxscheduler.js"></script>
-  <script src="js/Addons/Dhtmlx/dhtmlxscheduler_timeline.js"></script>
-  <script src="js/Addons/Dhtmlx/dhtmlxscheduler_treetimeline.js"></script>
-  <script src="js/Addons/Dhtmlx/dhtmlxscheduler_collision.js"></script>
-  <script src="js/Addons/Dhtmlx/dhtmlxscheduler_minical.js"></script>
-  <script src="js/Addons/Dhtmlx/dhtmlxscheduler_tooltip.js"></script>
-  <script src="js/Addons/Dhtmlx/dhtmlxscheduler_container_autoresize.js"></script>
-  <script src="js/Calendar/CalendarInitNewTest.js"></script>
-  <!-- END: Calendar and init -->
-
-
-  <!-- START: Addons -->
-  <script src="js/Addons/PowerTip/Powertip.js"></script>
-  <script src="js/Addons/DropDownSlick/DDSlick.js"></script>
-  <!-- END: Addons -->
-
-
-<?php } elseif ($Filename == 'Test') { ?>
-
-
-  <!-- START: Get data from source -->
-  <script src="js/Calendar/CalendarInitTest.js"></script>
-  <!-- END: Get data from source -->
-
-  <script src="js/Partials/ScrollHideNav.js"></script>
 
 
 <?php } elseif ($Filename == 'Rooms') { ?>

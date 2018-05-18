@@ -56,34 +56,77 @@ function init() {
    $("#AddMajor").on("click", function(e) {
 
 
-      // ========== START ========== //
-      // # YEAR LIST #
-      // ========== START ========== //
+      // ----------   ---------- //
+      // START: YEAR LIST
+      // ----------   ---------- //
 
-      // Year data
-      var Year = [{
-            text: "2017/2018",
-            value: 33
-         },
-         {
-            text: "2018/2019",
-            value: 41
-         },
-         {
-            text: "2020/2021",
-            value: 30
-         }
-      ];
+      // Get Program list
+      var YearList;
+
+      // Fire off the request
+      Request = $.ajax({
+         url: "php/Single/Load_Years.php",
+         type: "get",
+         dataType: "json",
+         async: false,
+         contentType: false, // The content type used when sending data to the server.
+         cache: false, // To unable request pages to be cached
+         processData: false, // To send DOMDocument or non processed data file it is set to false
+      });
+
+      // Fired up on success
+      Request.done(function(data) {
+         YearList = data;
+
+         // Add top item, so the user can add new Program
+         YearList.unshift({
+            'value': 0,
+            'text': '<span class="fa fa-plus-square AddNewIcon"></span><span class="AddNewLabel">Add new year</span>'
+         });
+      })
+
+      // Fired up on failure
+      Request.fail(function(xhr, textStatus, errorThrown) {
+         NotifyError('Server error', textStatus + ' failed to load year list');
+         YearList = [{
+            'value': 0,
+            'text': '<span class="fa fa-plus-close FailedListIcon"></span><span class="FailedListLabel">Failed to load year list...</span>'
+         }];
+      })
+
 
       // INIT DDSlick for year list
       $('#AddMajor-Year').ddslick({
-         data: Year,
-         selectText: 'Select year'
+         data: YearList,
+         selectText: 'Select Year',
+         onSelected: function(data) {
+
+            if (data.selectedIndex == 0) {
+               LoadingFailed = $('#AddMajor-Year .dd-option span').hasClass('FailedListIcon');
+               if (LoadingFailed) {
+                  $("#AddMajor-Year .dd-selected").text("Select Year");
+               } else {
+                  $("#AddMajor-Year .dd-selected").text("Select Year");
+                  NotifyFailed('Not implemented', 'This function is not implemented yet');
+               }
+            }
+
+         }
+
       });
 
-      // ========== END ========== //
-      // # YEAR LIST #
-      // ========== END ========== //
+      LoadingFailed = $('#AddMajor-Year .dd-option span').hasClass('FailedListIcon');
+
+      if (LoadingFailed) {
+         $('#AddMajor-Year .dd-options li:first').addClass('FailedLoadingList');
+      } else {
+         // Add class to first item(+ Add new)
+         $('#AddMajor-Year .dd-options li:first').addClass('AddNew');
+      }
+
+      // ----------   ---------- //
+      // END: YEAR LIST
+      // ----------   ---------- //
 
 
 
@@ -285,13 +328,26 @@ function init() {
             // ----- END: VALIDATE INPUT DATA ----- //
 
 
+            // ----- START: DEFINE FORM DATA ----- //
+
+            var FormData_NewMajor = new FormData();
+
+            FormData_NewMajor.append('Title', NewMajorApp.Title.Value);
+            FormData_NewMajor.append('Code', NewMajorApp.Code.Value);
+            FormData_NewMajor.append('Year', NewMajorApp.Year.Value);
+            FormData_NewMajor.append('Color', NewMajorApp.Color.Value);
+            FormData_NewMajor.append('Hours_One', NewMajorApp.Hours_One.Value);
+            FormData_NewMajor.append('Hours_Two', NewMajorApp.Hours_Two.Value);
+
+            // ----- END: DEFINE FORM DATA ----- //
+
 
             // ----- START: POST DATA ----- //
 
             var RequestAddMajor = $.ajax({
                url: "php/Single/Add_Major.php",
                type: "post",
-               data: NewMajorApp,
+               data: FormData_NewMajor,
                dataType: "json",
                async: false,
                contentType: false, // The content type used when sending data to the server.
@@ -301,7 +357,17 @@ function init() {
 
             // # FIRES UP ON SUCCESS # //
             RequestAddMajor.done(function(data) {
-               console.log('Request: Done');
+               if (data.Status == 'Error') {
+                  NotifyError(data.Title, data.Message);
+               } else if (data.Status == 'Failed') {
+                  NotifyFailed(data.Title, data.Message);
+               } else if (data.Status == 'Done') {
+
+                  NotifyDone(data.Title, data.Message);
+
+               } else {
+                  NotifyError('Response error', 'Response not recognized');
+               }
             });
 
             // # FIRES UP ON FAILURE # //
@@ -310,9 +376,8 @@ function init() {
             });
 
             // # FIRES UP NO MATTER # //
-            Request.always(function() {
-               // # RE-ENABLE INPUTS # //
-               Inputs.prop("disabled", false);
+            RequestAddMajor.always(function() {
+
             });
 
             // ----- END: POST DATA ----- //
@@ -325,6 +390,9 @@ function init() {
 
          // VALIDATE AND SUBMIT FORM
          SubmitNewMajor();
+
+         // # RE-ENABLE INPUTS # //
+         Inputs.prop("disabled", false);
 
       });
 

@@ -71,6 +71,52 @@ a.button {
   z-index: 6;
 }
 
+.AddNew {
+  background-color: #0fab51;
+}
+
+.AddNew a:hover {
+  background-color: #0e9446;
+}
+
+.AddNew .dd-option-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.AddNew .dd-option-selected {
+  background: #0fab51;
+}
+
+.dd-option-text .AddNewIcon {
+  font-size: 20px;
+  color: white;
+}
+
+.dd-option-text .AddNewLabel {
+  font-size: 14px;
+  font-weight: bold;
+  padding-left: 8px;
+  color: white;
+}
+
+.FailedLoadingList a {
+  background: #f44336 !important;
+}
+
+.FailedLoadingList .dd-option:hover {
+  background: #e53935 !important;
+}
+
+.FailedLoadingList * {
+  color: white;
+}
+
+.dd-options {
+  box-shadow: none !important;
+}
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -281,7 +327,7 @@ a.button {
   display: flex;
   padding: 2.5px 0;
   color: white;
-  background-color: black;
+  background-color: #292c30;
   justify-content: center;
   align-items: center;
 }
@@ -330,7 +376,7 @@ a.button {
   display: flex;
   width: 110px;
   color: white;
-  background-color: black;
+  background-color: #292c30;
   justify-content: center;
   align-items: center;
 }
@@ -368,7 +414,7 @@ a.button {
   width: 50px;
   justify-content: center;
   align-items: center;
-  background: black;
+  background: #292c30;
   color: white;
   font-size: 14px;
   font-weight: bold;
