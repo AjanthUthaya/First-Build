@@ -1,7 +1,8 @@
 <?php
-
+if ($Filename !== 'Majors') {
 // Includeing scripts
 require($_SERVER['DOCUMENT_ROOT'] . '/php/Scripts.php');
+}
 
 // Declaring response array/json
 $RegisterResponse = array();

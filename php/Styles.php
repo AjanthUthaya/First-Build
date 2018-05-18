@@ -121,7 +121,9 @@ if ($Filename == 'Home') {
   array_push($ScriptsData, array(
     'Addons' => array(
       // # JQUERY MODAL # //
-      $Addon_JqueryModal
+      $Addon_JqueryModal,
+      // # DATA_TABLES # //
+      $Addon_DataTables
     ),
 
     'Specific' => array(

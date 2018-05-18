@@ -46,6 +46,7 @@
   <!-- START: Addons -->
   <script src="js/Addons/DropDownSlick/DDSlick.js"></script>
   <script src="js/Addons/JqueryModal/Modal.js"></script>
+  <script src="js/Addons/DataTables/datatables.js"></script>
   <!-- END: Addons -->
 
   <!-- START: Page specific scripts -->

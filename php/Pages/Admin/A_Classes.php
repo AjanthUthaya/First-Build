@@ -56,8 +56,6 @@
 
         $stmt->bind_result($Id, $Program, $Vgs, $Code, $Separator, $Title);
 
-        $ResultClasses;
-
         if ($stmt->num_rows !== 0) {
           while ($row = $stmt->fetch()) {
 
@@ -73,8 +71,8 @@
             <?php
 
           }
-
-
+        } else {
+          DocResponse("Failed", "", "No classes found in DB");
         }
 
         // Close prepared statement

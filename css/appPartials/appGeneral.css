@@ -35,6 +35,10 @@ table {
   margin-bottom: 0;
 }
 
+[data-simplebar] {
+  z-index: inherit;
+}
+
 #Mobile-View {
   display: none;
 }

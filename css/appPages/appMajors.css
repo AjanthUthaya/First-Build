@@ -7,6 +7,13 @@ a.button {
   margin: 0;
 }
 
+div#Loading-Table {
+  display: flex;
+  height: 300px;
+  justify-content: center;
+  align-items: center;
+}
+
 .Major-Title-Main {
   position: relative;
   z-index: 5;
@@ -178,6 +185,7 @@ a.button {
 .Major-Content {
   width: 100vw;
   padding: 20px 40px;
+  margin-top: 20px;
 }
 
 .Major-List {
@@ -235,6 +243,106 @@ a.button {
   white-space: nowrap;
   text-overflow: ellipsis;
   color: white;
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* ***************************************************
+  DataTable Addon Edit
+  (Top-Right-Bottom-Left)
+*************************************************** */
+
+/* Remove default search bar */
+
+div#List_filter {
+  display: none;
+}
+
+/* Remove top and bottom padding from DataTables */
+
+table#List {
+  display: none;
+  overflow: hidden;
+  margin: 0;
+  border-radius: 10px;
+}
+
+/* Add padding to items */
+
+table.dataTable tbody th, table.dataTable tbody td {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* Center heading and content text */
+
+table#List th, table#List td {
+  text-align: center;
+}
+
+#List thead {
+  color: white;
+  background: #36414d;
+}
+
+table.dataTable.stripe tbody tr.odd, table.dataTable.display tbody tr.odd {
+  background-color: #e2e2e2;
+}
+
+/* Center paging buttons */
+
+div#List_paginate {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  padding: 10px 40px;
+  justify-content: center;
+  align-items: center;
+  padding-top: 25px;
+}
+
+/* Remove paging bottom padding */
+
+div#List_paginate .pagination {
+  margin: 0;
+}
+
+/* Paging buttons */
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+  background: #dcdcdc;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  padding: 8px 15px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover a {
+  color: white;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background-color: black;
+}
+
+.pagination a:hover, .pagination button:hover {
+  background: none;
+}
+
+.pagination a, .pagination button {
+  display: block;
+  padding: 0;
+  color: #0a0a0a;
+  border-radius: 0;
+}
+
+#List-Main {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - -

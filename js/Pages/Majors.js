@@ -50,6 +50,63 @@ function init() {
 
 
    // =============== START =============== //
+   // # INIT MAJOR TABLE #
+   // =============== START =============== //
+
+   // Hide table
+   $('#List').hide();
+   // Show loading
+   $('#Loading-Table').show();
+
+   // Init major list
+   $('#List').DataTable({
+      // Showing x out of x.length
+      "info": false,
+      // Activate pagination
+      "paging": true,
+      // Order OnClcik of header
+      "ordering": true,
+      // Default orderdering (asc/desc)
+      "order": [
+         [0, 'asc'],
+         [2, 'asc'],
+         [1, 'asc']
+      ],
+      // Activate search bar
+      "searching": true,
+      // Disable ability to change page length
+      "lengthChange": false,
+      // Array of options to limit paging
+      "lengthMenu": [10, 25, 50, 75, 100],
+      // Set default paging limit
+      "pageLength": 20,
+      // Set size based on data
+      "autoWidth": true,
+      "initComplete": function(settings, json) {
+         // Hide loading
+         $('#Loading-Table').hide();
+         // Show search
+         $('#List-Search').show();
+         // Show table after loading
+         $('#List').show();
+      }
+   });
+
+   // Enables search bar to filter content
+   oTable = $('#List').DataTable();
+   $('#List-Search').keyup(function() {
+      oTable.search($(this).val()).draw();
+   })
+
+   // =============== END =============== //
+   // # INIT MAJOR TABLE #
+   // =============== END =============== //
+
+
+
+
+
+   // =============== START =============== //
    // # ADD MAJOR POPUP (NB: UNBIND ALL) #
    // =============== START =============== //
 
@@ -406,5 +463,7 @@ function init() {
    // =============== END =============== //
    // # ADD MAJOR POPUP #
    // =============== END =============== //
+
+
 
 }
