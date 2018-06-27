@@ -81,22 +81,29 @@
            <div class="Accordion-Item-Main cell">
              <div class="Accordion-Item">
 
-               <!-- Item top -->
-               <div class="Item-Time">
-                 <label class="Item-Time-Label"><?php echo $LessonData_StartDate[1] . ' - ' . $LessonData_EndDate[1] ?></label>
-               </div>
-
-               <!-- Item title -->
-               <div class="Item-Title" style="background: black;">
+               <!-- Item - Title -->
+               <div class="Item-Title" style="background: <?php echo $LessonData['color']; ?>;">
                  <label class="Item-Title-Label"><?php echo $LessonData['title']; ?></label>
                </div>
 
-               <!-- Item content -->
+               <!-- Item - Sub -->
+               <div class="Item-Sub">
+                 <label class="Item-Sub-Label"><?php echo $LessonData['sub']; ?></label>
+               </div>
+
+
+               <!-- Item - List -->
                <div class="Item-Content">
-                 <ul class="Content-List">
-                   <li class="Content-List-Item"><span class="fa fa-users"></span><label><?php echo $LessonData['ava'] . ' / ' . $LessonData['ava_max']; ?></label></li>
-                   <li class="Content-List-Item"><span class="fa fa-building"></span><label><?php echo $LessonData['room'] ?></label></li>
+                 <ul class="Item-List">
+                   <li class="List-Item List-Item-Teacher"><span class="Item-Icon fa fa-user"></span><label class="Item-Label">Not implemented</label></li>
+                   <li class="List-Item List-Item-Ava"><span class="Item-Icon fa fa-users"></span><label class="Item-Label">Not implemented</label></li>
+                   <li class="List-Item List-Item-Room"><span class="Item-Icon fa fa-building"></span><label class="Item-Label"><?php echo $LessonData['room']; ?></label></li>
                  </ul>
+               </div>
+
+               <!-- Item - Time -->
+               <div class="Item-Time">
+                 <label class="Item-Time-Label"><?php echo $LessonData_StartDate[1]; ?> - <?php echo $LessonData_EndDate[1]; ?></label>
                </div>
 
              </div>

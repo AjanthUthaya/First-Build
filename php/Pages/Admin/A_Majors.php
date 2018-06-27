@@ -96,7 +96,10 @@
 
 </div>
 
-<!-- Add major to DB using AJAX -->
+
+
+<!-- _____ # START: FORM TO ADD NEW MAJOR # _____ -->
+
 <div id="AddMajor-Modal" class="modal">
 
   <div class="Modal-Header AddMajor-Header">
@@ -172,3 +175,107 @@
   </form>
 
 </div>
+
+<!-- _____ # START: FORM TO ADD NEW MAJOR # _____ -->
+
+
+
+
+
+<!-- _____ # START: FORM TO EDIT MAJOR # _____ -->
+
+<div id="EditMajor-Modal" class="modal">
+
+  <div class="Modal-Header EditMajor-Header">
+    <label>Title</label>
+    <a rel="modal:close">x</a>
+  </div>
+
+
+  <form id="EditMajorForm">
+
+    <!-- # ACCORDION CONTAINER # -->
+    <div class="Accordion-Container">
+      <!-- # ACCORDION EDIT BUTTON AND TITLE # -->
+      <div class="EditMajor-Accordion-Title-Container">
+        <a class="button">Edit</a><label class="Accordion-Link">Hours and Color</label>
+      </div>
+
+      <!-- # ACCORDION CONTENT # -->
+      <div class="Accordion-Content">
+        <!-- # HOURS CONTAINER # -->
+        <div class="EditMajor-Hours">
+
+            <!-- # HOURS TITLE # -->
+            <label class="EditMajor-Hours-Title">Hours(45m)</label>
+
+            <div class="EditMajor-Hours-Container">
+            <!-- # H1 # -->
+            <div class="EditMajor-Hours-H_One">
+              <label>H1</label>
+              <input class="Hours-H_One-InputLabel" type="text" value="78">
+            </div>
+
+            <!-- # H2 # -->
+            <div class="EditMajor-Hours-H_Two">
+              <label>H2</label>
+              <input class="Hours-H_One-InputLabel" type="text" value="94">
+            </div>
+          </div>
+        </div>
+
+
+        <!-- # COLOR CONTAINER # -->
+        <div class="EditMajor-Color">
+          <label class="EditMajor-Color-Title">Color</label>
+          <input class="Hours-H_One-ColorLabel" type="color" value="#35414d">
+        </div>
+      </div>
+    </div>
+
+    <!-- # ACCORDION CONTAINER # -->
+    <div class="Accordion-Container">
+      <!-- # ACCORDION EDIT BUTTON AND TITLE # -->
+      <div class="Participants-Title-Container">
+        <a class="button">Edit</a><label class="Participants-Title">Participants - (12 / 140)</label>
+      </div>
+
+      <!-- # ACCORDION CONTENT # -->
+      <div class="Participants-Content-Container">
+        <p><b>Not yet developed</b></p>
+      </div>
+    </div>
+
+  </form>
+
+</div>
+
+<!-- _____ # END: FORM TO EDIT MAJOR # _____ -->
+
+
+
+<!-- _____ # START: SELECT PARTICIPANTS POPUP # _____ -->
+
+<div id="EditMajorParticipants-Modal" class="modal">
+
+  <input type="hidden" id="EditMajorParticipants" value="">
+
+  <div class="Modal-Header">
+    <label>Select participants</label>
+    <a rel="modal:close">x</a>
+  </div>
+
+
+  <form id="EditMajorParticipants-Form">
+
+
+
+  </form>
+
+
+  <div class="Modal-Buttons">
+    <a class="button Save">Save</a>
+  </div>
+</div>
+
+<!-- _____ # END: SELECT PARTICIPANTS POPUP # _____ -->

@@ -56,16 +56,6 @@
   <script src="js/Partials/ScrollHideNav.js"></script>
 
 
-<?php } elseif ($Filename == 'EditMajor') { ?>
-
-
-  <!-- START: Page specific scripts -->
-  <script src="js/Pages/EditMajor.js"></script>
-  <!-- END: Page specific scripts -->
-
-  <script src="js/Partials/ScrollHideNav.js"></script>
-
-
 <?php } elseif ($Filename == 'NewLesson') { ?>
 
 

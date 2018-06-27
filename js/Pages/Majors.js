@@ -466,4 +466,44 @@ function init() {
 
 
 
+
+
+   // =============== START =============== //
+   // # EDIT MAJOR POPUP #
+   // =============== START =============== //
+
+   // OnClick of list item
+   $('#List tbody').on('click', 'tr', function() {
+
+      // INIT Foundation accordion
+      $('.ManageClass-Filter-Main').foundation();
+
+      // # SHOW MODAL # //
+      $("#EditMajor-Modal").modal({
+         fadeDuration: 250,
+         fadeDelay: 0.50
+      });
+
+
+
+      // ========== START ========== //
+      // # ACCORDION CODE #
+      // ========== START ========== //
+
+
+
+      // ========== END ========== //
+      // # ACCORDION CODE #
+      // ========== END ========== //
+
+
+      
+
+   });
+
+
+   // =============== END =============== //
+   // # EDIT MAJOR POPUP #
+   // =============== END =============== //
+
 }

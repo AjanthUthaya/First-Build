@@ -101,21 +101,6 @@ if ($Filename == 'Home') {
     )
   ));
 
-} elseif ($Filename == 'EditMajor') {
-
-  array_push($ScriptsData, array(
-    'Addons' => array(
-      // # NO ADDONS # //
-    ),
-
-    'Specific' => array(
-      array(
-        'Name' => 'Edit Major',
-        'Src' => 'css/appPages/appEditMajor.css'
-      )
-    )
-  ));
-
 } elseif ($Filename == 'Majors') {
 
   array_push($ScriptsData, array(

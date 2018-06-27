@@ -20,67 +20,58 @@ $scheduler = new schedulerConnector($conn, $dbtype);
 $scheduler->enable_log("../Database_Log.txt", true);
 
 // Function to set data that does not get rendered in the calendar
-function ShadowDataInsert($ev)
-{
-    session_start();
+function ShadowDataInsert($ev) {
+  session_start();
 
-    // Setting timezone
-    date_default_timezone_set("Europe/Oslo");
+  // Setting timezone
+  date_default_timezone_set("Europe/Oslo");
 
-    // Setting creation date to now
-    $Creation_Date = date("d-m-Y");
-    $Creation_Time = date("H:i:s");
+  // Setting creation date to now
+  $Creation_Date = date("d-m-Y");
+  $Creation_Time = date("H:i:s");
 
-    // Created by
-    $ev->set_value("creation_by", $_SESSION['Username']);
-    // Date
-    $ev->add_field("creation_date", $Creation_Date);
-    // Time
-    $ev->add_field("creation_time", $Creation_Time);
-    // Ip
-    $ev->add_field("creation_ip", GetUserIP());
-
-    // Edited by
-    $ev->add_field("edit_by", $_SESSION['Username']);
-    // Date
-    $ev->add_field("edit_date", $Creation_Date);
-    // Time
-    $ev->add_field("edit_time", $Creation_Time);
-    // Ip
-    $ev->add_field("edit_ip", GetUserIP());
+  // Created by
+  $ev->set_value("creation_id", $_SESSION['User_Id']);
+  // Date
+  $ev->add_field("creation_date", $Creation_Date);
+  // Time
+  $ev->add_field("creation_time", $Creation_Time);
+  // Ip
+  $ev->add_field("creation_ip", GetUserIP());
 }
 
-function ShadowDataUpdate($ev)
-{
-    session_start();
+function ShadowDataUpdate($ev) {
+  session_start();
 
-    // Setting timezone
-    date_default_timezone_set("Europe/Oslo");
+  // Setting timezone
+  date_default_timezone_set("Europe/Oslo");
 
-    // Setting creation date to now
-    $Creation_Date = date("d-m-Y");
-    $Creation_Time = date("H:i:s");
+  // Setting creation date to now
+  $Creation_Date = date("d-m-Y");
+  $Creation_Time = date("H:i:s");
 
-    // DB variable
-    global $conn;
+  // DB variable
+  global $conn;
 
-    // Get update data
-    $Id = $ev->get_value("id");
+  /*
+  // Get update data
+  $Id = $ev->get_value("id");
 
-    $Edit_By = $_SESSION['Username'];
-    $Edit_Date = $Creation_Date;
-    $Edit_Time = $Creation_Time;
-    $Edit_Ip = GetUserIP();
+  $Edit_By = $_SESSION['Username'];
+  $Edit_Date = $Creation_Date;
+  $Edit_Time = $Creation_Time;
+  $Edit_Ip = GetUserIP();
 
-    // Setting updated data //
-    // Edited by
-    $ev->add_field("edit_by", $Edit_By);
-    // Date
-    $ev->add_field("edit_date", $Edit_Date);
-    // Time
-    $ev->add_field("edit_time", $Edit_Time);
-    // Ip
-    $ev->add_field("edit_ip", $Edit_Ip);
+  // Setting updated data //
+  // Edited by
+  $ev->add_field("edit_by", $Edit_By);
+  // Date
+  $ev->add_field("edit_date", $Edit_Date);
+  // Time
+  $ev->add_field("edit_time", $Edit_Time);
+  // Ip
+  $ev->add_field("edit_ip", $Edit_Ip);
+  */
 }
 
 // Before insert
@@ -93,4 +84,4 @@ $scheduler->event->attach("beforeUpdate", "ShadowDataUpdate");
 // Sort result by x field and order in ASC/DESC
 $scheduler->sort("start_date", "ASC");
 // Querry and render calendar
-$scheduler->render_table("lessons", "id", "id, type, start_date, end_date, teacher_id, title, sub, room, color, vgs, ava, ava_max, details, creation_by");
+$scheduler->render_table('lessons', 'id', 'id, title, sub, type, start_date, end_date, color, room, ava_max, details, creation_id');

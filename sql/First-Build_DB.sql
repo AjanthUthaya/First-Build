@@ -131,7 +131,7 @@ UNLOCK TABLES;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `first-build`.`lessons_CHANGE_ID` BEFORE INSERT ON `lessons` FOR EACH ROW
 BEGIN
-	
+
 	SET @AutoIncrement = (SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='lessons');
 
 	SET NEW.id = @AutoIncrement;
@@ -236,16 +236,16 @@ UNLOCK TABLES;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `first-build`.`Set_Label&Level` BEFORE INSERT ON `rooms` FOR EACH ROW
 BEGIN
-         
+
 	IF (NEW.label IS NULL) THEN
 		SET NEW.label = NEW.`key`;
 	END IF;
-    
+
     IF (NEW.`level` IS NULL) THEN
 		SET @ParentLevel = (SELECT `level` FROM rooms WHERE `key` = NEW.parent_key);
 		SET NEW.`level` = @ParentLevel + 1;
 	END IF;
-         
+
 END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;

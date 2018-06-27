@@ -1,4 +1,4 @@
-<?php if ($Filename == 'NewLesson' or $Filename == 'NewTest' or $Filename == 'EditMajor') { ?>
+<?php if ($Filename == 'NewLesson' or $Filename == 'NewTest' or $Filename == 'EditMajor' or $Filename == 'Lesson') { ?>
 
 </div>
 <!-- END: Viewport -->
